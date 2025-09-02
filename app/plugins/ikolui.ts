@@ -7,11 +7,6 @@ provideConfig({
 
 export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.use(
-        createIkolUI({
-            config: {
-                SSR: import.meta.server,
-            },
-        })
+        createIkolUI()
     );
 });
-
