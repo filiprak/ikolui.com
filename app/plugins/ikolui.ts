@@ -5,8 +5,13 @@ provideConfig({
     SSR: import.meta.server,
 });
 
-export default defineNuxtPlugin((nuxtApp) => {
-    nuxtApp.vueApp.use(
-        createIkolUI()
-    );
+export default defineNuxtPlugin({
+    hooks: {
+        'app:beforeMount'(app) {
+            console.log(app)
+            app.use(
+                createIkolUI()
+            );
+        },
+    }
 });
