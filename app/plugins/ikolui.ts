@@ -1,5 +1,5 @@
 import { createIkolUI } from '@ikol/ui-kit';
-import { provideConfig } from '@ikol/ui-kit/composables/globals';
+import { provideConfig, provideGlobal, SSR_CONTEXT_INJECTION_KEY } from '@ikol/ui-kit/composables/globals';
 
 export default defineNuxtPlugin(app => {
     const { isMobile, isTablet } = useDevice();
@@ -8,6 +8,18 @@ export default defineNuxtPlugin(app => {
     provideConfig({
         SSR: import.meta.server,
         SSR_DEVICE: device,
+    });
+
+    provideGlobal(SSR_CONTEXT_INJECTION_KEY, {
+        inline_styles: new Map<string, {
+            attrs?: Record<string, string>;
+            css: string;
+            asset_path?: string;
+        }>(),
+        remotes: [],
+        shared: [],
+        errors: [],
+        prefetch: {},
     });
 
     app.vueApp.use(
