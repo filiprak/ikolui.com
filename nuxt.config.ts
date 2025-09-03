@@ -3,4 +3,11 @@ export default defineNuxtConfig({
     build: {
         transpile: ['@ikol/ui-kit'],
     },
+    alias: {
+        dayjs: 'dayjs/esm',
+    },
+    modules: [
+        '@nuxtjs/device'
+    ],
+    devtools: false,
 });
