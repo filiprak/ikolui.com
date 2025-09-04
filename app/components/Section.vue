@@ -8,7 +8,8 @@
 <style lang="css" module>
 .section {
     display: flex;
-    justify-self: center;
+    justify-content: center;
+    width: 100%;
 }
 
 .wrapper {

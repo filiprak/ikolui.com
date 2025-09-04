@@ -11,7 +11,7 @@
                 <span class="ik-text--xl ik-text--bold">IKOL UI</span>
             </IkListItem>
             <div :class="$style.items">
-                <div>Docs</div>
+                <div>Components</div>
                 <div>FAQs</div>
                 <div>Resources</div>
                 <div>Blog</div>
