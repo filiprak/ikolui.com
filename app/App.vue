@@ -2,9 +2,10 @@
     <NuxtLayout>
         <IkApp>
             <Nav />
-            <IkAppContent>
+            <IkAppContent :class="$style.content">
                 <NuxtPage />
             </IkAppContent>
+            <Footer />
         </IkApp>
     </NuxtLayout>
 </template>
@@ -49,3 +50,8 @@ const head = computed(() => {
 useHead(head);
 
 </script>
+<style lang="css" module>
+.content {
+    min-height: calc(100svh - 300px);
+}
+</style>

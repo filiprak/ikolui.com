@@ -17,6 +17,7 @@
                 <div>Blog</div>
             </div>
             <div :class="$style.actions">
+                <ThemeSwitch />
                 <IkButtonGroup>
                     <IkButton ghost>
                         Sign In
@@ -79,5 +80,8 @@ import { IkListItem } from '@ikol/ui-kit/components/IkList';
     backdrop-filter: saturate(150%) blur(8px);
 }
 
-.actions {}
+.actions {
+    display: grid;
+    grid-template-columns: max-content max-content;
+}
 </style>
