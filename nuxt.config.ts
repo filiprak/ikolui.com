@@ -1,3 +1,5 @@
+import { i18n } from './vite/plugins/i18n';
+
 export default defineNuxtConfig({
     compatibilityDate: '2025-09-02',
     build: {
@@ -19,6 +21,11 @@ export default defineNuxtConfig({
                 { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css' }
             ],
         },
+    },
+    vite: {
+        plugins: [
+            i18n()
+        ],
     },
     devtools: false,
 });

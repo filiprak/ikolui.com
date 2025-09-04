@@ -11,20 +11,20 @@
                 <span class="ik-text--xl ik-text--bold">IKOL UI</span>
             </IkListItem>
             <div :class="$style.items">
-                <div>Components</div>
-                <div>FAQs</div>
-                <div>Resources</div>
-                <div>Blog</div>
+                <div>[[_Components_]]</div>
+                <div>[[_FAQs_]]</div>
+                <div>[[_Resources_]]</div>
+                <div>[[_Blog_]]</div>
             </div>
             <div :class="$style.actions">
                 <ThemeSwitch />
                 <IkButtonGroup>
                     <IkButton ghost>
-                        Sign In
+                        [[_Sign In_]]
                     </IkButton>
                     <IkButton filled
                               design="primary">
-                        Preview
+                        [[_Preview_]]
                     </IkButton>
                 </IkButtonGroup>
             </div>

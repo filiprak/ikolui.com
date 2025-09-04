@@ -27,25 +27,25 @@
             <IkDivider />
             <div :class="$style.items">
                 <div>
-                    <div>Components</div>
+                    <div>[[_Components_]]</div>
                     <IkLink design="default">Item 1</IkLink>
                     <IkLink design="default">Item 2</IkLink>
                     <IkLink design="default">Item 3</IkLink>
                 </div>
                 <div>
-                    <div>FAQs</div>
+                    <div>[[_FAQs_]]</div>
                     <IkLink design="default">Item 1</IkLink>
                     <IkLink design="default">Item 2</IkLink>
                     <IkLink design="default">Item 3</IkLink>
                 </div>
                 <div>
-                    <div>Resources</div>
+                    <div>[[_Resources_]]</div>
                     <IkLink design="default">Item 1</IkLink>
                     <IkLink design="default">Item 2</IkLink>
                     <IkLink design="default">Item 3</IkLink>
                 </div>
                 <div>
-                    <div>Blog</div>
+                    <div>[[_Blog_]]</div>
                     <IkLink design="default">Item 1</IkLink>
                     <IkLink design="default">Item 2</IkLink>
                     <IkLink design="default">Item 3</IkLink>
