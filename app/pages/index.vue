@@ -20,6 +20,4 @@
 </template>
 <script lang="ts" setup>
 import { IkButton } from '@ikol/ui-kit/components/IkButton';
-
-
 </script>

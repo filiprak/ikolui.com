@@ -38,6 +38,9 @@ const head = computed(() => {
 
     return {
         style: styles,
+        titleTemplate: (title?: string) => {
+            return title ? `${title} — IKOL UI` : `IKOL UI — [[_Build Stunning UI's, Faster._]]`;
+        },
         htmlAttrs: {
             class: Object
                 .entries(theme.css_classes.value)
