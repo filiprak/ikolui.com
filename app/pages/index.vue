@@ -11,7 +11,9 @@
             </p>
             <div>
                 <IkButton design="primary"
-                          size="md">Get started now</IkButton>
+                          size="md">
+                    Get started now
+                </IkButton>
             </div>
         </Section>
     </div>
