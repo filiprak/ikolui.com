@@ -12,6 +12,7 @@
 <script lang="ts" setup>
 import './styles/utils.css';
 import './styles/mdx.css';
+import '@wooorm/starry-night/style/dark';
 import { IkApp, IkAppContent } from '@ikol/ui-kit/components/IkApp';
 import { useSSRContext } from '@ikol/ui-kit/composables/globals';
 import { useTheme } from '@ikol/ui-kit/composables/theme';

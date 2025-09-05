@@ -1,5 +1,5 @@
 import { i18n } from './vite/plugins/i18n';
-import mdx from '@mdx-js/rollup';
+import { mdx } from './vite/plugins/mdx';
 
 export default defineNuxtConfig({
     compatibilityDate: '2025-09-02',
@@ -30,29 +30,7 @@ export default defineNuxtConfig({
     vite: {
         plugins: [
             i18n(),
-            mdx({
-                jsxImportSource: 'vue',
-                remarkPlugins: [
-                    function wrap() {
-                        return (tree) => {
-                            tree.children = [
-                                {
-                                    type: 'mdxJsxFlowElement',
-                                    name: 'div',
-                                    attributes: [
-                                        {
-                                            type: 'mdxJsxAttribute',
-                                            name: 'className',
-                                            value: 'mdx-wrapper',
-                                        },
-                                    ],
-                                    children: tree.children,
-                                },
-                            ];
-                        }
-                    }
-                ],
-            }),
+            mdx(),
         ],
     },
     devtools: false,
