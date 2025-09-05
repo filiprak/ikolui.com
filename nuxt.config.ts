@@ -1,4 +1,5 @@
 import { i18n } from './vite/plugins/i18n';
+import mdx from '@mdx-js/rollup';
 
 export default defineNuxtConfig({
     compatibilityDate: '2025-09-02',
@@ -10,7 +11,6 @@ export default defineNuxtConfig({
     },
     modules: [
         '@nuxtjs/device',
-        '@nuxtjs/mdc',
     ],
     app: {
         head: {
@@ -29,6 +29,29 @@ export default defineNuxtConfig({
     },
     vite: {
         plugins: [
+            mdx({
+                jsxImportSource: 'vue',
+                remarkPlugins: [
+                    function wrap() {
+                        return (tree) => {
+                            tree.children = [
+                                {
+                                    type: 'mdxJsxFlowElement',
+                                    name: 'div',
+                                    attributes: [
+                                        {
+                                            type: 'mdxJsxAttribute',
+                                            name: 'className',
+                                            value: 'mdx-wrapper',
+                                        },
+                                    ],
+                                    children: tree.children,
+                                },
+                            ];
+                        }
+                    }
+                ],
+            }),
             i18n(),
         ],
     },
