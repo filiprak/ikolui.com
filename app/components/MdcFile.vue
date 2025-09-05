@@ -21,9 +21,9 @@ const { data: ast } = await useAsyncData(props.file, async () => {
     return loadMdc();
 });
 
-// if (import.meta.hot) {
-//     import.meta.hot.accept(async () => {
-//         await loadMdc();
-//     })
-// }
+if (import.meta.hot) {
+    import.meta.hot.accept('@/content/' + props.file + '.mdc', () => {
+        console.log('update')
+    });
+}
 </script>

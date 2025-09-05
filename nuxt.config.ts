@@ -29,7 +29,7 @@ export default defineNuxtConfig({
     },
     vite: {
         plugins: [
-            i18n()
+            i18n(),
         ],
     },
     devtools: false,
