@@ -11,6 +11,8 @@
             </p>
             <div>
                 <IkButton design="primary"
+                          tag="a"
+                          href="/docs"
                           size="md">
                     [[_Get started now_]]
                 </IkButton>

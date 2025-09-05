@@ -9,7 +9,8 @@ export default defineNuxtConfig({
         dayjs: 'dayjs/esm',
     },
     modules: [
-        '@nuxtjs/device'
+        '@nuxtjs/device',
+        '@nuxtjs/mdc',
     ],
     app: {
         head: {
