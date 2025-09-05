@@ -11,10 +11,8 @@
                 <span class="ik-text--xl ik-text--bold">IKOL UI</span>
             </IkListItem>
             <div :class="$style.items">
-                <div>[[_Components_]]</div>
-                <div>[[_FAQs_]]</div>
-                <div>[[_Resources_]]</div>
-                <div>[[_Blog_]]</div>
+                <NuxtLink to="/docs">[[_Docs_]]</NuxtLink>
+                <NuxtLink to="/blog">[[_Blog_]]</NuxtLink>
             </div>
             <div :class="$style.actions">
                 <ThemeSwitch />
@@ -63,11 +61,13 @@ import { IkListItem } from '@ikol/ui-kit/components/IkList';
     display: block;
 }
 
-.items > div {
+.items > * {
     display: inline-block;
     font-weight: var(--text-semibold);
     padding: var(--s-8);
     height: 60px;
+    text-decoration: none !important;
+    color: var(--content-neutral-strong-default);
 }
 
 .bg {

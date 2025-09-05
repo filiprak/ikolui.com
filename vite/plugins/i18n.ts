@@ -12,6 +12,7 @@ export function i18n(): Plugin {
                 id.endsWith('.vue') ||
                 id.endsWith('.js') ||
                 id.endsWith('.ts') ||
+                id.endsWith('.mdx') ||
                 id.endsWith('.jsx') ||
                 id.endsWith('.tsx')
             ) {

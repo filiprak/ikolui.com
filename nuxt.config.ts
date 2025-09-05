@@ -29,6 +29,7 @@ export default defineNuxtConfig({
     },
     vite: {
         plugins: [
+            i18n(),
             mdx({
                 jsxImportSource: 'vue',
                 remarkPlugins: [
@@ -52,7 +53,6 @@ export default defineNuxtConfig({
                     }
                 ],
             }),
-            i18n(),
         ],
     },
     devtools: false,
