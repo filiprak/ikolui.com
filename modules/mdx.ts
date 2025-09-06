@@ -40,7 +40,6 @@ export default defineNuxtModule({
                 }
 
                 for (const p of pages) {
-                    console.log(path, p.path)
                     if (
                         p.path !== '/' &&
                         p.path !== path &&
