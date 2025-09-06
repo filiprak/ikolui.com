@@ -1,7 +1,12 @@
 import { type Plugin } from 'vite';
 
+const regex = /\[\[\_(.*?)\_\]\]/gs;
+
+export function translate(input: string) {
+    return input.replace(regex, '$1');
+}
+
 export function i18n(): Plugin {
-    const regex = /\[\[\_(.*?)\_\]\]/gs;
 
     return {
         name: 'ikolui:i18n',
@@ -18,7 +23,7 @@ export function i18n(): Plugin {
                 filepath.endsWith('.tsx')
             ) {
                 if (regex.test(code)) {
-                    const newCode = code.replace(regex, '$1');
+                    const newCode = translate(code);
                     return {
                         code: newCode,
                         map: null,

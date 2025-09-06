@@ -1,5 +1,6 @@
 import mdxJs from '@mdx-js/rollup';
 import rehypeStarryNight from 'rehype-starry-night';
+import remarkFrontmatter from 'remark-frontmatter';
 
 export const mdx = () => mdxJs({
     jsxImportSource: 'vue',
@@ -21,7 +22,8 @@ export const mdx = () => mdxJs({
                     },
                 ];
             }
-        }
+        },
+        remarkFrontmatter,
     ],
     rehypePlugins: [rehypeStarryNight],
 });

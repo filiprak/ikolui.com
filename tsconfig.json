@@ -1,5 +1,5 @@
 {
-    // https://nuxt.com/docs/guide/concepts/typescript
+    // https://nuxt.com/docs/4.x/guide/directory-structure/tsconfig
     "files": [],
     "references": [
         {
