@@ -8,13 +8,14 @@ export function i18n(): Plugin {
         enforce: 'pre',
 
         transform(code: string, id: string) {
+            const filepath = id.split('?')[0] || '';
             if (
-                id.endsWith('.vue') ||
-                id.endsWith('.js') ||
-                id.endsWith('.ts') ||
-                id.endsWith('.mdx') ||
-                id.endsWith('.jsx') ||
-                id.endsWith('.tsx')
+                filepath.endsWith('.vue') ||
+                filepath.endsWith('.js') ||
+                filepath.endsWith('.ts') ||
+                filepath.endsWith('.mdx') ||
+                filepath.endsWith('.jsx') ||
+                filepath.endsWith('.tsx')
             ) {
                 if (regex.test(code)) {
                     const newCode = code.replace(regex, '$1');

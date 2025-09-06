@@ -3,6 +3,8 @@
         <div :class="$style.bg"></div>
         <div :class="$style.wrapper">
             <IkListItem class="ik-pa-0 ik-py-5"
+                        link="/"
+                        no_hover
                         inline>
                 <template #prepend>
                     <IkImage src="/logo.svg"
@@ -43,7 +45,7 @@ import { IkListItem } from '@ikol/ui-kit/components/IkList';
     justify-content: center;
     position: sticky;
     top: 0;
-    height: 60px;
+    height: var(--nav-h);
     border-bottom: 1px solid var(--border-neutral-light-default);
 }
 

@@ -1,19 +1,12 @@
 <template>
     <NuxtLayout>
-        <IkApp>
-            <Nav />
-            <IkAppContent :class="$style.content">
-                <NuxtPage />
-            </IkAppContent>
-            <Footer />
-        </IkApp>
+        <NuxtPage />
     </NuxtLayout>
 </template>
 <script lang="ts" setup>
 import './styles/utils.css';
 import './styles/mdx.css';
 import '@wooorm/starry-night/style/dark';
-import { IkApp, IkAppContent } from '@ikol/ui-kit/components/IkApp';
 import { useSSRContext } from '@ikol/ui-kit/composables/globals';
 import { useTheme } from '@ikol/ui-kit/composables/theme';
 
@@ -27,16 +20,6 @@ const head = computed(() => {
         .map(([id, { css }]) => {
             return { [`data-${id}`]: '', innerHTML: css, };
         });
-
-    styles.push({
-        'data-vars': '',
-        innerHTML: `
-            :root {
-                --layout-w: 1400px;
-                --layout-pad: var(--s-8);
-            }
-        `,
-    });
 
     return {
         style: styles,
@@ -53,10 +36,4 @@ const head = computed(() => {
 });
 
 useHead(head);
-
 </script>
-<style lang="css" module>
-.content {
-    min-height: calc(100svh - 300px);
-}
-</style>
