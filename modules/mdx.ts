@@ -40,11 +40,13 @@ export default defineNuxtModule({
                 }
 
                 for (const p of pages) {
+                    console.log(path, p.path)
                     if (
                         p.path !== '/' &&
                         p.path !== path &&
                         path.startsWith(p.path)
                     ) {
+                        page.path = page.path.slice(p.path.length + 1);
                         p.children = p.children || [];
                         p.children.push(page);
                         child = true;
