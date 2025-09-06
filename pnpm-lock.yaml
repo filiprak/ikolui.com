@@ -30,6 +30,9 @@ importers:
       '@mdx-js/rollup':
         specifier: ^3.1.1
         version: 3.1.1(rollup@4.50.0)
+      fast-glob:
+        specifier: ^3.3.3
+        version: 3.3.3
       rehype-starry-night:
         specifier: ^2.2.0
         version: 2.2.0
