@@ -7,7 +7,6 @@ meta:
 ---
 
 import { IkAlert } from '@ikol/ui-kit/components/IkAlert';
-import { IkButton } from '@ikol/ui-kit/components/IkButton';
 
 # Getting started
 
@@ -25,18 +24,17 @@ If you just want to play around with Nuxt in your browser without setting up a p
 If you just want to play around with Nuxt in your browser without setting up a project, you can use one of our online sandboxes.
 If you just want to play around with Nuxt in your browser without setting up a project, you can use one of our online sandboxes.
 
-```ts title="[[_This is my code_]]"
-import { IkAlert } from '@ikol/ui-kit/components/IkAlert';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
 
-export default defineNuxtConfig({
-  webpack: {
-    loaders: {
-      vue: {
-        hotReload: true,
-      }
-    }
-  }
-})
+<IkButton append_icon='arrow-right' flat>Test</IkButton>
+
+```vue title="[[_This is my code_]]" preview
+<template>
+  <IkButton append_icon='arrow-right' flat>Test</IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
 ```
 
 
@@ -65,16 +63,3 @@ export default defineNuxtConfig({
 ## Development Server
 
 Now you'll be able to start your Nuxt app in development mode:
-
-
-# Header 1
-
-## Header 2
-
-### Header 3
-
-#### Header 4
-
-##### Header 5
-
-###### Header 6

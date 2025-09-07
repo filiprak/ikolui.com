@@ -1,5 +1,8 @@
 <template>
     <div :class="$style.pre">
+        <div v-if="compiled">
+            <pre>{{ compiled }}</pre>
+        </div>
         <div v-if="title"
              :class="$style.header"
              class="ik-px-7 ik-py-2">
@@ -21,6 +24,7 @@ import CopyBtn from '~/components/utils/CopyBtn.vue';
 defineProps<{
     title?: string,
     code?: string,
+    compiled?: string,
 }>();
 
 defineOptions({ inheritAttrs: false });
