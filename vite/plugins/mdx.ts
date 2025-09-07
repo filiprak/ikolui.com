@@ -35,7 +35,6 @@ export const mdx = (): Plugin[] => {
         {
             name: 'ikolui:mdx-previews',
             resolveId(id) {
-                console.log(previews)
                 if (previews[id]) {
                     return '\0' + id;
                 }
@@ -52,15 +51,15 @@ export const mdx = (): Plugin[] => {
             remarkPlugins: [
                 function wrap() {
                     return (tree) => {
-                        // for (const mod in previews) {
-                        //     const component = mod.replace('.vue', '');
-
-                        //     tree.children.push({
-                        //         type: "mdxjsEsm",
-                        //         value: `import ${component} from '${mod}';\n`,
-                        //     });
-                        // }
+                        console.log(previews)
                         tree.children = [
+                            ...Object.keys(previews).map((mod) => {
+                                const component = mod.replace('.vue', '');
+                                return {
+                                    type: "mdxjsEsm",
+                                    value: `import ${component} from '${mod}';\n`,
+                                };
+                            }),
                             {
                                 type: 'mdxJsxFlowElement',
                                 name: 'div',
