@@ -1,20 +1,17 @@
 <template>
     <IkButton @click="copyText"
-              circle
               ghost
-              v-tooltip.top.close="'Copy'"
+              size="xs"
+              round
               :disabled="copied"
+              :icon="copied ? 'check' : 'clone:regular'"
               :class="$style.btn">
-        <IkIcon icon="clone:regular"
-                v-if="!copied" />
-        <IkIcon icon="check-square"
-                v-else />
+        <template v-if="!copied">[[_Copy_]]</template>
+        <template v-else>[[_Copied_]]</template>
     </IkButton>
 </template>
 <script setup lang="ts">
 import { IkButton } from "@ikol/ui-kit/components/IkButton";
-import { vTooltip } from "@ikol/ui-kit/directives/tooltip";
-import { IkIcon } from "@ikol/ui-kit/components/IkIcon";
 import { ref } from "vue";
 
 const props = defineProps({
