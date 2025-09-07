@@ -2,17 +2,17 @@ import mdxJs from '@mdx-js/rollup';
 import rehypeShiki from '@shikijs/rehype';
 import remarkFrontmatter from 'remark-frontmatter';
 
-function parseMeta(line) {
-    const args = {};
+function parseMeta(line: string) {
+    const args: Record<string, unknown> = {};
     const regex = /(\w+)(?:=(?:"([^"]*)"|'([^']*)'|([^\s]+)))?/g;
     let match;
 
     while ((match = regex.exec(line)) !== null) {
-        const key = match[1];
-        const value = match[2] ?? match[3] ?? match[4];
-
-        // If no value, treat as boolean flag
-        args[key] = value !== undefined ? value : true;
+        const key = match[1] || '';
+        if (key) {
+            const value = match[2] ?? match[3] ?? match[4];
+            args[key] = value !== undefined ? value : true;
+        }
     }
 
     return args;
@@ -47,7 +47,7 @@ export const mdx = () => mdxJs({
             themes: { light: 'github-light-default', dark: 'github-dark-default' },
             transformers: [
                 {
-                    pre(tree) {
+                    pre(tree: any) {
                         tree.properties = Object.assign(tree.properties, parseMeta(this.options.meta?.__raw || ''));
                     }
                 }
