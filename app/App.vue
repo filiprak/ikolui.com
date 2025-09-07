@@ -6,7 +6,6 @@
 <script lang="ts" setup>
 import './styles/utils.css';
 import './styles/mdx.css';
-import '@wooorm/starry-night/style/dark';
 import { useSSRContext } from '@ikol/ui-kit/composables/globals';
 import { useTheme } from '@ikol/ui-kit/composables/theme';
 
@@ -31,7 +30,10 @@ const head = computed(() => {
                 .entries(theme.css_classes.value)
                 .filter((i) => i[1])
                 .map(i => i[0]),
-        }
+        },
+        meta: [
+            { name: 'color-scheme', content: theme.is_dark.value ? 'dark' : 'light' },
+        ],
     };
 });
 

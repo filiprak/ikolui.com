@@ -1,9 +1,26 @@
 import mdxJs from '@mdx-js/rollup';
-import rehypeStarryNight from 'rehype-starry-night';
+import rehypeShiki from '@shikijs/rehype';
 import remarkFrontmatter from 'remark-frontmatter';
+
+function parseMeta(line) {
+    const args = {};
+    const regex = /(\w+)(?:=(?:"([^"]*)"|'([^']*)'|([^\s]+)))?/g;
+    let match;
+
+    while ((match = regex.exec(line)) !== null) {
+        const key = match[1];
+        const value = match[2] ?? match[3] ?? match[4];
+
+        // If no value, treat as boolean flag
+        args[key] = value !== undefined ? value : true;
+    }
+
+    return args;
+}
 
 export const mdx = () => mdxJs({
     jsxImportSource: 'vue',
+    providerImportSource: import.meta.resolve('../../app/mdx-components.ts'),
     remarkPlugins: [
         function wrap() {
             return (tree) => {
@@ -25,5 +42,16 @@ export const mdx = () => mdxJs({
         },
         remarkFrontmatter,
     ],
-    rehypePlugins: [rehypeStarryNight],
+    rehypePlugins: [
+        [rehypeShiki, {
+            themes: { light: 'github-light-default', dark: 'github-dark-default' },
+            transformers: [
+                {
+                    pre(tree) {
+                        tree.properties = Object.assign(tree.properties, parseMeta(this.options.meta?.__raw || ''));
+                    }
+                }
+            ],
+        }],
+    ],
 });
