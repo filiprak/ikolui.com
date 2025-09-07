@@ -47,8 +47,12 @@ export const mdx = () => mdxJs({
             themes: { light: 'github-light-default', dark: 'github-dark-default' },
             transformers: [
                 {
+                    preprocess(code) {
+                        this.options._code = code
+                    },
                     pre(tree: any) {
                         tree.properties = Object.assign(tree.properties, parseMeta(this.options.meta?.__raw || ''));
+                        tree.properties = Object.assign(tree.properties, { code: this.options._code });
                     }
                 }
             ],

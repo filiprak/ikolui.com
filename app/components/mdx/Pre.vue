@@ -1,25 +1,24 @@
 <template>
     <div :class="$style.pre">
-        <IkListItem :class="$style.header"
+        <IkListItem v-if="title"
+                    :class="$style.header"
                     class="ik-px-7 ik-py-2">
             {{ title }}
             <template #append>
-                <IkButton icon="copy:regular"
-                          ghost
-                          circle>
-                </IkButton>
+                <CopyBtn :text="code || ''" />
             </template>
         </IkListItem>
         <Pre v-bind="$attrs" />
     </div>
 </template>
 <script setup lang="ts">
-import { IkButton } from '@ikol/ui-kit/components/IkButton';
 import { IkListItem } from '@ikol/ui-kit/components/IkList';
 import { h } from 'vue';
+import CopyBtn from '~/components/utils/CopyBtn.vue';
 
 defineProps<{
     title?: string,
+    code?: string,
 }>();
 
 defineOptions({ inheritAttrs: false });
