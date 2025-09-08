@@ -1,0 +1,3 @@
+.ik-theme--dark body {
+    background-color: rgb(from var(--background-neutral-strong-default) calc(r * 0.5) calc(g * 0.5) calc(b * 0.5));
+}

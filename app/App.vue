@@ -4,15 +4,17 @@
     </NuxtLayout>
 </template>
 <script lang="ts" setup>
+import './styles/globals.css';
 import './styles/utils.css';
 import './styles/mdx.css';
 import { useSSRContext } from '@ikol/ui-kit/composables/globals';
-import { useTheme } from '@ikol/ui-kit/composables/theme';
+import { provideTheme, IkThemeType } from '@ikol/ui-kit/composables/theme';
 
-const theme = useTheme();
+const theme = provideTheme({
+    type: IkThemeType.DARK,
+});
+
 const context = useSSRContext();
-
-theme.is_dark.value = true;
 
 const head = computed(() => {
     const styles = [...(context?.inline_styles.entries() || [])]

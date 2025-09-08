@@ -40,6 +40,7 @@ import { IkListItem } from '@ikol/ui-kit/components/IkList';
 </script>
 <style lang="css" module>
 .nav {
+    z-index: 900;
     position: relative;
     display: flex;
     justify-content: center;
