@@ -1,19 +1,19 @@
 <template>
     <div :class="$style.pre">
-        <div v-if="compiled">
-            <pre>{{ compiled }}</pre>
+        <Preview :class="$style.preview" />
+        <div :class="$style.wrapper">
+            <div v-if="title"
+                 :class="$style.header"
+                 class="ik-px-7 ik-py-2">
+                <IkIcon icon="code"
+                        :class="$style.icon" />
+                <span>{{ title }}</span>
+            </div>
+            <div :class="$style.actions">
+                <CopyBtn :text="code || ''" />
+            </div>
+            <Pre v-bind="$attrs" />
         </div>
-        <div v-if="title"
-             :class="$style.header"
-             class="ik-px-7 ik-py-2">
-            <IkIcon icon="code"
-                    :class="$style.icon" />
-            <span>{{ title }}</span>
-        </div>
-        <div :class="$style.actions">
-            <CopyBtn :text="code || ''" />
-        </div>
-        <Pre v-bind="$attrs" />
     </div>
 </template>
 <script setup lang="ts">
@@ -24,7 +24,6 @@ import CopyBtn from '~/components/utils/CopyBtn.vue';
 defineProps<{
     title?: string,
     code?: string,
-    compiled?: string,
 }>();
 
 defineOptions({ inheritAttrs: false });
@@ -33,13 +32,21 @@ const slots = useSlots();
 
 const Pre = {
     render() {
-        return h('pre', slots.default?.())
+        const vnodes = slots.default?.() || [];
+        return h('pre', vnodes[0]);
+    }
+}
+
+const Preview = {
+    render() {
+        const vnodes = slots.default?.() || [];
+        return vnodes[1];
     }
 }
 
 </script>
 <style lang="css" module>
-.pre {
+.wrapper {
     position: relative;
 }
 
@@ -48,6 +55,19 @@ const Pre = {
     top: 0;
     right: 0;
     padding: var(--s-4);
+}
+
+.preview {
+    padding: var(--s-7);
+    background-color: var(--background-neutral-strong-default);
+    border-top-left-radius: var(--radius-3);
+    border-top-right-radius: var(--radius-3);
+    border: 1px solid var(--border-neutral-light-default);
+    border-bottom: none;
+}
+
+:global(.ik-theme--dark) .preview {
+    background-color: #111;
 }
 
 .pre pre {
@@ -74,7 +94,11 @@ const Pre = {
     border-bottom: none;
     border-top-left-radius: var(--radius-3);
     border-top-right-radius: var(--radius-3);
-    /* background-color: rgb(from var(--background-neutral-strong-default) calc(r * 0.7) calc(g * 0.7) calc(b * 0.7)); */
     background-color: rgba(from var(--background-neutral-light-default) r g b / 0.4);
+}
+
+.pre:has(.preview) .header {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 </style>

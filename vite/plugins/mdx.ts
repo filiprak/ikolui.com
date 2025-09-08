@@ -1,6 +1,7 @@
 import mdxJs from '@mdx-js/rollup';
 import rehypeShiki from '@shikijs/rehype';
 import remarkFrontmatter from 'remark-frontmatter';
+import { parse, compileScript, compileTemplate, rewriteDefault } from '@vue/compiler-sfc';
 import type { Plugin } from 'vite';
 
 function previewName(str: string) {
@@ -9,7 +10,18 @@ function previewName(str: string) {
         hash = (hash << 5) - hash + str.charCodeAt(i);
         hash |= 0; // Convert to 32bit integer
     }
-    return `Vue${hash}.vue`;
+    hash = Math.abs(hash);
+    return `Vue${hash}`;
+}
+
+function previewModule(name: string) {
+    return `virtual:${name}.vue`;
+}
+
+function transformVueSFC(source: string, id: string, ssr?: boolean) {
+    const { descriptor } = parse(source, { filename: id });
+    const script = compileScript(descriptor, { id, inlineTemplate: true, templateOptions: { ssr: ssr } });
+    return script.content;
 }
 
 function parseMeta(line: string) {
@@ -34,16 +46,17 @@ export const mdx = (): Plugin[] => {
     return [
         {
             name: 'ikolui:mdx-previews',
+            enforce: 'pre',
             resolveId(id) {
                 if (previews[id]) {
                     return '\0' + id;
                 }
             },
-            load(id) {
+            load(id, options) {
                 if (id.startsWith('\0') && previews[id.slice(1)]) {
-                    return previews[id.slice(1)];
+                    return transformVueSFC(previews[id.slice(1)], id.slice(1), options?.ssr);
                 }
-            }
+            },
         },
         mdxJs({
             jsxImportSource: 'vue',
@@ -51,15 +64,7 @@ export const mdx = (): Plugin[] => {
             remarkPlugins: [
                 function wrap() {
                     return (tree) => {
-                        console.log(previews)
                         tree.children = [
-                            ...Object.keys(previews).map((mod) => {
-                                const component = mod.replace('.vue', '');
-                                return {
-                                    type: "mdxjsEsm",
-                                    value: `import ${component} from '${mod}';\n`,
-                                };
-                            }),
                             {
                                 type: 'mdxJsxFlowElement',
                                 name: 'div',
@@ -87,25 +92,52 @@ export const mdx = (): Plugin[] => {
                                 this.options._code = code;
 
                                 if (options.lang === 'vue' && this.options._meta.preview) {
-                                    const vue_name = previewName(code);
-                                    previews[vue_name] = code;
+                                    const name = previewName(code);
+                                    const mod = previewModule(name);
+                                    previews[mod] = code;
 
-                                    this.options._vue = vue_name;
+                                    this.options._vue_module = mod;
+                                    this.options._vue_name = name;
                                 }
                             },
                             pre(tree: any) {
                                 tree.properties = Object.assign(tree.properties, this.options._meta);
                                 tree.properties = Object.assign(tree.properties, { code: this.options._code });
-                            },
-                            root(tree) {
-                                if (this.options._vue) {
-                                    const mod = this.options._vue;
-                                    const component = mod.replace('.vue', '');
+
+                                if (this.options._vue_module) {
+                                    const mod = this.options._vue_module;
+                                    const component = this.options._vue_name;
 
                                     tree.children = tree.children || [];
                                     tree.children.push({
+                                        type: "mdxjsEsm",
+                                        value: `import ${component} from '${mod}';`,
+                                        data: {
+                                            estree: {
+                                                type: "Program",
+                                                body: [
+                                                    {
+                                                        type: "ImportDeclaration",
+                                                        source: { type: "Literal", value: mod },
+                                                        specifiers: [
+                                                            {
+                                                                type: "ImportDefaultSpecifier",
+                                                                local: { type: "Identifier", name: component }
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                sourceType: "module"
+                                            },
+                                        },
+                                    });
+                                    tree.children.push({
                                         type: "mdxJsxFlowElement",
-                                        name: component,
+                                        name: 'div',
+                                        children: [{
+                                            type: "mdxJsxFlowElement",
+                                            name: component,
+                                        }],
                                     });
                                 }
                             },
