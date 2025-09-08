@@ -12,15 +12,16 @@
                 {{ section.label }}
                 <template #append
                           v-if="section.icon">
-                    <IkIcon :icon="section.is_expanded ? 'chevron-up' : 'chevron-down'" />
+                    <IkIcon :icon="section.is_expanded ? 'chevron-down' : 'chevron-right'" />
                 </template>
             </IkListItem>
-            <template v-if="section.is_root || section.is_expanded">
+            <div v-if="section.is_root || section.is_expanded">
                 <NuxtLink v-for="page in section.items"
                           :to="page.path"
                           custom>
                     <template #default="{ href, isActive }">
                         <IkListItem :link="href"
+                                    :active="isActive"
                                     :class="[
                                         $style.item, {
                                             [$style.active]: isActive,
@@ -36,7 +37,9 @@
                         </IkListItem>
                     </template>
                 </NuxtLink>
-            </template>
+            </div>
+            <IkDivider v-if="section.is_root"
+                       class="ik-mb-3" />
         </div>
     </div>
 </template>
@@ -45,6 +48,7 @@ import { useRouter, type RouteRecordNormalized } from 'vue-router';
 import { computed } from 'vue';
 import { IkListItem } from '@ikol/ui-kit/components/IkList';
 import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
+import { IkDivider } from '@ikol/ui-kit/components/IkDivider';
 
 interface Section {
     id: string,
@@ -109,7 +113,7 @@ watch(
 }
 
 .item.child {
-    color: var(--content-neutral-weak-default);
+    color: var(--content-neutral-light-default);
     margin-left: var(--s-10);
 }
 
