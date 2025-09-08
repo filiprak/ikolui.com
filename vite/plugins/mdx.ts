@@ -1,7 +1,7 @@
 import mdxJs from '@mdx-js/rollup';
 import rehypeShiki from '@shikijs/rehype';
 import remarkFrontmatter from 'remark-frontmatter';
-import { parse, compileScript, compileTemplate, rewriteDefault } from '@vue/compiler-sfc';
+import { parse, compileScript } from '@vue/compiler-sfc';
 import type { Plugin } from 'vite';
 
 function previewName(str: string) {
