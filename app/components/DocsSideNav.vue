@@ -56,7 +56,6 @@ interface Section {
 }
 
 function onSectionClick(section: Section) {
-    console.log(section)
     section.is_expanded = !section.is_expanded
 }
 
