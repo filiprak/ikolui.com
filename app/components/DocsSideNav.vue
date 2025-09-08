@@ -63,6 +63,14 @@ function onSectionClick(section: Section) {
     section.is_expanded = !section.is_expanded
 }
 
+const normalizePath = (path: string) => {
+    return path.replace(/\/+$/, '') || '/';
+}
+
+const isActive = (check: RouteRecordNormalized) => {
+    return normalizePath(route.path) === normalizePath(check.path);
+}
+
 const router = useRouter();
 const route = useRoute();
 
@@ -88,7 +96,7 @@ const sections = ref<Section[]>([
 
 const openActiveSection = () => {
     sections.value
-        .filter(section => section.items.some(item => item.path === route.path))
+        .filter(section => section.items.some(item => isActive(item)))
         .forEach(i => {
             i.is_expanded = true;
         })
