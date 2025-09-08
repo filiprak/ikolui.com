@@ -58,7 +58,7 @@ const Preview = {
 }
 
 .preview {
-    padding: var(--s-7);
+    padding: var(--s-9);
     background-color: var(--background-neutral-strong-default);
     border-top-left-radius: var(--radius-3);
     border-top-right-radius: var(--radius-3);

@@ -18,13 +18,26 @@ Buttons communicate actions that users can take. They are typically placed throu
 
 The Button comes with three variants: text (default), contained, and outlined.
 
-```vue title="[[_Button Colors_]]" preview
+```vue title="[[_Source code_]]" preview
 <template>
-  <IkButton v-if="check" design="primary" class="ik-mr-4">Button</IkButton>
+  <IkButton design="primary" class="ik-mr-4">Button</IkButton>
   <IkButton design="success" class="ik-mr-4">Button</IkButton>
   <IkButton design="error" class="ik-mr-4">Button</IkButton>
   <IkButton design="accent" class="ik-mr-4">Button</IkButton>
   <IkButton design="default">Button</IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+### Disabled Button
+
+The Button used for less-pronounced actions, including those located: in dialogs, in cards. In cards, text buttons help maintain an emphasis on card content.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton disabled>Button</IkButton>
 </template>
 <script setup>
 import { IkButton } from '@ikol/ui-kit/components/IkButton';
