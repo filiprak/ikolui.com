@@ -38,8 +38,8 @@
                     </template>
                 </NuxtLink>
             </div>
-            <IkDivider v-if="section.is_root"
-                       class="ik-mb-3" />
+            <Hr v-if="section.is_root"
+                class="ik-mb-3" />
         </div>
     </div>
 </template>
@@ -48,7 +48,6 @@ import { useRouter, type RouteRecordNormalized } from 'vue-router';
 import { computed } from 'vue';
 import { IkListItem } from '@ikol/ui-kit/components/IkList';
 import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
-import { IkDivider } from '@ikol/ui-kit/components/IkDivider';
 
 interface Section {
     id: string,

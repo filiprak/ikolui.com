@@ -24,7 +24,9 @@
                     </IkButtonGroup>
                 </template>
             </IkListItem>
-            <IkDivider />
+        </div>
+        <Hr />
+        <div :class="$style.wrapper">
             <div :class="$style.items">
                 <div>
                     <div>[[_Components_]]</div>
@@ -51,7 +53,9 @@
                     <IkLink design="default">Item 3</IkLink>
                 </div>
             </div>
-            <IkDivider />
+        </div>
+        <Hr />
+        <div :class="$style.wrapper">
             <IkListItem class="ik-text--default-light ik-pa-0">
                 <span class="ik-text--normal">© 2025 IKOL UI. All rights reserved.</span>
                 <template #append>
@@ -64,7 +68,6 @@
 <script setup lang="ts">
 import { IkButton } from '@ikol/ui-kit/components/IkButton';
 import { IkButtonGroup } from '@ikol/ui-kit/components/IkButtonGroup';
-import { IkDivider } from '@ikol/ui-kit/components/IkDivider';
 import { IkImage } from '@ikol/ui-kit/components/IkImage';
 import { IkLink } from '@ikol/ui-kit/components/IkLink';
 import { IkListItem } from '@ikol/ui-kit/components/IkList';
@@ -74,9 +77,14 @@ import { IkListItem } from '@ikol/ui-kit/components/IkList';
 .footer {
     position: relative;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     padding-top: var(--s-10);
     padding-bottom: var(--s-10);
+}
+
+.footer :global(.ik-divider) {
+    width: 100%;
 }
 
 .wrapper {

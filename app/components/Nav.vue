@@ -47,7 +47,7 @@ import { IkListItem } from '@ikol/ui-kit/components/IkList';
     position: sticky;
     top: 0;
     height: var(--nav-h);
-    border-bottom: 1px solid var(--border-neutral-light-default);
+    border-bottom: 1px solid rgba(from var(--border-neutral-light-default) r g b / 0.4);
 }
 
 .wrapper {
