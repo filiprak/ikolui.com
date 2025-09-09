@@ -10,7 +10,7 @@
                     <IkImage src="/logo.svg"
                              :size="32" />
                 </template>
-                <span class="ik-text--xl ik-text--bold">IKOL UI</span>
+                <span class="ik-text--xl ik-text--bold">ikol UI</span>
             </IkListItem>
             <div :class="$style.items">
                 <NuxtLink to="/docs">[[_Docs_]]</NuxtLink>
