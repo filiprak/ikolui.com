@@ -10,12 +10,14 @@ interface RouteMenuMeta {
 declare module 'vue-router' {
     interface RouteMeta {
         menu?: RouteMenuMeta,
+        order?: number,
     }
 }
 
 declare module '#app' {
     interface PageMeta {
         menu?: RouteMenuMeta,
+        order?: number,
     }
 }
 

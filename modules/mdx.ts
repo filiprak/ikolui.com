@@ -1,6 +1,6 @@
 import { defineNuxtModule, resolveAlias } from 'nuxt/kit';
 import type { NuxtPage } from 'nuxt/schema';
-import { join } from 'path';
+import { join, basename, dirname } from 'path';
 import { read } from 'to-vfile';
 import { matter } from 'vfile-matter';
 import glob from 'fast-glob';
@@ -27,7 +27,9 @@ export default defineNuxtModule({
         nuxt.hook('pages:extend', async (pages) => {
             for (const file of mdxFiles) {
                 let child = false;
-                const path = `/${file.replace('.mdx', '')}`;
+                const [, ...parsed] = basename(file).match(/^(\d+)?\.?([^.]+)\.(\w+)$/)!;
+                const path = `/${dirname(file)}/${parsed[1]}`;
+                const order = parseInt(parsed[0] || '9999999');
                 const matter = await getMdxMeta(join(pagesDir, file));
                 const page: NuxtPage = {
                     name: path,
@@ -35,6 +37,7 @@ export default defineNuxtModule({
                     file: `~/pages/${file}`,
                     meta: {
                         ...(matter?.meta || {}),
+                        order,
                         mdxPath: file,
                     },
                 }

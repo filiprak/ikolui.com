@@ -6,8 +6,10 @@
                         :class="[$style.item]">
                 <template #prepend
                           v-if="section.icon">
-                    <IkIcon :icon="section.icon"
-                            size_px="18" />
+                    <div :class="$style.prepend">
+                        <IkIcon :icon="section.icon"
+                                size_px="18" />
+                    </div>
                 </template>
                 {{ section.label }}
                 <template #append
@@ -30,8 +32,10 @@
                                     ]">
                             <template #prepend
                                       v-if="page.meta.menu?.icon">
-                                <IkIcon :icon="page.meta.menu?.icon"
-                                        size_px="18" />
+                                <div :class="$style.prepend">
+                                    <IkIcon :icon="page.meta.menu?.icon"
+                                            size_px="18" />
+                                </div>
                             </template>
                             {{ page.meta.menu?.label }}
                         </IkListItem>
@@ -44,10 +48,10 @@
     </div>
 </template>
 <script setup lang="ts">
-import { useRouter, type RouteRecordNormalized } from 'vue-router';
-import { computed } from 'vue';
+import { type RouteRecordNormalized } from 'vue-router';
 import { IkListItem } from '@ikol/ui-kit/components/IkList';
 import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
+import useNavRoutes from '~/composables/useNavRoutes';
 
 interface Section {
     id: string,
@@ -62,34 +66,21 @@ function onSectionClick(section: Section) {
     section.is_expanded = !section.is_expanded
 }
 
-const normalizePath = (path: string) => {
-    return path.replace(/\/+$/, '') || '/';
-}
-
-const isActive = (check: RouteRecordNormalized) => {
-    return normalizePath(route.path) === normalizePath(check.path);
-}
-
-const router = useRouter();
 const route = useRoute();
 
-const nav_pages = computed(
-    () => router
-        .getRoutes()
-        .filter(i => i.meta.menu?.type === 'docs')
-);
+const { items, isActive } = useNavRoutes('docs');
 
 const sections = ref<Section[]>([
     {
         id: 'intro',
         is_root: true,
-        items: nav_pages.value.filter(i => !i.meta.menu?.section || i.meta.menu.section == 'intro')
+        items: items.value.filter(i => !i.meta.menu?.section || i.meta.menu.section == 'intro')
     },
     {
         id: 'components',
         icon: 'cubes',
         label: '[[_Components_]]',
-        items: nav_pages.value.filter(i => i.meta.menu?.section == 'components')
+        items: items.value.filter(i => i.meta.menu?.section == 'components')
     },
 ]);
 
@@ -113,6 +104,10 @@ watch(
     padding: var(--s-3) var(--s-6);
     margin-bottom: var(--s-2);
     color: var(--content-neutral-light-default);
+}
+
+.prepend {
+    width: 24px;
 }
 
 .item:not(.active) :global(.ik-icon) {
