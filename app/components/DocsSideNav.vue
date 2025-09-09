@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <nav>
         <div v-for="section in sections">
             <IkListItem v-if="section.label"
                         @click="onSectionClick(section)"
@@ -45,7 +45,7 @@
             <Hr v-if="section.is_root"
                 class="ik-my-5" />
         </div>
-    </div>
+    </nav>
 </template>
 <script setup lang="ts">
 import { type RouteRecordNormalized } from 'vue-router';

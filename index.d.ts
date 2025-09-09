@@ -1,7 +1,7 @@
 import '#vue-router';
 
 interface RouteMenuMeta {
-    type: 'docs',
+    type: 'docs' | 'root',
     section?: string,
     icon?: string,
     label: string,

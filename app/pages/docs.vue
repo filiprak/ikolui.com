@@ -2,9 +2,10 @@
     <Section>
         <div :class="$style.wrapper">
             <aside :class="$style.left">
-                <DocsSideNav/>
+                <DocsSideNav />
             </aside>
             <div :class="$style.center">
+                <Breadcrumb />
                 <NuxtPage />
             </div>
             <div :class="$style.right">
@@ -13,6 +14,12 @@
     </Section>
 </template>
 <script setup lang="ts">
+definePageMeta({
+    menu: {
+        type: 'root',
+        label: '[[_Docs_]]',
+    },
+});
 </script>
 <style lang="css" module>
 .wrapper {

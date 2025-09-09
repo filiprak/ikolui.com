@@ -1,10 +1,16 @@
-import { defineNuxtModule, resolveAlias } from 'nuxt/kit';
+import { defineNuxtModule, resolveAlias, resolvePath } from 'nuxt/kit';
 import type { NuxtPage } from 'nuxt/schema';
-import { join, basename, dirname } from 'path';
+import { join, basename, dirname, resolve } from 'path';
 import { read } from 'to-vfile';
 import { matter } from 'vfile-matter';
 import glob from 'fast-glob';
 import { translate } from '../vite/plugins/i18n';
+
+function isSameDir(path1: string, path2: string) {
+    const dir1 = dirname(resolve(path1));
+    const dir2 = dirname(resolve(path2));
+    return dir1 === dir2;
+}
 
 async function getMdxMeta(filePath: string) {
     const file = await read(filePath);
@@ -16,6 +22,23 @@ async function getMdxMeta(filePath: string) {
     return data as Record<string, unknown>;
 }
 
+function findParent(targets: NuxtPage[], lost: NuxtPage, curr: NuxtPage | null = null): NuxtPage | undefined {
+    for (const p of targets) {
+        const parent = findParent(p.children || [], lost, p);
+        if (parent) return parent;
+        if (curr && isSameDir((curr.file || '').replace('.vue', '/index.vue'), lost.file || '')) {
+            return curr;
+        }
+    }
+}
+
+function print(targets: NuxtPage[], s = '---') {
+    for (const p of targets) {
+        console.log(s + (p.path || '<empty>') + ` (${p.file})`)
+        print(p.children || [], s + '---');
+    }
+}
+
 export default defineNuxtModule({
     async setup(options, nuxt) {
         const pagesDir = resolveAlias('~/pages')
@@ -25,8 +48,9 @@ export default defineNuxtModule({
         }));
 
         nuxt.hook('pages:extend', async (pages) => {
+            print(pages);
+
             for (const file of mdxFiles) {
-                let child = false;
                 const [, ...parsed] = basename(file).match(/^(\d+)?\.?([^.]+)\.(\w+)$/)!;
                 const path = `/${dirname(file)}/${parsed[1]}`;
                 const order = parseInt(parsed[0] || '9999999');
@@ -34,7 +58,7 @@ export default defineNuxtModule({
                 const page: NuxtPage = {
                     name: path,
                     path: path,
-                    file: `~/pages/${file}`,
+                    file: await resolvePath(`@/pages/${file}`),
                     meta: {
                         ...(matter?.meta || {}),
                         order,
@@ -42,22 +66,18 @@ export default defineNuxtModule({
                     },
                 }
 
-                for (const p of pages) {
-                    if (
-                        p.path !== '/' &&
-                        p.path !== path &&
-                        path.startsWith(p.path)
-                    ) {
-                        page.path = page.path.slice(p.path.length + 1);
-                        p.children = p.children || [];
-                        p.children.push(page);
-                        child = true;
-                    }
-                }
-                if (!child) {
+                const parent = findParent(pages, page);
+
+                if (parent) {
+                    parent.children = parent.children || [];
+                    parent.children.push(page);
+                } else {
                     pages.push(page);
                 }
             }
+
+            console.log('---------------------------')
+            print(pages);
         });
     },
 });
