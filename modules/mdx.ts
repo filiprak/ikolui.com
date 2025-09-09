@@ -48,8 +48,6 @@ export default defineNuxtModule({
         }));
 
         nuxt.hook('pages:extend', async (pages) => {
-            print(pages);
-
             for (const file of mdxFiles) {
                 const [, ...parsed] = basename(file).match(/^(\d+)?\.?([^.]+)\.(\w+)$/)!;
                 const path = `/${dirname(file)}/${parsed[1]}`;
@@ -75,9 +73,6 @@ export default defineNuxtModule({
                     pages.push(page);
                 }
             }
-
-            console.log('---------------------------')
-            print(pages);
         });
     },
 });
