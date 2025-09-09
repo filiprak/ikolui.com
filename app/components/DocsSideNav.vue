@@ -39,7 +39,7 @@
                 </NuxtLink>
             </div>
             <Hr v-if="section.is_root"
-                class="ik-mb-3" />
+                class="ik-my-5" />
         </div>
     </div>
 </template>
