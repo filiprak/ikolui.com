@@ -50,7 +50,7 @@ export default defineNuxtModule({
         nuxt.hook('pages:extend', async (pages) => {
             for (const file of mdxFiles) {
                 const [, ...parsed] = basename(file).match(/^(\d+)?\.?([^.]+)\.(\w+)$/)!;
-                const path = `/${dirname(file)}/${parsed[1]}`;
+                const path = `${parsed[1]}`;
                 const order = parseInt(parsed[0] || '9999999');
                 const matter = await getMdxMeta(join(pagesDir, file));
                 const page: NuxtPage = {
@@ -70,6 +70,7 @@ export default defineNuxtModule({
                     parent.children = parent.children || [];
                     parent.children.push(page);
                 } else {
+                    page.path = `/${page.path}`;
                     pages.push(page);
                 }
             }
