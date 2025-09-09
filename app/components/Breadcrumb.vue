@@ -5,10 +5,12 @@
                 :key="index"
                 :class="$style.item">
                 <NuxtLink :to="crumb.to"
-                          custom
-                          :class="[$style.link, { [$style.current]: index === crumbs.length - 1 }]">
+                          custom>
                     <template #default="{ href, isActive }">
-                        <IkLink :href="href">{{ crumb.text }}</IkLink>
+                        <IkLink :href="href"
+                                :class="[$style.link, { [$style.current]: index === crumbs.length - 1 }]">
+                            {{ crumb.text }}
+                        </IkLink>
                     </template>
                 </NuxtLink>
                 <span v-if="index < crumbs.length - 1"
@@ -41,6 +43,7 @@ const crumbs = computed(() => {
 <style module>
 .wrapper {
     display: block;
+    color: var(--content-neutral-light-default);
 }
 
 .list {
@@ -57,25 +60,16 @@ const crumbs = computed(() => {
 }
 
 .link {
-    text-decoration: none;
-}
-
-.link:hover {
-    text-decoration: underline;
+    font-size: var(--text-sm);
+    color: var(--content-neutral-light-default);
 }
 
 .separator {
-    margin: 0 var(--s-5);
+    margin: 0 var(--s-6);
 }
 
 .current {
-    font-weight: 600;
-}
-
-.text {
-    max-width: 18ch;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    font-weight: var(--text-semibold);
+    color: var(--content-neutral-strong-default);
 }
 </style>
