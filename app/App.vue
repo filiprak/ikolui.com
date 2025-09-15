@@ -8,13 +8,17 @@ import './styles/globals.css';
 import './styles/utils.css';
 import './styles/mdx.css';
 import { useSSRContext } from '@ikol/ui-kit/composables/globals';
-import { provideTheme, IkThemeType } from '@ikol/ui-kit/composables/theme';
-
-const theme = provideTheme({
-    type: IkThemeType.DARK,
-});
+import { THEME_SYMBOL, IkThemeType, createTheme } from '@ikol/ui-kit/composables/theme';
+import { DEVICE_SYMBOL, createDevice } from '@ikol/ui-kit/composables/device';
 
 const context = useSSRContext();
+const theme = createTheme({
+    type: IkThemeType.DARK,
+});
+const device = createDevice();
+
+provide(THEME_SYMBOL, theme);
+provide(DEVICE_SYMBOL, device);
 
 const head = computed(() => {
     const styles = [...(context?.inline_styles.entries() || [])]

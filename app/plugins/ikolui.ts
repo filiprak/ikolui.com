@@ -1,4 +1,3 @@
-import { createIkolUI } from '@ikol/ui-kit';
 import { provideConfig, provideGlobal, SSR_CONTEXT_INJECTION_KEY } from '@ikol/ui-kit/composables/globals';
 
 export default defineNuxtPlugin(app => {
@@ -11,18 +10,11 @@ export default defineNuxtPlugin(app => {
     });
 
     provideGlobal(SSR_CONTEXT_INJECTION_KEY, {
-        inline_styles: new Map<string, {
-            attrs?: Record<string, string>;
-            css: string;
-            asset_path?: string;
-        }>(),
         remotes: [],
         shared: [],
         errors: [],
         prefetch: {},
+        inline_styles: new Map(),
+        links: new Map(),
     });
-
-    app.vueApp.use(
-        createIkolUI()
-    );
 });
