@@ -1,6 +1,6 @@
 .mdx-wrapper {
     font-size: var(--text-md);
-    color: var(--content-neutral-regular-default);
+    color: var(--content-neutral-strong-default);
     --line-h: 28px;
 }
 
@@ -74,7 +74,10 @@
 }
 
 .mdx-wrapper hr {
-    border: 1px solid var(--border-neutral-weak-default);
+    border-top: 1px solid var(--border-neutral-weak-default);
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
 }
 
 .mdx-wrapper a {
