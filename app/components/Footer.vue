@@ -25,8 +25,10 @@
                 </template>
             </IkListItem>
         </div>
-        <Hr class="ik-my-9"/>
-        <div :class="$style.wrapper">
+        <Hr class="ik-my-9"
+            v-if="false" />
+        <div :class="$style.wrapper"
+             v-if="false">
             <div :class="$style.items">
                 <div>
                     <div>[[_Components_]]</div>
@@ -54,7 +56,7 @@
                 </div>
             </div>
         </div>
-        <Hr class="ik-my-9"/>
+        <Hr class="ik-my-9" />
         <div :class="$style.wrapper">
             <IkListItem class="ik-text--default-light ik-pa-0">
                 <span class="ik-text--normal">© 2025 IKOL UI. All rights reserved.</span>

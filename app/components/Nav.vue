@@ -13,18 +13,17 @@
                 <span class="ik-text--xl ik-text--bold">ikol UI</span>
             </IkListItem>
             <div :class="$style.items">
-                <NuxtLink to="/docs">[[_Docs_]]</NuxtLink>
-                <NuxtLink to="/blog">[[_Blog_]]</NuxtLink>
+                <NuxtLink to="/">[[_Home_]]</NuxtLink>
+                <NuxtLink to="/docs">[[_Documentation_]]</NuxtLink>
             </div>
             <div :class="$style.actions">
-                <ThemeSwitch />
+                <ThemeSwitch class="ik-mr-7" />
                 <IkButtonGroup>
-                    <IkButton ghost>
-                        [[_Sign In_]]
-                    </IkButton>
                     <IkButton filled
+                              tag="a"
+                              href="/docs"
                               design="primary">
-                        [[_Preview_]]
+                        [[_Get Started_]]
                     </IkButton>
                 </IkButtonGroup>
             </div>
