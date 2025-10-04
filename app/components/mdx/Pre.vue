@@ -35,7 +35,6 @@ import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
 import CopyBtn from '~/components/utils/CopyBtn.vue';
 import { CODEBLOCK } from '~/components/mdx/types';
 import { IkButton } from '@ikol/ui-kit/components/IkButton';
-import { IkButtonGroup } from '@ikol/ui-kit/components/IkButtonGroup';
 
 const props = defineProps<{
     title?: string,
@@ -51,9 +50,6 @@ const codeblock = inject(CODEBLOCK, undefined);
 onBeforeMount(() => {
     if (codeblock && props.title) {
         codeblock.tabs.value.push(props.title);
-        if (!codeblock.active.value) {
-            codeblock.active.value = props.title;
-        }
     }
 });
 
