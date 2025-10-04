@@ -43,6 +43,7 @@
                      :class="$style['mobile-items']">
                     <div class="ik-py-10">
                         <NuxtLink v-for="item in items"
+                                  @click="burger_open = false"
                                   :to="item.path">
                             {{ item.label }}
                         </NuxtLink>
