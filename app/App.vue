@@ -8,14 +8,17 @@ import './styles/globals.css';
 import './styles/utils.css';
 import './styles/mdx.css';
 import { useSSRContext } from '@ikol/ui-kit/composables/globals';
-import { THEME_SYMBOL, IkThemeType, createTheme } from '@ikol/ui-kit/composables/theme';
+import { IkThemeType, THEME_SYMBOL, createTheme } from '@ikol/ui-kit/composables/theme';
 import { DEVICE_SYMBOL, createDevice } from '@ikol/ui-kit/composables/device';
 
+const theme_cookie = useCookie<'light' | 'dark'>('theme', { default: () => 'dark' });
 const context = useSSRContext();
-const theme = createTheme({
-    type: IkThemeType.DARK,
-});
+const theme = createTheme({ type: theme_cookie.value == 'dark' ? IkThemeType.DARK : IkThemeType.LIGHT });
 const device = createDevice();
+
+watch(() => theme.is_dark.value, (is_dark) => {
+    theme_cookie.value = is_dark ? 'dark' : 'light';
+});
 
 provide(THEME_SYMBOL, theme);
 provide(DEVICE_SYMBOL, device);
