@@ -146,6 +146,18 @@ export const mdx = (): Plugin[] => {
                     ],
                 }],
             ],
-        })
+        }),
+        {
+            name: 'ikolui:mdx-adjust',
+            enforce: 'post',
+            transform(code, id) {
+                if (id.endsWith('.mdx')) {
+                    code = code.replace('export default ', '');
+                    code += '\n';
+                    code += 'export default { setup: (props) => () => MDXContent(props) };';
+                    return code;
+                }
+            },
+        },
     ];
 };
