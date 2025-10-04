@@ -48,12 +48,14 @@ defineOptions({ inheritAttrs: false });
 const slots = useSlots();
 const codeblock = inject(CODEBLOCK, undefined);
 
-if (codeblock && props.title) {
-    codeblock.tabs.value.push(props.title);
-    if (!codeblock.active.value) {
-        codeblock.active.value = props.title;
+onBeforeMount(() => {
+    if (codeblock && props.title) {
+        codeblock.tabs.value.push(props.title);
+        if (!codeblock.active.value) {
+            codeblock.active.value = props.title;
+        }
     }
-}
+});
 
 function onTabClick(tab: string) {
     if (codeblock) {
