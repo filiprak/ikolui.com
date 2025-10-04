@@ -1,5 +1,6 @@
 <template>
-    <div :class="$style.pre">
+    <div v-if="show"
+         :class="$style.pre">
         <Preview :class="$style.preview" />
         <div :class="$style.wrapper">
             <div v-if="title"
@@ -8,7 +9,18 @@
                 <IkIcon :icon="icon"
                         size_px="16"
                         :class="$style.icon" />
-                <span>{{ title }}</span>
+                <span v-if="!codeblock">{{ title }}</span>
+                <div v-else>
+                    <IkButton v-for="label in codeblock.tabs.value"
+                              class="ik-mr-2"
+                              size="xs"
+                              round
+                              :active="codeblock.active.value == label"
+                              @click="onTabClick(label)"
+                              ghost>
+                        {{ label }}
+                    </IkButton>
+                </div>
             </div>
             <div :class="$style.actions">
                 <CopyBtn :text="code || ''" />
@@ -21,6 +33,9 @@
 import { h } from 'vue';
 import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
 import CopyBtn from '~/components/utils/CopyBtn.vue';
+import { CODEBLOCK } from '~/components/mdx/types';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { IkButtonGroup } from '@ikol/ui-kit/components/IkButtonGroup';
 
 const props = defineProps<{
     title?: string,
@@ -31,6 +46,20 @@ const props = defineProps<{
 defineOptions({ inheritAttrs: false });
 
 const slots = useSlots();
+const codeblock = inject(CODEBLOCK, undefined);
+
+if (codeblock && props.title) {
+    codeblock.tabs.value.push(props.title);
+    if (!codeblock.active.value) {
+        codeblock.active.value = props.title;
+    }
+}
+
+function onTabClick(tab: string) {
+    if (codeblock) {
+        codeblock.active.value = tab;
+    }
+}
 
 const Pre = {
     render() {
@@ -46,12 +75,16 @@ const Preview = {
     }
 }
 
+const show = computed(() => {
+    return !codeblock || codeblock.active.value == props.title;
+});
+
 const icon = computed(() => {
     if (props.lang == 'vue') {
         return 'vuejs:brands';
     } else if (props.lang == 'js' || props.lang == 'ts') {
         return 'js:brands';
-    } else if (props.lang == 'sh') {
+    } else if (props.lang == 'sh' || props.lang == 'bash') {
         return 'terminal';
     } else {
         return 'code';
