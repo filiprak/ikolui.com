@@ -10,7 +10,7 @@ const active = ref<string>();
 provide(CODEBLOCK, { tabs, active });
 
 useRender(() => {
-    return h('div', {}, slots.default?.());
+    return slots.default?.();
 });
 
 </script>
