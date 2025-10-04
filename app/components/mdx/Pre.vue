@@ -11,7 +11,8 @@
                         :class="$style.icon" />
                 <span v-if="!codeblock">{{ title }}</span>
                 <div v-else>
-                    <IkButton v-for="label in codeblock.tabs.value"
+                    <IkButton v-for="label in codeblock.tabs"
+                              :key="label"
                               class="ik-mr-2"
                               size="xs"
                               round
@@ -46,12 +47,6 @@ defineOptions({ inheritAttrs: false });
 
 const slots = useSlots();
 const codeblock = inject(CODEBLOCK, undefined);
-
-onBeforeMount(() => {
-    if (codeblock && props.title) {
-        codeblock.tabs.value.push(props.title);
-    }
-});
 
 function onTabClick(tab: string) {
     if (codeblock) {

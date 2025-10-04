@@ -1,6 +1,6 @@
 import type { InjectionKey } from "vue";
 
 export const CODEBLOCK = Symbol.for('codeblock') as InjectionKey<{
-    tabs: Ref<string[]>,
+    tabs: string[],
     active: Ref<string | undefined>,
 }>;
