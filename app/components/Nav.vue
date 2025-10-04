@@ -14,8 +14,10 @@
             </IkListItem>
             <div :class="$style.items"
                  class="hide-mobile">
-                <NuxtLink to="/">[[_Home_]]</NuxtLink>
-                <NuxtLink to="/docs">[[_Documentation_]]</NuxtLink>
+                <NuxtLink v-for="item in items"
+                          :to="item.path">
+                    {{ item.label }}
+                </NuxtLink>
             </div>
             <div :class="$style.actions">
                 <ThemeSwitch />
@@ -28,14 +30,32 @@
                         [[_Get Started_]]
                     </IkButton>
                 </IkButtonGroup>
-                <IkButton :class="$style.burger"
+                <IkButton :class="{ [$style.burger]: true, [$style['burger-open']]: burger_open }"
                           class="hide-desktop"
                           round
-                          outline>
+                          outline
+                          @click="burger_open = !burger_open">
                     <div></div>
                     <div></div>
                     <div></div>
                 </IkButton>
+                <div v-if="burger_open"
+                     :class="$style['mobile-items']">
+                    <div class="ik-py-10">
+                        <NuxtLink v-for="item in items"
+                                  :to="item.path">
+                            {{ item.label }}
+                        </NuxtLink>
+                    </div>
+                    <div class="ik-pa-7">
+                        <IkButton round
+                                  size="lg"
+                                  @click="burger_open = false"
+                                  append_icon="times">
+                            [[_Close_]]
+                        </IkButton>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -45,6 +65,19 @@ import { IkButton } from '@ikol/ui-kit/components/IkButton';
 import { IkButtonGroup } from '@ikol/ui-kit/components/IkButtonGroup';
 import { IkImage } from '@ikol/ui-kit/components/IkImage';
 import { IkListItem } from '@ikol/ui-kit/components/IkList';
+import { useBodyScroll } from '@ikol/ui-kit/composables/body_scroll';
+
+const items = [
+    { path: '/', label: '[[_Home_]]' },
+    { path: '/docs', label: '[[_Documentation_]]' },
+];
+
+const burger_open = ref(false);
+const scroll = useBodyScroll();
+
+watch(burger_open, (v) => {
+    scroll.is_locked.value = v;
+})
 
 </script>
 <style lang="css" module>
@@ -107,5 +140,41 @@ import { IkListItem } from '@ikol/ui-kit/components/IkList';
     width: 16px;
     height: 1px;
     background-color: currentColor;
+}
+
+.burger-open div:first-child {
+    transform: translateY(3px) rotate(45deg);
+}
+
+.burger-open div:nth-child(2) {
+    display: none;
+}
+
+.burger-open div:last-child {
+    transform: translateY(-3px) rotate(-45deg);
+}
+
+.mobile-items {
+    position: fixed;
+    top: var(--nav-h);
+    font-size: var(--text-lg);
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: var(--bg-color);
+    display: grid;
+    grid-template-rows: 1fr min-content;
+    justify-content: center;
+    text-align: center;
+}
+
+.mobile-items > div:first-child > * {
+    display: block;
+    text-align: center;
+    font-weight: var(--text-semibold);
+    padding: var(--s-8);
+    height: 60px;
+    text-decoration: none !important;
+    color: var(--content-neutral-strong-default);
 }
 </style>
