@@ -11,15 +11,13 @@ import CodeBlock from '@/components/mdx/CodeBlock.vue';
 
 # Installation
 
-<CodeBlock>
-```sh title="npm"
-npm install @ikol/ui-kit
-```
-```sh title="pnpm"
-pnpm install @ikol/ui-kit
-```
-</CodeBlock>
+Install Ikol UI and bring a full suite of Vue components into your project in minutes.
 
+---
+
+## 1. Install package
+
+Run one of the following commands to add ikol UI to your project:
 
 <CodeBlock>
 ```sh title="npm"
@@ -29,3 +27,18 @@ npm install @ikol/ui-kit
 pnpm install @ikol/ui-kit
 ```
 </CodeBlock>
+
+## 2. Import into your Vue project
+
+```js title="app.ts"
+import { createApp } from 'vue'
+import App from './App.vue'
+
+import { createIkolUI } from '@ikol/ui-kit';
+
+const app = createApp(App);
+const ui = createIkolUI();
+
+app.use(ui);
+app.mount('#app');
+```
