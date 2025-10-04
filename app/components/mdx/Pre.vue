@@ -5,7 +5,8 @@
             <div v-if="title"
                  :class="$style.header"
                  class="ik-px-7 ik-py-2">
-                <IkIcon icon="code"
+                <IkIcon :icon="icon"
+                        size_px="16"
                         :class="$style.icon" />
                 <span>{{ title }}</span>
             </div>
@@ -21,8 +22,9 @@ import { h } from 'vue';
 import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
 import CopyBtn from '~/components/utils/CopyBtn.vue';
 
-defineProps<{
+const props = defineProps<{
     title?: string,
+    lang?: string,
     code?: string,
 }>();
 
@@ -43,6 +45,18 @@ const Preview = {
         return vnodes[1];
     }
 }
+
+const icon = computed(() => {
+    if (props.lang == 'vue') {
+        return 'vuejs:brands';
+    } else if (props.lang == 'js' || props.lang == 'ts') {
+        return 'js:brands';
+    } else if (props.lang == 'sh') {
+        return 'terminal';
+    } else {
+        return 'code';
+    }
+});
 
 </script>
 <style lang="css" module>

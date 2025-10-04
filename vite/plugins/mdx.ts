@@ -90,6 +90,7 @@ export const mdx = (): Plugin[] => {
                             preprocess(code, options) {
                                 this.options._meta = parseMeta(this.options.meta?.__raw || '');
                                 this.options._code = code;
+                                this.options._lang = options.lang;
 
                                 if (options.lang === 'vue' && this.options._meta.preview) {
                                     const name = previewName(code);
@@ -102,7 +103,7 @@ export const mdx = (): Plugin[] => {
                             },
                             pre(tree: any) {
                                 tree.properties = Object.assign(tree.properties, this.options._meta);
-                                tree.properties = Object.assign(tree.properties, { code: this.options._code });
+                                tree.properties = Object.assign(tree.properties, { code: this.options._code, lang: this.options._lang });
 
                                 if (this.options._vue_module) {
                                     const mod = this.options._vue_module;
