@@ -156,6 +156,7 @@ watch(burger_open, (v) => {
 }
 
 .mobile-items {
+    z-index: 900;
     position: fixed;
     top: var(--nav-h);
     font-size: var(--text-lg);
