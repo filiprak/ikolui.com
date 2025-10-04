@@ -7,6 +7,7 @@ export default defineNuxtPlugin(app => {
     provideConfig({
         SSR: import.meta.server,
         SSR_DEVICE: device,
+        LOCAL_STORAGE_HASH: 'pub',
     });
 
     provideGlobal(SSR_CONTEXT_INJECTION_KEY, {

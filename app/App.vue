@@ -11,21 +11,14 @@ import { useSSRContext } from '@ikol/ui-kit/composables/globals';
 import { THEME_SYMBOL, createTheme } from '@ikol/ui-kit/composables/theme';
 import { DEVICE_SYMBOL, createDevice } from '@ikol/ui-kit/composables/device';
 
-const theme_cookie = useCookie<'light' | 'dark'>('theme', { default: () => 'dark' });
 const context = useSSRContext();
 const theme = createTheme();
 const device = createDevice();
 
-theme.is_dark.value = theme_cookie.value == 'dark';
-
-watch(() => theme.is_dark.value, (is_dark) => {
-    theme_cookie.value = is_dark ? 'dark' : 'light';
-});
-
 provide(THEME_SYMBOL, theme);
 provide(DEVICE_SYMBOL, device);
 
-const head = computed(() => {
+useHead(computed(() => {
     const styles = [...(context?.inline_styles.entries() || [])]
         .map(([id, { css }]) => {
             return { [`data-${id}`]: '', innerHTML: css, };
@@ -36,17 +29,20 @@ const head = computed(() => {
         titleTemplate: (title?: string) => {
             return title ? `${title} — IKOL UI` : `IKOL UI — [[_Build Stunning UI's, Faster._]]`;
         },
-        htmlAttrs: {
-            class: Object
-                .entries(theme.css_classes.value)
-                .filter((i) => i[1])
-                .map(i => i[0]),
-        },
+        script: [
+            `let theme = localStorage.getItem("ik-theme-pub-active");
+             let meta = document.createElement('meta');
+             theme = ["light", "dark"].indexOf(theme) < 0 ? "dark" : theme;
+             document.documentElement.classList.toggle("ik-theme", true);
+             document.documentElement.classList.toggle("ik-theme--" + theme, true);
+             document.documentElement.classList.toggle("ik-theme--" + theme, true);
+             meta.name = 'color-scheme';
+             meta.content = theme;
+             document.head.appendChild(meta);`,
+        ],
         meta: [
             { name: 'color-scheme', content: theme.is_dark.value ? 'dark' : 'light' },
         ],
     };
-});
-
-useHead(head);
+}));
 </script>

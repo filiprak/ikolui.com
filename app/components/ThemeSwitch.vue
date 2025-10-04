@@ -1,20 +1,22 @@
 <template>
     <div :class="$style.wrapper">
-        <IkButton icon="sun:regular"
-                  class="ik-mr-1"
-                  ghost
-                  size="xs"
-                  @click="theme.is_dark.value = false"
-                  :active="!theme.is_dark.value"
-                  circle>
-        </IkButton>
-        <IkButton icon="moon:regular"
-                  size="xs"
-                  @click="theme.is_dark.value = true"
-                  ghost
-                  :active="theme.is_dark.value"
-                  circle>
-        </IkButton>
+        <ClientOnly>
+            <IkButton icon="sun:regular"
+                      class="ik-mr-1"
+                      ghost
+                      size="xs"
+                      @click="theme.is_dark.value = false"
+                      :active="!theme.is_dark.value"
+                      circle>
+            </IkButton>
+            <IkButton icon="moon:regular"
+                      size="xs"
+                      @click="theme.is_dark.value = true"
+                      ghost
+                      :active="theme.is_dark.value"
+                      circle>
+            </IkButton>
+        </ClientOnly>
     </div>
 </template>
 <script setup lang="ts">
@@ -29,5 +31,6 @@ const theme = useTheme();
     border: 1px solid var(--border-neutral-regular-default);
     border-radius: var(--radius-full);
     height: var(--f-input-h-sm);
+    min-width: 68px;
 }
 </style>
