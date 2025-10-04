@@ -12,20 +12,30 @@
                 </template>
                 <span class="ik-text--xl ik-text--bold">ikol UI</span>
             </IkListItem>
-            <div :class="$style.items">
+            <div :class="$style.items"
+                 class="hide-mobile">
                 <NuxtLink to="/">[[_Home_]]</NuxtLink>
                 <NuxtLink to="/docs">[[_Documentation_]]</NuxtLink>
             </div>
             <div :class="$style.actions">
-                <ThemeSwitch class="ik-mr-7" />
-                <IkButtonGroup>
+                <ThemeSwitch />
+                <IkButtonGroup class="hide-mobile">
                     <IkButton filled
+                              round
                               tag="a"
                               href="/docs"
                               design="primary">
                         [[_Get Started_]]
                     </IkButton>
                 </IkButtonGroup>
+                <IkButton :class="$style.burger"
+                          class="hide-desktop"
+                          round
+                          outline>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </IkButton>
             </div>
         </div>
     </nav>
@@ -84,6 +94,18 @@ import { IkListItem } from '@ikol/ui-kit/components/IkList';
 
 .actions {
     display: grid;
+    gap: var(--s-7);
     grid-template-columns: max-content max-content;
+}
+
+.burger {
+    flex-direction: column;
+    gap: 5px;
+}
+
+.burger div {
+    width: 16px;
+    height: 1px;
+    background-color: currentColor;
 }
 </style>
