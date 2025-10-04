@@ -1,7 +1,8 @@
 <template>
     <Section>
         <div :class="$style.wrapper">
-            <aside :class="$style.left">
+            <aside :class="$style.left"
+                   class="hide-mobile">
                 <DocsSideNav />
             </aside>
             <div :class="$style.center">
