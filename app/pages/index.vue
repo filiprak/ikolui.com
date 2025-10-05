@@ -6,10 +6,9 @@
                 accessible UI library for
                 Vue. Accelerate your development with a
                 beautiful, pre-built component system._]]</h2>
-            <p/>
+            <p />
             <div>
-                <IkButton
-design="primary"
+                <IkButton design="primary"
                           tag="a"
                           href="/docs"
                           size="md">
