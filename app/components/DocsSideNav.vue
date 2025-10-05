@@ -1,6 +1,7 @@
 <template>
     <nav>
-        <div v-for="section in sections">
+        <div v-for="section in sections"
+             :key="section.id">
             <IkListItem v-if="section.label"
                         :class="[$style.item]"
                         @click="onSectionClick(section)">
@@ -19,14 +20,15 @@
             </IkListItem>
             <div v-if="section.is_root || section.is_expanded">
                 <NuxtLink v-for="page in section.items"
+                          :key="page.path"
                           :to="page.path"
                           custom>
-                    <template #default="{ href, isActive }">
+                    <template #default="{ href, isActive: active }">
                         <IkListItem :link="href"
-                                    :active="isActive"
+                                    :active="active"
                                     :class="[
                                         $style.item, {
-                                            [$style.active]: isActive,
+                                            [$style.active]: active,
                                             [$style.child]: !!section.label
                                         }
                                     ]">
