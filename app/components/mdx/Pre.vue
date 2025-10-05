@@ -58,15 +58,15 @@ const Pre = {
     render() {
         const vnodes = slots.default?.() || [];
         return h('pre', vnodes[0]);
-    }
-}
+    },
+};
 
 const Preview = {
     render() {
         const vnodes = slots.default?.() || [];
         return vnodes[1];
-    }
-}
+    },
+};
 
 const show = computed(() => {
     return !codeblock || codeblock.active.value == props.title;

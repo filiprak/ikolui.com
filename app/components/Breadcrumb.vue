@@ -23,21 +23,21 @@
 </template>
 
 <script setup lang="ts">
-import { IkIcon } from '@ikol/ui-kit/components/IkIcon'
-import { IkLink } from '@ikol/ui-kit/components/IkLink'
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
+import { IkLink } from '@ikol/ui-kit/components/IkLink';
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 
-const route = useRoute()
+const route = useRoute();
 
 const crumbs = computed(() => {
     return route.matched.map((m) => {
         return {
             text: m.meta.menu?.label,
             to: m.path,
-        }
-    })
-})
+        };
+    });
+});
 </script>
 
 <style module>

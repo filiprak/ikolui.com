@@ -7,5 +7,5 @@ definePageMeta({
         type: 'root',
         label: '[[_Components_]]',
     },
-})
+});
 </script>

@@ -65,7 +65,7 @@ interface Section {
 }
 
 function onSectionClick(section: Section) {
-    section.is_expanded = !section.is_expanded
+    section.is_expanded = !section.is_expanded;
 }
 
 const route = useRoute();
@@ -76,13 +76,13 @@ const sections = ref<Section[]>([
     {
         id: 'intro',
         is_root: true,
-        items: items.value.filter(i => !i.meta.menu?.section || i.meta.menu.section == 'intro')
+        items: items.value.filter(i => !i.meta.menu?.section || i.meta.menu.section == 'intro'),
     },
     {
         id: 'components',
         icon: 'cubes',
         label: '[[_Components_]]',
-        items: items.value.filter(i => i.meta.menu?.section == 'components')
+        items: items.value.filter(i => i.meta.menu?.section == 'components'),
     },
 ]);
 
@@ -91,13 +91,13 @@ const openActiveSection = () => {
         .filter(section => section.items.some(item => isActive(item)))
         .forEach(i => {
             i.is_expanded = true;
-        })
+        });
 };
 
 watch(
     () => route.path,
     () => openActiveSection(),
-    { immediate: true }
+    { immediate: true },
 );
 </script>
 <style lang="css" module>

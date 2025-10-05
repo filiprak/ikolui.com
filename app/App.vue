@@ -21,13 +21,13 @@ provide(DEVICE_SYMBOL, device);
 useHead(computed(() => {
     const styles = [...(context?.inline_styles.entries() || [])]
         .map(([id, { css }]) => {
-            return { [`data-${id}`]: '', innerHTML: css, };
+            return { [`data-${id}`]: '', innerHTML: css };
         });
 
     return {
         style: styles,
         titleTemplate: (title?: string) => {
-            return title ? `${title} — IKOL UI` : `IKOL UI — [[_Build Stunning UI's, Faster._]]`;
+            return title ? `${title} — IKOL UI` : 'IKOL UI — [[_Build Stunning UI\'s, Faster._]]';
         },
         script: [
             `let theme = localStorage.getItem("ik-theme-pub-active");

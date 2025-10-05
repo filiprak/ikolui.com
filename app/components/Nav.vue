@@ -80,7 +80,7 @@ const scroll = useBodyScroll();
 
 watch(burger_open, (v) => {
     scroll.is_locked.value = v;
-})
+});
 
 </script>
 <style lang="css" module>

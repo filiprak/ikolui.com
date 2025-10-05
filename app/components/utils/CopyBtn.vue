@@ -11,12 +11,12 @@
     </IkButton>
 </template>
 <script setup lang="ts">
-import { IkButton } from "@ikol/ui-kit/components/IkButton";
-import { ref } from "vue";
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { ref } from 'vue';
 
 const props = defineProps({
     text: { type: String, required: true },
-    delay: { type: Number, default: 800 }
+    delay: { type: Number, default: 800 },
 });
 
 const copied = ref(false);
@@ -27,9 +27,9 @@ const copyText = async () => {
         copied.value = true;
         setTimeout(() => (copied.value = false), props.delay);
     } catch (err) {
-        console.error("Failed to copy:", err);
+        console.error('Failed to copy:', err);
     }
-}
+};
 </script>
 <style lang="css" module>
 .btn {}
