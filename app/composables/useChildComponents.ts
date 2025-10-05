@@ -1,4 +1,4 @@
-import { isVNode } from "vue";
+import { isVNode } from 'vue';
 
 type ComponentSlots = {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -31,7 +31,7 @@ export function useChildComponents<T extends Component>(componentType: T): Compo
                 walk((vnode.children as ComponentSlots).default?.());
             }
         }
-    }
+    };
 
     walk(vnodes);
 

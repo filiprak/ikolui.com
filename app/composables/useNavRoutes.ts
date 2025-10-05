@@ -1,4 +1,4 @@
-import type { RouteRecordNormalized } from "vue-router";
+import type { RouteRecordNormalized } from 'vue-router';
 
 export default function useNavRoutes(type: 'docs') {
     const router = useRouter();
@@ -6,11 +6,11 @@ export default function useNavRoutes(type: 'docs') {
 
     const normalizePath = (path: string) => {
         return path.replace(/\/+$/, '') || '/';
-    }
+    };
 
     const isActive = (check: RouteRecordNormalized) => {
         return normalizePath(route.path) === normalizePath(check.path);
-    }
+    };
 
     const items = computed(
         () => router
@@ -18,7 +18,7 @@ export default function useNavRoutes(type: 'docs') {
             .filter(i => i.meta.menu?.type === type)
             .sort((a, b) => {
                 return (a.meta.order ?? 999999) - (b.meta.order ?? 999999);
-            })
+            }),
     );
 
     return {

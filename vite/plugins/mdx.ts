@@ -81,7 +81,7 @@ export const mdx = (): Plugin[] => {
                                 children: tree.children,
                             },
                         ];
-                    }
+                    };
                 },
                 remarkFrontmatter,
             ],
@@ -120,33 +120,33 @@ export const mdx = (): Plugin[] => {
 
                                     tree.children = tree.children || [];
                                     tree.children.push({
-                                        type: "mdxjsEsm" as "raw",
+                                        type: 'mdxjsEsm' as 'raw',
                                         value: `import ${component} from '${mod}';`,
                                         data: {
                                             estree: {
-                                                type: "Program",
+                                                type: 'Program',
                                                 body: [
                                                     {
-                                                        type: "ImportDeclaration",
-                                                        source: { type: "Literal", value: mod },
+                                                        type: 'ImportDeclaration',
+                                                        source: { type: 'Literal', value: mod },
                                                         specifiers: [
                                                             {
-                                                                type: "ImportDefaultSpecifier",
-                                                                local: { type: "Identifier", name: component }
-                                                            }
-                                                        ]
-                                                    }
+                                                                type: 'ImportDefaultSpecifier',
+                                                                local: { type: 'Identifier', name: component },
+                                                            },
+                                                        ],
+                                                    },
                                                 ],
-                                                sourceType: "module"
+                                                sourceType: 'module',
                                             },
                                         },
                                     });
                                     tree.children.push({
-                                        type: "mdxJsxFlowElement",
+                                        type: 'mdxJsxFlowElement',
                                         name: 'div',
                                         attributes: [],
                                         children: [{
-                                            type: "mdxJsxFlowElement",
+                                            type: 'mdxJsxFlowElement',
                                             name: component,
                                             attributes: [],
                                             children: [],
@@ -154,7 +154,7 @@ export const mdx = (): Plugin[] => {
                                     });
                                 }
                             },
-                        }
+                        },
                     ],
                 } as RehypeShikiOptions],
             ],

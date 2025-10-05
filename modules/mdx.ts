@@ -41,7 +41,7 @@ function findParent(targets: NuxtPage[], lost: NuxtPage, curr: NuxtPage | null =
 
 export default defineNuxtModule({
     async setup(options, nuxt) {
-        const pagesDir = resolveAlias('~/pages')
+        const pagesDir = resolveAlias('~/pages');
         const mdxFiles = new Set(await glob('**/*.mdx', {
             cwd: pagesDir,
             ignore: ['node_modules', '.nuxt'],
@@ -62,7 +62,7 @@ export default defineNuxtModule({
                         order,
                         mdxPath: file,
                     },
-                }
+                };
 
                 const parent = findParent(pages, page);
 
