@@ -1,11 +1,12 @@
 <template>
-    <IkButton @click="copyText"
-              ghost
+    <IkButton
+ghost
               size="xs"
               round
               :disabled="copied"
               :icon="copied ? 'check' : 'clone:regular'"
-              :class="$style.btn">
+              :class="$style.btn"
+              @click="copyText">
         <template v-if="!copied">[[_Copy_]]</template>
         <template v-else>[[_Copied_]]</template>
     </IkButton>

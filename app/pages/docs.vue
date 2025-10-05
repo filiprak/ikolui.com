@@ -1,7 +1,8 @@
 <template>
     <Section>
         <div :class="$style.wrapper">
-            <aside :class="$style.left"
+            <aside
+:class="$style.left"
                    class="hide-mobile">
                 <DocsSideNav />
             </aside>
@@ -9,8 +10,7 @@
                 <Breadcrumb />
                 <NuxtPage />
             </div>
-            <div :class="$style.right">
-            </div>
+            <div :class="$style.right"/>
         </div>
     </Section>
 </template>

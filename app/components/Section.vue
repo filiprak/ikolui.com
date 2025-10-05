@@ -1,7 +1,7 @@
 <template>
     <section :class="$style.section">
         <div :class="$style.wrapper">
-            <slot></slot>
+            <slot/>
         </div>
     </section>
 </template>

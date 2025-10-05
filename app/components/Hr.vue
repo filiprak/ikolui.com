@@ -1,5 +1,5 @@
 <template>
-    <div :class="$style.hr"></div>
+    <div :class="$style.hr"/>
 </template>
 <style lang="css" module>
 .hr {

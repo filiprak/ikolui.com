@@ -1,21 +1,21 @@
 <template>
     <div :class="$style.wrapper">
         <ClientOnly>
-            <IkButton icon="sun:regular"
+            <IkButton
+icon="sun:regular"
                       class="ik-mr-1"
                       ghost
                       size="xs"
-                      @click="theme.is_dark.value = false"
                       :active="!theme.is_dark.value"
-                      circle>
-            </IkButton>
-            <IkButton icon="moon:regular"
+                      circle
+                      @click="theme.is_dark.value = false"/>
+            <IkButton
+icon="moon:regular"
                       size="xs"
-                      @click="theme.is_dark.value = true"
                       ghost
                       :active="theme.is_dark.value"
-                      circle>
-            </IkButton>
+                      circle
+                      @click="theme.is_dark.value = true"/>
         </ClientOnly>
     </div>
 </template>

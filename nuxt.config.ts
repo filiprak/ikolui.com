@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     },
     modules: [
         '@nuxtjs/device',
+        '@nuxt/eslint',
     ],
     app: {
         head: {
