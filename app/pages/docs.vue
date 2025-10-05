@@ -1,9 +1,8 @@
 <template>
     <Section>
         <div :class="$style.wrapper">
-            <aside :class="$style.left"
-                   class="hide-mobile">
-                <DocsSideNav />
+            <aside :class="{ [$style.left]: true, 'hide-mobile': !menu_open }">
+                <DocsSideNav @navigate="menu_open = false" />
             </aside>
             <div :class="$style.center">
                 <IkFlex :class="$style.top"
@@ -13,7 +12,8 @@
                     <IkButton class="hide-desktop ik-ml-7"
                               outline
                               round
-                              icon="chevron-left">
+                              @click="menu_open = !menu_open"
+                              :icon="menu_open ? 'times' : 'chevron-left'">
                         [[_Menu_]]
                     </IkButton>
                 </IkFlex>
@@ -27,12 +27,20 @@
 <script setup lang="ts">
 import { IkButton } from '@ikol/ui-kit/components/IkButton';
 import { IkFlex } from '@ikol/ui-kit/components/IkFlex';
+import { useBodyScroll } from '@ikol/ui-kit/composables/body_scroll';
 
 definePageMeta({
     menu: {
         type: 'root',
         label: '[[_Docs_]]',
     },
+});
+
+const menu_open = ref(false);
+const scroll = useBodyScroll();
+
+watch(menu_open, (v) => {
+    scroll.is_locked.value = v;
 });
 </script>
 <style lang="css" module>
@@ -42,7 +50,7 @@ definePageMeta({
 }
 
 :global(.mobile) .wrapper {
-    padding-top: var(--s-6);
+    padding-top: var(--s-7);
 }
 
 .left {
@@ -56,16 +64,15 @@ definePageMeta({
 
 :global(.mobile) .left {
     position: fixed;
-    top: var(--nav-h);
-    font-size: var(--text-lg);
+    z-index: 900;
+    top: calc(var(--nav-h) + 60px);
     left: 0;
     bottom: 0;
     right: 0;
+    padding: var(--s-6);
     background-color: var(--bg-color);
     display: grid;
     grid-template-rows: 1fr min-content;
-    justify-content: center;
-    text-align: center;
 }
 
 .center {

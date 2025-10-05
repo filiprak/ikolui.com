@@ -22,6 +22,7 @@
                 <NuxtLink v-for="page in section.items"
                           :key="page.path"
                           :to="page.path"
+                          @click="emit('navigate')"
                           custom>
                     <template #default="{ href, isActive: active }">
                         <IkListItem :link="href"
@@ -69,6 +70,9 @@ function onSectionClick(section: Section) {
 }
 
 const route = useRoute();
+const emit = defineEmits<{
+    (e: 'navigate'): void,
+}>();
 
 const { items, isActive } = useNavRoutes('docs');
 
