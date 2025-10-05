@@ -32,13 +32,17 @@ useHead(computed(() => {
         script: [
             `let theme = localStorage.getItem("ik-theme-pub-active");
              let meta = document.createElement('meta');
+             let mobile_breakpoint = 992;
              theme = ["light", "dark"].indexOf(theme) < 0 ? "dark" : theme;
              document.documentElement.classList.toggle("ik-theme", true);
              document.documentElement.classList.toggle("ik-theme--" + theme, true);
              document.documentElement.classList.toggle("ik-theme--" + theme, true);
              meta.name = 'color-scheme';
              meta.content = theme;
-             document.head.appendChild(meta);`,
+             document.head.appendChild(meta);
+             const updateMobile = () => document.documentElement.classList.toggle("mobile", window.innerWidth <= mobile_breakpoint);
+             window.addEventListener("resize", updateMobile);
+             updateMobile();`,
         ],
         meta: [
             { name: 'color-scheme', content: theme.is_dark.value ? 'dark' : 'light' },

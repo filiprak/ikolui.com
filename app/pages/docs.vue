@@ -9,7 +9,8 @@
                 <Breadcrumb />
                 <NuxtPage />
             </div>
-            <div :class="$style.right" />
+            <div :class="$style.right"
+                 class="hide-mobile" />
         </div>
     </Section>
 </template>
@@ -37,8 +38,14 @@ definePageMeta({
 }
 
 .center {
-    grid-column: span 8;
+    grid-column: span 6;
 }
 
-.right {}
+:global(.mobile) .center {
+    grid-column: span 10;
+}
+
+.right {
+    grid-column: span 2;
+}
 </style>
