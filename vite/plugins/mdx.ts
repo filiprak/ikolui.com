@@ -96,7 +96,7 @@ export const mdx = (): Plugin[] => {
                                 this.options.meta.code = code;
                                 this.options.meta.lang = options.lang;
 
-                                if (options.lang === 'vue' && this.options.meta.preview) {
+                                if (options.lang === 'vue' && this.options.meta.props.preview) {
                                     const name = previewName(code);
                                     const mod = previewModule(name);
                                     previews[mod] = code;
