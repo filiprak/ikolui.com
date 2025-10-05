@@ -1,21 +1,17 @@
 <template>
-    <div
-v-show="show"
+    <div v-show="show"
          :class="$style.pre">
         <Preview :class="$style.preview" />
         <div :class="$style.wrapper">
-            <div
-v-if="title"
+            <div v-if="title"
                  :class="$style.header"
                  class="ik-px-7 ik-py-2">
-                <IkIcon
-:icon="icon"
+                <IkIcon :icon="icon"
                         size_px="16"
                         :class="$style.icon" />
                 <span v-if="!codeblock">{{ title }}</span>
                 <div v-else>
-                    <IkButton
-v-for="label in codeblock.tabs"
+                    <IkButton v-for="label in codeblock.tabs"
                               :key="label"
                               class="ik-mr-2"
                               size="xs"

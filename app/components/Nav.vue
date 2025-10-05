@@ -1,24 +1,20 @@
 <template>
     <nav :class="$style.nav">
-        <div :class="$style.bg"/>
+        <div :class="$style.bg" />
         <div :class="$style.wrapper">
-            <IkListItem
-class="ik-pa-0 ik-py-5"
+            <IkListItem class="ik-pa-0 ik-py-5"
                         link="/"
                         no_hover
                         inline>
                 <template #prepend>
-                    <IkImage
-src="/logo.svg"
+                    <IkImage src="/logo.svg"
                              :size="32" />
                 </template>
                 <span class="ik-text--xl ik-text--bold">ikol UI</span>
             </IkListItem>
-            <div
-:class="$style.items"
+            <div :class="$style.items"
                  class="hide-mobile">
-                <NuxtLink
-v-for="item in items"
+                <NuxtLink v-for="item in items"
                           :to="item.path">
                     {{ item.label }}
                 </NuxtLink>
@@ -26,8 +22,7 @@ v-for="item in items"
             <div :class="$style.actions">
                 <ThemeSwitch />
                 <IkButtonGroup class="hide-mobile">
-                    <IkButton
-filled
+                    <IkButton filled
                               round
                               tag="a"
                               href="/docs"
@@ -35,30 +30,26 @@ filled
                         [[_Get Started_]]
                     </IkButton>
                 </IkButtonGroup>
-                <IkButton
-:class="{ [$style.burger]: true, [$style['burger-open']]: burger_open }"
+                <IkButton :class="{ [$style.burger]: true, [$style['burger-open']]: burger_open }"
                           class="hide-desktop"
                           round
                           outline
                           @click="burger_open = !burger_open">
-                    <div/>
-                    <div/>
-                    <div/>
+                    <div />
+                    <div />
+                    <div />
                 </IkButton>
-                <div
-v-if="burger_open"
+                <div v-if="burger_open"
                      :class="$style['mobile-items']">
                     <div class="ik-py-10">
-                        <NuxtLink
-v-for="item in items"
+                        <NuxtLink v-for="item in items"
                                   :to="item.path"
                                   @click="burger_open = false">
                             {{ item.label }}
                         </NuxtLink>
                     </div>
                     <div class="ik-pa-7">
-                        <IkButton
-round
+                        <IkButton round
                                   size="lg"
                                   append_icon="times"
                                   @click="burger_open = false">

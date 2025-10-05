@@ -1,25 +1,21 @@
 <template>
     <nav :class="$style.wrapper">
         <ol :class="$style.list">
-            <li
-v-for="(crumb, index) in crumbs"
+            <li v-for="(crumb, index) in crumbs"
                 :key="index"
                 :class="$style.item">
-                <NuxtLink
-:to="crumb.to"
+                <NuxtLink :to="crumb.to"
                           custom>
-                    <template #default="{ href, isActive }">
-                        <IkLink
-:href="href"
+                    <template #default="{ href }">
+                        <IkLink :href="href"
                                 :class="[$style.link, { [$style.current]: index === crumbs.length - 1 }]">
                             {{ crumb.text }}
                         </IkLink>
                     </template>
                 </NuxtLink>
-                <span
-v-if="index < crumbs.length - 1"
+                <span v-if="index < crumbs.length - 1"
                       :class="$style.separator">
-                    <IkIcon icon="chevron-right"/>
+                    <IkIcon icon="chevron-right" />
                 </span>
             </li>
         </ol>
@@ -35,7 +31,7 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 
 const crumbs = computed(() => {
-    return route.matched.map((m, i) => {
+    return route.matched.map((m) => {
         return {
             text: m.meta.menu?.label,
             to: m.path,

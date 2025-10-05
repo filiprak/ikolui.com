@@ -1,34 +1,28 @@
 <template>
     <nav>
         <div v-for="section in sections">
-            <IkListItem
-v-if="section.label"
+            <IkListItem v-if="section.label"
                         :class="[$style.item]"
                         @click="onSectionClick(section)">
-                <template
-v-if="section.icon"
+                <template v-if="section.icon"
                           #prepend>
                     <div :class="$style.prepend">
-                        <IkIcon
-:icon="section.icon"
+                        <IkIcon :icon="section.icon"
                                 size_px="18" />
                     </div>
                 </template>
                 {{ section.label }}
-                <template
-v-if="section.icon"
+                <template v-if="section.icon"
                           #append>
                     <IkIcon :icon="section.is_expanded ? 'chevron-down' : 'chevron-right'" />
                 </template>
             </IkListItem>
             <div v-if="section.is_root || section.is_expanded">
-                <NuxtLink
-v-for="page in section.items"
+                <NuxtLink v-for="page in section.items"
                           :to="page.path"
                           custom>
                     <template #default="{ href, isActive }">
-                        <IkListItem
-:link="href"
+                        <IkListItem :link="href"
                                     :active="isActive"
                                     :class="[
                                         $style.item, {
@@ -36,12 +30,10 @@ v-for="page in section.items"
                                             [$style.child]: !!section.label
                                         }
                                     ]">
-                            <template
-v-if="page.meta.menu?.icon"
+                            <template v-if="page.meta.menu?.icon"
                                       #prepend>
                                 <div :class="$style.prepend">
-                                    <IkIcon
-:icon="page.meta.menu?.icon"
+                                    <IkIcon :icon="page.meta.menu?.icon"
                                             size_px="18" />
                                 </div>
                             </template>
@@ -50,8 +42,7 @@ v-if="page.meta.menu?.icon"
                     </template>
                 </NuxtLink>
             </div>
-            <Hr
-v-if="section.is_root"
+            <Hr v-if="section.is_root"
                 class="ik-my-5" />
         </div>
     </nav>

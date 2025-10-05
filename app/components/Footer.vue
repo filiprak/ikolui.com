@@ -3,34 +3,28 @@
         <div :class="$style.wrapper">
             <IkListItem class="ik-pa-0 ik-py-5">
                 <template #prepend>
-                    <IkImage
-src="/logo.svg"
+                    <IkImage src="/logo.svg"
                              :size="32" />
                 </template>
                 <span class="ik-text--xl ik-text--bold">ikol UI</span>
                 <template #append>
                     <IkButtonGroup>
-                        <IkButton
-icon="github:brands"
+                        <IkButton icon="github:brands"
                                   circle
-                                  outline/>
-                        <IkButton
-icon="facebook-f:brands"
+                                  outline />
+                        <IkButton icon="facebook-f:brands"
                                   circle
-                                  outline/>
-                        <IkButton
-icon="npm:brands"
+                                  outline />
+                        <IkButton icon="npm:brands"
                                   circle
-                                  outline/>
+                                  outline />
                     </IkButtonGroup>
                 </template>
             </IkListItem>
         </div>
-        <Hr
-v-if="false"
+        <Hr v-if="false"
             class="ik-my-9" />
-        <div
-v-if="false"
+        <div v-if="false"
              :class="$style.wrapper">
             <div :class="$style.items">
                 <div>

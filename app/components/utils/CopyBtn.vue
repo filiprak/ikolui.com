@@ -1,6 +1,5 @@
 <template>
-    <IkButton
-ghost
+    <IkButton ghost
               size="xs"
               round
               :disabled="copied"
