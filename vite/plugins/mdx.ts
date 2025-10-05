@@ -1,6 +1,5 @@
 import mdxJs from '@mdx-js/rollup';
 import rehypeShiki, { type RehypeShikiOptions } from '@shikijs/rehype';
-import type { Plugin as UPlugin } from 'unified';
 import remarkFrontmatter from 'remark-frontmatter';
 import { parse, compileScript } from '@vue/compiler-sfc';
 import type { Plugin } from 'vite';
