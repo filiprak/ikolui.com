@@ -105,7 +105,7 @@ export const mdx = (): Plugin[] => {
                                     this.options.meta.vue_name = name;
                                 }
                             },
-                            pre(tree: any) {
+                            pre(tree) {
                                 this.options.meta = this.options.meta || {};
 
                                 tree.properties = Object.assign(tree.properties, {
@@ -120,7 +120,7 @@ export const mdx = (): Plugin[] => {
 
                                     tree.children = tree.children || [];
                                     tree.children.push({
-                                        type: "mdxjsEsm",
+                                        type: "mdxjsEsm" as "raw",
                                         value: `import ${component} from '${mod}';`,
                                         data: {
                                             estree: {
@@ -144,9 +144,12 @@ export const mdx = (): Plugin[] => {
                                     tree.children.push({
                                         type: "mdxJsxFlowElement",
                                         name: 'div',
+                                        attributes: [],
                                         children: [{
                                             type: "mdxJsxFlowElement",
                                             name: component,
+                                            attributes: [],
+                                            children: [],
                                         }],
                                     });
                                 }

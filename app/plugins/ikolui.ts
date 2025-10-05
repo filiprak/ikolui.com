@@ -1,6 +1,6 @@
 import { provideConfig, provideGlobal, SSR_CONTEXT_INJECTION_KEY } from '@ikol/ui-kit/composables/globals';
 
-export default defineNuxtPlugin(app => {
+export default defineNuxtPlugin(() => {
     const { isMobile, isTablet } = useDevice();
     const device = isMobile ? 'mobile' : (isTablet ? 'tablet' : 'desktop');
 

@@ -1,6 +1,6 @@
 import type { Plugin } from 'vite';
 
-const regex = /\[\[\_(.*?)\_\]\]/gs;
+const regex = /\[\[_(.*?)_\]\]/gs;
 
 export function translate(input: string) {
     return input.replace(regex, '$1');

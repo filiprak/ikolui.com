@@ -1,5 +1,11 @@
-import { isVNode, type DefineComponent } from "vue";
+import { isVNode } from "vue";
 
+type ComponentSlots = {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    [name: string]: any;
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ComponentProps<T> = T extends new (...args: any) => { $props: infer P }
     ? P
     : never;
@@ -20,9 +26,9 @@ export function useChildComponents<T extends Component>(componentType: T): Compo
                 walk(vnode.children as VNode[]);
             } else if (
                 vnode.children &&
-                typeof (vnode.children as any).default === 'function'
+                typeof (vnode.children as ComponentSlots).default === 'function'
             ) {
-                walk((vnode.children as any).default());
+                walk((vnode.children as ComponentSlots).default?.());
             }
         }
     }

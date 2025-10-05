@@ -32,12 +32,12 @@ function findParent(targets: NuxtPage[], lost: NuxtPage, curr: NuxtPage | null =
     }
 }
 
-function print(targets: NuxtPage[], s = '---') {
-    for (const p of targets) {
-        console.log(s + (p.path || '<empty>') + ` (${p.file})`)
-        print(p.children || [], s + '---');
-    }
-}
+// function debugPages(targets: NuxtPage[], s = '---') {
+//     for (const p of targets) {
+//         console.log(s + (p.path || '<empty>') + ` (${p.file})`)
+//         print(p.children || [], s + '---');
+//     }
+// }
 
 export default defineNuxtModule({
     async setup(options, nuxt) {
