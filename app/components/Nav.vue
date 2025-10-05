@@ -86,7 +86,7 @@ watch(burger_open, (v) => {
 </script>
 <style lang="css" module>
 .nav {
-    z-index: 900;
+    z-index: var(--nav-z-index);
     position: relative;
     display: flex;
     justify-content: center;
@@ -159,7 +159,7 @@ watch(burger_open, (v) => {
 }
 
 .mobile-items {
-    z-index: 900;
+    z-index: var(--nav-z-index);
     position: fixed;
     top: var(--nav-h);
     font-size: var(--text-lg);

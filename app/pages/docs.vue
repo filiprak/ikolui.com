@@ -64,7 +64,7 @@ watch(menu_open, (v) => {
 
 :global(.mobile) .left {
     position: fixed;
-    z-index: 900;
+    z-index: var(--nav-z-index);
     top: calc(var(--nav-h) + 60px);
     left: 0;
     bottom: 0;
@@ -88,6 +88,7 @@ watch(menu_open, (v) => {
 }
 
 :global(.mobile) .top {
+    z-index: var(--nav-z-index);
     position: fixed;
     top: calc(var(--nav-h) - 1px);
     left: 0;

@@ -19,6 +19,7 @@ useHead({
                     --layout-w: 1400px;
                     --layout-pad: var(--s-8);
                     --nav-h: 64px;
+                    --nav-z-index: 900;
                 }
             `,
         },
