@@ -12,8 +12,8 @@
                     <IkButton class="hide-desktop ik-ml-7"
                               outline
                               round
-                              @click="menu_open = !menu_open"
-                              :icon="menu_open ? 'times' : 'chevron-left'">
+                              :icon="menu_open ? 'times' : 'chevron-left'"
+                              @click="menu_open = !menu_open">
                         [[_Menu_]]
                     </IkButton>
                 </IkFlex>

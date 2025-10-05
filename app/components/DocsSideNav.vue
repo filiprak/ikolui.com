@@ -22,8 +22,8 @@
                 <NuxtLink v-for="page in section.items"
                           :key="page.path"
                           :to="page.path"
-                          @click="emit('navigate')"
-                          custom>
+                          custom
+                          @click="emit('navigate')">
                     <template #default="{ href, isActive: active }">
                         <IkListItem :link="href"
                                     :active="active"
