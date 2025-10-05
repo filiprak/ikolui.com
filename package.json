@@ -4,6 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "tsc": "nuxt typecheck",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
@@ -25,12 +26,14 @@
   "devDependencies": {
     "@mdx-js/rollup": "^3.1.1",
     "@shikijs/rehype": "^3.12.2",
+    "@types/mdx": "^2.0.13",
     "@types/node": "^24.3.1",
     "@vue/compiler-sfc": "^3.5.21",
     "fast-glob": "^3.3.3",
     "remark-frontmatter": "^5.0.0",
     "to-vfile": "^8.0.0",
     "typescript": "^5.9.2",
+    "unified": "^11.0.5",
     "vfile-matter": "^5.0.1",
     "vite": "^7.1.4",
     "vue-tsc": "^3.0.6"

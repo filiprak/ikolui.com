@@ -7,7 +7,7 @@ export default defineNuxtConfig({
         transpile: ['@ikol/ui-kit'],
     },
     alias: {
-        dayjs: 'dayjs/esm',
+        dayjs: './node_modules/dayjs/esm',
     },
     modules: [
         '@nuxtjs/device',

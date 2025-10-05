@@ -1,6 +1,10 @@
 {
     // https://nuxt.com/docs/4.x/guide/directory-structure/tsconfig
     "files": [],
+    "compilerOptions": {
+        "strict": true,
+        "noImplicitAny": true
+    },
     "references": [
         {
             "path": "./.nuxt/tsconfig.app.json"

@@ -1,5 +1,6 @@
 import mdxJs from '@mdx-js/rollup';
-import rehypeShiki from '@shikijs/rehype';
+import rehypeShiki, { type RehypeShikiOptions } from '@shikijs/rehype';
+import type { Plugin as UPlugin } from 'unified';
 import remarkFrontmatter from 'remark-frontmatter';
 import { parse, compileScript } from '@vue/compiler-sfc';
 import type { Plugin } from 'vite';
@@ -53,8 +54,11 @@ export const mdx = (): Plugin[] => {
                 }
             },
             load(id, options) {
-                if (id.startsWith('\0') && previews[id.slice(1)]) {
-                    return transformVueSFC(previews[id.slice(1)], id.slice(1), options?.ssr);
+                if (id.startsWith('\0')) {
+                    const trim_id = id.slice(1);
+                    if (previews[trim_id]) {
+                        return transformVueSFC(previews[trim_id], id.slice(1), options?.ssr);
+                    }
                 }
             },
         },
@@ -62,7 +66,7 @@ export const mdx = (): Plugin[] => {
             jsxImportSource: 'vue',
             providerImportSource: import.meta.resolve('../../app/mdx-components.ts'),
             remarkPlugins: [
-                function wrap() {
+                function wrapperMdxPlugin() {
                     return (tree) => {
                         tree.children = [
                             {
@@ -88,26 +92,32 @@ export const mdx = (): Plugin[] => {
                     transformers: [
                         {
                             preprocess(code, options) {
-                                this.options._meta = parseMeta(this.options.meta?.__raw || '');
-                                this.options._code = code;
-                                this.options._lang = options.lang;
+                                this.options.meta = this.options.meta || {};
+                                this.options.meta.props = parseMeta(this.options.meta?.__raw || '');
+                                this.options.meta.code = code;
+                                this.options.meta.lang = options.lang;
 
-                                if (options.lang === 'vue' && this.options._meta.preview) {
+                                if (options.lang === 'vue' && this.options.meta.preview) {
                                     const name = previewName(code);
                                     const mod = previewModule(name);
                                     previews[mod] = code;
 
-                                    this.options._vue_module = mod;
-                                    this.options._vue_name = name;
+                                    this.options.meta.vue_module = mod;
+                                    this.options.meta.vue_name = name;
                                 }
                             },
                             pre(tree: any) {
-                                tree.properties = Object.assign(tree.properties, this.options._meta);
-                                tree.properties = Object.assign(tree.properties, { code: this.options._code, lang: this.options._lang });
+                                this.options.meta = this.options.meta || {};
 
-                                if (this.options._vue_module) {
-                                    const mod = this.options._vue_module;
-                                    const component = this.options._vue_name;
+                                tree.properties = Object.assign(tree.properties, {
+                                    ...this.options.meta.props,
+                                    code: this.options.meta.code,
+                                    lang: this.options.meta.lang,
+                                });
+
+                                if (this.options.meta.vue_module) {
+                                    const mod = this.options.meta.vue_module;
+                                    const component = this.options.meta.vue_name;
 
                                     tree.children = tree.children || [];
                                     tree.children.push({
@@ -144,7 +154,7 @@ export const mdx = (): Plugin[] => {
                             },
                         }
                     ],
-                }],
+                } as RehypeShikiOptions],
             ],
         }),
         {
