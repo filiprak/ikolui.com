@@ -52,6 +52,7 @@
                     </div>
                     <div class="ik-pa-7">
                         <IkButton round
+                                  ghost
                                   size="lg"
                                   append_icon="times"
                                   @click="burger_open = false">
