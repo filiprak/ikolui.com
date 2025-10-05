@@ -40,26 +40,28 @@
                     <div />
                     <div />
                 </IkButton>
-                <div v-if="burger_open"
-                     :class="$style['mobile-items']">
-                    <div class="ik-py-10">
-                        <NuxtLink v-for="item in items"
-                                  :key="item.path"
-                                  :to="item.path"
-                                  @click="burger_open = false">
-                            {{ item.label }}
-                        </NuxtLink>
+                <Teleport to="#teleports">
+                    <div v-if="burger_open"
+                         :class="$style['mobile-items']">
+                        <div class="ik-py-10">
+                            <NuxtLink v-for="item in items"
+                                      :key="item.path"
+                                      :to="item.path"
+                                      @click="burger_open = false">
+                                {{ item.label }}
+                            </NuxtLink>
+                        </div>
+                        <div class="ik-pa-7">
+                            <IkButton round
+                                      ghost
+                                      size="lg"
+                                      append_icon="times"
+                                      @click="burger_open = false">
+                                [[_Close_]]
+                            </IkButton>
+                        </div>
                     </div>
-                    <div class="ik-pa-7">
-                        <IkButton round
-                                  ghost
-                                  size="lg"
-                                  append_icon="times"
-                                  @click="burger_open = false">
-                            [[_Close_]]
-                        </IkButton>
-                    </div>
-                </div>
+                </Teleport>
             </div>
         </div>
     </nav>
@@ -86,11 +88,10 @@ watch(burger_open, (v) => {
 </script>
 <style lang="css" module>
 .nav {
+    position: sticky;
     z-index: var(--nav-z-index);
-    position: relative;
     display: flex;
     justify-content: center;
-    position: sticky;
     top: 0;
     height: var(--nav-h);
     border-bottom: 1px solid rgba(from var(--border-neutral-light-default) r g b / 0.4);
@@ -159,7 +160,7 @@ watch(burger_open, (v) => {
 }
 
 .mobile-items {
-    z-index: var(--nav-z-index);
+    z-index: calc(var(--nav-z-index) + 50);
     position: fixed;
     top: var(--nav-h);
     font-size: var(--text-lg);
