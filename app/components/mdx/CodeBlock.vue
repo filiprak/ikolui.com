@@ -10,11 +10,7 @@ import Pre from './Pre.vue';
 const children = useChildComponents(Pre);
 const tabs = children.map(i => i.title || '');
 const hash = simpleHash(JSON.stringify(tabs.sort()));
-const tab_cookie = useCookie<string | undefined>(`codeblock-${hash}`, { default: () => tabs[0] });
+const tab = useLocalStorage(`codeblock-${hash}`, tabs[0]);
 
-if (tab_cookie.value && tabs.indexOf(tab_cookie.value) < 0) {
-    tab_cookie.value = tabs[0];
-}
-
-provide(CODEBLOCK, { active: tab_cookie, tabs });
+provide(CODEBLOCK, { active: tab, tabs });
 </script>
