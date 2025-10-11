@@ -27,6 +27,7 @@ const theme = createTheme({
     },
 });
 const device = createDevice();
+const route = useRoute();
 
 provide(THEME_SYMBOL, theme);
 provide(DEVICE_SYMBOL, device);
@@ -39,6 +40,7 @@ useHead(computed(() => {
 
     return {
         style: styles,
+        title: route.meta.menu?.label,
         titleTemplate: (title?: string) => {
             return title ? `${title} — IK UI` : 'IK UI — [[_Build Stunning UI\'s, Faster._]]';
         },
