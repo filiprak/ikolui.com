@@ -32,6 +32,16 @@ const route = useRoute();
 provide(THEME_SYMBOL, theme);
 provide(DEVICE_SYMBOL, device);
 
+const page_label = computed(() => route.meta.menu?.label);
+const title = computed(
+    () => page_label.value ?
+        `${page_label.value} — IK UI — [[_Lightweight Vue framework._]]` :
+        'IK UI — [[_Lightweight Vue framework._]]'
+);
+const description = computed(
+    () => ''
+);
+
 useHead(computed(() => {
     const styles = [...(context?.inline_styles.entries() || [])]
         .map(([id, { css }]) => {
@@ -40,13 +50,15 @@ useHead(computed(() => {
 
     return {
         style: styles,
-        title: route.meta.menu?.label,
-        titleTemplate: (title?: string) => {
-            return title ? `${title} — IK UI` : 'IK UI — [[_Build Stunning UI\'s, Faster._]]';
-        },
+        title: title.value,
+        meta: [
+            { name: 'description', content: description.value },
+            { property: 'og:title', content: title.value },
+            { property: 'og:description', content: description.value },
+        ],
         script: [
             `let theme = localStorage.getItem("ik-theme-pub-active");
-             let meta = document.createElement('meta');
+             let meta = document.querySelector('meta[name=color-scheme]') || document.createElement('meta');
              let mobile_breakpoint = 992;
              theme = ["light", "dark"].indexOf(theme) < 0 ? "dark" : theme;
              document.documentElement.classList.toggle("ik-theme", true);
@@ -58,9 +70,6 @@ useHead(computed(() => {
              const updateMobile = () => document.documentElement.classList.toggle("mobile", window.innerWidth <= mobile_breakpoint);
              window.addEventListener("resize", updateMobile);
              updateMobile();`,
-        ],
-        meta: [
-            { name: 'color-scheme', content: theme.is_dark.value ? 'dark' : 'light' },
         ],
     };
 }));
