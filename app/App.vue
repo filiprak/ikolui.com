@@ -27,7 +27,7 @@ useHead(computed(() => {
     return {
         style: styles,
         titleTemplate: (title?: string) => {
-            return title ? `${title} — IKOL UI` : 'IKOL UI — [[_Build Stunning UI\'s, Faster._]]';
+            return title ? `${title} — IK UI` : 'IK UI — [[_Build Stunning UI\'s, Faster._]]';
         },
         script: [
             `let theme = localStorage.getItem("ik-theme-pub-active");

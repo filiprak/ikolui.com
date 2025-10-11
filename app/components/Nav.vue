@@ -10,7 +10,7 @@
                     <IkImage src="/logo.svg"
                              :size="32" />
                 </template>
-                <span class="ik-text--xl ik-text--bold">ikol UI</span>
+                <span class="ik-text--xl ik-text--bold">IK UI</span>
             </IkListItem>
             <div :class="$style.items"
                  class="hide-mobile">

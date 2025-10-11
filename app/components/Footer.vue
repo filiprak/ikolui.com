@@ -6,7 +6,7 @@
                     <IkImage src="/logo.svg"
                              :size="32" />
                 </template>
-                <span class="ik-text--xl ik-text--bold">ikol UI</span>
+                <span class="ik-text--xl ik-text--bold">IK UI</span>
                 <template #append>
                     <IkButtonGroup>
                         <IkButton icon="github:brands"
@@ -56,7 +56,7 @@
         <Hr class="ik-my-9" />
         <div :class="$style.wrapper">
             <IkListItem class="ik-text--default-light ik-pa-0">
-                <span class="ik-text--normal">© 2025 IKOL UI. All rights reserved.</span>
+                <span class="ik-text--normal">© 2025 IK UI. All rights reserved.</span>
                 <template #append>
                     <ThemeSwitch />
                 </template>
