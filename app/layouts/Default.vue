@@ -2,7 +2,7 @@
     <IkApp>
         <Nav />
         <div style="position: relative;">
-            <div :class="$style.gradient"></div>
+            <div :class="$style.gradient"/>
         </div>
         <IkAppContent :class="$style.content">
             <slot />

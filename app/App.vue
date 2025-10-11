@@ -22,8 +22,8 @@ const theme = createTheme({
                     semibold: 600,
                     normal: 400,
                 },
-            }
-        }
+            },
+        },
     },
 });
 const device = createDevice();
@@ -36,10 +36,10 @@ const page_label = computed(() => route.meta.menu?.label);
 const title = computed(
     () => page_label.value ?
         `${page_label.value} — IK UI — [[_Lightweight Vue framework._]]` :
-        'IK UI — [[_Lightweight Vue framework._]]'
+        'IK UI — [[_Lightweight Vue framework._]]',
 );
 const description = computed(
-    () => ''
+    () => '',
 );
 
 useHead(computed(() => {

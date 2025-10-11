@@ -8,7 +8,7 @@ export function useLocalStorage<T>(key: string, fallback?: T): Ref<T | undefined
     onMounted(() => {
         try {
             data.value = JSON.parse(localStorage.getItem(key) || 'null') ?? fallback;
-        } catch (e) {
+        } catch {
             data.value = fallback;
         }
     });
