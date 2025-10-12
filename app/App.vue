@@ -38,9 +38,6 @@ const title = computed(
         `${page_label.value} — IK UI — [[_Lightweight Vue framework._]]` :
         'IK UI — [[_Lightweight Vue framework._]]',
 );
-const description = computed(
-    () => '',
-);
 
 useHead(computed(() => {
     const styles = [...(context?.inline_styles.entries() || [])]
@@ -52,9 +49,7 @@ useHead(computed(() => {
         style: styles,
         title: title.value,
         meta: [
-            { name: 'description', content: description.value },
             { property: 'og:title', content: title.value },
-            { property: 'og:description', content: description.value },
         ],
         script: [
             `let theme = localStorage.getItem("ik-theme-pub-active");
