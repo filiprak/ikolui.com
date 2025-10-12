@@ -1,5 +1,4 @@
 import { isString } from '@ikol/ui-kit/utils';
-import { isVNode, Text } from 'vue';
 
 type ComponentSlots = {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

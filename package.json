@@ -4,6 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "tf": "pnpm run tsc && pnpm run fix",
     "tsc": "nuxt typecheck",
     "lint": "eslint .",
     "fix": "eslint . --fix",
