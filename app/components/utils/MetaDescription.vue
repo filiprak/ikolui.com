@@ -8,6 +8,7 @@ useHead({
     meta: [
         { name: 'description', content: text },
         { property: 'og:description', content: text },
+        { property: 'twitter:description', content: text },
     ],
 });
 
