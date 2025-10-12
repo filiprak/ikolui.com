@@ -50,7 +50,7 @@ useHead(computed(() => {
         title: title.value,
         meta: [
             { property: 'og:title', content: title.value },
-            { property: 'twitter:title', content: title.value },
+            { name: 'twitter:title', content: title.value },
         ],
         script: [
             `let theme = localStorage.getItem("ik-theme-pub-active");
