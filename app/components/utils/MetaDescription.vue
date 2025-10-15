@@ -3,14 +3,9 @@ import { useRender } from '@ikol/ui-kit/composables/render';
 
 const slots = useSlots();
 const text = useChildText();
+const description = useState<string>('meta:description');
 
-useHead({
-    meta: [
-        { name: 'description', content: text },
-        { property: 'og:description', content: text },
-        { name: 'twitter:description', content: text },
-    ],
-});
+description.value = text;
 
 useRender(() => {
     return slots.default?.();

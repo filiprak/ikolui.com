@@ -28,6 +28,7 @@ const theme = createTheme({
 });
 const device = createDevice();
 const route = useRoute();
+const head = useHead({});
 
 provide(THEME_SYMBOL, theme);
 provide(DEVICE_SYMBOL, device);
@@ -38,6 +39,7 @@ const title = computed(
         `${page_label.value} — IK UI — [[_Lightweight Vue framework._]]` :
         'IK UI — [[_Lightweight Vue framework._]]',
 );
+const description = useState<string>('meta:description');
 
 useHead(computed(() => {
     const styles = [...(context?.inline_styles.entries() || [])]
@@ -51,6 +53,9 @@ useHead(computed(() => {
         meta: [
             { property: 'og:title', content: title.value },
             { name: 'twitter:title', content: title.value },
+            { name: 'description', content: description.value },
+            { property: 'og:description', content: description.value },
+            { name: 'twitter:description', content: description.value },
         ],
         script: [
             `let theme = localStorage.getItem("ik-theme-pub-active");
