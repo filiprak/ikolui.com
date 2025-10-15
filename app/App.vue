@@ -51,11 +51,17 @@ useHead(computed(() => {
         style: styles,
         title: title.value,
         meta: [
-            { property: 'og:title', content: title.value },
-            { name: 'twitter:title', content: title.value },
             { name: 'description', content: description.value },
+            // og
+            { property: 'og:title', content: title.value },
+            { property: 'og:type', content: 'website' },
             { property: 'og:description', content: description.value },
+            { property: 'og:image', content: getOgImage(page_label.value, description.value) },
+            // twitter
+            { name: 'twitter:card', content: 'summary_large_image' },
+            { name: 'twitter:title', content: title.value },
             { name: 'twitter:description', content: description.value },
+            { name: 'twitter:image', content: getOgImage(page_label.value, description.value) },
         ],
         script: [
             `let theme = localStorage.getItem("ik-theme-pub-active");
