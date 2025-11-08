@@ -15,7 +15,7 @@ Install IK UI and bring a full suite of Vue components into your project in minu
 
 ---
 
-## 1. Install package
+## Installing library
 
 Run one of the following commands to add IK UI to your project:
 
@@ -28,7 +28,7 @@ pnpm install @ikol/ui-kit
 ```
 </CodeBlock>
 
-## 2. Import into your Vue project
+## Importing into your Vue project
 
 ```js title="app.ts"
 import { createApp } from 'vue'
@@ -42,3 +42,66 @@ const ui = createIkolUI();
 app.use(ui);
 app.mount('#app');
 ```
+
+## Peer dependencies
+
+Please note that `vue` and other dependencies are peer dependencies, meaning you should ensure they are
+installed first to use specific features of the framework, eg. install `dayjs` before using date components.
+
+```json
+${ JSON.stringify({ peerDependencies: __LIB_PACKAGE__.peerDependencies }, null, 2).split('\n').slice(1, -1).map(l => l.slice(2)).join('\n') }$
+```
+
+## Fonts
+
+IK UI uses `Open Sans` font by default. You can add it to your project with the Google Fonts CDN,
+add the following code inside your project's `<head />` tag:
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
+/>
+```
+
+## Icons
+
+IK UI uses [Font Awesome](https://fontawesome.com/) v6 icons. You can add it to your project, eg.
+add the following code inside your project's `<head />` tag:
+
+```html
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+/>
+```
+
+## Using library via CDN
+
+You can also start using IK UI library via CDN, add the following code inside your project's `<head />` or `<body />` tag:
+
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.5.10/vue.global.prod.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@ikol/ui-kit@${__LIB_PACKAGE__.version}$/dist/ikol-ui.min.js"></script>
+```
+
+You can initialize your app entry then by using code snippet similiar to:
+```html
+<div id="app">
+  <ik-app>
+    <h1>Hello World!</h1>
+    <ik-button>Click Here</ik-button>
+  </ik-app>
+</div>
+<script>
+  Vue
+    .createApp()
+    .use(IKOL())
+    .mount('#app');
+</script>
+```
+
+All components, directives, etc. are registered globally in the app then.

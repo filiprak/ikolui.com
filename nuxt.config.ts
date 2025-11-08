@@ -1,5 +1,6 @@
 import { i18n } from './vite/plugins/i18n';
 import { mdx } from './vite/plugins/mdx';
+import { getPackageJson } from './app/utils/getPackageJson';
 
 export default defineNuxtConfig({
     compatibilityDate: '2025-09-02',
@@ -32,10 +33,16 @@ export default defineNuxtConfig({
         },
     },
     vite: {
+        
         plugins: [
             i18n(),
-            mdx(),
+            mdx({
+                includeDefine: ['__LIB_PACKAGE__'],
+            }),
         ],
+        define: {
+            __LIB_PACKAGE__: JSON.stringify(getPackageJson()),
+        },
     },
     devtools: false,
 });

@@ -3,7 +3,8 @@
     "files": [],
     "compilerOptions": {
         "strict": true,
-        "noImplicitAny": true
+        "noImplicitAny": true,
+        "resolveJsonModule": true,
     },
     "references": [
         {

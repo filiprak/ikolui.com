@@ -2,7 +2,7 @@ import mdxJs from '@mdx-js/rollup';
 import rehypeShiki, { type RehypeShikiOptions } from '@shikijs/rehype';
 import remarkFrontmatter from 'remark-frontmatter';
 import { parse, compileScript } from '@vue/compiler-sfc';
-import type { Plugin } from 'vite';
+import type { Plugin, UserConfig } from 'vite';
 
 function previewName(str: string) {
     let hash = 0;
@@ -40,8 +40,9 @@ function parseMeta(line: string) {
     return args;
 }
 
-export const mdx = (): Plugin[] => {
+export const mdx = (options: { includeDefine?: string[] } = {}): Plugin[] => {
     const previews: Record<string, string> = {};
+    let config: UserConfig;
 
     return [
         {
@@ -159,6 +160,32 @@ export const mdx = (): Plugin[] => {
                 } as RehypeShikiOptions],
             ],
         }),
+        {
+            name: 'ikolui:mdx-adjust-pre',
+            enforce: 'pre',
+            config(_cfg) {
+                config = _cfg;
+            },
+            transform(code, id) {
+                if (id.endsWith('.mdx')) {
+                    const defineVars: Record<string, string> = {};
+                    options.includeDefine?.forEach(name => {
+                        defineVars[name] = config.define?.[name];
+                    });
+
+                    const replaced = code.replace(/\$\{(.+?)\}\$/g, (_, expr) => {
+                        const fn = new Function(
+                            ...Object.keys(defineVars),
+                            `return ${expr}`
+                        );
+                        const result = fn(...Object.values(defineVars).map(v => JSON.parse(v)));
+                        return result !== undefined ? String(result) : '';
+                    });
+
+                    return replaced;
+                }
+            },
+        },
         {
             name: 'ikolui:mdx-adjust',
             enforce: 'post',
