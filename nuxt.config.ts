@@ -1,3 +1,4 @@
+import path from 'path';
 import { i18n } from './vite/plugins/i18n';
 import { mdx } from './vite/plugins/mdx';
 import { getPackageJson } from './app/utils/getPackageJson';
@@ -8,7 +9,7 @@ export default defineNuxtConfig({
         transpile: ['@ikol/ui-kit'],
     },
     alias: {
-        dayjs: './node_modules/dayjs/esm',
+        dayjs: path.resolve(import.meta.dirname, 'node_modules/dayjs/esm'),
     },
     modules: [
         '@nuxtjs/device',

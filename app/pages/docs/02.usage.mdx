@@ -9,3 +9,134 @@ meta:
 
 # Usage
 
+<MetaDescription>
+Learn how to import and use IK UI components in your Vue project using ES modules or CDN.
+</MetaDescription>
+
+---
+
+## Quickstart
+
+After installing IK UI and setting up the plugin in your Vue app, you can import and use components:
+
+### Using components
+
+For better tree-shaking and explicit dependencies, you can import components individually:
+
+```vue title="MyComponent.vue" preview
+<template>
+  <IkButton design="primary" size="md" class="ik-mr-4">Click Me</IkButton>
+  <IkButton design="primary" size="md" variant="outline">Click Me</IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+### Using composables
+
+IK UI also provides composables that you can import and use:
+
+```vue title="MyComponent.vue" preview
+<template>
+  <div>
+    <div>Is Dark Theme: {{ isDark }}</div>
+    <div>Is Mobile: {{ isMobile }}</div>
+  </div>
+</template>
+<script setup>
+import { useTheme } from '@ikol/ui-kit/composables/theme';
+import { useDevice } from '@ikol/ui-kit/composables/device';
+
+const theme = useTheme();
+const device = useDevice();
+
+const isDark = computed(() => theme.is_dark.value);
+const isMobile = computed(() => device.mobile.value);
+</script>
+```
+
+### Using directives
+
+IK UI also provides directives that you can import and use:
+
+```vue title="MyComponent.vue" preview
+<template>
+  <div>
+    <span v-tooltip="'This is tooltip'" class="ik-pa-4">Hover Me!</span>
+  </div>
+</template>
+<script setup>
+import { vTooltip } from '@ikol/ui-kit/directives/tooltip';
+</script>
+```
+
+## Using components via CDN
+
+When using IK UI via CDN, all components and directives are automatically registered globally. You can use them directly in your HTML templates:
+
+### Basic setup
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IK UI CDN Example</title>
+  
+  <!-- Vue 3 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.5.10/vue.global.prod.min.js"></script>
+  
+  <!-- IK UI -->
+  <script src="https://cdn.jsdelivr.net/npm/@ikol/ui-kit@${__LIB_PACKAGE__.version}$/dist/ikol-ui.min.js"></script>
+  
+  <!-- Fonts (optional) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" />
+  
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
+<body>
+  <div id="app">
+    <ik-app>
+      <h1>Welcome to IK UI</h1>
+      <ik-button design="primary" size="md">Click Me</ik-button>
+      <ik-button design="success" class="ik-ml-4">Success</ik-button>
+      <ik-alert type="info" class="ik-mt-4">This is an info alert</ik-alert>
+    </ik-app>
+  </div>
+
+  <script>
+    Vue
+      .createApp({
+        // Your app logic here
+      })
+      .use(IKOL())
+      .mount('#app');
+  </script>
+</body>
+</html>
+```
+
+### Using composables in CDN mode
+
+You can access composables via `IKOL` global object:
+
+```html
+<script>
+  Vue
+    .createApp({
+      setup () {
+        const theme = IKOL.theme.useTheme();
+        const isDark = theme.is_dark.value;
+
+        // ...
+      }
+    })
+    .use(IKOL())
+    .mount('#app');
+</script>
+```

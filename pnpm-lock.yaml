@@ -14,6 +14,9 @@ importers:
       '@nuxtjs/device':
         specifier: ^3.2.4
         version: 3.2.4
+      dayjs:
+        specifier: 1.11.13
+        version: 1.11.13
       nuxt:
         specifier: ^4.0.3
         version: 4.0.3(@parcel/watcher@2.5.1)(@types/node@24.3.1)(@vue/compiler-sfc@3.5.21)(better-sqlite3@12.2.0)(db0@0.3.2(better-sqlite3@12.2.0))(eslint@9.37.0(jiti@2.5.1))(ioredis@5.7.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.50.0)(terser@5.44.0)(typescript@5.9.2)(vite@7.1.4(@types/node@24.3.1)(jiti@2.5.1)(terser@5.44.0)(yaml@2.8.1))(vue-tsc@3.0.6(typescript@5.9.2))(yaml@2.8.1)
