@@ -1,0 +1,305 @@
+---
+meta:
+  menu:
+    type: docs
+    section: components
+    label: "[[_Input_]]"
+---
+
+# Input
+
+<MetaDescription>
+The Input component provides a versatile text input field with support for various input types, validation, icons, and custom styling. It's designed to handle text, numbers, decimals, passwords, and other standard HTML input types with enhanced functionality.
+</MetaDescription>
+
+## Basic input
+
+The Input component supports v-model for two-way data binding.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkInput v-model="value" placeholder="Enter text..." class="ik-mb-4" />
+  <p>Value: {{ value }}</p>
+</template>
+<script setup>
+import { IkInput } from '@ikol/ui-kit/components/IkInput';
+import { ref } from 'vue';
+
+const value = ref('');
+</script>
+```
+
+## Input types
+
+The Input component supports various HTML input types including text, number, password, email, and more.
+
+### Text input
+
+The default type for text input.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkInput v-model="text" type="text" placeholder="Enter text..." class="ik-mb-4" />
+</template>
+<script setup>
+import { IkInput } from '@ikol/ui-kit/components/IkInput';
+import { ref } from 'vue';
+
+const text = ref('');
+</script>
+```
+
+### Number input
+
+For numeric values with built-in validation.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkInput v-model="number" type="number" placeholder="Enter number..." class="ik-mb-4" />
+</template>
+<script setup>
+import { IkInput } from '@ikol/ui-kit/components/IkInput';
+import { ref } from 'vue';
+
+const number = ref('');
+</script>
+```
+
+### Decimal input
+
+Special handling for decimal numbers with automatic formatting.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkInput v-model="decimal" type="decimal" placeholder="Enter decimal..." class="ik-mb-4" />
+  <IkInput v-model="decimalFormatted" type="decimal" :decimals="2" placeholder="With 2 decimals..." class="ik-mb-4" />
+</template>
+<script setup>
+import { IkInput } from '@ikol/ui-kit/components/IkInput';
+import { ref } from 'vue';
+
+const decimal = ref('');
+const decimalFormatted = ref('');
+</script>
+```
+
+### Password input
+
+For secure password entry with hidden characters.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkInput v-model="password" type="password" placeholder="Enter password..." class="ik-mb-4" />
+</template>
+<script setup>
+import { IkInput } from '@ikol/ui-kit/components/IkInput';
+import { ref } from 'vue';
+
+const password = ref('');
+</script>
+```
+
+## Variants
+
+Inputs support different visual variants: flat (default), outline, and filled.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkInput v-model="value1" variant="flat" placeholder="Flat input..." class="ik-mb-4" />
+  <IkInput v-model="value2" variant="outline" placeholder="Outline input..." class="ik-mb-4" />
+  <IkInput v-model="value3" variant="filled" placeholder="Filled input..." class="ik-mb-4" />
+</template>
+<script setup>
+import { IkInput } from '@ikol/ui-kit/components/IkInput';
+import { ref } from 'vue';
+
+const value1 = ref('');
+const value2 = ref('');
+const value3 = ref('');
+</script>
+```
+
+## Sizes
+
+Inputs support different sizes to fit various UI contexts.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkInput v-model="value4" size="xs" placeholder="Extra small..." class="ik-mb-4" />
+  <IkInput v-model="value5" size="sm" placeholder="Small..." class="ik-mb-4" />
+  <IkInput v-model="value6" size="md" placeholder="Medium..." class="ik-mb-4" />
+  <IkInput v-model="value7" size="lg" placeholder="Large..." class="ik-mb-4" />
+</template>
+<script setup>
+import { IkInput } from '@ikol/ui-kit/components/IkInput';
+import { ref } from 'vue';
+
+const value4 = ref('');
+const value5 = ref('');
+const value6 = ref('');
+const value7 = ref('');
+</script>
+```
+
+## Icons
+
+You can add icons to inputs using the `prepend_icon`, `append_icon`, or `icon` props, or use slots for custom content.
+
+### Prepend icon
+
+Add an icon before the input using the `icon` or `prepend_icon` prop.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkInput v-model="value8" icon="search" placeholder="Search..." class="ik-mb-4" />
+  <IkInput v-model="value9" prepend_icon="user" placeholder="Username..." class="ik-mb-4" />
+  <IkInput v-model="value10" prepend_icon="envelope" placeholder="Email..." class="ik-mb-4" />
+</template>
+<script setup>
+import { IkInput } from '@ikol/ui-kit/components/IkInput';
+import { ref } from 'vue';
+
+const value8 = ref('');
+const value9 = ref('');
+const value10 = ref('');
+</script>
+```
+
+### Append icon
+
+Add an icon after the input using the `append_icon` prop.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkInput v-model="value11" append_icon="eye" placeholder="Password..." class="ik-mb-4" />
+  <IkInput v-model="value12" append_icon="calendar" placeholder="Date..." class="ik-mb-4" />
+</template>
+<script setup>
+import { IkInput } from '@ikol/ui-kit/components/IkInput';
+import { ref } from 'vue';
+
+const value11 = ref('');
+const value12 = ref('');
+</script>
+```
+
+### Clear icon
+
+Use the `append_clear_icon` prop to automatically show a clear button when the input has a value.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkInput v-model="value13" append_clear_icon placeholder="Type to see clear icon..." class="ik-mb-4" />
+</template>
+<script setup>
+import { IkInput } from '@ikol/ui-kit/components/IkInput';
+import { ref } from 'vue';
+
+const value13 = ref('');
+</script>
+```
+
+### Custom slots
+
+Use the `prepend` and `append` slots for custom content.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkInput v-model="value14" placeholder="Custom prepend..." class="ik-mb-4">
+    <template #prepend>
+      <span style="color: var(--content-primary-regular-default);">$</span>
+    </template>
+  </IkInput>
+  <IkInput v-model="value15" placeholder="Custom append..." class="ik-mb-4">
+    <template #append>
+      <span style="color: var(--content-primary-regular-default);">.com</span>
+    </template>
+  </IkInput>
+</template>
+<script setup>
+import { IkInput } from '@ikol/ui-kit/components/IkInput';
+import { ref } from 'vue';
+
+const value14 = ref('');
+const value15 = ref('');
+</script>
+```
+
+## States
+
+### Disabled state
+
+Use the `disabled` prop to prevent user interaction.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkInput v-model="value16" disabled placeholder="Disabled input..." class="ik-mb-4" />
+  <IkInput v-model="value17" disabled prepend_icon="user" placeholder="Disabled with icon..." class="ik-mb-4" />
+</template>
+<script setup>
+import { IkInput } from '@ikol/ui-kit/components/IkInput';
+import { ref } from 'vue';
+
+const value16 = ref('Disabled value');
+const value17 = ref('');
+</script>
+```
+
+### Readonly state
+
+Use the `readonly` prop to make the input read-only while still allowing selection.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkInput v-model="value18" readonly placeholder="Readonly input..." class="ik-mb-4" />
+</template>
+<script setup>
+import { IkInput } from '@ikol/ui-kit/components/IkInput';
+import { ref } from 'vue';
+
+const value18 = ref('Readonly value');
+</script>
+```
+
+## Icon click handlers
+
+You can handle clicks on prepend and append icons using callback functions.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkInput 
+    v-model="value19" 
+    prepend_icon="search" 
+    :onIkClickPrepend="handlePrependClick"
+    placeholder="Click search icon..." 
+    class="ik-mb-4" 
+  />
+  <IkInput 
+    v-model="value20" 
+    append_icon="eye" 
+    :onIkClickAppend="handleAppendClick"
+    placeholder="Click eye icon..." 
+    class="ik-mb-4" 
+  />
+  <p v-if="message" class="ik-text--sm ik-text--default-light">{{ message }}</p>
+</template>
+<script setup>
+import { IkInput } from '@ikol/ui-kit/components/IkInput';
+import { ref } from 'vue';
+
+const value19 = ref('');
+const value20 = ref('');
+const message = ref('');
+
+const handlePrependClick = () => {
+  message.value = 'Search icon clicked!';
+  setTimeout(() => message.value = '', 2000);
+};
+
+const handleAppendClick = () => {
+  message.value = 'Eye icon clicked!';
+  setTimeout(() => message.value = '', 2000);
+};
+</script>
+```
+
