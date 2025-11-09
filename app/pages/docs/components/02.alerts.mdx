@@ -91,7 +91,7 @@ You can use the `prepend` and `append` slots to add custom content to alerts.
   <IkAlert design="primary" class="ik-mb-4">
     Custom append content
     <template #append>
-      <IkButton size="xs" ghost>Action</IkButton>
+      <IkButton size="xs" design="primary">Action</IkButton>
     </template>
   </IkAlert>
   <IkAlert design="accent" class="ik-mb-4">
@@ -100,7 +100,7 @@ You can use the `prepend` and `append` slots to add custom content to alerts.
     </template>
     Alert with both prepend and append
     <template #append>
-      <IkButton size="xs" ghost>Dismiss</IkButton>
+      <IkIcon circle design="accent" icon="times" @click="() => null"/>
     </template>
   </IkAlert>
 </template>
