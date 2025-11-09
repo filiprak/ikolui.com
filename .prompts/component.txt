@@ -1,0 +1,2 @@
+Analyze IkAlert component from .lib-src/ folder and update IkAlert docs mdx file:
+- always set only first letter in headings as uppercased
