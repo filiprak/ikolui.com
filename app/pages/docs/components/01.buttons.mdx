@@ -13,9 +13,9 @@ Buttons allow users to take actions, and make choices, with a single tap.\
 Buttons communicate actions that users can take. They are typically placed throughout your UI, in places like:
 </MetaDescription>
 
-## Basic Button
+## Basic button
 
-The Button comes with three variants: text (default), contained, and outlined.
+The Button component supports multiple design colors to convey different action types.
 
 ```vue title="[[_Source code_]]" preview
 <template>
@@ -30,13 +30,271 @@ import { IkButton } from '@ikol/ui-kit/components/IkButton';
 </script>
 ```
 
-### Disabled Button
+## Variants
 
-The Button used for less-pronounced actions, including those located: in dialogs, in cards. In cards, text buttons help maintain an emphasis on card content.
+Buttons come with multiple variants: filled (default), outline, flat, and ghost.
+
+### Filled variant
+
+The filled variant provides a solid background color. This is the default variant.
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <IkButton disabled>Button</IkButton>
+  <IkButton design="primary" filled class="ik-mr-4">Filled</IkButton>
+  <IkButton design="success" filled class="ik-mr-4">Filled</IkButton>
+  <IkButton design="error" filled class="ik-mr-4">Filled</IkButton>
+  <IkButton design="accent" filled>Filled</IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+### Outline variant
+
+The outline variant displays a button with a border and transparent background.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton design="primary" outline class="ik-mr-4">Outline</IkButton>
+  <IkButton design="success" outline class="ik-mr-4">Outline</IkButton>
+  <IkButton design="error" outline class="ik-mr-4">Outline</IkButton>
+  <IkButton design="accent" outline>Outline</IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+### Flat variant
+
+The flat variant provides a subtle background on hover.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton design="primary" flat class="ik-mr-4">Flat</IkButton>
+  <IkButton design="success" flat class="ik-mr-4">Flat</IkButton>
+  <IkButton design="error" flat class="ik-mr-4">Flat</IkButton>
+  <IkButton design="accent" flat>Flat</IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+### Ghost variant
+
+The ghost variant provides minimal styling with no background or border.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton design="primary" ghost class="ik-mr-4">Ghost</IkButton>
+  <IkButton design="success" ghost class="ik-mr-4">Ghost</IkButton>
+  <IkButton design="error" ghost class="ik-mr-4">Ghost</IkButton>
+  <IkButton design="accent" ghost>Ghost</IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## Sizes
+
+Buttons support different sizes to fit various UI contexts.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton size="xs" design="primary" class="ik-mr-4">Extra small</IkButton>
+  <IkButton size="sm" design="primary" class="ik-mr-4">Small</IkButton>
+  <IkButton size="md" design="primary" class="ik-mr-4">Medium</IkButton>
+  <IkButton size="lg" design="primary" class="ik-mr-4">Large</IkButton>
+  <IkButton size="xl" design="primary">Extra large</IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## Icons
+
+You can add icons to buttons using the `prepend_icon`, `append_icon`, or `icon` props.
+
+### Button with prepend icon
+
+Add an icon before the button label using the `prepend_icon` prop.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton design="primary" prepend_icon="plus" class="ik-mr-4">Add item</IkButton>
+  <IkButton design="success" prepend_icon="check" class="ik-mr-4">Confirm</IkButton>
+  <IkButton design="error" prepend_icon="trash">Delete</IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+### Button with append icon
+
+Add an icon after the button label using the `append_icon` prop.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton design="primary" append_icon="arrow-right" class="ik-mr-4">Continue</IkButton>
+  <IkButton design="accent" append_icon="external-link" class="ik-mr-4">Open link</IkButton>
+  <IkButton design="default" append_icon="download">Download</IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+### Icon-only button
+
+Use the `icon` prop to create a button with only an icon and no label.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton design="primary" icon="heart" class="ik-mr-4"></IkButton>
+  <IkButton design="success" icon="check" class="ik-mr-4"></IkButton>
+  <IkButton design="error" icon="times" class="ik-mr-4"></IkButton>
+  <IkButton design="accent" icon="star"></IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## Loading state
+
+Use the `loading` prop to display a loading spinner and disable the button during async operations.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton design="primary" loading class="ik-mr-4">Loading...</IkButton>
+  <IkButton design="success" loading class="ik-mr-4">Processing</IkButton>
+  <IkButton design="primary" loading icon="save" class="ik-mr-4">Saving</IkButton>
+  <IkButton design="primary" loading>Submit</IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## Disabled state
+
+Use the `disabled` prop to prevent user interaction with the button.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton design="primary" disabled class="ik-mr-4">Disabled</IkButton>
+  <IkButton design="success" disabled outline class="ik-mr-4">Disabled</IkButton>
+  <IkButton design="error" disabled flat class="ik-mr-4">Disabled</IkButton>
+  <IkButton design="accent" disabled ghost>Disabled</IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## Block button
+
+Use the `block` prop to make the button span the full width of its container.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton design="primary" block class="ik-mb-4">Block button</IkButton>
+  <IkButton design="success" block outline>Block outline button</IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## Round button
+
+Use the `round` prop to create a button with rounded corners.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton design="primary" round class="ik-mr-4">Round button</IkButton>
+  <IkButton design="success" round outline class="ik-mr-4">Round outline</IkButton>
+  <IkButton design="accent" round flat>Round flat</IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## Circle button
+
+Use the `circle` prop to create a circular button, typically used for icon-only buttons.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton design="primary" circle icon="heart" class="ik-mr-4"></IkButton>
+  <IkButton design="success" circle icon="check" class="ik-mr-4"></IkButton>
+  <IkButton design="error" circle icon="times" class="ik-mr-4"></IkButton>
+  <IkButton design="accent" circle icon="star"></IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## Floating action button
+
+Use the `fab` prop to create a floating action button, typically used for primary actions.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton design="primary" fab icon="plus" class="ik-mr-4"></IkButton>
+  <IkButton design="success" fab icon="check" class="ik-mr-4"></IkButton>
+  <IkButton design="accent" fab icon="edit"></IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## Active state
+
+Use the `active` prop to indicate the button is in an active or selected state.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton design="primary" active class="ik-mr-4">Active</IkButton>
+  <IkButton design="success" active outline class="ik-mr-4">Active</IkButton>
+  <IkButton design="accent" active flat>Active</IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## Skeleton state
+
+Use the `skeleton` prop to display a loading skeleton placeholder.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton design="primary" skeleton class="ik-mr-4">Skeleton</IkButton>
+  <IkButton design="success" skeleton outline class="ik-mr-4">Skeleton</IkButton>
+  <IkButton design="accent" skeleton flat>Skeleton</IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## Link button
+
+Use the `tag` prop to render the button as a link or other HTML element.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton design="primary" tag="a" href="/docs" class="ik-mr-4">Link button</IkButton>
+  <IkButton design="success" tag="a" href="/docs" outline>Link outline</IkButton>
 </template>
 <script setup>
 import { IkButton } from '@ikol/ui-kit/components/IkButton';
