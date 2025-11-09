@@ -1,5 +1,6 @@
 <template>
     <div v-show="show"
+         class="pre"
          :class="$style.pre">
         <Preview :class="$style.preview" />
         <div :class="$style.wrapper">

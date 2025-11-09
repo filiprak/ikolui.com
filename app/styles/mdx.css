@@ -80,8 +80,26 @@
     border-bottom: none;
 }
 
-.mdx-wrapper a {
+.mdx-wrapper :not(.pre *) > a {
+    color: var(--content-primary-regular-alt);
+    font-weight: var(--text-bold);
+}
+
+.mdx-wrapper :not(.pre *) > a::after {
+    content: '↗';
+    display: inline-flex;
+    width: 1em;
+    height: 1em;
     color: inherit;
+    transform: translate(1px, 0px);
+    transition: transform 0.3s cubic-bezier(0.1, 0.8, 0.3, 1);
+    opacity: 0.8;
+    text-decoration: none;
+}
+
+.mdx-wrapper :not(.pre *) > a:hover::after {
+    opacity: 1;
+    transform: translate(2px, -2px);
 }
 
 .mdx-wrapper code {
