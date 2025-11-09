@@ -9,19 +9,104 @@ meta:
 # Alerts
 
 <MetaDescription>
-Alerts allow users to take actions, and make choices, with a single tap.
+Alerts display important messages and notifications to users. They provide contextual feedback about actions, system status, or important information that requires user attention.
 </MetaDescription>
 
 ## Basic Alert
 
-The Alert comes with three variants: text (default), contained, and outlined.
+The Alert component supports multiple design variants to convey different types of messages.
 
-```vue title="Example.vue" preview
+```vue title="[[_Source code_]]" preview
 <template>
-  <IkAlert design="primary" class="ik-mb-4">This is test</IkAlert>
-  <IkAlert design="success" class="ik-mb-4">This is test</IkAlert>
+  <IkAlert design="primary" class="ik-mb-4">This is a primary alert</IkAlert>
+  <IkAlert design="success" class="ik-mb-4">This is a success alert</IkAlert>
+  <IkAlert design="error" class="ik-mb-4">This is an error alert</IkAlert>
+  <IkAlert design="accent" class="ik-mb-4">This is an accent alert</IkAlert>
 </template>
 <script setup>
 import { IkAlert } from '@ikol/ui-kit/components/IkAlert';
+</script>
+```
+
+## Alert with Icons
+
+You can add icons to alerts using the `icon` prop or the `prepend` slot.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkAlert design="success" icon="check-circle" class="ik-mb-4">
+    Operation completed successfully
+  </IkAlert>
+  <IkAlert design="error" icon="exclamation-circle" class="ik-mb-4">
+    An error occurred while processing your request
+  </IkAlert>
+  <IkAlert design="accent" icon="exclamation-triangle" class="ik-mb-4">
+    Please review the following information
+  </IkAlert>
+  <IkAlert design="primary" icon="info-circle" class="ik-mb-4">
+    Here's some helpful information
+  </IkAlert>
+</template>
+<script setup>
+import { IkAlert } from '@ikol/ui-kit/components/IkAlert';
+</script>
+```
+
+## Filled Variant
+
+Use the `variant="filled"` prop to display alerts with a solid background color.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkAlert design="primary" variant="filled" class="ik-mb-4">
+    This is a filled primary alert
+  </IkAlert>
+  <IkAlert design="success" variant="filled" class="ik-mb-4">
+    This is a filled success alert
+  </IkAlert>
+  <IkAlert design="error" variant="filled" class="ik-mb-4">
+    This is a filled error alert
+  </IkAlert>
+  <IkAlert design="accent" variant="filled" class="ik-mb-4">
+    This is a filled accent alert
+  </IkAlert>
+</template>
+<script setup>
+import { IkAlert } from '@ikol/ui-kit/components/IkAlert';
+</script>
+```
+
+## Alert with Custom Content
+
+You can use the `prepend` and `append` slots to add custom content to alerts.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkAlert design="success" class="ik-mb-4">
+    <template #prepend>
+      <IkIcon icon="check-circle" />
+    </template>
+    Custom prepend content
+  </IkAlert>
+  <IkAlert design="primary" class="ik-mb-4">
+    Custom append content
+    <template #append>
+      <IkButton size="xs" ghost>Action</IkButton>
+    </template>
+  </IkAlert>
+  <IkAlert design="accent" class="ik-mb-4">
+    <template #prepend>
+      <IkIcon icon="bell" />
+    </template>
+    Alert with both prepend and append
+    <template #append>
+      <IkButton size="xs" ghost>Dismiss</IkButton>
+    </template>
+  </IkAlert>
+</template>
+<script setup>
+import { IkAlert } from '@ikol/ui-kit/components/IkAlert';
+import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
 </script>
 ```
