@@ -108,7 +108,6 @@ Buttons support different sizes to fit various UI contexts.
   <IkButton size="sm" design="primary" class="ik-mr-4">Small</IkButton>
   <IkButton size="md" design="primary" class="ik-mr-4">Medium</IkButton>
   <IkButton size="lg" design="primary" class="ik-mr-4">Large</IkButton>
-  <IkButton size="xl" design="primary">Extra large</IkButton>
 </template>
 <script setup>
 import { IkButton } from '@ikol/ui-kit/components/IkButton';
@@ -121,7 +120,7 @@ You can add icons to buttons using the `prepend_icon`, `append_icon`, or `icon` 
 
 ### Button with prepend icon
 
-Add an icon before the button label using the `prepend_icon` prop.
+Add an icon before the button label using the `icon` or `prepend_icon` prop.
 
 ```vue title="[[_Source code_]]" preview
 <template>
@@ -175,6 +174,21 @@ Use the `loading` prop to display a loading spinner and disable the button durin
   <IkButton design="success" loading class="ik-mr-4">Processing</IkButton>
   <IkButton design="primary" loading icon="save" class="ik-mr-4">Saving</IkButton>
   <IkButton design="primary" loading>Submit</IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+### Skeleton state
+
+Use the `skeleton` prop to display a loading skeleton placeholder.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton design="primary" skeleton class="ik-mr-4">Skeleton</IkButton>
+  <IkButton design="success" skeleton outline class="ik-mr-4">Skeleton</IkButton>
+  <IkButton design="accent" skeleton flat>Skeleton</IkButton>
 </template>
 <script setup>
 import { IkButton } from '@ikol/ui-kit/components/IkButton';
@@ -248,9 +262,9 @@ Use the `fab` prop to create a floating action button, typically used for primar
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <IkButton design="primary" fab icon="plus" class="ik-mr-4"></IkButton>
-  <IkButton design="success" fab icon="check" class="ik-mr-4"></IkButton>
-  <IkButton design="accent" fab icon="edit"></IkButton>
+  <div style="position: relative; height: 200px; width: 100%; border: 2px dashed var(--border-neutral-regular-default);">
+    <IkButton design="primary" fab icon="plus" style="position: absolute; bottom: 16px; right: 16px;"></IkButton>
+  </div>
 </template>
 <script setup>
 import { IkButton } from '@ikol/ui-kit/components/IkButton';
@@ -272,21 +286,6 @@ import { IkButton } from '@ikol/ui-kit/components/IkButton';
 </script>
 ```
 
-## Skeleton state
-
-Use the `skeleton` prop to display a loading skeleton placeholder.
-
-```vue title="[[_Source code_]]" preview
-<template>
-  <IkButton design="primary" skeleton class="ik-mr-4">Skeleton</IkButton>
-  <IkButton design="success" skeleton outline class="ik-mr-4">Skeleton</IkButton>
-  <IkButton design="accent" skeleton flat>Skeleton</IkButton>
-</template>
-<script setup>
-import { IkButton } from '@ikol/ui-kit/components/IkButton';
-</script>
-```
-
 ## Link button
 
 Use the `tag` prop to render the button as a link or other HTML element.
@@ -298,5 +297,80 @@ Use the `tag` prop to render the button as a link or other HTML element.
 </template>
 <script setup>
 import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## Button group
+
+Use the `IkButtonGroup` component to group related buttons together.
+
+### Basic button group
+
+Group buttons together for related actions.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButtonGroup>
+    <IkButton design="primary">Save</IkButton>
+    <IkButton design="default" outline>Cancel</IkButton>
+  </IkButtonGroup>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { IkButtonGroup } from '@ikol/ui-kit/components/IkButtonGroup';
+</script>
+```
+
+### Equal width buttons
+
+Use the `equal` prop to make all buttons in the group have equal width.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButtonGroup equal>
+    <IkButton design="primary">Save</IkButton>
+    <IkButton design="default" outline>Cancel</IkButton>
+    <IkButton design="error" outline>Delete</IkButton>
+  </IkButtonGroup>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { IkButtonGroup } from '@ikol/ui-kit/components/IkButtonGroup';
+</script>
+```
+
+### Stacked buttons
+
+Use the `stack` prop to stack buttons vertically.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButtonGroup stack>
+    <IkButton design="primary">Primary action</IkButton>
+    <IkButton design="default" outline>Secondary action</IkButton>
+    <IkButton design="accent" outline>Tertiary action</IkButton>
+  </IkButtonGroup>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { IkButtonGroup } from '@ikol/ui-kit/components/IkButtonGroup';
+</script>
+```
+
+### Reversed buttons
+
+Use the `reverse` prop to reverse the order of buttons in the group.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButtonGroup reverse>
+    <IkButton design="primary">First</IkButton>
+    <IkButton design="success">Second</IkButton>
+    <IkButton design="accent">Third</IkButton>
+  </IkButtonGroup>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { IkButtonGroup } from '@ikol/ui-kit/components/IkButtonGroup';
 </script>
 ```
