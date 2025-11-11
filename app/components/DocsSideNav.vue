@@ -19,31 +19,36 @@
                 </template>
             </IkListItem>
             <div v-if="section.is_root || section.is_expanded">
-                <NuxtLink v-for="page in section.items"
-                          :key="page.path"
-                          :to="page.path"
-                          custom
-                          @click="emit('navigate')">
-                    <template #default="{ href, isActive: active }">
-                        <IkListItem :link="href"
-                                    :active="active"
-                                    :class="[
-                                        $style.item, {
-                                            [$style.active]: active,
-                                            [$style.child]: !!section.label
-                                        }
-                                    ]">
-                            <template v-if="page.meta.menu?.icon"
-                                      #prepend>
-                                <div :class="$style.prepend">
-                                    <IkIcon :icon="page.meta.menu?.icon"
-                                            size_px="18" />
-                                </div>
-                            </template>
-                            {{ page.meta.menu?.label }}
-                        </IkListItem>
-                    </template>
-                </NuxtLink>
+                <template v-for="(page, idx) in section.items"
+                          :key="page.path">
+                    <div v-if="page.meta.menu?.subsection !== section.items[idx - 1]?.meta.menu?.subsection"
+                         :class="[$style.item, $style.subsection]">
+                        {{ subsections[page.meta.menu?.subsection || 'base'] }}
+                    </div>
+                    <NuxtLink :to="page.path"
+                              custom
+                              @click="emit('navigate')">
+                        <template #default="{ href, isActive: active }">
+                            <IkListItem :link="href"
+                                        :active="active"
+                                        :class="[
+                                            $style.item, {
+                                                [$style.active]: active,
+                                                [$style.child]: !!section.label
+                                            }
+                                        ]">
+                                <template v-if="page.meta.menu?.icon"
+                                          #prepend>
+                                    <div :class="$style.prepend">
+                                        <IkIcon :icon="page.meta.menu?.icon"
+                                                size_px="18" />
+                                    </div>
+                                </template>
+                                {{ page.meta.menu?.label }}
+                            </IkListItem>
+                        </template>
+                    </NuxtLink>
+                </template>
             </div>
             <Hr v-if="section.is_root"
                 class="ik-my-5" />
@@ -75,6 +80,16 @@ const emit = defineEmits<{
 }>();
 
 const { items, isActive } = useNavRoutes('docs');
+
+const subsections: Record<string, string> = {
+    inputs: '[[_Inputs_]]',
+    form: '[[_Form_]]',
+    feedback: '[[_Feedback_]]',
+    layout: '[[_Layout_]]',
+    data: '[[_Data display_]]',
+    utils: '[[_Utilities_]]',
+    navigation: '[[_Navigation_]]',
+};
 
 const sections = ref<Section[]>([
     {
@@ -122,10 +137,16 @@ watch(
 
 .item.child {
     color: var(--content-neutral-light-default);
-    margin-left: var(--s-10);
+    margin-left: var(--s-11);
 }
 
 .item.active {
     color: var(--content-neutral-strong-default);
+}
+
+.item.subsection {
+    color: var(--content-neutral-weak-default);
+    font-size: var(--text-xs);
+    margin-left: var(--s-10);
 }
 </style>
