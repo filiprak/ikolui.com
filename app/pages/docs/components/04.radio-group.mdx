@@ -1,0 +1,302 @@
+---
+meta:
+  menu:
+    type: docs
+    section: components
+    subsection: inputs
+    label: "[[_Radio Group_]]"
+---
+
+# Radio Group
+
+<MetaDescription>
+The Radio group component allows users to select one or more options from a set of choices. It displays options as a group of buttons, providing a modern alternative to traditional radio buttons. The component supports both single and multiple selection modes, and can work with arrays of objects using custom key mappings.
+</MetaDescription>
+
+## Basic radio group
+
+The Radio group component supports v-model for two-way data binding. You must provide either `value_key` or `unique_key` prop to identify items.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkRadioGroup 
+    v-model="selected" 
+    :items="options"
+    value_key="id"
+    text_key="label"
+    class="ik-mb-4" 
+  />
+  <p>Selected: {{ selected || 'None' }}</p>
+</template>
+<script setup>
+import { IkRadioGroup } from '@ikol/ui-kit/components/IkRadioGroup';
+import { ref } from 'vue';
+
+const options = [
+  { id: 1, label: 'Option 1' },
+  { id: 2, label: 'Option 2' },
+  { id: 3, label: 'Option 3' },
+];
+
+const selected = ref();
+</script>
+```
+
+## Single selection
+
+By default, the Radio group allows only one option to be selected at a time. The selected value will be a single value (not an array).
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkRadioGroup 
+    v-model="choice" 
+    :items="fruits"
+    value_key="id"
+    text_key="name"
+    class="ik-mb-4" 
+  />
+  <p>Selected fruit: {{ choice ? fruits.find(f => f.id === choice)?.name : 'None' }}</p>
+</template>
+<script setup>
+import { IkRadioGroup } from '@ikol/ui-kit/components/IkRadioGroup';
+import { ref } from 'vue';
+
+const fruits = [
+  { id: 'apple', name: 'Apple' },
+  { id: 'banana', name: 'Banana' },
+  { id: 'orange', name: 'Orange' },
+];
+
+const choice = ref('apple');
+</script>
+```
+
+## Multiple selection
+
+Use the `multiple` prop to allow users to select multiple options. When enabled, the model value will be an array.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkRadioGroup 
+    v-model="selectedItems" 
+    :items="colors"
+    value_key="id"
+    text_key="name"
+    multiple
+    class="ik-mb-4" 
+  />
+  <p>Selected colors: {{ selectedItems.length > 0 ? selectedItems.map(id => colors.find(c => c.id === id)?.name).join(', ') : 'None' }}</p>
+</template>
+<script setup>
+import { IkRadioGroup } from '@ikol/ui-kit/components/IkRadioGroup';
+import { ref } from 'vue';
+
+const colors = [
+  { id: 'red', name: 'Red' },
+  { id: 'green', name: 'Green' },
+  { id: 'blue', name: 'Blue' },
+  { id: 'yellow', name: 'Yellow' },
+];
+
+const selectedItems = ref(['red', 'blue']);
+</script>
+```
+
+## Using value_key
+
+The `value_key` prop specifies which property of each item should be used as the value. This is useful when you want to store only specific values (like IDs) instead of the entire object.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkRadioGroup 
+    v-model="selectedId" 
+    :items="products"
+    value_key="id"
+    text_key="title"
+    class="ik-mb-4" 
+  />
+  <p>Selected product ID: {{ selectedId || 'None' }}</p>
+</template>
+<script setup>
+import { IkRadioGroup } from '@ikol/ui-kit/components/IkRadioGroup';
+import { ref } from 'vue';
+
+const products = [
+  { id: 101, title: 'Product A', price: 29.99 },
+  { id: 102, title: 'Product B', price: 39.99 },
+  { id: 103, title: 'Product C', price: 49.99 },
+];
+
+const selectedId = ref(102);
+</script>
+```
+
+## Using unique_key
+
+The `unique_key` prop specifies which property should be used to uniquely identify items. Use this when you want to store the entire object as the value instead of just a property.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkRadioGroup 
+    v-model="selectedPlan" 
+    :items="plans"
+    unique_key="id"
+    text_key="name"
+    class="ik-mb-4" 
+  />
+  <p v-if="selectedPlan">
+    Selected: {{ selectedPlan.name }} - ${{ selectedPlan.price }}/month
+  </p>
+  <p v-else>No plan selected</p>
+</template>
+<script setup>
+import { IkRadioGroup } from '@ikol/ui-kit/components/IkRadioGroup';
+import { ref } from 'vue';
+
+const plans = [
+  { id: 'basic', name: 'Basic', price: 9.99 },
+  { id: 'pro', name: 'Pro', price: 19.99 },
+  { id: 'enterprise', name: 'Enterprise', price: 49.99 },
+];
+
+const selectedPlan = ref(plans[1]);
+</script>
+```
+
+## Custom text with text_key
+
+The `text_key` prop specifies which property should be displayed as the button label. If not provided, the component will try to display a string representation of the item.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkRadioGroup 
+    v-model="selectedSize" 
+    :items="sizes"
+    value_key="code"
+    text_key="display"
+    class="ik-mb-4" 
+  />
+  <p>Selected size: {{ selectedSize || 'None' }}</p>
+</template>
+<script setup>
+import { IkRadioGroup } from '@ikol/ui-kit/components/IkRadioGroup';
+import { ref } from 'vue';
+
+const sizes = [
+  { code: 'xs', display: 'Extra Small' },
+  { code: 'sm', display: 'Small' },
+  { code: 'md', display: 'Medium' },
+  { code: 'lg', display: 'Large' },
+  { code: 'xl', display: 'Extra Large' },
+];
+
+const selectedSize = ref('md');
+</script>
+```
+
+## Disabled state
+
+Use the `disabled` prop to prevent user interaction with the radio group.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkRadioGroup 
+    v-model="selectedOption" 
+    :items="options"
+    value_key="id"
+    text_key="label"
+    disabled
+    class="ik-mb-4" 
+  />
+  <p>Selected: {{ selectedOption || 'None' }}</p>
+</template>
+<script setup>
+import { IkRadioGroup } from '@ikol/ui-kit/components/IkRadioGroup';
+import { ref } from 'vue';
+
+const options = [
+  { id: 1, label: 'Option 1' },
+  { id: 2, label: 'Option 2' },
+  { id: 3, label: 'Option 3' },
+];
+
+const selectedOption = ref(2);
+</script>
+```
+
+## Custom button slot
+
+Use the `button` slot to fully customize how each option is rendered. The slot provides access to the item, active state, disabled state, design, and a toggle function. See the [Button](/docs/components/button) component documentation for more details on button props and styling options.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkRadioGroup 
+    v-model="selectedTheme" 
+    :items="themes"
+    value_key="id"
+    text_key="name"
+    class="ik-mb-4" 
+  >
+    <template #button="{ item, active, disabled, design, toggle }">
+      <IkButton 
+        :design="design"
+        :active="active"
+        :disabled="disabled"
+        @click="toggle"
+        :prepend_icon="item.icon"
+      >
+        {{ item.name }}
+      </IkButton>
+    </template>
+  </IkRadioGroup>
+  <p>Selected theme: {{ selectedTheme || 'None' }}</p>
+</template>
+<script setup>
+import { IkRadioGroup } from '@ikol/ui-kit/components/IkRadioGroup';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { ref } from 'vue';
+
+const themes = [
+  { id: 'light', name: 'Light', icon: 'sun' },
+  { id: 'dark', name: 'Dark', icon: 'moon' },
+  { id: 'auto', name: 'Auto', icon: 'adjust' },
+];
+
+const selectedTheme = ref('light');
+</script>
+```
+
+## Custom button label slot
+
+Use the `button-label` slot to customize only the label content while keeping the default button styling. See the [Button](/docs/components/button) component documentation for more details on button styling options.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkRadioGroup 
+    v-model="selectedLanguage" 
+    :items="languages"
+    value_key="code"
+    text_key="name"
+    class="ik-mb-4" 
+  >
+    <template #button-label="{ item }">
+      <span>{{ item.flag }} {{ item.name }}</span>
+    </template>
+  </IkRadioGroup>
+  <p>Selected language: {{ selectedLanguage || 'None' }}</p>
+</template>
+<script setup>
+import { IkRadioGroup } from '@ikol/ui-kit/components/IkRadioGroup';
+import { ref } from 'vue';
+
+const languages = [
+  { code: 'en', name: 'English', flag: '🇺🇸' },
+  { code: 'es', name: 'Spanish', flag: '🇪🇸' },
+  { code: 'fr', name: 'French', flag: '🇫🇷' },
+  { code: 'de', name: 'German', flag: '🇩🇪' },
+];
+
+const selectedLanguage = ref('en');
+</script>
+```
+
