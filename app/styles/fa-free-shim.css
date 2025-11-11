@@ -12,3 +12,8 @@
 .fa-light.fa-times {
     font-weight: 600;
 }
+
+.fa-regular.fa-chevron-down,
+.fa-regular.fa-chevron-up {
+    font-weight: 600;
+}

@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     },
     alias: {
         dayjs: path.resolve(import.meta.dirname, 'node_modules/dayjs/esm'),
+        lodash: 'lodash-es',
     },
     modules: [
         '@nuxtjs/device',
@@ -34,7 +35,6 @@ export default defineNuxtConfig({
         },
     },
     vite: {
-        
         plugins: [
             i18n(),
             mdx({
