@@ -7,6 +7,7 @@
 import './styles/globals.css';
 import './styles/utils.css';
 import './styles/mdx.css';
+import './styles/fa-free-shim.css';
 import { useSSRContext } from '@ikol/ui-kit/composables/globals';
 import { THEME_SYMBOL, createTheme } from '@ikol/ui-kit/composables/theme';
 import { DEVICE_SYMBOL, createDevice } from '@ikol/ui-kit/composables/device';

@@ -1,0 +1,164 @@
+---
+meta:
+  menu:
+    type: docs
+    section: components
+    subsection: inputs
+    label: "[[_Chip input_]]"
+---
+
+# Chip input
+
+<MetaDescription>
+The Chip input component lets users enter multiple discrete values as chips, supporting common actions like adding and removing items with the keyboard or mouse.
+</MetaDescription>
+
+## Basic usage
+
+Bind an array with `v-model`. Press Enter to add the current value as a chip. Use Backspace on empty input to remove the last chip.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-mb-4">
+    <IkChipInput v-model="tags" placeholder="Add a tag and press Enter..." />
+  </div>
+  <p class="ik-text--sm ik-text--default-regular">Value: {{ tags.join(', ') }}</p>
+</template>
+<script setup>
+import { IkChipInput } from '@ikol/ui-kit/components/IkChipInput';
+import { ref } from 'vue';
+
+const tags = ref(['alpha', 'beta']);
+</script>
+```
+
+## Disabled
+
+Use the `disabled` prop to prevent user interaction.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkChipInput v-model="tags" disabled placeholder="Disabled..." class="ik-mb-4" />
+</template>
+<script setup>
+import { IkChipInput } from '@ikol/ui-kit/components/IkChipInput';
+import { ref } from 'vue';
+
+const tags = ref(['disabled', 'chip']);
+</script>
+```
+
+## Variants
+
+Use the `variant` prop to change the input style: `flat` (default), `outline`, or `filled`.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <IkChipInput v-model="v1" variant="flat" placeholder="Flat..." class="ik-mb-4" />
+    <IkChipInput v-model="v2" variant="outline" placeholder="Outline..." class="ik-mb-4" />
+    <IkChipInput v-model="v3" variant="filled" placeholder="Filled..." class="ik-mb-4" />
+  </div>
+</template>
+<script setup>
+import { IkChipInput } from '@ikol/ui-kit/components/IkChipInput';
+import { ref } from 'vue';
+
+const v1 = ref(['flat']);
+const v2 = ref(['outline']);
+const v3 = ref(['filled']);
+</script>
+```
+
+## Design
+
+Use the `design` prop to control the color of generated chips.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-gap-4 ik-flex--wrap">
+    <IkChipInput v-model="d1" design="primary" placeholder="Primary chips..." />
+    <IkChipInput v-model="d2" design="success" placeholder="Success chips..." />
+    <IkChipInput v-model="d3" design="error" placeholder="Error chips..." />
+    <IkChipInput v-model="d4" design="accent" placeholder="Accent chips..." />
+  </div>
+</template>
+<script setup>
+import { IkChipInput } from '@ikol/ui-kit/components/IkChipInput';
+import { ref } from 'vue';
+
+const d1 = ref(['one']);
+const d2 = ref(['ok']);
+const d3 = ref(['fail']);
+const d4 = ref(['wow']);
+</script>
+```
+
+## Unique values
+
+Set `unique` to avoid duplicates. When a duplicate is attempted, the `ik-exists` event fires with the existing value.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkChipInput
+    v-model="uniqueTags"
+    unique
+    placeholder="Unique tags only..."
+    @ik-exists="onExists"
+    class="ik-mb-2"
+  />
+  <p v-if="message" class="ik-text--sm ik-text--default-light">{{ message }}</p>
+</template>
+<script setup>
+import { IkChipInput } from '@ikol/ui-kit/components/IkChipInput';
+import { ref } from 'vue';
+
+const uniqueTags = ref(['one', 'two']);
+const message = ref('');
+
+const onExists = (val) => {
+  message.value = `“${val}” already exists`;
+  setTimeout(() => (message.value = ''), 2000);
+};
+</script>
+```
+
+## Autocomplete
+
+Provide `autocomplete_callback` returning a Promise of string array to show suggestions. Use `autocomplete_debounce_ms` to control input debounce.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkChipInput
+    v-model="autoTags"
+    :autocomplete_callback="fetchSuggestions"
+    :autocomplete_debounce_ms="250"
+    placeholder="Type to search..."
+    class="ik-mb-4"
+  />
+  <p class="ik-text--sm ik-text--default-light">Try: alpha, beta, gamma, delta</p>
+  <p class="ik-text--sm ik-text--default-regular">Value: {{ autoTags.join(', ') }}</p>
+</template>
+<script setup>
+import { IkChipInput } from '@ikol/ui-kit/components/IkChipInput';
+import { ref } from 'vue';
+
+const all = ['alpha', 'beta', 'gamma', 'delta', 'epsilon', 'zeta'];
+const autoTags = ref(['alpha']);
+
+const fetchSuggestions = (q) => {
+  return new Promise((resolve) => {
+    const needle = (q || '').toLowerCase().trim();
+    const out = !needle ? [] : all.filter(item => item.toLowerCase().includes(needle));
+    setTimeout(() => resolve(out), 200);
+  });
+};
+</script>
+```
+
+## Keyboard and input behavior
+
+- Press Enter to add the current input as a chip.
+- Type a comma to add immediately.
+- Press Backspace on empty input to remove the last chip.
+- On blur, the current input is added automatically.
