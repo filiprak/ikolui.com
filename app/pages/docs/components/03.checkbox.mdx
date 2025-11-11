@@ -1,0 +1,169 @@
+---
+meta:
+  menu:
+    type: docs
+    section: components
+    subsection: inputs
+    label: "[[_Checkbox_]]"
+---
+
+# Checkbox
+
+<MetaDescription>
+Checkboxes allow users to select one or more items from a set. They can be used for binary choices, multiple selections, or as part of form controls. The Checkbox component supports both basic checkbox and switch variants, with support for indeterminate state and grouping.
+</MetaDescription>
+
+## Basic checkbox
+
+The Checkbox component supports v-model for two-way data binding with boolean values.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkCheckbox v-model="checked" class="ik-mb-4">Accept terms and conditions</IkCheckbox>
+  <p>Checked: {{ checked }}</p>
+</template>
+<script setup>
+import { IkCheckbox } from '@ikol/ui-kit/components/IkCheckbox';
+import { ref } from 'vue';
+
+const checked = ref(false);
+</script>
+```
+
+## Variants
+
+The Checkbox component supports two variants: basic (default) and switch.
+
+### Basic variant
+
+The basic variant displays a traditional checkbox with a checkmark icon when selected.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkCheckbox v-model="checked1" variant="basic" class="ik-mb-4">Basic checkbox</IkCheckbox>
+  <IkCheckbox v-model="checked2" variant="basic" class="ik-mb-4">Another option</IkCheckbox>
+</template>
+<script setup>
+import { IkCheckbox } from '@ikol/ui-kit/components/IkCheckbox';
+import { ref } from 'vue';
+
+const checked1 = ref(false);
+const checked2 = ref(true);
+</script>
+```
+
+### Switch variant
+
+The switch variant displays a toggle switch instead of a traditional checkbox.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkCheckbox v-model="switch1" variant="switch" class="ik-mb-4">Enable notifications</IkCheckbox>
+  <IkCheckbox v-model="switch2" variant="switch" class="ik-mb-4">Dark mode</IkCheckbox>
+</template>
+<script setup>
+import { IkCheckbox } from '@ikol/ui-kit/components/IkCheckbox';
+import { ref } from 'vue';
+
+const switch1 = ref(false);
+const switch2 = ref(true);
+</script>
+```
+
+## Indeterminate state
+
+Use the `indeterminate` prop to display a checkbox in an indeterminate state, typically used when some but not all items in a group are selected.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkCheckbox v-model="allSelected" :indeterminate="indeterminate" class="ik-mb-4">
+    Select all
+  </IkCheckbox>
+  <IkCheckbox v-model="selectedItems" name="option1" class="ik-mb-4">Option 1</IkCheckbox>
+  <IkCheckbox v-model="selectedItems" name="option2" class="ik-mb-4">Option 2</IkCheckbox>
+  <IkCheckbox v-model="selectedItems" name="option3" class="ik-mb-4">Option 3</IkCheckbox>
+  <p class="ik-mt-4">Selected: {{ selectedItems.join(', ') || 'None' }}</p>
+</template>
+<script setup>
+import { IkCheckbox } from '@ikol/ui-kit/components/IkCheckbox';
+import { ref, computed } from 'vue';
+
+const selectedItems = ref(['option1', 'option3']);
+
+const allSelected = computed({
+  get: () => selectedItems.value.length === 3,
+  set: (val) => {
+    if (val) {
+      selectedItems.value = ['option1', 'option2', 'option3'];
+    } else {
+      selectedItems.value = [];
+    }
+  }
+});
+
+const indeterminate = computed(() => {
+  const count = selectedItems.value.length;
+  return count > 0 && count < 3;
+});
+</script>
+```
+
+## Disabled state
+
+Use the `disabled` prop to prevent user interaction with the checkbox.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkCheckbox v-model="checked3" disabled class="ik-mb-4">Disabled unchecked</IkCheckbox>
+  <IkCheckbox v-model="checked4" disabled class="ik-mb-4">Disabled checked</IkCheckbox>
+  <IkCheckbox v-model="checked5" disabled variant="switch" class="ik-mb-4">Disabled switch</IkCheckbox>
+</template>
+<script setup>
+import { IkCheckbox } from '@ikol/ui-kit/components/IkCheckbox';
+import { ref } from 'vue';
+
+const checked3 = ref(false);
+const checked4 = ref(true);
+const checked5 = ref(true);
+</script>
+```
+
+## Multiple selection with arrays
+
+The Checkbox component can work with array modelValue to manage multiple selections. Use the `name` prop to identify each checkbox.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkCheckbox v-model="selected" name="apple" class="ik-mb-4">Apple</IkCheckbox>
+  <IkCheckbox v-model="selected" name="banana" class="ik-mb-4">Banana</IkCheckbox>
+  <IkCheckbox v-model="selected" name="orange" class="ik-mb-4">Orange</IkCheckbox>
+  <IkCheckbox v-model="selected" name="grape" class="ik-mb-4">Grape</IkCheckbox>
+  <p>Selected: {{ selected.join(', ') || 'None' }}</p>
+</template>
+<script setup>
+import { IkCheckbox } from '@ikol/ui-kit/components/IkCheckbox';
+import { ref } from 'vue';
+
+const selected = ref([]);
+</script>
+```
+
+## Single selection with string
+
+The Checkbox component can work with string modelValue for single selection scenarios where only one option can be selected at a time.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkCheckbox v-model="choice" name="option-a" class="ik-mb-4">Option A</IkCheckbox>
+  <IkCheckbox v-model="choice" name="option-b" class="ik-mb-4">Option B</IkCheckbox>
+  <IkCheckbox v-model="choice" name="option-c" class="ik-mb-4">Option C</IkCheckbox>
+  <p>Selected: {{ choice || 'None' }}</p>
+</template>
+<script setup>
+import { IkCheckbox } from '@ikol/ui-kit/components/IkCheckbox';
+import { ref } from 'vue';
+
+const choice = ref('');
+</script>
+```
+
