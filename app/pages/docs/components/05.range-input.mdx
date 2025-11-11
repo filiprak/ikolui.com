@@ -1,0 +1,100 @@
+---
+meta:
+  menu:
+    type: docs
+    section: components
+    subsection: inputs
+    label: "[[_Range Input_]]"
+---
+
+# Range Input
+
+<MetaDescription>
+The Range Input component provides a slider control for selecting a numeric value within a specified range. It displays a visual track with a draggable thumb, allowing users to adjust values smoothly. The component supports multiple design colors and a ghost variant for subtle styling.
+</MetaDescription>
+
+## Basic range input
+
+The Range Input component supports v-model for two-way data binding. You must provide a `max` value, and optionally a `min` value (defaults to 0).
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkRangeInput v-model="value" :max="100" class="ik-mb-4" />
+  <p>Value: {{ value }}</p>
+</template>
+<script setup>
+import { IkRangeInput } from '@ikol/ui-kit/components/IkRangeInput';
+import { ref } from 'vue';
+
+const value = ref(50);
+</script>
+```
+
+## Design variants
+
+Range inputs support different design colors to convey different meanings or match your application's theme.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkRangeInput v-model="value1" :max="100" design="primary" class="ik-mb-4" />
+  <IkRangeInput v-model="value2" :max="100" design="success" class="ik-mb-4" />
+  <IkRangeInput v-model="value3" :max="100" design="error" class="ik-mb-4" />
+  <IkRangeInput v-model="value4" :max="100" design="accent" class="ik-mb-4" />
+  <IkRangeInput v-model="value5" :max="100" design="default" class="ik-mb-4" />
+</template>
+<script setup>
+import { IkRangeInput } from '@ikol/ui-kit/components/IkRangeInput';
+import { ref } from 'vue';
+
+const value1 = ref(30);
+const value2 = ref(50);
+const value3 = ref(70);
+const value4 = ref(40);
+const value5 = ref(60);
+</script>
+```
+
+## Ghost variant
+
+Use the `ghost` prop to create a more subtle range input with a lighter appearance.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkRangeInput v-model="value6" :max="100" ghost class="ik-mb-4" />
+  <IkRangeInput v-model="value7" :max="100" design="primary" ghost class="ik-mb-4" />
+  <IkRangeInput v-model="value8" :max="100" design="success" ghost class="ik-mb-4" />
+</template>
+<script setup>
+import { IkRangeInput } from '@ikol/ui-kit/components/IkRangeInput';
+import { ref } from 'vue';
+
+const value6 = ref(45);
+const value7 = ref(55);
+const value8 = ref(65);
+</script>
+```
+
+## Min and max values
+
+Configure the range using `min` and `max` props. The `min` prop defaults to 0 if not specified.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkRangeInput v-model="value9" :min="0" :max="100" class="ik-mb-4" />
+  <p>Value: {{ value9 }} (range: 0-100)</p>
+  
+  <IkRangeInput v-model="value10" :min="10" :max="50" class="ik-mb-4" />
+  <p>Value: {{ value10 }} (range: 10-50)</p>
+  
+  <IkRangeInput v-model="value11" :min="-100" :max="100" class="ik-mb-4" />
+  <p>Value: {{ value11 }} (range: -100 to 100)</p>
+</template>
+<script setup>
+import { IkRangeInput } from '@ikol/ui-kit/components/IkRangeInput';
+import { ref } from 'vue';
+
+const value9 = ref(50);
+const value10 = ref(30);
+const value11 = ref(0);
+</script>
+```
