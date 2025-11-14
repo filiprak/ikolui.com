@@ -1,0 +1,449 @@
+---
+meta:
+  menu:
+    type: docs
+    section: components
+    subsection: inputs
+    label: "[[_Date_]]"
+---
+
+# Date
+
+<MetaDescription>
+The Date component provides a comprehensive date and time picker with a calendar popover interface. It supports date selection, optional time selection, disabled date ranges, highlighted dates, and flexible formatting options.
+</MetaDescription>
+
+## Basic date picker
+
+The Date component supports v-model for two-way data binding with an `IkTime` instance.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDate v-model="selectedDate" placeholder="Choose date..." class="ik-mb-4" />
+  <p v-if="selectedDate">Selected: {{ selectedDate.format('ddd, D MMM YYYY') }}</p>
+</template>
+<script setup>
+import { IkDate } from '@ikol/ui-kit/components/IkDate';
+import { time } from '@ikol/ui-kit/classes/dates';
+import { ref } from 'vue';
+
+const selectedDate = ref(null);
+</script>
+```
+
+## Date with time
+
+Enable time selection by setting the `time` prop to `true`. This adds an hour input alongside the date picker.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDate v-model="selectedDateTime" :time="true" placeholder="Choose date..." placeholder_hour="Choose time..." class="ik-mb-4" />
+  <p v-if="selectedDateTime">Selected: {{ selectedDateTime.format('ddd, D MMM YYYY [at] HH:mm') }}</p>
+</template>
+<script setup>
+import { IkDate } from '@ikol/ui-kit/components/IkDate';
+import { time } from '@ikol/ui-kit/classes/dates';
+import { ref } from 'vue';
+
+const selectedDateTime = ref(null);
+</script>
+```
+
+## Time only
+
+Use the `time_only` prop to show only the time picker without the date input.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDate v-model="selectedTime" time_only placeholder_hour="Choose time..." class="ik-mb-4" />
+  <p v-if="selectedTime">Selected time: {{ selectedTime.format('HH:mm') }}</p>
+</template>
+<script setup>
+import { IkDate } from '@ikol/ui-kit/components/IkDate';
+import { time } from '@ikol/ui-kit/classes/dates';
+import { ref } from 'vue';
+
+const selectedTime = ref(null);
+</script>
+```
+
+## Custom date format
+
+Customize the date display format using the `format` prop. The format supports both standard dayjs format strings and extended ikol format patterns.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDate v-model="date1" format="D MMMM YYYY" placeholder="Choose date..." class="ik-mb-4" />
+  <IkDate v-model="date2" format="YYYY-MM-DD" placeholder="Choose date..." class="ik-mb-4" />
+  <IkDate v-model="date3" format="![ddd, D MMM YYYY]" placeholder="Choose date..." />
+</template>
+<script setup>
+import { IkDate } from '@ikol/ui-kit/components/IkDate';
+import { ref } from 'vue';
+
+const date1 = ref(null);
+const date2 = ref(null);
+const date3 = ref(null);
+</script>
+```
+
+## Custom hour format
+
+Customize the hour display format using the `format_hour` prop.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDate v-model="time1" :time="true" format_hour="HH:mm" placeholder_hour="Choose time..." class="ik-mb-4" />
+  <IkDate v-model="time2" :time="true" format_hour="h:mm A" placeholder_hour="Choose time..." class="ik-mb-4" />
+  <IkDate v-model="time3" :time="true" format_hour="[Hi]" placeholder_hour="Choose time..." />
+</template>
+<script setup>
+import { IkDate } from '@ikol/ui-kit/components/IkDate';
+import { ref } from 'vue';
+
+const time1 = ref(null);
+const time2 = ref(null);
+const time3 = ref(null);
+</script>
+```
+
+## Hour interval
+
+Control the time interval between available time slots using the `prompt_hour_interval` prop (in minutes).
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDate v-model="time15" :time="true" :prompt_hour_interval="15" placeholder_hour="15 min intervals..." class="ik-mb-4" />
+  <IkDate v-model="time30" :time="true" :prompt_hour_interval="30" placeholder_hour="30 min intervals..." class="ik-mb-4" />
+  <IkDate v-model="time60" :time="true" :prompt_hour_interval="60" placeholder_hour="60 min intervals..." />
+</template>
+<script setup>
+import { IkDate } from '@ikol/ui-kit/components/IkDate';
+import { ref } from 'vue';
+
+const time15 = ref(null);
+const time30 = ref(null);
+const time60 = ref(null);
+</script>
+```
+
+## Disabled dates
+
+### Disable past dates
+
+Use the `disabled_past` prop to prevent selection of past dates.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDate v-model="futureDate" :disabled_past="true" placeholder="Only future dates..." class="ik-mb-4" />
+  <p v-if="futureDate">Selected: {{ futureDate.format('D MMM YYYY') }}</p>
+</template>
+<script setup>
+import { IkDate } from '@ikol/ui-kit/components/IkDate';
+import { ref } from 'vue';
+
+const futureDate = ref(null);
+</script>
+```
+
+### Disable future dates
+
+Use the `disabled_future` prop to prevent selection of future dates.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDate v-model="pastDate" :disabled_future="true" placeholder="Only past dates..." class="ik-mb-4" />
+  <p v-if="pastDate">Selected: {{ pastDate.format('D MMM YYYY') }}</p>
+</template>
+<script setup>
+import { IkDate } from '@ikol/ui-kit/components/IkDate';
+import { ref } from 'vue';
+
+const pastDate = ref(null);
+</script>
+```
+
+### Disable specific weekdays
+
+Use the `disabled_weekdays` prop to disable specific days of the week. Days are numbered 0-6 (Sunday-Saturday).
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDate v-model="weekdayDate" :disabled_weekdays="[0, 6]" placeholder="Weekends disabled..." class="ik-mb-4" />
+  <p v-if="weekdayDate">Selected: {{ weekdayDate.format('ddd, D MMM YYYY') }}</p>
+</template>
+<script setup>
+import { IkDate } from '@ikol/ui-kit/components/IkDate';
+import { ref } from 'vue';
+
+const weekdayDate = ref(null);
+</script>
+```
+
+### Disable date ranges
+
+Use the `disabled_datespans` prop to disable specific date ranges. This accepts an array of `IkTimeSpan` objects.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDate v-model="rangeDate" :disabled_datespans="disabledRanges" placeholder="Some dates disabled..." class="ik-mb-4" />
+  <p v-if="rangeDate">Selected: {{ rangeDate.format('D MMM YYYY') }}</p>
+</template>
+<script setup>
+import { IkDate } from '@ikol/ui-kit/components/IkDate';
+import { IkTimeSpan, time } from '@ikol/ui-kit/classes/dates';
+import { ref } from 'vue';
+
+const rangeDate = ref(null);
+
+// Disable dates from 3 days ago to 3 days from now
+const disabledRanges = [
+  new IkTimeSpan({
+    from: time().subtract(3, 'days'),
+    to: time().add(3, 'days')
+  })
+];
+</script>
+```
+
+## Highlighted dates
+
+Use the `highlighted_datespans` prop to highlight specific date ranges in the calendar.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDate v-model="highlightedDate" :highlighted_datespans="highlightedRanges" placeholder="Some dates highlighted..." class="ik-mb-4" />
+  <p v-if="highlightedDate">Selected: {{ highlightedDate.format('D MMM YYYY') }}</p>
+</template>
+<script setup>
+import { IkDate } from '@ikol/ui-kit/components/IkDate';
+import { IkTimeSpan, time } from '@ikol/ui-kit/classes/dates';
+import { ref } from 'vue';
+
+const highlightedDate = ref(null);
+
+// Highlight dates from today to 7 days from now
+const highlightedRanges = [
+  new IkTimeSpan({
+    from: time(),
+    to: time().add(7, 'days')
+  })
+];
+</script>
+```
+
+## ISO weekdays
+
+Use the `iso_weekdays` prop to use ISO week numbering (Monday as first day of week) instead of the default Sunday-first week.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDate v-model="isoDate" :iso_weekdays="true" placeholder="ISO weekdays..." class="ik-mb-4" />
+  <IkDate v-model="standardDate" :iso_weekdays="false" placeholder="Standard weekdays..." />
+</template>
+<script setup>
+import { IkDate } from '@ikol/ui-kit/components/IkDate';
+import { ref } from 'vue';
+
+const isoDate = ref(null);
+const standardDate = ref(null);
+</script>
+```
+
+## Variants
+
+The Date component supports different input variants that are passed to the underlying Input component.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDate v-model="date1" variant="flat" placeholder="Flat variant..." class="ik-mb-4" />
+  <IkDate v-model="date2" variant="outline" placeholder="Outline variant..." class="ik-mb-4" />
+  <IkDate v-model="date3" variant="filled" placeholder="Filled variant..." />
+</template>
+<script setup>
+import { IkDate } from '@ikol/ui-kit/components/IkDate';
+import { ref } from 'vue';
+
+const date1 = ref(null);
+const date2 = ref(null);
+const date3 = ref(null);
+</script>
+```
+
+## Popover position and alignment
+
+Control the calendar popover position and alignment using the `position` and `align` props.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDate v-model="date1" position="horizontal" align="start" placeholder="Horizontal, start..." class="ik-mb-4" />
+  <IkDate v-model="date2" position="vertical" align="center" placeholder="Vertical, center..." class="ik-mb-4" />
+  <IkDate v-model="date3" position="horizontal" align="end" placeholder="Horizontal, end..." />
+</template>
+<script setup>
+import { IkDate } from '@ikol/ui-kit/components/IkDate';
+import { ref } from 'vue';
+
+const date1 = ref(null);
+const date2 = ref(null);
+const date3 = ref(null);
+</script>
+```
+
+## Custom activator
+
+Use the `activator` slot to customize the trigger element for the date picker.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDate v-model="customDate" placeholder="Choose date...">
+    <template #activator="{ on }">
+      <div v-on="on" class="ik-cursor--pointer ik-pa-3 ik-bg--default-light ik-border-radius--sm">
+        <span>Click to select date</span>
+        <span v-if="customDate" class="ik-ml-2">({{ customDate.format('D MMM YYYY') }})</span>
+      </div>
+    </template>
+  </IkDate>
+</template>
+<script setup>
+import { IkDate } from '@ikol/ui-kit/components/IkDate';
+import { ref } from 'vue';
+
+const customDate = ref(null);
+</script>
+```
+
+## Disabled state
+
+Use the `disabled` prop to prevent user interaction with the date picker.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDate v-model="disabledDate" :disabled="true" placeholder="Disabled date picker..." class="ik-mb-4" />
+  <IkDate v-model="enabledDate" :disabled="false" placeholder="Enabled date picker..." />
+</template>
+<script setup>
+import { IkDate } from '@ikol/ui-kit/components/IkDate';
+import { time } from '@ikol/ui-kit/classes/dates';
+import { ref } from 'vue';
+
+const disabledDate = ref(time());
+const enabledDate = ref(null);
+</script>
+```
+
+## Full width
+
+Use the `full_width` prop to make the date picker take the full width of its container.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDate v-model="fullWidthDate" :full_width="true" placeholder="Full width date picker..." class="ik-mb-4" />
+  <IkDate v-model="normalDate" :full_width="false" placeholder="Normal width date picker..." />
+</template>
+<script setup>
+import { IkDate } from '@ikol/ui-kit/components/IkDate';
+import { ref } from 'vue';
+
+const fullWidthDate = ref(null);
+const normalDate = ref(null);
+</script>
+```
+
+## Autofocus
+
+Use the `autofocus` prop to automatically focus the date input when the component is mounted.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDate v-model="autofocusDate" :autofocus="true" placeholder="Auto-focused..." />
+</template>
+<script setup>
+import { IkDate } from '@ikol/ui-kit/components/IkDate';
+import { ref } from 'vue';
+
+const autofocusDate = ref(null);
+</script>
+```
+
+## Events
+
+### update:modelValue
+
+Emitted when the selected date changes. The event payload is an `IkTime` instance or `null`.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDate v-model="eventDate" @update:modelValue="onDateChange" placeholder="Choose date..." class="ik-mb-4" />
+  <p v-if="lastChange">Last change: {{ lastChange }}</p>
+</template>
+<script setup>
+import { IkDate } from '@ikol/ui-kit/components/IkDate';
+import { ref } from 'vue';
+
+const eventDate = ref(null);
+const lastChange = ref('');
+
+const onDateChange = (date) => {
+  lastChange.value = date ? `Date changed to: ${date.format('D MMM YYYY')}` : 'Date cleared';
+};
+</script>
+```
+
+### update:month
+
+Emitted when the user navigates to a different month in the calendar. The event payload is an `IkTime` instance representing the first day of the displayed month.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDate v-model="monthDate" @update:month="onMonthChange" placeholder="Choose date..." class="ik-mb-4" />
+  <p v-if="currentMonth">Current month: {{ currentMonth }}</p>
+</template>
+<script setup>
+import { IkDate } from '@ikol/ui-kit/components/IkDate';
+import { ref } from 'vue';
+
+const monthDate = ref(null);
+const currentMonth = ref('');
+
+const onMonthChange = (month) => {
+  currentMonth.value = month.format('MMMM YYYY');
+};
+</script>
+```
+
+## Methods
+
+The Date component exposes methods that can be accessed via template refs.
+
+### focus()
+
+Focuses the day input and opens the calendar popover.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDate ref="dateRef" v-model="methodDate" placeholder="Choose date..." class="ik-mb-4" />
+  <IkButton @click="focusDate">Focus Date Picker</IkButton>
+</template>
+<script setup>
+import { IkDate } from '@ikol/ui-kit/components/IkDate';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { ref } from 'vue';
+
+const dateRef = ref(null);
+const methodDate = ref(null);
+
+const focusDate = () => {
+  dateRef.value?.focus();
+};
+</script>
+```
+
+### focusDay()
+
+Focuses the day input specifically.
+
+### focusHour()
+
+Focuses the hour input and opens the hour picker popover (when time selection is enabled).
+
