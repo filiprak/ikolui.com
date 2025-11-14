@@ -148,14 +148,9 @@ export const mdx = (options: { includeDefine?: string[] } = {}): Plugin[] => {
                                         attributes: [],
                                         children: [{
                                             type: 'mdxJsxFlowElement',
-                                            name: 'ClientOnly',
+                                            name: component,
                                             attributes: [],
-                                            children: [{
-                                                type: 'mdxJsxFlowElement',
-                                                name: component,
-                                                attributes: [],
-                                                children: [],
-                                            }],
+                                            children: [],
                                         }],
                                     });
                                 }
