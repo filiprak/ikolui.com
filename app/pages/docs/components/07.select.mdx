@@ -283,3 +283,229 @@ const valB = ref();
 const isEven = (item) => item.id % 2 === 0;
 </script>
 ```
+
+## Slots
+
+IkSelect provides several slots for customizing different parts of the component.
+
+### Custom activator
+
+Use the `activator` slot to completely customize the trigger element.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkSelect
+    inline
+    v-model="userId"
+    :items="users"
+    value_key="id"
+    text_key="name"
+    unique_key="id"
+    filter
+    placeholder="Search users"
+  >
+    <template #activator="{ on, selected }">
+      <span style="border: 1px dashed green; padding: 10px; cursor: pointer" v-on="on">
+        {{ selected ? `Selected: ${selected.name}` : 'Choose user' }}
+      </span>
+    </template>
+  </IkSelect>
+</template>
+<script setup>
+import { IkSelect } from '@ikol/ui-kit/components/IkSelect';
+import { ref } from 'vue';
+
+const users = [
+  { id: 1, name: 'Alice' },
+  { id: 2, name: 'Bob' },
+  { id: 3, name: 'Carol' },
+];
+
+const userId = ref();
+</script>
+```
+
+### Custom image rendering
+
+Override image rendering with the `image` slot. This slot is used in the selected display and dropdown items.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkSelect
+    inline
+    v-model="memberId"
+    :items="members"
+    value_key="id"
+    text_key="name"
+    img_key="avatar"
+    unique_key="id"
+    filter
+    placeholder="Select member"
+  >
+    <template #image="{ item }">
+      <div style="width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; font-weight: bold;">
+        {{ item.name.charAt(0) }}
+      </div>
+    </template>
+  </IkSelect>
+</template>
+<script setup>
+import { IkSelect } from '@ikol/ui-kit/components/IkSelect';
+import { ref } from 'vue';
+
+const members = [
+  { id: 1, name: 'Alice', avatar: 'https://i.pravatar.cc/24?img=1' },
+  { id: 2, name: 'Bob', avatar: 'https://i.pravatar.cc/24?img=2' },
+  { id: 3, name: 'Carol', avatar: 'https://i.pravatar.cc/24?img=3' },
+];
+
+const memberId = ref();
+</script>
+```
+
+### Custom selected display
+
+Customize how the selected item appears in the control with the `selected` slot.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkSelect
+    inline
+    v-model="countryId"
+    :items="countries"
+    value_key="id"
+    text_key="name"
+    unique_key="id"
+    placeholder="Select country"
+  >
+    <template #selected="{ item }">
+      <span style="font-weight: 600;">✓ {{ item.name }}</span>
+    </template>
+  </IkSelect>
+</template>
+<script setup>
+import { IkSelect } from '@ikol/ui-kit/components/IkSelect';
+import { ref } from 'vue';
+
+const countries = [
+  { id: 1, name: 'Germany' },
+  { id: 2, name: 'France' },
+  { id: 3, name: 'Spain' },
+];
+
+const countryId = ref();
+</script>
+```
+
+### Custom selected wrapper
+
+For non-chip variants, use the `selected-wrapper` slot to customize the wrapper element around the selected item display.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkSelect
+    inline
+    v-model="tagId"
+    :items="tags"
+    value_key="id"
+    text_key="label"
+    unique_key="id"
+    placeholder="Pick a tag"
+  >
+    <template #selected-wrapper="{ item }">
+      <div style="display: flex; align-items: center; gap: 8px; padding: 4px 8px; border: 1px dashed green; border-radius: 4px;">
+        <span>🏷️</span>
+        <span>{{ item.label }}</span>
+      </div>
+    </template>
+  </IkSelect>
+</template>
+<script setup>
+import { IkSelect } from '@ikol/ui-kit/components/IkSelect';
+import { ref } from 'vue';
+
+const tags = [
+  { id: 1, label: 'Design' },
+  { id: 2, label: 'Frontend' },
+  { id: 3, label: 'Backend' },
+];
+
+const tagId = ref();
+</script>
+```
+
+### Custom item rendering
+
+Customize how items appear in the dropdown list using the `item` slot.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkSelect
+    inline
+    v-model="userId"
+    :items="users"
+    value_key="id"
+    text_key="name"
+    unique_key="id"
+    filter
+    placeholder="Search users"
+  >
+    <template #item="{ item }">
+      <div style="display: flex; align-items: center; gap: 8px; padding: 8px; border: 1px dashed green; border-radius: 4px; cursor: pointer">
+        <span>🏷️</span>
+        <span>{{ item.name }}</span>
+      </div>
+    </template>
+  </IkSelect>
+</template>
+<script setup>
+import { IkSelect } from '@ikol/ui-kit/components/IkSelect';
+import { ref } from 'vue';
+
+const users = [
+  { id: 1, name: 'Alice' },
+  { id: 2, name: 'Bob' },
+  { id: 3, name: 'Carol' },
+];
+
+const userId = ref();
+</script>
+```
+
+### Custom empty state
+
+Customize the empty state message when no items match using the `empty` slot. Try filtering items in select:
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkSelect
+    inline
+    v-model="userId"
+    :items="users"
+    value_key="id"
+    text_key="name"
+    unique_key="id"
+    filter
+    placeholder="Search users"
+  >
+    <template #empty>
+      <div style="text-align: center; padding: 20px; color: #999;">
+        <div style="font-size: 24px; margin-bottom: 8px;">🔍</div>
+        <div>No users found</div>
+      </div>
+    </template>
+  </IkSelect>
+</template>
+<script setup>
+import { IkSelect } from '@ikol/ui-kit/components/IkSelect';
+import { ref } from 'vue';
+
+const users = [
+  { id: 1, name: 'Alice' },
+  { id: 2, name: 'Bob' },
+  { id: 3, name: 'Carol' },
+];
+
+const userId = ref();
+</script>
+```
