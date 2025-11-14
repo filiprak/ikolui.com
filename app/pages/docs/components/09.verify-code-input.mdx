@@ -39,8 +39,6 @@ Use the `length` prop to control the number of input fields. The default is 4.
 ```vue title="[[_Source code_]]" preview
 <template>
   <div>
-    <IkVerifyCodeInput v-model="code4" :length="4" class="ik-mb-4" />
-    <IkVerifyCodeInput v-model="code6" :length="6" class="ik-mb-4" />
     <IkVerifyCodeInput v-model="code8" :length="8" />
   </div>
 </template>
@@ -48,8 +46,6 @@ Use the `length` prop to control the number of input fields. The default is 4.
 import { IkVerifyCodeInput } from '@ikol/ui-kit/components/IkVerifyCodeInput';
 import { ref } from 'vue';
 
-const code4 = ref('');
-const code6 = ref('');
 const code8 = ref('');
 </script>
 ```
@@ -86,7 +82,7 @@ const verifyCodeCallback = (code) => {
       message.value = isValid ? 'Verification successful!' : 'Invalid code. Try 1234';
       messageClass.value = isValid ? 'ik-text--success' : 'ik-text--error';
       resolve({ verified: isValid });
-    }, 1000);
+    }, 50);
   });
 };
 </script>
@@ -109,33 +105,6 @@ import { IkVerifyCodeInput } from '@ikol/ui-kit/components/IkVerifyCodeInput';
 import { ref } from 'vue';
 
 const pasteCode = ref('');
-</script>
-```
-
-## Keyboard navigation
-
-The component provides intuitive keyboard navigation:
-
-- **Backspace**: Delete current character and move to previous field (if current field is empty)
-- **Arrow Left**: Move to previous input field
-- **Arrow Right**: Move to next input field
-
-Typing automatically moves focus to the next field when a character is entered.
-
-```vue title="[[_Source code_]]" preview
-<template>
-  <div class="ik-mb-4">
-    <IkVerifyCodeInput v-model="navCode" :length="4" />
-  </div>
-  <p class="ik-text--sm ik-text--default-light">
-    Use Backspace, Arrow Left, and Arrow Right keys to navigate
-  </p>
-</template>
-<script setup>
-import { IkVerifyCodeInput } from '@ikol/ui-kit/components/IkVerifyCodeInput';
-import { ref } from 'vue';
-
-const navCode = ref('');
 </script>
 ```
 
@@ -188,13 +157,3 @@ const alwaysFail = () => {
 };
 </script>
 ```
-
-## Keyboard and input behavior
-
-- **Auto-focus**: Automatically focuses the first empty field or the first field on mount
-- **Auto-advance**: Typing a character automatically moves focus to the next field
-- **Paste support**: Pasting multiple characters distributes them across fields
-- **Backspace**: Deletes current character and moves to previous field if current is empty
-- **Arrow keys**: Navigate between fields (Left moves backward, Right moves forward)
-- **Click to reset**: When in fail state, clicking any field clears all inputs and resets the state
-
