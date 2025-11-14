@@ -10,7 +10,7 @@ meta:
 # Select
 
 <MetaDescription>
-`IkSelect` provides a flexible single-select dropdown with support for synchronous or asynchronous items, search filtering, chip display, images, and virtual scrolling.
+Select component provides a flexible single-select dropdown with support for synchronous or asynchronous items, search filtering, chip display, images, and virtual scrolling.
 </MetaDescription>
 
 ## Basic usage
@@ -20,13 +20,12 @@ Provide an array of items and bind the selected value via `v-model`. Use `value_
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkSelect
+    inline
     v-model="countryId"
     :items="countries"
     value_key="id"
     text_key="name"
-    unique_key="id"
     placeholder="Select country"
-    class="ik-mb-4"
   />
   <p class="ik-text--sm ik-mt-2">Selected: {{ countryId }}</p>
 </template>
@@ -51,14 +50,13 @@ Enable the search input inside the control using `filter`. For static arrays the
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkSelect
+    inline
     v-model="cityId"
     :items="cities"
     value_key="id"
     text_key="name"
-    unique_key="id"
     filter
     placeholder="Search city"
-    class="ik-mb-4"
   />
 </template>
 <script setup>
@@ -84,15 +82,15 @@ Pass a loader function to `items` to fetch items asynchronously. Use `items_per_
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkSelect
+    inline
     v-model="userId"
     :items="loadUsers"
     value_key="id"
-    text_key="name"
     unique_key="id"
+    text_key="name"
     filter
     :items_per_page="10"
     placeholder="Search users"
-    class="ik-mb-4"
   />
 </template>
 <script setup>
@@ -122,15 +120,14 @@ Use `variant_chip` to render a compact chip inside the control when an item is s
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkSelect
+    inline
     v-model="tagId"
     :items="tags"
     value_key="id"
     text_key="label"
-    unique_key="id"
     variant_chip
     clearable
     placeholder="Pick a tag"
-    class="ik-mb-4"
   />
 </template>
 <script setup>
@@ -154,6 +151,7 @@ Supply `img_key` and/or `subtext_key` (or expressions) to display avatars and se
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkSelect
+    inline
     v-model="memberId"
     :items="members"
     value_key="id"
@@ -163,7 +161,6 @@ Supply `img_key` and/or `subtext_key` (or expressions) to display avatars and se
     unique_key="id"
     filter
     placeholder="Select member"
-    class="ik-mb-4"
   />
 </template>
 <script setup>
@@ -186,15 +183,44 @@ Control appearance with `variant` and `size`.
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <IkFlex gap="md" align_center class="ik-mb-4">
-    <IkSelect v-model="v1" :items="opts" value_key="id" text_key="name" unique_key="id" variant="flat" size="sm" placeholder="Flat sm" />
-    <IkSelect v-model="v2" :items="opts" value_key="id" text_key="name" unique_key="id" variant="outline" size="md" placeholder="Outline md" />
-    <IkSelect v-model="v3" :items="opts" value_key="id" text_key="name" unique_key="id" variant="filled" size="lg" placeholder="Filled lg" />
-  </IkFlex>
+  <div>
+    <IkSelect
+      v-model="v1"
+      :items="opts"
+      value_key="id"
+      text_key="name"
+      unique_key="id"
+      variant="flat"
+      size="sm"
+      placeholder="Flat sm"
+      class="ik-mb-4"
+    />
+    <IkSelect
+      v-model="v2"
+      :items="opts"
+      value_key="id"
+      text_key="name"
+      unique_key="id"
+      variant="outline"
+      size="md"
+      placeholder="Outline md"
+      class="ik-mb-4"
+    />
+    <IkSelect
+      v-model="v3"
+      :items="opts"
+      value_key="id"
+      text_key="name"
+      unique_key="id"
+      variant="filled"
+      size="lg"
+      placeholder="Filled lg"
+      class="ik-mb-4"
+    />
+  </div>
 </template>
 <script setup>
 import { IkSelect } from '@ikol/ui-kit/components/IkSelect';
-import { IkFlex } from '@ikol/ui-kit/components/IkFlex';
 import { ref } from 'vue';
 
 const opts = [
@@ -215,8 +241,9 @@ Disable the whole control with `disabled`, or pass a predicate via `disabled_ite
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <IkFlex gap="md" class="ik-mb-4">
+  <div>
     <IkSelect
+      inline
       v-model="valA"
       :items="list"
       value_key="id"
@@ -224,8 +251,10 @@ Disable the whole control with `disabled`, or pass a predicate via `disabled_ite
       unique_key="id"
       :disabled_items="isEven"
       placeholder="Even disabled"
+      class="ik-mr-4"
     />
     <IkSelect
+      inline
       v-model="valB"
       :items="list"
       value_key="id"
@@ -234,7 +263,7 @@ Disable the whole control with `disabled`, or pass a predicate via `disabled_ite
       disabled
       placeholder="Disabled control"
     />
-  </IkFlex>
+  </div>
 </template>
 <script setup>
 import { IkSelect } from '@ikol/ui-kit/components/IkSelect';
