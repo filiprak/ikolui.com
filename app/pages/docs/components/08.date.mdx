@@ -41,13 +41,11 @@ Enable time selection by setting the `time` prop to `true`. This adds an hour in
     :time="true"
     placeholder="Choose date..."
     placeholder_hour="Choose time..."
-    class="ik-mb-4"
   />
   <p v-if="selectedDateTime">Selected: {{ selectedDateTime.format('ddd, D MMM YYYY [at] HH:mm') }}</p>
 </template>
 <script setup>
 import { IkDate } from '@ikol/ui-kit/components/IkDate';
-import { time } from '@ikol/ui-kit/classes/dates';
 import { ref } from 'vue';
 
 const selectedDateTime = ref(null);
@@ -63,14 +61,12 @@ Use the `time_only` prop to show only the time picker without the date input.
   <IkDate
     v-model="selectedTime"
     time_only
-    placeholder_hour="Choose time..."
-    class="ik-mb-4"
+    placeholder_hour="00:00"
   />
   <p v-if="selectedTime">Selected time: {{ selectedTime.format('HH:mm') }}</p>
 </template>
 <script setup>
 import { IkDate } from '@ikol/ui-kit/components/IkDate';
-import { time } from '@ikol/ui-kit/classes/dates';
 import { ref } from 'vue';
 
 const selectedTime = ref(null);
@@ -315,33 +311,6 @@ const highlightedRanges = [
 </script>
 ```
 
-## ISO weekdays
-
-Use the `iso_weekdays` prop to use ISO week numbering (Monday as first day of week) instead of the default Sunday-first week.
-
-```vue title="[[_Source code_]]" preview
-<template>
-  <IkDate
-    v-model="isoDate"
-    :iso_weekdays="true"
-    placeholder="ISO weekdays..."
-    class="ik-mb-4"
-  />
-  <IkDate
-    v-model="standardDate"
-    :iso_weekdays="false"
-    placeholder="Standard weekdays..."
-  />
-</template>
-<script setup>
-import { IkDate } from '@ikol/ui-kit/components/IkDate';
-import { ref } from 'vue';
-
-const isoDate = ref(null);
-const standardDate = ref(null);
-</script>
-```
-
 ## Variants
 
 The Date component supports different input variants that are passed to the underlying Input component.
@@ -469,147 +438,3 @@ const disabledDate = ref(time());
 const enabledDate = ref(null);
 </script>
 ```
-
-## Full width
-
-Use the `full_width` prop to make the date picker take the full width of its container.
-
-```vue title="[[_Source code_]]" preview
-<template>
-  <IkDate
-    v-model="fullWidthDate"
-    :full_width="true"
-    placeholder="Full width date picker..."
-    class="ik-mb-4"
-  />
-  <IkDate
-    v-model="normalDate"
-    :full_width="false"
-    placeholder="Normal width date picker..."
-  />
-</template>
-<script setup>
-import { IkDate } from '@ikol/ui-kit/components/IkDate';
-import { ref } from 'vue';
-
-const fullWidthDate = ref(null);
-const normalDate = ref(null);
-</script>
-```
-
-## Autofocus
-
-Use the `autofocus` prop to automatically focus the date input when the component is mounted.
-
-```vue title="[[_Source code_]]" preview
-<template>
-  <IkDate
-    v-model="autofocusDate"
-    :autofocus="true"
-    placeholder="Auto-focused..."
-  />
-</template>
-<script setup>
-import { IkDate } from '@ikol/ui-kit/components/IkDate';
-import { ref } from 'vue';
-
-const autofocusDate = ref(null);
-</script>
-```
-
-## Events
-
-### update:modelValue
-
-Emitted when the selected date changes. The event payload is an `IkTime` instance or `null`.
-
-```vue title="[[_Source code_]]" preview
-<template>
-  <IkDate
-    v-model="eventDate"
-    @update:modelValue="onDateChange"
-    placeholder="Choose date..."
-    class="ik-mb-4"
-  />
-  <p v-if="lastChange">Last change: {{ lastChange }}</p>
-</template>
-<script setup>
-import { IkDate } from '@ikol/ui-kit/components/IkDate';
-import { ref } from 'vue';
-
-const eventDate = ref(null);
-const lastChange = ref('');
-
-const onDateChange = (date) => {
-  lastChange.value = date ? `Date changed to: ${date.format('D MMM YYYY')}` : 'Date cleared';
-};
-</script>
-```
-
-### update:month
-
-Emitted when the user navigates to a different month in the calendar. The event payload is an `IkTime` instance representing the first day of the displayed month.
-
-```vue title="[[_Source code_]]" preview
-<template>
-  <IkDate
-    v-model="monthDate"
-    @update:month="onMonthChange"
-    placeholder="Choose date..."
-    class="ik-mb-4"
-  />
-  <p v-if="currentMonth">Current month: {{ currentMonth }}</p>
-</template>
-<script setup>
-import { IkDate } from '@ikol/ui-kit/components/IkDate';
-import { ref } from 'vue';
-
-const monthDate = ref(null);
-const currentMonth = ref('');
-
-const onMonthChange = (month) => {
-  currentMonth.value = month.format('MMMM YYYY');
-};
-</script>
-```
-
-## Methods
-
-The Date component exposes methods that can be accessed via template refs.
-
-### focus()
-
-Focuses the day input and opens the calendar popover.
-
-```vue title="[[_Source code_]]" preview
-<template>
-  <IkDate
-    ref="dateRef"
-    v-model="methodDate"
-    placeholder="Choose date..."
-    class="ik-mb-4"
-  />
-  <IkButton @click="focusDate">Focus Date Picker</IkButton>
-</template>
-<script setup>
-import { IkDate } from '@ikol/ui-kit/components/IkDate';
-import { IkButton } from '@ikol/ui-kit/components/IkButton';
-import { ref } from 'vue';
-
-const dateRef = ref(null);
-const methodDate = ref(null);
-
-const focusDate = () => {
-  dateRef.value?.focus();
-};
-</script>
-```
-
-### focusDay()
-
-Focuses the day input specifically.
-
-### focusHour()
-
-Focuses the hour input and opens the hour picker popover (when time selection is enabled).
-
