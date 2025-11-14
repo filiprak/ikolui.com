@@ -20,7 +20,7 @@
   "license": "ISC",
   "packageManager": "pnpm@10.13.1",
   "dependencies": {
-    "@ikol/ui-kit": "1.3.10",
+    "@ikol/ui-kit": "1.3.11",
     "@nuxtjs/device": "^3.2.4",
     "dayjs": "1.11.13",
     "lodash-es": "^4.17.21",
