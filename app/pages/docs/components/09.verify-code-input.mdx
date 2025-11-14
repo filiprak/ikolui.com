@@ -1,0 +1,200 @@
+---
+meta:
+  menu:
+    type: docs
+    section: components
+    subsection: inputs
+    label: "[[_Verify Code Input_]]"
+---
+
+# Verify Code Input
+
+<MetaDescription>
+The Verify Code Input component provides a multi-field verification code input with automatic navigation, paste support, and optional auto-verification. It displays individual input fields for each code character and handles keyboard navigation seamlessly.
+</MetaDescription>
+
+## Basic usage
+
+Bind a string with `v-model`. The component automatically splits the value into individual input fields based on the `length` prop.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-mb-4">
+    <IkVerifyCodeInput v-model="code" :length="4" />
+  </div>
+  <p class="ik-text--sm ik-text--default-regular">Value: {{ code }}</p>
+</template>
+<script setup>
+import { IkVerifyCodeInput } from '@ikol/ui-kit/components/IkVerifyCodeInput';
+import { ref } from 'vue';
+
+const code = ref('');
+</script>
+```
+
+## Custom length
+
+Use the `length` prop to control the number of input fields. The default is 4.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <IkVerifyCodeInput v-model="code4" :length="4" class="ik-mb-4" />
+    <IkVerifyCodeInput v-model="code6" :length="6" class="ik-mb-4" />
+    <IkVerifyCodeInput v-model="code8" :length="8" />
+  </div>
+</template>
+<script setup>
+import { IkVerifyCodeInput } from '@ikol/ui-kit/components/IkVerifyCodeInput';
+import { ref } from 'vue';
+
+const code4 = ref('');
+const code6 = ref('');
+const code8 = ref('');
+</script>
+```
+
+## Auto-verification
+
+Provide an `on_complete` callback function that returns a Promise with a `verified` boolean. The component will automatically call this function when all fields are filled, showing loading and success/fail states.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <IkVerifyCodeInput
+      v-model="verifyCode"
+      :length="4"
+      :on_complete="verifyCodeCallback"
+      class="ik-mb-4"
+    />
+    <p v-if="message" class="ik-text--sm" :class="messageClass">{{ message }}</p>
+  </div>
+</template>
+<script setup>
+import { IkVerifyCodeInput } from '@ikol/ui-kit/components/IkVerifyCodeInput';
+import { ref } from 'vue';
+
+const verifyCode = ref('');
+const message = ref('');
+const messageClass = ref('');
+
+const verifyCodeCallback = (code) => {
+  return new Promise((resolve) => {
+    // Simulate API call
+    setTimeout(() => {
+      const isValid = code === '1234';
+      message.value = isValid ? 'Verification successful!' : 'Invalid code. Try 1234';
+      messageClass.value = isValid ? 'ik-text--success' : 'ik-text--error';
+      resolve({ verified: isValid });
+    }, 1000);
+  });
+};
+</script>
+```
+
+## Paste support
+
+The component automatically handles paste operations. When you paste multiple characters, they will be distributed across the input fields starting from the focused field.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-mb-4">
+    <IkVerifyCodeInput v-model="pasteCode" :length="6" />
+  </div>
+  <p class="ik-text--sm ik-text--default-light">Try pasting: 123456</p>
+  <p class="ik-text--sm ik-text--default-regular">Value: {{ pasteCode }}</p>
+</template>
+<script setup>
+import { IkVerifyCodeInput } from '@ikol/ui-kit/components/IkVerifyCodeInput';
+import { ref } from 'vue';
+
+const pasteCode = ref('');
+</script>
+```
+
+## Keyboard navigation
+
+The component provides intuitive keyboard navigation:
+
+- **Backspace**: Delete current character and move to previous field (if current field is empty)
+- **Arrow Left**: Move to previous input field
+- **Arrow Right**: Move to next input field
+
+Typing automatically moves focus to the next field when a character is entered.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-mb-4">
+    <IkVerifyCodeInput v-model="navCode" :length="4" />
+  </div>
+  <p class="ik-text--sm ik-text--default-light">
+    Use Backspace, Arrow Left, and Arrow Right keys to navigate
+  </p>
+</template>
+<script setup>
+import { IkVerifyCodeInput } from '@ikol/ui-kit/components/IkVerifyCodeInput';
+import { ref } from 'vue';
+
+const navCode = ref('');
+</script>
+```
+
+## Disabled state
+
+Use the `disabled` prop to prevent user interaction with all input fields.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkVerifyCodeInput v-model="disabledCode" :length="4" disabled class="ik-mb-4" />
+</template>
+<script setup>
+import { IkVerifyCodeInput } from '@ikol/ui-kit/components/IkVerifyCodeInput';
+import { ref } from 'vue';
+
+const disabledCode = ref('1234');
+</script>
+```
+
+## Fail state behavior
+
+When verification fails, clicking on any input field will clear all fields and reset the verification state, allowing the user to try again.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <IkVerifyCodeInput
+      v-model="failCode"
+      :length="4"
+      :on_complete="alwaysFail"
+      class="ik-mb-4"
+    />
+    <p class="ik-text--sm ik-text--default-light">
+      Complete the code, then click on any field to reset
+    </p>
+  </div>
+</template>
+<script setup>
+import { IkVerifyCodeInput } from '@ikol/ui-kit/components/IkVerifyCodeInput';
+import { ref } from 'vue';
+
+const failCode = ref('');
+
+const alwaysFail = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ verified: false });
+    }, 500);
+  });
+};
+</script>
+```
+
+## Keyboard and input behavior
+
+- **Auto-focus**: Automatically focuses the first empty field or the first field on mount
+- **Auto-advance**: Typing a character automatically moves focus to the next field
+- **Paste support**: Pasting multiple characters distributes them across fields
+- **Backspace**: Deletes current character and moves to previous field if current is empty
+- **Arrow keys**: Navigate between fields (Left moves backward, Right moves forward)
+- **Click to reset**: When in fail state, clicking any field clears all inputs and resets the state
+
