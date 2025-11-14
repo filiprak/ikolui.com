@@ -304,3 +304,20 @@ const handleAppendClick = () => {
 </script>
 ```
 
+## Textarea inputs
+
+The Textarea component provides a multi-line text input field with support for resizing, variants, and various states.
+The Textarea component supports v-model for two-way data binding.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkTextarea v-model="value" placeholder="Enter text..." />
+  <p>Value: {{ value }}</p>
+</template>
+<script setup>
+import { IkTextarea } from '@ikol/ui-kit/components/IkTextarea';
+import { ref } from 'vue';
+
+const value = ref('');
+</script>
+```
