@@ -1,0 +1,353 @@
+---
+meta:
+  menu:
+    type: docs
+    section: components
+    subsection: data
+    label: "[[_Chip_]]"
+---
+
+# Chip
+
+<MetaDescription>
+The Chip component is a compact element used to display information, tags, or actions. It supports various design variants, sizes, removable functionality, custom actions, and can be used standalone or within a Chip List container. Perfect for tags, filters, badges, and interactive labels.
+</MetaDescription>
+
+## Basic chip
+
+The Chip component displays a simple text label with optional styling.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkChip>Basic Chip</IkChip>
+</template>
+<script setup>
+import { IkChip } from '@ikol/ui-kit/components/IkChip';
+</script>
+```
+
+## Design variants
+
+Use the `design` prop to apply different color themes: `accent`, `error`, `success`, `primary`, or `default`.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkChipList>
+    <IkChip design="default">Default</IkChip>
+    <IkChip design="primary">Primary</IkChip>
+    <IkChip design="accent">Accent</IkChip>
+    <IkChip design="success">Success</IkChip>
+    <IkChip design="error">Error</IkChip>
+  </IkChipList>
+</template>
+<script setup>
+import { IkChip } from '@ikol/ui-kit/components/IkChip';
+import { IkChipList } from '@ikol/ui-kit/components/IkChipList';
+</script>
+```
+
+## Sizes
+
+Control the chip size using the `size` prop. Available sizes are `xs`, `sm`, and `md` (default).
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkChipList>
+    <IkChip size="xs">Extra Small</IkChip>
+    <IkChip size="sm">Small</IkChip>
+    <IkChip size="md">Medium</IkChip>
+  </IkChipList>
+</template>
+<script setup>
+import { IkChip } from '@ikol/ui-kit/components/IkChip';
+import { IkChipList } from '@ikol/ui-kit/components/IkChipList';
+</script>
+```
+
+## Removable chips
+
+Add a remove button to chips using the `removable` prop. Handle removal with the `@ik-remove` event.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkChipList>
+    <IkChip removable @ik-remove="handleRemove">Removable Chip</IkChip>
+    <IkChip removable design="success" @ik-remove="handleRemove">Success Chip</IkChip>
+    <IkChip removable design="error" @ik-remove="handleRemove">Error Chip</IkChip>
+  </IkChipList>
+  <p v-if="message" class="ik-text--sm ik-text--default-light ik-mt-4">{{ message }}</p>
+</template>
+<script setup>
+import { IkChip } from '@ikol/ui-kit/components/IkChip';
+import { IkChipList } from '@ikol/ui-kit/components/IkChipList';
+import { ref } from 'vue';
+
+const message = ref('');
+
+const handleRemove = () => {
+  message.value = 'Chip removed!';
+  setTimeout(() => message.value = '', 2000);
+};
+</script>
+```
+
+## Custom action
+
+Add a custom action icon to chips using the `custom_action` prop. Handle clicks with the `@ik-custom-click` event.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkChipList>
+    <IkChip custom_action="edit" @ik-custom-click="handleEdit">Editable</IkChip>
+    <IkChip custom_action="copy" @ik-custom-click="handleCopy">Copyable</IkChip>
+    <IkChip custom_action="star" @ik-custom-click="handleStar">Favorite</IkChip>
+  </IkChipList>
+  <p v-if="message" class="ik-text--sm ik-text--default-light ik-mt-4">{{ message }}</p>
+</template>
+<script setup>
+import { IkChip } from '@ikol/ui-kit/components/IkChip';
+import { IkChipList } from '@ikol/ui-kit/components/IkChipList';
+import { ref } from 'vue';
+
+const message = ref('');
+
+const handleEdit = () => {
+  message.value = 'Edit clicked!';
+  setTimeout(() => message.value = '', 2000);
+};
+
+const handleCopy = () => {
+  message.value = 'Copy clicked!';
+  setTimeout(() => message.value = '', 2000);
+};
+
+const handleStar = () => {
+  message.value = 'Star clicked!';
+  setTimeout(() => message.value = '', 2000);
+};
+</script>
+```
+
+## Removable and custom action
+
+You can combine both `removable` and `custom_action` props in a single chip.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkChipList>
+    <IkChip removable custom_action="edit" @ik-custom-click="handleAction" @ik-remove="handleRemove">
+      Editable & Removable
+    </IkChip>
+  </IkChipList>
+</template>
+<script setup>
+import { IkChip } from '@ikol/ui-kit/components/IkChip';
+import { IkChipList } from '@ikol/ui-kit/components/IkChipList';
+
+const handleAction = () => {
+  // Handle custom action
+};
+
+const handleRemove = () => {
+  // Handle remove
+};
+</script>
+```
+
+## Prefix slot
+
+Add custom content before the chip text using the `prefix` slot.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkChipList>
+    <IkChip>
+      <template #prefix>
+        <IkIcon icon="tag" size_px="16" />
+      </template>
+      With Icon
+    </IkChip>
+    <IkChip design="success">
+      <template #prefix>
+        <IkIcon icon="check" size_px="16" />
+      </template>
+      Verified
+    </IkChip>
+    <IkChip>
+      <template #prefix>
+        <div style="width: 16px; height: 16px; background: var(--background-primary-regular-default); border-radius: 50%;"></div>
+      </template>
+      Custom Prefix
+    </IkChip>
+  </IkChipList>
+</template>
+<script setup>
+import { IkChip } from '@ikol/ui-kit/components/IkChip';
+import { IkChipList } from '@ikol/ui-kit/components/IkChipList';
+import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
+</script>
+```
+
+## Disabled state
+
+Use the `disabled` prop to prevent interaction with the chip.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkChipList>
+    <IkChip>Enabled Chip</IkChip>
+    <IkChip disabled>Disabled Chip</IkChip>
+    <IkChip disabled removable>Disabled Removable</IkChip>
+    <IkChip disabled design="error">Disabled Error</IkChip>
+  </IkChipList>
+</template>
+<script setup>
+import { IkChip } from '@ikol/ui-kit/components/IkChip';
+import { IkChipList } from '@ikol/ui-kit/components/IkChipList';
+</script>
+```
+
+## Custom color
+
+Use the `color` prop to set a custom background color. The text color will automatically adjust for contrast. Note: `design` and `color` props should not be used together.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkChipList>
+    <IkChip color="FF6B6B">Custom Red</IkChip>
+    <IkChip color="4ECDC4">Custom Teal</IkChip>
+    <IkChip color="45B7D1">Custom Blue</IkChip>
+    <IkChip color="FFA07A">Custom Orange</IkChip>
+    <IkChip color="98D8C8">Custom Mint</IkChip>
+  </IkChipList>
+</template>
+<script setup>
+import { IkChip } from '@ikol/ui-kit/components/IkChip';
+import { IkChipList } from '@ikol/ui-kit/components/IkChipList';
+</script>
+```
+
+## Flat variant
+
+Use the `flat` prop to display a chip with a flat, borderless style.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkChipList>
+    <IkChip flat>Flat Chip</IkChip>
+    <IkChip flat design="primary">Flat Primary</IkChip>
+    <IkChip flat design="success">Flat Success</IkChip>
+    <IkChip flat design="error">Flat Error</IkChip>
+  </IkChipList>
+</template>
+<script setup>
+import { IkChip } from '@ikol/ui-kit/components/IkChip';
+import { IkChipList } from '@ikol/ui-kit/components/IkChipList';
+</script>
+```
+
+## Chip list
+
+Use the `IkChipList` component as a container to group multiple chips together with consistent spacing.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkChipList>
+    <IkChip>Tag 1</IkChip>
+    <IkChip design="primary">Tag 2</IkChip>
+    <IkChip design="success">Tag 3</IkChip>
+    <IkChip design="error">Tag 4</IkChip>
+    <IkChip removable>Removable Tag</IkChip>
+  </IkChipList>
+</template>
+<script setup>
+import { IkChip } from '@ikol/ui-kit/components/IkChip';
+import { IkChipList } from '@ikol/ui-kit/components/IkChipList';
+</script>
+```
+
+## Example usage
+
+Here's a comprehensive example showing various chip features in a real-world scenario.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <h3 class="ik-text--md ik-text--strong-default ik-mb-4">Filter Tags</h3>
+    <IkChipList>
+      <IkChip removable @ik-remove="removeTag('design')">
+        <template #prefix>
+          <IkIcon icon="tag" size_px="16" />
+        </template>
+        Design
+      </IkChip>
+      <IkChip removable design="success" @ik-remove="removeTag('frontend')">
+        <template #prefix>
+          <IkIcon icon="code" size_px="16" />
+        </template>
+        Frontend
+      </IkChip>
+      <IkChip removable design="accent" @ik-remove="removeTag('backend')">
+        <template #prefix>
+          <IkIcon icon="server" size_px="16" />
+        </template>
+        Backend
+      </IkChip>
+    </IkChipList>
+
+    <h3 class="ik-text--md ik-text--strong-default ik-mt-8 ik-mb-4">Status Badges</h3>
+    <IkChipList>
+      <IkChip design="success" size="sm">
+        <template #prefix>
+          <IkIcon icon="check" size_px="14" />
+        </template>
+        Active
+      </IkChip>
+      <IkChip design="error" size="sm">
+        <template #prefix>
+          <IkIcon icon="times" size_px="14" />
+        </template>
+        Inactive
+      </IkChip>
+      <IkChip design="accent" size="sm">
+        <template #prefix>
+          <IkIcon icon="clock" size_px="14" />
+        </template>
+        Pending
+      </IkChip>
+    </IkChipList>
+
+    <h3 class="ik-text--md ik-text--strong-default ik-mt-8 ik-mb-4">Interactive Chips</h3>
+    <IkChipList>
+      <IkChip custom_action="edit" @ik-custom-click="handleEdit">
+        Editable Item
+      </IkChip>
+      <IkChip removable custom_action="copy" @ik-custom-click="handleCopy" @ik-remove="handleRemove">
+        Copy & Remove
+      </IkChip>
+    </IkChipList>
+  </div>
+</template>
+<script setup>
+import { IkChip } from '@ikol/ui-kit/components/IkChip';
+import { IkChipList } from '@ikol/ui-kit/components/IkChipList';
+import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
+
+const removeTag = (tag) => {
+  // Handle tag removal
+};
+
+const handleEdit = () => {
+  // Handle edit action
+};
+
+const handleCopy = () => {
+  // Handle copy action
+};
+
+const handleRemove = () => {
+  // Handle remove action
+};
+</script>
+```
+
