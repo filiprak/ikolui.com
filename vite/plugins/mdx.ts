@@ -24,7 +24,9 @@ function previewModule(name: string) {
 function transformVueSFC(source: string, filename: string, ssr?: boolean) {
     const { descriptor } = parse(source, { filename });
 
-    const scope_id = hash(filename);
+    const is_scoped = descriptor.styles.some(i => i.scoped);
+
+    const scope_id = 'data-v-' + hash(filename);
     const scriptBlock = compileScript(descriptor, {
         genDefaultAs: '__sfc__',
         id: scope_id,
@@ -32,14 +34,14 @@ function transformVueSFC(source: string, filename: string, ssr?: boolean) {
         templateOptions: {
             ssr: ssr,
             compilerOptions: {
-                scopeId: scope_id,
+                scopeId: is_scoped ? scope_id : undefined,
             },
         },
     });
 
     const script = [
         scriptBlock.content,
-        `__sfc__.__scopeId = "data-v-${scope_id}"`,
+        is_scoped ? `__sfc__.__scopeId = "${scope_id}"` : '',
         'export default __sfc__',
     ].join('\n');
     let style = '';
