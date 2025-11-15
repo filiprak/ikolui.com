@@ -1,0 +1,354 @@
+---
+meta:
+  menu:
+    type: docs
+    section: components
+    subsection: data
+    label: "[[_List_]]"
+---
+
+# List
+
+<MetaDescription>
+The List component provides a flexible container for displaying lists of items. The List Item component offers a rich set of features including icons, secondary text, click handlers, and various styling options. Perfect for navigation menus, data displays, and interactive lists.
+</MetaDescription>
+
+## Basic list
+
+The List component is a simple container for list items. Use `IkListItem` components as children.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkList>
+    <IkListItem>Item 1</IkListItem>
+    <IkListItem>Item 2</IkListItem>
+    <IkListItem>Item 3</IkListItem>
+  </IkList>
+</template>
+<script setup>
+import { IkList } from '@ikol/ui-kit/components/IkList';
+import { IkListItem } from '@ikol/ui-kit/components/IkList';
+</script>
+```
+
+## List items with icons
+
+Add icons to list items using the `icon` prop or the `prepend` slot.
+
+### Icon prop
+
+Use the `icon` prop for simple icon display.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkList>
+    <IkListItem icon="user">Profile</IkListItem>
+    <IkListItem icon="cog">Settings</IkListItem>
+    <IkListItem icon="sign-out">Logout</IkListItem>
+  </IkList>
+</template>
+<script setup>
+import { IkList } from '@ikol/ui-kit/components/IkList';
+import { IkListItem } from '@ikol/ui-kit/components/IkList';
+</script>
+```
+
+### Custom prepend slot
+
+Use the `prepend` slot for custom content before the title.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkList>
+    <IkListItem>
+      <template #prepend>
+        <div style="width: 40px; height: 40px; background: var(--background-primary-regular-default); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+          A
+        </div>
+      </template>
+      Avatar Item
+    </IkListItem>
+  </IkList>
+</template>
+<script setup>
+import { IkList } from '@ikol/ui-kit/components/IkList';
+import { IkListItem } from '@ikol/ui-kit/components/IkList';
+</script>
+```
+
+## Secondary text
+
+Add secondary text below the title using the `secondary` slot.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkList>
+    <IkListItem icon="user">
+      Primary Title
+      <template #secondary>Secondary description text</template>
+    </IkListItem>
+    <IkListItem icon="envelope">
+      Email
+      <template #secondary>user@example.com</template>
+    </IkListItem>
+    <IkListItem icon="phone">
+      Phone
+      <template #secondary>+1 (555) 123-4567</template>
+    </IkListItem>
+  </IkList>
+</template>
+<script setup>
+import { IkList } from '@ikol/ui-kit/components/IkList';
+import { IkListItem } from '@ikol/ui-kit/components/IkList';
+</script>
+```
+
+## Append content
+
+Add content after the main content using the `append` slot.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkList>
+    <IkListItem>
+      Item with badge
+      <template #append>
+        <IkChip size="xs" design="success">New</IkChip>
+      </template>
+    </IkListItem>
+    <IkListItem>
+      Notifications
+      <template #append>
+        <IkChip size="xs" design="accent">3</IkChip>
+      </template>
+    </IkListItem>
+  </IkList>
+</template>
+<script setup>
+import { IkList } from '@ikol/ui-kit/components/IkList';
+import { IkListItem } from '@ikol/ui-kit/components/IkList';
+import { IkChip } from '@ikol/ui-kit/components/IkChip';
+</script>
+```
+
+## Clickable items
+
+Make list items clickable using the `onClick` prop or `link` prop.
+
+### Click handler
+
+Use the `onClick` prop to handle click events.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkList>
+    <IkListItem icon="home" :onClick="handleClick">Clickable Item</IkListItem>
+    <IkListItem icon="cog" :onClick="handleClick">Another Clickable Item</IkListItem>
+  </IkList>
+  <p v-if="message" class="ik-text--sm ik-text--default-light ik-mt-4">{{ message }}</p>
+</template>
+<script setup>
+import { IkList } from '@ikol/ui-kit/components/IkList';
+import { IkListItem } from '@ikol/ui-kit/components/IkList';
+import { ref } from 'vue';
+
+const message = ref('');
+
+const handleClick = () => {
+  message.value = 'Item clicked!';
+  setTimeout(() => message.value = '', 2000);
+};
+</script>
+```
+
+### Link items
+
+Use the `link` prop to render the item as a link. The component automatically renders as an `<a>` tag when `link` is provided.
+
+## States
+
+### Disabled state
+
+Use the `disabled` prop to prevent interaction with the item.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkList>
+    <IkListItem icon="home">Enabled Item</IkListItem>
+    <IkListItem icon="user" disabled>Disabled Item</IkListItem>
+    <IkListItem icon="cog" disabled>Another Disabled Item</IkListItem>
+  </IkList>
+</template>
+<script setup>
+import { IkList } from '@ikol/ui-kit/components/IkList';
+import { IkListItem } from '@ikol/ui-kit/components/IkList';
+</script>
+```
+
+## Styling options
+
+### Inline display
+
+Use the `inline` prop to display the item as an inline element.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <IkListItem inline icon="home">Inline Item 1</IkListItem>
+    <IkListItem inline icon="user">Inline Item 2</IkListItem>
+    <IkListItem inline icon="cog">Inline Item 3</IkListItem>
+  </div>
+</template>
+<script setup>
+import { IkListItem } from '@ikol/ui-kit/components/IkList';
+</script>
+```
+
+### Border bottom
+
+Use the `border_bottom` prop to add a bottom border.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkList>
+    <IkListItem icon="home" border_bottom>Item with Border</IkListItem>
+    <IkListItem icon="user" border_bottom>Another Item</IkListItem>
+    <IkListItem icon="cog">Last Item</IkListItem>
+  </IkList>
+</template>
+<script setup>
+import { IkList } from '@ikol/ui-kit/components/IkList';
+import { IkListItem } from '@ikol/ui-kit/components/IkList';
+</script>
+```
+
+## Text handling
+
+### Wrap text
+
+Use the `wrap_text` prop to allow text to wrap normally instead of truncating.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkList style="max-width: 200px;">
+    <IkListItem icon="home">Very long text that will be truncated by default</IkListItem>
+    <IkListItem icon="user" wrap_text>Very long text that will wrap when wrap_text is enabled</IkListItem>
+  </IkList>
+</template>
+<script setup>
+import { IkList } from '@ikol/ui-kit/components/IkList';
+import { IkListItem } from '@ikol/ui-kit/components/IkList';
+</script>
+```
+
+### Line clamping
+
+Use the `lines` prop to limit secondary text to a specific number of lines (1-5).
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkList style="max-width: 300px;">
+    <IkListItem>
+      Single Line
+      <template #secondary>This secondary text will be clamped to a single line with ellipsis</template>
+    </IkListItem>
+    <IkListItem :lines="2">
+      Two Lines
+      <template #secondary>This secondary text will be clamped to two lines with ellipsis if it's longer than that</template>
+    </IkListItem>
+    <IkListItem :lines="3">
+      Three Lines
+      <template #secondary>This secondary text will be clamped to three lines with ellipsis. You can set lines to 1, 2, 3, 4, or 5 to control how many lines are shown before truncation.</template>
+    </IkListItem>
+  </IkList>
+</template>
+<script setup>
+import { IkList } from '@ikol/ui-kit/components/IkList';
+import { IkListItem } from '@ikol/ui-kit/components/IkList';
+</script>
+```
+
+## Alignment
+
+### Align start
+
+Use the `align_start` prop to align prepend, content, and append to the start (top) instead of center.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkList>
+    <IkListItem align_start icon="envelope">
+      Multi-line Title
+      <template #secondary>This is secondary text that spans multiple lines<br>to demonstrate the align_start behavior</template>
+    </IkListItem>
+    <IkListItem icon="phone">
+      Centered (default)
+      <template #secondary>Default alignment centers all content vertically</template>
+    </IkListItem>
+  </IkList>
+</template>
+<script setup>
+import { IkList } from '@ikol/ui-kit/components/IkList';
+import { IkListItem } from '@ikol/ui-kit/components/IkList';
+</script>
+```
+
+## Example usage
+
+Here's a more complex example showing a typical navigation menu with various features.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkList>
+    <IkListItem link="/" active>
+      <template #prepend>
+        <IkIcon icon="home" circle size_px="32" />
+      </template>
+      Dashboard
+      <template #secondary>Overview and statistics</template>
+    </IkListItem>
+    <IkListItem :onClick="() => {}">
+      <template #prepend>
+        <IkIcon icon="user" circle size_px="32" />
+      </template>
+      Profile
+      <template #secondary>Manage your account</template>
+      <template #append>
+        <IkIcon icon="chevron-right" />
+      </template>
+    </IkListItem>
+    <IkListItem :onClick="() => {}">
+      <template #prepend>
+        <IkIcon icon="cog" circle size_px="32" />
+      </template>
+      Settings
+      <template #append>
+        <IkChip design="success" size="xs">New</IkChip>
+      </template>
+    </IkListItem>
+    <IkListItem :onClick="() => {}">
+      <template #prepend>
+        <IkIcon icon="bell" circle size_px="32" />
+      </template>
+      Notifications
+      <template #secondary>View all notifications</template>
+      <template #append>
+        <IkChip design="accent" size="xs">17</IkChip>
+      </template>
+    </IkListItem>
+    <IkListItem disabled>
+      <template #prepend>
+        <IkIcon icon="sign-out" circle size_px="32" disabled />
+      </template>
+      Logout
+      <template #secondary>Sign out of your account</template>
+    </IkListItem>
+  </IkList>
+</template>
+<script setup>
+import { IkList } from '@ikol/ui-kit/components/IkList';
+import { IkListItem } from '@ikol/ui-kit/components/IkList';
+import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
+import { IkChip } from '@ikol/ui-kit/components/IkChip';
+</script>
+```
