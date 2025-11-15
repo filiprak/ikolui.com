@@ -29,7 +29,6 @@ const theme = createTheme({
 });
 const device = createDevice();
 const route = useRoute();
-const head = useHead({});
 
 provide(THEME_SYMBOL, theme);
 provide(DEVICE_SYMBOL, device);
