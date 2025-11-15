@@ -1,0 +1,249 @@
+---
+meta:
+  menu:
+    type: docs
+    section: components
+    subsection: layout
+    label: "[[_Grid_]]"
+---
+
+# Grid
+
+<MetaDescription>
+The Grid component provides a powerful 12-column grid layout system using CSS Grid. It supports responsive breakpoints, container queries for relative sizing, and flexible spacing options. Perfect for creating complex, responsive layouts.
+</MetaDescription>
+
+## Basic grid
+
+The Grid component creates a 12-column grid layout. Grid items span all 12 columns by default.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkGrid class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
+    <div class="ik-grid-item ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
+    <div class="ik-grid-item ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
+    <div class="ik-grid-item ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 3</div>
+  </IkGrid>
+</template>
+<script setup>
+import { IkGrid } from '@ikol/ui-kit/components/IkGrid';
+</script>
+```
+
+## Column spans
+
+Control how many columns each grid item spans using the `ik-grid-item--col-xxs-{n}` classes, where `n` is 1-12.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkGrid class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
+    <div class="ik-grid-item ik-grid-item--col-xxs-12 ik-pa-2" style="background: var(--bg-primary-regular-default);">12 columns</div>
+    <div class="ik-grid-item ik-grid-item--col-xxs-6 ik-pa-2" style="background: var(--bg-primary-regular-default);">6 columns</div>
+    <div class="ik-grid-item ik-grid-item--col-xxs-6 ik-pa-2" style="background: var(--bg-primary-regular-default);">6 columns</div>
+    <div class="ik-grid-item ik-grid-item--col-xxs-4 ik-pa-2" style="background: var(--bg-primary-regular-default);">4 columns</div>
+    <div class="ik-grid-item ik-grid-item--col-xxs-4 ik-pa-2" style="background: var(--bg-primary-regular-default);">4 columns</div>
+    <div class="ik-grid-item ik-grid-item--col-xxs-4 ik-pa-2" style="background: var(--bg-primary-regular-default);">4 columns</div>
+    <div class="ik-grid-item ik-grid-item--col-xxs-3 ik-pa-2" style="background: var(--bg-primary-regular-default);">3 columns</div>
+    <div class="ik-grid-item ik-grid-item--col-xxs-3 ik-pa-2" style="background: var(--bg-primary-regular-default);">3 columns</div>
+    <div class="ik-grid-item ik-grid-item--col-xxs-3 ik-pa-2" style="background: var(--bg-primary-regular-default);">3 columns</div>
+    <div class="ik-grid-item ik-grid-item--col-xxs-3 ik-pa-2" style="background: var(--bg-primary-regular-default);">3 columns</div>
+  </IkGrid>
+</template>
+<script setup>
+import { IkGrid } from '@ikol/ui-kit/components/IkGrid';
+</script>
+```
+
+## Responsive breakpoints
+
+Use responsive breakpoint classes to control column spans at different screen sizes. Breakpoints: `xs` (576px), `sm` (768px), `md` (992px), `lg` (1200px), `xl` (1400px), `xxl` (2000px).
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkGrid class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
+    <div class="ik-grid-item ik-grid-item--col-xxs-12 ik-grid-item--col-sm-6 ik-grid-item--col-md-4 ik-grid-item--col-lg-3 ik-pa-2" style="background: var(--bg-primary-regular-default);">
+      Responsive Item 1
+    </div>
+    <div class="ik-grid-item ik-grid-item--col-xxs-12 ik-grid-item--col-sm-6 ik-grid-item--col-md-4 ik-grid-item--col-lg-3 ik-pa-2" style="background: var(--bg-primary-regular-default);">
+      Responsive Item 2
+    </div>
+    <div class="ik-grid-item ik-grid-item--col-xxs-12 ik-grid-item--col-sm-6 ik-grid-item--col-md-4 ik-grid-item--col-lg-3 ik-pa-2" style="background: var(--bg-primary-regular-default);">
+      Responsive Item 3
+    </div>
+    <div class="ik-grid-item ik-grid-item--col-xxs-12 ik-grid-item--col-sm-6 ik-grid-item--col-md-4 ik-grid-item--col-lg-3 ik-pa-2" style="background: var(--bg-primary-regular-default);">
+      Responsive Item 4
+    </div>
+  </IkGrid>
+</template>
+<script setup>
+import { IkGrid } from '@ikol/ui-kit/components/IkGrid';
+</script>
+```
+
+## Spacing
+
+Control the gap between grid items using `spacing_x` for horizontal spacing and `spacing_y` for vertical spacing. Values range from 0 to 10.
+
+### Horizontal spacing
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <IkGrid spacing_x="2" class="ik-pa-4 ik-mb-4" style="border: 1px dashed var(--border-neutral-regular-default);">
+      <div class="ik-grid-item ik-grid-item--col-xxs-4 ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
+      <div class="ik-grid-item ik-grid-item--col-xxs-4 ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
+      <div class="ik-grid-item ik-grid-item--col-xxs-4 ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 3</div>
+    </IkGrid>
+    <IkGrid spacing_x="5" class="ik-pa-4 ik-mb-4" style="border: 1px dashed var(--border-neutral-regular-default);">
+      <div class="ik-grid-item ik-grid-item--col-xxs-4 ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
+      <div class="ik-grid-item ik-grid-item--col-xxs-4 ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
+      <div class="ik-grid-item ik-grid-item--col-xxs-4 ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 3</div>
+    </IkGrid>
+    <IkGrid spacing_x="8" class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
+      <div class="ik-grid-item ik-grid-item--col-xxs-4 ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
+      <div class="ik-grid-item ik-grid-item--col-xxs-4 ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
+      <div class="ik-grid-item ik-grid-item--col-xxs-4 ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 3</div>
+    </IkGrid>
+  </div>
+</template>
+<script setup>
+import { IkGrid } from '@ikol/ui-kit/components/IkGrid';
+</script>
+```
+
+### Vertical spacing
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkGrid spacing_y="4" class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
+    <div class="ik-grid-item ik-grid-item--col-xxs-6 ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
+    <div class="ik-grid-item ik-grid-item--col-xxs-6 ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
+    <div class="ik-grid-item ik-grid-item--col-xxs-6 ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 3</div>
+    <div class="ik-grid-item ik-grid-item--col-xxs-6 ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 4</div>
+  </IkGrid>
+</template>
+<script setup>
+import { IkGrid } from '@ikol/ui-kit/components/IkGrid';
+</script>
+```
+
+### Combined spacing
+
+Use both `spacing_x` and `spacing_y` together.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkGrid spacing_x="5" spacing_y="3" class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
+    <div class="ik-grid-item ik-grid-item--col-xxs-6 ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
+    <div class="ik-grid-item ik-grid-item--col-xxs-6 ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
+    <div class="ik-grid-item ik-grid-item--col-xxs-6 ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 3</div>
+    <div class="ik-grid-item ik-grid-item--col-xxs-6 ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 4</div>
+  </IkGrid>
+</template>
+<script setup>
+import { IkGrid } from '@ikol/ui-kit/components/IkGrid';
+</script>
+```
+
+## Relative grid (container queries)
+
+Use the `relative` prop to enable container-based responsive breakpoints. This uses CSS container queries instead of viewport media queries, making the grid responsive to its container size rather than the viewport.
+
+When using `relative`, you must provide breakpoint values via props (`xs`, `sm`, `md`, `lg`) which define the minimum container widths for each breakpoint.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="resize: both; overflow: auto; border: 2px solid var(--border-neutral-regular-default); padding: 16px; min-width: 200px; min-height: 200px;">
+    <IkGrid relative :xs="300" :sm="500" :md="700" :lg="900" spacing_x="3" class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
+      <div class="ik-grid-item ik-grid-item--col-xxs-12 ik-grid-item--col-xs-6 ik-grid-item--col-sm-4 ik-grid-item--col-md-3 ik-pa-2" style="background: var(--bg-primary-regular-default);">
+        Item 1
+      </div>
+      <div class="ik-grid-item ik-grid-item--col-xxs-12 ik-grid-item--col-xs-6 ik-grid-item--col-sm-4 ik-grid-item--col-md-3 ik-pa-2" style="background: var(--bg-primary-regular-default);">
+        Item 2
+      </div>
+      <div class="ik-grid-item ik-grid-item--col-xxs-12 ik-grid-item--col-xs-6 ik-grid-item--col-sm-4 ik-grid-item--col-md-3 ik-pa-2" style="background: var(--bg-primary-regular-default);">
+        Item 3
+      </div>
+      <div class="ik-grid-item ik-grid-item--col-xxs-12 ik-grid-item--col-xs-6 ik-grid-item--col-sm-4 ik-grid-item--col-md-3 ik-pa-2" style="background: var(--bg-primary-regular-default);">
+        Item 4
+      </div>
+    </IkGrid>
+    <p class="ik-text--sm ik-text--default-light ik-mt-2">Resize this container to see container-based responsive behavior</p>
+  </div>
+</template>
+<script setup>
+import { IkGrid } from '@ikol/ui-kit/components/IkGrid';
+</script>
+```
+
+## Custom tag
+
+Use the `tag` prop to render the grid container as a different HTML element.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkGrid tag="section" class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
+    <div class="ik-grid-item ik-grid-item--col-xxs-6 ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
+    <div class="ik-grid-item ik-grid-item--col-xxs-6 ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
+  </IkGrid>
+</template>
+<script setup>
+import { IkGrid } from '@ikol/ui-kit/components/IkGrid';
+</script>
+```
+
+## Click handler
+
+Use the `onClick` prop to handle click events on the grid container.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkGrid 
+    class="ik-pa-4" 
+    style="border: 1px dashed var(--border-neutral-regular-default); cursor: pointer;"
+    :onClick="handleClick"
+  >
+    <div class="ik-grid-item ik-grid-item--col-xxs-6 ik-pa-2" style="background: var(--bg-primary-regular-default);">Click me</div>
+    <div class="ik-grid-item ik-grid-item--col-xxs-6 ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
+  </IkGrid>
+  <p v-if="message" class="ik-text--sm ik-text--default-light ik-mt-4">{{ message }}</p>
+</template>
+<script setup>
+import { IkGrid } from '@ikol/ui-kit/components/IkGrid';
+import { ref } from 'vue';
+
+const message = ref('');
+
+const handleClick = () => {
+  message.value = 'Grid container clicked!';
+  setTimeout(() => message.value = '', 2000);
+};
+</script>
+```
+
+## Complex layout example
+
+Here's a more complex example showing a typical card-based layout.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkGrid spacing_x="4" spacing_y="4" class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
+    <div class="ik-grid-item ik-grid-item--col-xxs-12 ik-grid-item--col-sm-6 ik-grid-item--col-md-4 ik-pa-4" style="background: var(--bg-primary-regular-default); border-radius: 8px;">
+      <h3 class="ik-text--lg ik-text--bold ik-mb-2">Card 1</h3>
+      <p class="ik-text--sm ik-text--default-light">This is a card in the grid layout.</p>
+    </div>
+    <div class="ik-grid-item ik-grid-item--col-xxs-12 ik-grid-item--col-sm-6 ik-grid-item--col-md-4 ik-pa-4" style="background: var(--bg-primary-regular-default); border-radius: 8px;">
+      <h3 class="ik-text--lg ik-text--bold ik-mb-2">Card 2</h3>
+      <p class="ik-text--sm ik-text--default-light">This is another card in the grid layout.</p>
+    </div>
+    <div class="ik-grid-item ik-grid-item--col-xxs-12 ik-grid-item--col-sm-6 ik-grid-item--col-md-4 ik-pa-4" style="background: var(--bg-primary-regular-default); border-radius: 8px;">
+      <h3 class="ik-text--lg ik-text--bold ik-mb-2">Card 3</h3>
+      <p class="ik-text--sm ik-text--default-light">This is a third card in the grid layout.</p>
+    </div>
+  </IkGrid>
+</template>
+<script setup>
+import { IkGrid } from '@ikol/ui-kit/components/IkGrid';
+</script>
+```
+
