@@ -163,19 +163,19 @@ Add custom content before the chip text using the `prefix` slot.
   <IkChipList>
     <IkChip>
       <template #prefix>
-        <IkIcon icon="tag" size_px="16" />
+        <span class="ik-text--xs ik-text--default-light">#</span>
       </template>
-      With Icon
+      Tagged Item
     </IkChip>
     <IkChip design="success">
       <template #prefix>
-        <IkIcon icon="check" size_px="16" />
+        <span class="ik-text--xs ik-text--default-light">✓</span>
       </template>
       Verified
     </IkChip>
     <IkChip>
       <template #prefix>
-        <div style="width: 16px; height: 16px; background: var(--background-primary-regular-default); border-radius: 50%;"></div>
+        <span class="ik-text--xs ik-text--default-light">NEW</span>
       </template>
       Custom Prefix
     </IkChip>
@@ -184,7 +184,6 @@ Add custom content before the chip text using the `prefix` slot.
 <script setup>
 import { IkChip } from '@ikol/ui-kit/components/IkChip';
 import { IkChipList } from '@ikol/ui-kit/components/IkChipList';
-import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
 </script>
 ```
 
@@ -209,17 +208,29 @@ import { IkChipList } from '@ikol/ui-kit/components/IkChipList';
 
 ## Custom color
 
-Use the `color` prop to set a custom background color. The text color will automatically adjust for contrast. Note: `design` and `color` props should not be used together.
+Use the `color` prop to set a custom background color. The text color will automatically adjust for contrast. For dark colors, the text automatically inverts to white for better readability. Note: `design` and `color` props should not be used together.
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <IkChipList>
-    <IkChip color="FF6B6B">Custom Red</IkChip>
-    <IkChip color="4ECDC4">Custom Teal</IkChip>
-    <IkChip color="45B7D1">Custom Blue</IkChip>
-    <IkChip color="FFA07A">Custom Orange</IkChip>
-    <IkChip color="98D8C8">Custom Mint</IkChip>
-  </IkChipList>
+  <div>
+    <h4 class="ik-text--sm ik-text--default-regular ik-mb-3">Light colors (dark text)</h4>
+    <IkChipList class="ik-mb-6">
+      <IkChip color="FF6B6B">Custom Red</IkChip>
+      <IkChip color="4ECDC4">Custom Teal</IkChip>
+      <IkChip color="45B7D1">Custom Blue</IkChip>
+      <IkChip color="FFA07A">Custom Orange</IkChip>
+      <IkChip color="98D8C8">Custom Mint</IkChip>
+    </IkChipList>
+    
+    <h4 class="ik-text--sm ik-text--default-regular ik-mb-3">Dark colors (white text)</h4>
+    <IkChipList>
+      <IkChip color="2C3E50">Dark Blue</IkChip>
+      <IkChip color="8B4513">Dark Brown</IkChip>
+      <IkChip color="1A1A1A">Almost Black</IkChip>
+      <IkChip color="4A148C">Dark Purple</IkChip>
+      <IkChip color="1B5E20">Dark Green</IkChip>
+    </IkChipList>
+  </div>
 </template>
 <script setup>
 import { IkChip } from '@ikol/ui-kit/components/IkChip';
@@ -265,89 +276,3 @@ import { IkChip } from '@ikol/ui-kit/components/IkChip';
 import { IkChipList } from '@ikol/ui-kit/components/IkChipList';
 </script>
 ```
-
-## Example usage
-
-Here's a comprehensive example showing various chip features in a real-world scenario.
-
-```vue title="[[_Source code_]]" preview
-<template>
-  <div>
-    <h3 class="ik-text--md ik-text--strong-default ik-mb-4">Filter Tags</h3>
-    <IkChipList>
-      <IkChip removable @ik-remove="removeTag('design')">
-        <template #prefix>
-          <IkIcon icon="tag" size_px="16" />
-        </template>
-        Design
-      </IkChip>
-      <IkChip removable design="success" @ik-remove="removeTag('frontend')">
-        <template #prefix>
-          <IkIcon icon="code" size_px="16" />
-        </template>
-        Frontend
-      </IkChip>
-      <IkChip removable design="accent" @ik-remove="removeTag('backend')">
-        <template #prefix>
-          <IkIcon icon="server" size_px="16" />
-        </template>
-        Backend
-      </IkChip>
-    </IkChipList>
-
-    <h3 class="ik-text--md ik-text--strong-default ik-mt-8 ik-mb-4">Status Badges</h3>
-    <IkChipList>
-      <IkChip design="success" size="sm">
-        <template #prefix>
-          <IkIcon icon="check" size_px="14" />
-        </template>
-        Active
-      </IkChip>
-      <IkChip design="error" size="sm">
-        <template #prefix>
-          <IkIcon icon="times" size_px="14" />
-        </template>
-        Inactive
-      </IkChip>
-      <IkChip design="accent" size="sm">
-        <template #prefix>
-          <IkIcon icon="clock" size_px="14" />
-        </template>
-        Pending
-      </IkChip>
-    </IkChipList>
-
-    <h3 class="ik-text--md ik-text--strong-default ik-mt-8 ik-mb-4">Interactive Chips</h3>
-    <IkChipList>
-      <IkChip custom_action="edit" @ik-custom-click="handleEdit">
-        Editable Item
-      </IkChip>
-      <IkChip removable custom_action="copy" @ik-custom-click="handleCopy" @ik-remove="handleRemove">
-        Copy & Remove
-      </IkChip>
-    </IkChipList>
-  </div>
-</template>
-<script setup>
-import { IkChip } from '@ikol/ui-kit/components/IkChip';
-import { IkChipList } from '@ikol/ui-kit/components/IkChipList';
-import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
-
-const removeTag = (tag) => {
-  // Handle tag removal
-};
-
-const handleEdit = () => {
-  // Handle edit action
-};
-
-const handleCopy = () => {
-  // Handle copy action
-};
-
-const handleRemove = () => {
-  // Handle remove action
-};
-</script>
-```
-
