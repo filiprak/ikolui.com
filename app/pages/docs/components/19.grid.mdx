@@ -117,72 +117,7 @@ import { IkGridItem } from '@ikol/ui-kit/components/IkGrid';
 
 Control the gap between grid items using `spacing_x` for horizontal spacing and `spacing_y` for vertical spacing. Values range from 0 to 10.
 
-### Horizontal spacing
-
-```vue title="[[_Source code_]]" preview
-<template>
-  <div>
-    <IkGrid spacing_x="2" class="ik-pa-4 ik-mb-4 grid-container">
-      <IkGridItem xxs="4" class="ik-pa-4 grid-item">Item 1</IkGridItem>
-      <IkGridItem xxs="4" class="ik-pa-4 grid-item">Item 2</IkGridItem>
-      <IkGridItem xxs="4" class="ik-pa-4 grid-item">Item 3</IkGridItem>
-    </IkGrid>
-    <IkGrid spacing_x="5" class="ik-pa-4 ik-mb-4 grid-container">
-      <IkGridItem xxs="4" class="ik-pa-4 grid-item">Item 1</IkGridItem>
-      <IkGridItem xxs="4" class="ik-pa-4 grid-item">Item 2</IkGridItem>
-      <IkGridItem xxs="4" class="ik-pa-4 grid-item">Item 3</IkGridItem>
-    </IkGrid>
-    <IkGrid spacing_x="8" class="ik-pa-4 grid-container">
-      <IkGridItem xxs="4" class="ik-pa-4 grid-item">Item 1</IkGridItem>
-      <IkGridItem xxs="4" class="ik-pa-4 grid-item">Item 2</IkGridItem>
-      <IkGridItem xxs="4" class="ik-pa-4 grid-item">Item 3</IkGridItem>
-    </IkGrid>
-  </div>
-</template>
-<script setup>
-import { IkGrid } from '@ikol/ui-kit/components/IkGrid';
-import { IkGridItem } from '@ikol/ui-kit/components/IkGrid';
-</script>
-<style scoped>
-.grid-container {
-  border: 1px dashed var(--border-neutral-regular-default);
-}
-
-.grid-item {
-  background: var(--bg-primary-regular-default);
-  border: 1px solid var(--border-neutral-regular-default);
-}
-</style>
-```
-
-### Vertical spacing
-
-```vue title="[[_Source code_]]" preview
-<template>
-  <IkGrid spacing_y="4" class="ik-pa-4 grid-container">
-    <IkGridItem xxs="6" class="ik-pa-4 grid-item">Item 1</IkGridItem>
-    <IkGridItem xxs="6" class="ik-pa-4 grid-item">Item 2</IkGridItem>
-    <IkGridItem xxs="6" class="ik-pa-4 grid-item">Item 3</IkGridItem>
-    <IkGridItem xxs="6" class="ik-pa-4 grid-item">Item 4</IkGridItem>
-  </IkGrid>
-</template>
-<script setup>
-import { IkGrid } from '@ikol/ui-kit/components/IkGrid';
-import { IkGridItem } from '@ikol/ui-kit/components/IkGrid';
-</script>
-<style scoped>
-.grid-container {
-  border: 1px dashed var(--border-neutral-regular-default);
-}
-
-.grid-item {
-  background: var(--bg-primary-regular-default);
-  border: 1px solid var(--border-neutral-regular-default);
-}
-</style>
-```
-
-### Combined spacing
+### Horizontal and vertical spacing
 
 Use both `spacing_x` and `spacing_y` together.
 
@@ -249,6 +184,7 @@ import { IkGridItem } from '@ikol/ui-kit/components/IkGrid';
   padding: 16px;
   min-width: 200px;
   min-height: 200px;
+  max-width: 100%;
 }
 
 .grid-container {
