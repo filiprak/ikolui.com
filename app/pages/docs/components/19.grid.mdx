@@ -19,26 +19,16 @@ The Grid component creates a 12-column grid layout. Grid items span all 12 colum
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <IkGrid class="ik-pa-4 grid-container">
-    <IkGridItem class="ik-pa-4 grid-item">Item 1</IkGridItem>
-    <IkGridItem class="ik-pa-4 grid-item">Item 2</IkGridItem>
-    <IkGridItem class="ik-pa-4 grid-item">Item 3</IkGridItem>
+  <IkGrid class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
+    <IkGridItem class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 1</IkGridItem>
+    <IkGridItem class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 2</IkGridItem>
+    <IkGridItem class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 3</IkGridItem>
   </IkGrid>
 </template>
 <script setup>
 import { IkGrid } from '@ikol/ui-kit/components/IkGrid';
 import { IkGridItem } from '@ikol/ui-kit/components/IkGrid';
 </script>
-<style scoped>
-.grid-container {
-  border: 1px dashed var(--border-neutral-regular-default);
-}
-
-.grid-item {
-  background: var(--bg-primary-regular-default);
-  border: 1px solid var(--border-neutral-regular-default);
-}
-</style>
 ```
 
 ## Column spans
@@ -47,33 +37,23 @@ Control how many columns each grid item spans using the `xxs` prop (or other bre
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <IkGrid class="ik-pa-4 grid-container">
-    <IkGridItem xxs="12" class="ik-pa-4 grid-item">12 columns</IkGridItem>
-    <IkGridItem xxs="6" class="ik-pa-4 grid-item">6 columns</IkGridItem>
-    <IkGridItem xxs="6" class="ik-pa-4 grid-item">6 columns</IkGridItem>
-    <IkGridItem xxs="4" class="ik-pa-4 grid-item">4 columns</IkGridItem>
-    <IkGridItem xxs="4" class="ik-pa-4 grid-item">4 columns</IkGridItem>
-    <IkGridItem xxs="4" class="ik-pa-4 grid-item">4 columns</IkGridItem>
-    <IkGridItem xxs="3" class="ik-pa-4 grid-item">3 columns</IkGridItem>
-    <IkGridItem xxs="3" class="ik-pa-4 grid-item">3 columns</IkGridItem>
-    <IkGridItem xxs="3" class="ik-pa-4 grid-item">3 columns</IkGridItem>
-    <IkGridItem xxs="3" class="ik-pa-4 grid-item">3 columns</IkGridItem>
+  <IkGrid class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
+    <IkGridItem xxs="12" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">12 columns</IkGridItem>
+    <IkGridItem xxs="6" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">6 columns</IkGridItem>
+    <IkGridItem xxs="6" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">6 columns</IkGridItem>
+    <IkGridItem xxs="4" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">4 columns</IkGridItem>
+    <IkGridItem xxs="4" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">4 columns</IkGridItem>
+    <IkGridItem xxs="4" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">4 columns</IkGridItem>
+    <IkGridItem xxs="3" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">3 columns</IkGridItem>
+    <IkGridItem xxs="3" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">3 columns</IkGridItem>
+    <IkGridItem xxs="3" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">3 columns</IkGridItem>
+    <IkGridItem xxs="3" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">3 columns</IkGridItem>
   </IkGrid>
 </template>
 <script setup>
 import { IkGrid } from '@ikol/ui-kit/components/IkGrid';
 import { IkGridItem } from '@ikol/ui-kit/components/IkGrid';
 </script>
-<style scoped>
-.grid-container {
-  border: 1px dashed var(--border-neutral-regular-default);
-}
-
-.grid-item {
-  background: var(--bg-primary-regular-default);
-  border: 1px solid var(--border-neutral-regular-default);
-}
-</style>
 ```
 
 ## Responsive breakpoints
@@ -82,17 +62,17 @@ Use responsive breakpoint props on `IkGridItem` to control column spans at diffe
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <IkGrid class="ik-pa-4 grid-container">
-    <IkGridItem xxs="12" sm="6" md="4" lg="3" class="ik-pa-4 grid-item">
+  <IkGrid class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
+    <IkGridItem xxs="12" sm="6" md="4" lg="3" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">
       Responsive Item 1
     </IkGridItem>
-    <IkGridItem xxs="12" sm="6" md="4" lg="3" class="ik-pa-4 grid-item">
+    <IkGridItem xxs="12" sm="6" md="4" lg="3" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">
       Responsive Item 2
     </IkGridItem>
-    <IkGridItem xxs="12" sm="6" md="4" lg="3" class="ik-pa-4 grid-item">
+    <IkGridItem xxs="12" sm="6" md="4" lg="3" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">
       Responsive Item 3
     </IkGridItem>
-    <IkGridItem xxs="12" sm="6" md="4" lg="3" class="ik-pa-4 grid-item">
+    <IkGridItem xxs="12" sm="6" md="4" lg="3" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">
       Responsive Item 4
     </IkGridItem>
   </IkGrid>
@@ -101,49 +81,74 @@ Use responsive breakpoint props on `IkGridItem` to control column spans at diffe
 import { IkGrid } from '@ikol/ui-kit/components/IkGrid';
 import { IkGridItem } from '@ikol/ui-kit/components/IkGrid';
 </script>
-<style scoped>
-.grid-container {
-  border: 1px dashed var(--border-neutral-regular-default);
-}
-
-.grid-item {
-  background: var(--bg-primary-regular-default);
-  border: 1px solid var(--border-neutral-regular-default);
-}
-</style>
 ```
 
 ## Spacing
 
 Control the gap between grid items using `spacing_x` for horizontal spacing and `spacing_y` for vertical spacing. Values range from 0 to 10.
 
-### Horizontal and vertical spacing
-
-Use both `spacing_x` and `spacing_y` together.
+### Horizontal spacing
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <IkGrid spacing_x="5" spacing_y="3" class="ik-pa-4 grid-container">
-    <IkGridItem xxs="6" class="ik-pa-4 grid-item">Item 1</IkGridItem>
-    <IkGridItem xxs="6" class="ik-pa-4 grid-item">Item 2</IkGridItem>
-    <IkGridItem xxs="6" class="ik-pa-4 grid-item">Item 3</IkGridItem>
-    <IkGridItem xxs="6" class="ik-pa-4 grid-item">Item 4</IkGridItem>
+  <div>
+    <IkGrid spacing_x="2" class="ik-pa-4 ik-mb-4" style="border: 1px dashed var(--border-neutral-regular-default);">
+      <IkGridItem xxs="4" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 1</IkGridItem>
+      <IkGridItem xxs="4" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 2</IkGridItem>
+      <IkGridItem xxs="4" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 3</IkGridItem>
+    </IkGrid>
+    <IkGrid spacing_x="5" class="ik-pa-4 ik-mb-4" style="border: 1px dashed var(--border-neutral-regular-default);">
+      <IkGridItem xxs="4" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 1</IkGridItem>
+      <IkGridItem xxs="4" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 2</IkGridItem>
+      <IkGridItem xxs="4" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 3</IkGridItem>
+    </IkGrid>
+    <IkGrid spacing_x="8" class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
+      <IkGridItem xxs="4" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 1</IkGridItem>
+      <IkGridItem xxs="4" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 2</IkGridItem>
+      <IkGridItem xxs="4" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 3</IkGridItem>
+    </IkGrid>
+  </div>
+</template>
+<script setup>
+import { IkGrid } from '@ikol/ui-kit/components/IkGrid';
+import { IkGridItem } from '@ikol/ui-kit/components/IkGrid';
+</script>
+```
+
+### Vertical spacing
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkGrid spacing_y="4" class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
+    <IkGridItem xxs="6" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 1</IkGridItem>
+    <IkGridItem xxs="6" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 2</IkGridItem>
+    <IkGridItem xxs="6" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 3</IkGridItem>
+    <IkGridItem xxs="6" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 4</IkGridItem>
   </IkGrid>
 </template>
 <script setup>
 import { IkGrid } from '@ikol/ui-kit/components/IkGrid';
 import { IkGridItem } from '@ikol/ui-kit/components/IkGrid';
 </script>
-<style scoped>
-.grid-container {
-  border: 1px dashed var(--border-neutral-regular-default);
-}
+```
 
-.grid-item {
-  background: var(--bg-primary-regular-default);
-  border: 1px solid var(--border-neutral-regular-default);
-}
-</style>
+### Combined spacing
+
+Use both `spacing_x` and `spacing_y` together.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkGrid spacing_x="5" spacing_y="3" class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
+    <IkGridItem xxs="6" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 1</IkGridItem>
+    <IkGridItem xxs="6" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 2</IkGridItem>
+    <IkGridItem xxs="6" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 3</IkGridItem>
+    <IkGridItem xxs="6" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 4</IkGridItem>
+  </IkGrid>
+</template>
+<script setup>
+import { IkGrid } from '@ikol/ui-kit/components/IkGrid';
+import { IkGridItem } from '@ikol/ui-kit/components/IkGrid';
+</script>
 ```
 
 ## Relative grid with CSS container queries
@@ -154,18 +159,18 @@ When using `relative`, you must provide breakpoint values via props (`xs`, `sm`,
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <div class="resizable-container">
-    <IkGrid relative :xs="300" :sm="500" :md="700" :lg="900" spacing_x="3" class="ik-pa-4 grid-container">
-      <IkGridItem xxs="12" xs="6" sm="4" md="3" class="ik-pa-4 grid-item">
+  <div style="resize: both; overflow: auto; border: 2px solid var(--border-neutral-regular-default); padding: 16px; min-width: 200px; min-height: 200px;">
+    <IkGrid relative :xs="300" :sm="500" :md="700" :lg="900" spacing_x="3" class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
+      <IkGridItem xxs="12" xs="6" sm="4" md="3" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">
         Item 1
       </IkGridItem>
-      <IkGridItem xxs="12" xs="6" sm="4" md="3" class="ik-pa-4 grid-item">
+      <IkGridItem xxs="12" xs="6" sm="4" md="3" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">
         Item 2
       </IkGridItem>
-      <IkGridItem xxs="12" xs="6" sm="4" md="3" class="ik-pa-4 grid-item">
+      <IkGridItem xxs="12" xs="6" sm="4" md="3" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">
         Item 3
       </IkGridItem>
-      <IkGridItem xxs="12" xs="6" sm="4" md="3" class="ik-pa-4 grid-item">
+      <IkGridItem xxs="12" xs="6" sm="4" md="3" class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">
         Item 4
       </IkGridItem>
     </IkGrid>
@@ -176,24 +181,4 @@ When using `relative`, you must provide breakpoint values via props (`xs`, `sm`,
 import { IkGrid } from '@ikol/ui-kit/components/IkGrid';
 import { IkGridItem } from '@ikol/ui-kit/components/IkGrid';
 </script>
-<style scoped>
-.resizable-container {
-  resize: both;
-  overflow: auto;
-  border: 2px solid var(--border-neutral-regular-default);
-  padding: 16px;
-  min-width: 200px;
-  min-height: 200px;
-  max-width: 100%;
-}
-
-.grid-container {
-  border: 1px dashed var(--border-neutral-regular-default);
-}
-
-.grid-item {
-  background: var(--bg-primary-regular-default);
-  border: 1px solid var(--border-neutral-regular-default);
-}
-</style>
 ```
