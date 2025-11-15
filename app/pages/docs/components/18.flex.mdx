@@ -20,9 +20,9 @@ The Flex component creates a flex container with default horizontal layout and c
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkFlex class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 3</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 1</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 2</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 3</div>
   </IkFlex>
 </template>
 <script setup>
@@ -32,24 +32,7 @@ import { IkFlex } from '@ikol/ui-kit/components/IkFlex';
 
 ## Direction
 
-Control the flex direction using the `column` prop for vertical layouts.
-
-### Row direction (default)
-
-Items are arranged horizontally from left to right.
-
-```vue title="[[_Source code_]]" preview
-<template>
-  <IkFlex class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 3</div>
-  </IkFlex>
-</template>
-<script setup>
-import { IkFlex } from '@ikol/ui-kit/components/IkFlex';
-</script>
-```
+Control the flex direction using the `column` prop for vertical layouts. Default flex direction is row.
 
 ### Column direction
 
@@ -58,9 +41,9 @@ Items are arranged vertically from top to bottom.
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkFlex column class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 3</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 1</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 2</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 3</div>
   </IkFlex>
 </template>
 <script setup>
@@ -75,9 +58,9 @@ Use the `reverse` prop to reverse the order of items.
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkFlex reverse class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 3</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 1</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 2</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 3</div>
   </IkFlex>
 </template>
 <script setup>
@@ -92,9 +75,9 @@ Combine `column` and `reverse` for vertical reverse layout.
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkFlex column reverse class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 3</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 1</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 2</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 3</div>
   </IkFlex>
 </template>
 <script setup>
@@ -113,9 +96,9 @@ Align items to the start of the flex container.
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkFlex justify_start class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 3</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 1</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 2</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 3</div>
   </IkFlex>
 </template>
 <script setup>
@@ -130,9 +113,9 @@ Align items to the end of the flex container.
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkFlex justify_end class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 3</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 1</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 2</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 3</div>
   </IkFlex>
 </template>
 <script setup>
@@ -147,9 +130,9 @@ Distribute items with space between them.
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkFlex justify_space class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 3</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 1</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 2</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 3</div>
   </IkFlex>
 </template>
 <script setup>
@@ -168,9 +151,9 @@ Align items to the start of the cross axis.
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkFlex align_start class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default); min-height: 150px;">
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 3</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 1</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 2</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 3</div>
   </IkFlex>
 </template>
 <script setup>
@@ -185,9 +168,9 @@ Align items to the end of the cross axis.
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkFlex align_end class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default); min-height: 150px;">
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 3</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 1</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 2</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 3</div>
   </IkFlex>
 </template>
 <script setup>
@@ -206,11 +189,11 @@ Items stay on a single line and may overflow.
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkFlex class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default); max-width: 300px;">
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 3</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 4</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 5</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 1</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 2</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 3</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 4</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 5</div>
   </IkFlex>
 </template>
 <script setup>
@@ -225,11 +208,11 @@ Items wrap to new lines when they don't fit.
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkFlex wrap class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default); max-width: 300px;">
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 3</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 4</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 5</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 1</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 2</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 3</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 4</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 5</div>
   </IkFlex>
 </template>
 <script setup>
@@ -244,8 +227,8 @@ Use the `wrap_text` prop to allow text content within items to wrap normally.
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkFlex wrap_text class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default); max-width: 200px;">
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Very long text that should wrap</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Another item</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Very long text that should wrap</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Another item</div>
   </IkFlex>
 </template>
 <script setup>
@@ -261,9 +244,9 @@ Use the `inline` prop to display the flex container as an inline element.
 <template>
   <div>
     Text before
-    <IkFlex inline class="ik-pa-2" style="border: 1px dashed var(--border-neutral-regular-default);">
-      <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
-      <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
+    <IkFlex inline class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
+      <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 1</div>
+      <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 2</div>
     </IkFlex>
     Text after
   </div>
@@ -281,19 +264,19 @@ Control the gap between flex items using the `spacing` prop. Values range from 0
 <template>
   <div>
     <IkFlex spacing="2" class="ik-pa-4 ik-mb-4" style="border: 1px dashed var(--border-neutral-regular-default);">
-      <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
-      <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
-      <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 3</div>
+      <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 1</div>
+      <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 2</div>
+      <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 3</div>
     </IkFlex>
     <IkFlex spacing="5" class="ik-pa-4 ik-mb-4" style="border: 1px dashed var(--border-neutral-regular-default);">
-      <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
-      <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
-      <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 3</div>
+      <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 1</div>
+      <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 2</div>
+      <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 3</div>
     </IkFlex>
     <IkFlex spacing="8" class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
-      <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
-      <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
-      <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 3</div>
+      <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 1</div>
+      <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 2</div>
+      <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 3</div>
     </IkFlex>
   </div>
 </template>
@@ -313,9 +296,9 @@ Use `full_width_items` to make all items span the full width.
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkFlex column full_width_items class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 3</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 1</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 2</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 3</div>
   </IkFlex>
 </template>
 <script setup>
@@ -330,9 +313,9 @@ Use `full_height_items` to make all items span the full height.
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkFlex full_height_items class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default); height: 200px;">
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 3</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 1</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 2</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Item 3</div>
   </IkFlex>
 </template>
 <script setup>
@@ -344,16 +327,16 @@ import { IkFlex } from '@ikol/ui-kit/components/IkFlex';
 
 Control how items grow and shrink using special flex patterns.
 
-### Grow and fixed
+### Grow and fixed children
 
 The first item grows to fill available space, remaining items stay fixed width.
 
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkFlex grow_and_fixed class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Grows</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Fixed</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Fixed</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Grows</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Fixed</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Fixed</div>
   </IkFlex>
 </template>
 <script setup>
@@ -361,16 +344,16 @@ import { IkFlex } from '@ikol/ui-kit/components/IkFlex';
 </script>
 ```
 
-### Fixed and grow
+### Fixed and grow children
 
 The last item grows to fill available space, previous items stay fixed width.
 
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkFlex fixed_and_grow class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Fixed</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Fixed</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Grows</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Fixed</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Fixed</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Grows</div>
   </IkFlex>
 </template>
 <script setup>
@@ -378,65 +361,19 @@ import { IkFlex } from '@ikol/ui-kit/components/IkFlex';
 </script>
 ```
 
-### Grow fixed grow
+### Grow fixed grow children
 
 The first and last items grow, the middle item stays fixed width.
 
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkFlex grow_fixed_grow class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Grows</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Fixed</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Grows</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Grows</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Fixed</div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default); border: 1px solid var(--border-neutral-regular-default);">Grows</div>
   </IkFlex>
 </template>
 <script setup>
 import { IkFlex } from '@ikol/ui-kit/components/IkFlex';
 </script>
 ```
-
-## Custom tag
-
-Use the `tag` prop to render the flex container as a different HTML element.
-
-```vue title="[[_Source code_]]" preview
-<template>
-  <IkFlex tag="section" class="ik-pa-4" style="border: 1px dashed var(--border-neutral-regular-default);">
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 1</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
-  </IkFlex>
-</template>
-<script setup>
-import { IkFlex } from '@ikol/ui-kit/components/IkFlex';
-</script>
-```
-
-## Click handler
-
-Use the `onClick` prop to handle click events on the flex container.
-
-```vue title="[[_Source code_]]" preview
-<template>
-  <IkFlex 
-    class="ik-pa-4" 
-    style="border: 1px dashed var(--border-neutral-regular-default); cursor: pointer;"
-    :onClick="handleClick"
-  >
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Click me</div>
-    <div class="ik-pa-2" style="background: var(--bg-primary-regular-default);">Item 2</div>
-  </IkFlex>
-  <p v-if="message" class="ik-text--sm ik-text--default-light ik-mt-4">{{ message }}</p>
-</template>
-<script setup>
-import { IkFlex } from '@ikol/ui-kit/components/IkFlex';
-import { ref } from 'vue';
-
-const message = ref('');
-
-const handleClick = () => {
-  message.value = 'Flex container clicked!';
-  setTimeout(() => message.value = '', 2000);
-};
-</script>
-```
-
