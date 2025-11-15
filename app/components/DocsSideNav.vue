@@ -102,6 +102,7 @@ const sections = ref<Section[]>([
         icon: 'cubes',
         label: '[[_Components_]]',
         items: items.value.filter(i => i.meta.menu?.section == 'components'),
+        is_expanded: true,
     },
 ]);
 
