@@ -103,6 +103,43 @@ import { IkListItem } from '@ikol/ui-kit/components/IkList';
 </script>
 ```
 
+## List items with avatars
+
+Display user avatars in list items using the `IkImage` component in the `prepend` slot, combined with user names and secondary text.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkList>
+    <IkListItem>
+      <template #prepend>
+        <IkImage src="https://i.pravatar.cc/40?img=1" :size="40" round />
+      </template>
+      John Doe
+      <template #secondary>Software Engineer</template>
+    </IkListItem>
+    <IkListItem>
+      <template #prepend>
+        <IkImage src="https://i.pravatar.cc/40?img=2" :size="40" round />
+      </template>
+      Jane Smith
+      <template #secondary>Product Designer</template>
+    </IkListItem>
+    <IkListItem>
+      <template #prepend>
+        <IkImage src="https://i.pravatar.cc/40?img=3" :size="40" round />
+      </template>
+      Bob Johnson
+      <template #secondary>Marketing Manager</template>
+    </IkListItem>
+  </IkList>
+</template>
+<script setup>
+import { IkList } from '@ikol/ui-kit/components/IkList';
+import { IkListItem } from '@ikol/ui-kit/components/IkList';
+import { IkImage } from '@ikol/ui-kit/components/IkImage';
+</script>
+```
+
 ## Append content
 
 Add content after the main content using the `append` slot.
