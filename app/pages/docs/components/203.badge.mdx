@@ -209,36 +209,6 @@ import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
 </script>
 ```
 
-## Click handler
-
-The Badge component supports an `onClick` handler for interactive badges.
-
-```vue title="[[_Source code_]]" preview
-<template>
-  <IkBadge 
-    :number="count" 
-    design="error"
-    :onClick="handleClick"
-  >
-    <IkButton>Click Badge</IkButton>
-  </IkBadge>
-  <p class="ik-text--sm ik-mt-4">Clicked {{ clickCount }} times</p>
-</template>
-<script setup>
-import { IkBadge } from '@ikol/ui-kit/components/IkBadge';
-import { IkButton } from '@ikol/ui-kit/components/IkButton';
-import { ref } from 'vue';
-
-const count = ref(5);
-const clickCount = ref(0);
-
-function handleClick() {
-  clickCount.value++;
-  count.value = Math.max(0, count.value - 1);
-}
-</script>
-```
-
 ## Show/hide
 
 Control badge visibility using the `show` prop. This is useful for conditionally displaying badges.
