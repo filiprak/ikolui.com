@@ -7,3 +7,268 @@ meta:
     label: "[[_Code_]]"
 ---
 
+# Code
+
+<MetaDescription>
+The Code component provides a styled container for displaying code snippets with syntax highlighting support. It includes built-in copy-to-clipboard functionality and optional file download capability. Perfect for documentation, code examples, and displaying formatted code blocks.
+</MetaDescription>
+
+## Basic code block
+
+The Code component displays code in a monospace font with a styled background. Content is provided via the default slot.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkCode>
+const greeting = 'Hello, World!';
+console.log(greeting);
+  </IkCode>
+</template>
+<script setup>
+import { IkCode } from '@ikol/ui-kit/components/IkCode';
+</script>
+```
+
+## Copy to clipboard
+
+By default, the Code component includes a copy button. Click it to copy the code content to the clipboard. The button icon changes to a checkmark when copied.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkCode>
+function fibonacci(n) {
+  if (n <= 1) return n;
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+  </IkCode>
+</template>
+<script setup>
+import { IkCode } from '@ikol/ui-kit/components/IkCode';
+</script>
+```
+
+## Disable copy
+
+Set `copyable` to `false` to hide the copy button.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkCode :copyable="false">
+const data = { name: 'John', age: 30 };
+  </IkCode>
+</template>
+<script setup>
+import { IkCode } from '@ikol/ui-kit/components/IkCode';
+</script>
+```
+
+## Download as file
+
+Enable the download button using the `downloadable` prop. Click it to download the code as a file. Use the `filename` and `mime` props to customize the downloaded file.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkCode 
+    downloadable
+    filename="example.js"
+    mime="text/javascript"
+  >
+const example = () => {
+  return 'This code can be downloaded';
+};
+  </IkCode>
+</template>
+<script setup>
+import { IkCode } from '@ikol/ui-kit/components/IkCode';
+</script>
+```
+
+## Custom filename and MIME type
+
+Customize the downloaded file's name and MIME type for different file formats.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-flex-col ik-gap-4">
+    <IkCode 
+      downloadable
+      filename="component.vue"
+      mime="text/vue"
+    >
+&lt;template&gt;
+  &lt;div&gt;Vue Component&lt;/div&gt;
+&lt;/template&gt;
+    </IkCode>
+    <IkCode 
+      downloadable
+      filename="styles.css"
+      mime="text/css"
+    >
+.button {
+  background: blue;
+  color: white;
+}
+    </IkCode>
+    <IkCode 
+      downloadable
+      filename="data.json"
+      mime="application/json"
+    >
+{
+  "name": "Example",
+  "value": 123
+}
+    </IkCode>
+  </div>
+</template>
+<script setup>
+import { IkCode } from '@ikol/ui-kit/components/IkCode';
+</script>
+```
+
+## Both copy and download
+
+Enable both copy and download functionality simultaneously.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkCode 
+    copyable
+    downloadable
+    filename="example.ts"
+    mime="text/typescript"
+  >
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+const user: User = {
+  id: 1,
+  name: 'John Doe',
+  email: 'john@example.com'
+};
+  </IkCode>
+</template>
+<script setup>
+import { IkCode } from '@ikol/ui-kit/components/IkCode';
+</script>
+```
+
+## Long code blocks
+
+The Code component includes a scroll area for long code blocks, ensuring the content remains accessible while maintaining a reasonable height.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkCode>
+function complexAlgorithm(data) {
+  // Step 1: Validate input
+  if (!data || !Array.isArray(data)) {
+    throw new Error('Invalid input');
+  }
+  
+  // Step 2: Process data
+  const processed = data.map(item => {
+    return {
+      ...item,
+      processed: true,
+      timestamp: Date.now()
+    };
+  });
+  
+  // Step 3: Filter results
+  const filtered = processed.filter(item => {
+    return item.value > 0;
+  });
+  
+  // Step 4: Sort results
+  const sorted = filtered.sort((a, b) => {
+    return b.timestamp - a.timestamp;
+  });
+  
+  // Step 5: Return final result
+  return sorted;
+}
+  </IkCode>
+</template>
+<script setup>
+import { IkCode } from '@ikol/ui-kit/components/IkCode';
+</script>
+```
+
+## Different languages
+
+The Code component works with code from any language. The styling and functionality remain consistent.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-flex-col ik-gap-4">
+    <IkCode>
+# Python
+def hello_world():
+    print("Hello, World!")
+    </IkCode>
+    <IkCode>
+// JavaScript
+const helloWorld = () => {
+  console.log('Hello, World!');
+};
+    </IkCode>
+    <IkCode>
+/* CSS */
+.container {
+  display: flex;
+  justify-content: center;
+}
+    </IkCode>
+    <IkCode>
+-- SQL
+SELECT * FROM users WHERE active = true;
+    </IkCode>
+  </div>
+</template>
+<script setup>
+import { IkCode } from '@ikol/ui-kit/components/IkCode';
+</script>
+```
+
+## HTML content
+
+The Code component properly escapes and displays HTML content.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkCode>
+&lt;div class="container"&gt;
+  &lt;h1&gt;Title&lt;/h1&gt;
+  &lt;p&gt;Content&lt;/p&gt;
+&lt;/div&gt;
+  </IkCode>
+</template>
+<script setup>
+import { IkCode } from '@ikol/ui-kit/components/IkCode';
+</script>
+```
+
+## Code selection
+
+The code content is automatically selected when using the copy button, making it easy to manually copy specific portions if needed.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkCode>
+// Click the copy button to select all code
+// You can also manually select portions of the code
+const config = {
+  apiUrl: 'https://api.example.com',
+  timeout: 5000,
+  retries: 3
+};
+  </IkCode>
+</template>
+<script setup>
+import { IkCode } from '@ikol/ui-kit/components/IkCode';
+</script>
+```

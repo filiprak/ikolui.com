@@ -7,3 +7,234 @@ meta:
     label: "[[_Resource_]]"
 ---
 
+# Resource
+
+<MetaDescription>
+The Resource component provides a flexible way to display and interact with various types of resources like URLs, email addresses, phone numbers, or any text content. It supports copy-to-clipboard functionality, external links, and custom action buttons. Perfect for displaying clickable resources with hover actions.
+</MetaDescription>
+
+## Basic resource
+
+The Resource component displays text content. On hover, it shows a dotted underline to indicate it's interactive.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkResource>https://example.com</IkResource>
+</template>
+<script setup>
+import { IkResource } from '@ikol/ui-kit/components/IkResource';
+</script>
+```
+
+## Copyable resource
+
+Use the `copyable` prop to enable copy-to-clipboard functionality. A copy icon appears on hover, and clicking it copies the content to the clipboard.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-flex-col ik-gap-4">
+    <IkResource copyable>Copy this text</IkResource>
+    <IkResource copyable :value="copyText">
+      Custom value to copy
+    </IkResource>
+  </div>
+</template>
+<script setup>
+import { IkResource } from '@ikol/ui-kit/components/IkResource';
+import { ref } from 'vue';
+
+const copyText = ref('This will be copied instead of the slot content');
+</script>
+```
+
+## External link
+
+Use the `uri` prop to make the resource open an external link. The link opens in a new tab by default.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-flex-col ik-gap-4">
+    <IkResource uri="https://github.com">GitHub</IkResource>
+    <IkResource uri="https://vuejs.org" target="_self">Vue.js (same tab)</IkResource>
+  </div>
+</template>
+<script setup>
+import { IkResource } from '@ikol/ui-kit/components/IkResource';
+</script>
+```
+
+## Email link
+
+Use the `email` prop with `uri` to create a mailto link. The email address should be provided in the `uri` prop.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkResource uri="contact@example.com" email>contact@example.com</IkResource>
+</template>
+<script setup>
+import { IkResource } from '@ikol/ui-kit/components/IkResource';
+</script>
+```
+
+## Phone link
+
+Use the `phone` prop with `uri` to create a tel link for phone numbers.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkResource uri="+1234567890" phone>+1 (234) 567-890</IkResource>
+</template>
+<script setup>
+import { IkResource } from '@ikol/ui-kit/components/IkResource';
+</script>
+```
+
+## Combined features
+
+Combine multiple features like copyable and external link. The component will show both action icons on hover.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-flex-col ik-gap-4">
+    <IkResource 
+      uri="https://example.com" 
+      copyable
+    >
+      https://example.com
+    </IkResource>
+    <IkResource 
+      uri="user@example.com" 
+      email
+      copyable
+    >
+      user@example.com
+    </IkResource>
+  </div>
+</template>
+<script setup>
+import { IkResource } from '@ikol/ui-kit/components/IkResource';
+</script>
+```
+
+## Show actions always
+
+By default, action icons only appear on hover. Use the `show_actions` prop to always display them.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-flex-col ik-gap-4">
+    <IkResource copyable uri="https://example.com">
+      Hover to see actions
+    </IkResource>
+    <IkResource copyable uri="https://example.com" show_actions>
+      Actions always visible
+    </IkResource>
+  </div>
+</template>
+<script setup>
+import { IkResource } from '@ikol/ui-kit/components/IkResource';
+</script>
+```
+
+## No wrap
+
+Use the `no_wrap` prop to prevent text wrapping. Useful for displaying long URLs or codes on a single line.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-flex-col ik-gap-4" style="max-width: 300px;">
+    <IkResource copyable>
+      This is a very long resource text that will wrap by default
+    </IkResource>
+    <IkResource copyable no_wrap>
+      This is a very long resource text that will not wrap
+    </IkResource>
+  </div>
+</template>
+<script setup>
+import { IkResource } from '@ikol/ui-kit/components/IkResource';
+</script>
+```
+
+## Custom action slot
+
+Use the `action` slot to add custom action buttons or icons alongside the default actions.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkResource copyable uri="https://example.com">
+    <template #action>
+      <IkButton circle ghost design="primary" size="xs">
+        <IkIcon icon="star" />
+      </IkButton>
+    </template>
+    Resource with custom action
+  </IkResource>
+</template>
+<script setup>
+import { IkResource } from '@ikol/ui-kit/components/IkResource';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
+</script>
+```
+
+## Empty state
+
+When no actions are provided (no `copyable`, `uri`, or `action` slot), the component displays as a simple container without hover effects.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkResource>
+    Simple text without actions
+  </IkResource>
+</template>
+<script setup>
+import { IkResource } from '@ikol/ui-kit/components/IkResource';
+</script>
+```
+
+## Complex example
+
+A complete example combining multiple features for a resource management interface.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-flex-col ik-gap-6">
+    <div>
+      <h4 class="ik-text--sm ik-mb-2">Website</h4>
+      <IkResource 
+        uri="https://example.com" 
+        copyable
+        show_actions
+      >
+        https://example.com
+      </IkResource>
+    </div>
+    <div>
+      <h4 class="ik-text--sm ik-mb-2">Email</h4>
+      <IkResource 
+        uri="contact@example.com" 
+        email
+        copyable
+        show_actions
+      >
+        contact@example.com
+      </IkResource>
+    </div>
+    <div>
+      <h4 class="ik-text--sm ik-mb-2">Phone</h4>
+      <IkResource 
+        uri="+1234567890" 
+        phone
+        copyable
+        show_actions
+      >
+        +1 (234) 567-890
+      </IkResource>
+    </div>
+  </div>
+</template>
+<script setup>
+import { IkResource } from '@ikol/ui-kit/components/IkResource';
+</script>
+```

@@ -7,3 +7,258 @@ meta:
     label: "[[_Badge_]]"
 ---
 
+# Badge
+
+<MetaDescription>
+The Badge component displays a small indicator, typically used to show notifications, counts, or status indicators. It can be positioned as an overlay on other elements or displayed inline. Supports numeric values, custom content, and various design colors.
+</MetaDescription>
+
+## Basic badge
+
+The Badge component displays a dot indicator. By default, it shows as a small circular badge positioned at the bottom-right of its content.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkBadge>
+    <IkButton>Notifications</IkButton>
+  </IkBadge>
+</template>
+<script setup>
+import { IkBadge } from '@ikol/ui-kit/components/IkBadge';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## Badge with number
+
+Use the `number` prop to display a numeric value. Numbers less than 10 are shown as-is, while 10 or greater display as "9+".
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-gap-4 ik-items-center">
+    <IkBadge :number="3">
+      <IkButton>Messages</IkButton>
+    </IkBadge>
+    <IkBadge :number="15">
+      <IkButton>Notifications</IkButton>
+    </IkBadge>
+    <IkBadge :number="0">
+      <IkButton>Empty</IkButton>
+    </IkBadge>
+  </div>
+</template>
+<script setup>
+import { IkBadge } from '@ikol/ui-kit/components/IkBadge';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## Show zero
+
+By default, badges with a value of 0 are hidden. Use the `show_zero` prop to display them.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-gap-4 ik-items-center">
+    <IkBadge :number="0" show_zero>
+      <IkButton>With Zero</IkButton>
+    </IkBadge>
+    <IkBadge :number="0">
+      <IkButton>Without Zero</IkButton>
+    </IkBadge>
+  </div>
+</template>
+<script setup>
+import { IkBadge } from '@ikol/ui-kit/components/IkBadge';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## Design colors
+
+The Badge supports multiple design colors to convey different meanings: `primary`, `success`, `error`, `accent`, and `default`.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-gap-4 ik-items-center ik-flex-wrap">
+    <IkBadge design="primary" :number="5">
+      <IkButton>Primary</IkButton>
+    </IkBadge>
+    <IkBadge design="success" :number="3">
+      <IkButton>Success</IkButton>
+    </IkBadge>
+    <IkBadge design="error" :number="12">
+      <IkButton>Error</IkButton>
+    </IkBadge>
+    <IkBadge design="accent" :number="7">
+      <IkButton>Accent</IkButton>
+    </IkBadge>
+    <IkBadge design="default" :number="2">
+      <IkButton>Default</IkButton>
+    </IkBadge>
+  </div>
+</template>
+<script setup>
+import { IkBadge } from '@ikol/ui-kit/components/IkBadge';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## Positioning
+
+Control the badge position using the `top` and `left` props. By default, badges appear at the bottom-right.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-gap-4 ik-items-center ik-flex-wrap">
+    <IkBadge :number="3">
+      <IkButton>Bottom Right</IkButton>
+    </IkBadge>
+    <IkBadge :number="3" top>
+      <IkButton>Top Right</IkButton>
+    </IkBadge>
+    <IkBadge :number="3" left>
+      <IkButton>Bottom Left</IkButton>
+    </IkBadge>
+    <IkBadge :number="3" top left>
+      <IkButton>Top Left</IkButton>
+    </IkBadge>
+  </div>
+</template>
+<script setup>
+import { IkBadge } from '@ikol/ui-kit/components/IkBadge';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## Custom size
+
+Adjust the badge size using the `size` prop. The default size is 12px.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-gap-4 ik-items-center ik-flex-wrap">
+    <IkBadge :size="8" :number="3">
+      <IkButton>Small (8px)</IkButton>
+    </IkBadge>
+    <IkBadge :size="12" :number="3">
+      <IkButton>Default (12px)</IkButton>
+    </IkBadge>
+    <IkBadge :size="16" :number="3">
+      <IkButton>Medium (16px)</IkButton>
+    </IkBadge>
+    <IkBadge :size="20" :number="3">
+      <IkButton>Large (20px)</IkButton>
+    </IkBadge>
+  </div>
+</template>
+<script setup>
+import { IkBadge } from '@ikol/ui-kit/components/IkBadge';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## Outer mode
+
+Use the `outer` prop to display the badge inline next to the content instead of overlaying it. This is useful for displaying badges in lists or inline text.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-flex-col ik-gap-4">
+    <IkBadge outer :number="5">
+      <span>Inbox</span>
+    </IkBadge>
+    <IkBadge outer design="success" :number="12">
+      <span>Unread Messages</span>
+    </IkBadge>
+    <IkBadge outer design="error" :number="3">
+      <span>Pending Tasks</span>
+    </IkBadge>
+  </div>
+</template>
+<script setup>
+import { IkBadge } from '@ikol/ui-kit/components/IkBadge';
+</script>
+```
+
+## Custom content
+
+Use the `content` slot to provide custom content inside the badge dot instead of a number.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-gap-4 ik-items-center ik-flex-wrap">
+    <IkBadge>
+      <template #content>
+        <IkIcon icon="star" style="font-size: 8px;" />
+      </template>
+      <IkButton>Favorite</IkButton>
+    </IkBadge>
+    <IkBadge design="success">
+      <template #content>
+        <IkIcon icon="check" style="font-size: 8px;" />
+      </template>
+      <IkButton>Verified</IkButton>
+    </IkBadge>
+  </div>
+</template>
+<script setup>
+import { IkBadge } from '@ikol/ui-kit/components/IkBadge';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
+</script>
+```
+
+## Click handler
+
+The Badge component supports an `onClick` handler for interactive badges.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkBadge 
+    :number="count" 
+    design="error"
+    :onClick="handleClick"
+  >
+    <IkButton>Click Badge</IkButton>
+  </IkBadge>
+  <p class="ik-text--sm ik-mt-4">Clicked {{ clickCount }} times</p>
+</template>
+<script setup>
+import { IkBadge } from '@ikol/ui-kit/components/IkBadge';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { ref } from 'vue';
+
+const count = ref(5);
+const clickCount = ref(0);
+
+function handleClick() {
+  clickCount.value++;
+  count.value = Math.max(0, count.value - 1);
+}
+</script>
+```
+
+## Show/hide
+
+Control badge visibility using the `show` prop. This is useful for conditionally displaying badges.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-gap-4 ik-items-center">
+    <IkBadge :number="5" :show="isVisible">
+      <IkButton>Toggle Badge</IkButton>
+    </IkBadge>
+    <IkButton @click="isVisible = !isVisible">
+      {{ isVisible ? 'Hide' : 'Show' }} Badge
+    </IkButton>
+  </div>
+</template>
+<script setup>
+import { IkBadge } from '@ikol/ui-kit/components/IkBadge';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { ref } from 'vue';
+
+const isVisible = ref(true);
+</script>
+```
