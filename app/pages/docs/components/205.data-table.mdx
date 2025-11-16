@@ -416,7 +416,7 @@ const items = ref(
 
 ## Custom header
 
-Override the default header using the `header` slot for complete control over header rendering.
+Override the default header using the `header` slot for complete control over header rendering. Make sure to add the `ik-data-table-header__cell` class to your `<th>` elements to maintain consistent padding with the default header.
 
 ```vue title="[[_Source code_]]" preview
 <template>
@@ -428,13 +428,13 @@ Override the default header using the `header` slot for complete control over he
   >
     <template #header="{ headers, all_selected, toggleSelectAll }">
       <tr>
-        <th>
+        <th class="ik-data-table-header__cell">
           <IkCheckbox 
             :model-value="all_selected" 
             @update:model-value="toggleSelectAll"
           />
         </th>
-        <th v-for="header in headers" :key="header.value">
+        <th v-for="header in headers" :key="header.value" class="ik-data-table-header__cell">
           {{ header.text.toUpperCase() }}
         </th>
       </tr>
@@ -475,7 +475,7 @@ Customize the empty state message when no data is available using the `empty` sl
     <template #empty>
       <tr>
         <td :colspan="3" style="text-align: center; padding: 40px;">
-          <IkIcon icon="inbox" size="48" style="opacity: 0.5; margin-bottom: 16px;" />
+          <IkIcon icon="inbox" size_px="72" style="opacity: 0.5; margin-bottom: 16px;" />
           <p class="ik-text--default-light">No data available</p>
         </td>
       </tr>
