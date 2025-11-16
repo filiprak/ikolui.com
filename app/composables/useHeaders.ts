@@ -1,4 +1,4 @@
-export function useHeaders() {
+export function useHeaders(el?: Ref<HTMLElement | undefined>) {
     const headers = useState<Array<{
         uid: number,
         id: string,
@@ -6,7 +6,38 @@ export function useHeaders() {
         text: string
     }>>('headers-on-page', () => []);
 
+    const activeIds = useState<Set<string>>('headers-active', () => new Set());
+    const observer = ref<IntersectionObserver>();
+
+    const handleIntersect: IntersectionObserverCallback = (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                activeIds.value.add(entry.target.id);
+            } else {
+                activeIds.value.delete(entry.target.id);
+            }
+        })
+    }
+
+    if (el) {
+        onMounted(() => {
+            observer.value = new IntersectionObserver(handleIntersect, {
+                root: null,
+                // rootMargin: '0px 0px -70% 0px',
+                threshold: 0,
+            });
+
+            el.value && observer.value?.observe(el.value);
+        });
+
+        onUnmounted(() => {
+            observer.value?.disconnect();
+            observer.value = undefined;
+        });
+    }
+
     return {
         headers,
+        active_headers: activeIds,
     };
 }

@@ -1,5 +1,6 @@
 <template>
-    <component :is="tag"
+    <component ref="el"
+               :is="tag"
                :id="slug">
         <template v-if="level > 1">
             <a :href="`#${slug}`">
@@ -18,14 +19,16 @@ const props = defineProps<{
     level: number,
 }>();
 
+const el = ref<HTMLElement>();
 const text = useChildText();
 const tag = computed(() => `h${props.level}`);
 const slug = computed(() => slugify(text));
 
+const { headers } = useHeaders(el);
+
 if (import.meta.server) {
     const uid = getCurrentInstance()?.uid!;
 
-    const { headers } = useHeaders();
     const conf = {
         uid,
         id: slug.value,
