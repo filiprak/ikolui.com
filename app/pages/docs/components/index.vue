@@ -1,5 +1,5 @@
 <script setup lang="ts">
 definePageMeta({
-    redirect: '/docs/components/buttons',
+    redirect: '/docs/components/button',
 });
 </script>
