@@ -21,20 +21,7 @@
             </div>
             <div :class="$style.right"
                  class="hide-mobile">
-                <NuxtLink v-for="header in headers"
-                          no-prefetch
-                          :to="`#${header.id}`"
-                          custom
-                          :key="header.uid">
-                    <template #default="{ href, isActive }">
-                        <div class="ik-py-3 ik-pr-5"
-                             :style="{ paddingLeft: `${(header.level - 1) * 16}px` }">
-                            <a :href="href">
-                                {{ header.text }}
-                            </a>
-                        </div>
-                    </template>
-                </NuxtLink>
+                <DocsContentNav />
             </div>
         </div>
     </Section>
@@ -53,7 +40,6 @@ definePageMeta({
 
 const menu_open = ref(false);
 const scroll = useBodyScroll();
-const { headers } = useHeaders();
 
 watch(menu_open, (v) => {
     scroll.is_locked.value = v;
