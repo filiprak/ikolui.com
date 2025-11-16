@@ -32,11 +32,15 @@ Use the `copyable` prop to enable copy-to-clipboard functionality. A copy icon a
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <div class="ik-flex ik-flex-col ik-gap-4">
-    <IkResource copyable>Copy this text</IkResource>
-    <IkResource copyable :value="copyText">
-      Custom value to copy
-    </IkResource>
+  <div>
+    <div class="ik-mb-4">
+      <IkResource copyable>Copy this text</IkResource>
+    </div>
+    <div>
+      <IkResource copyable :value="copyText">
+        Custom value to copy
+      </IkResource>
+    </div>
   </div>
 </template>
 <script setup>
@@ -53,9 +57,13 @@ Use the `uri` prop to make the resource open an external link. The link opens in
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <div class="ik-flex ik-flex-col ik-gap-4">
-    <IkResource uri="https://github.com">GitHub</IkResource>
-    <IkResource uri="https://vuejs.org" target="_self">Vue.js (same tab)</IkResource>
+  <div>
+    <div class="ik-mb-4">
+      <IkResource uri="https://github.com">GitHub</IkResource>
+    </div>
+    <div>
+      <IkResource uri="https://vuejs.org" target="_self">Vue.js (same tab)</IkResource>
+    </div>
   </div>
 </template>
 <script setup>
@@ -95,20 +103,24 @@ Combine multiple features like copyable and external link. The component will sh
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <div class="ik-flex ik-flex-col ik-gap-4">
-    <IkResource 
-      uri="https://example.com" 
-      copyable
-    >
-      https://example.com
-    </IkResource>
-    <IkResource 
-      uri="user@example.com" 
-      email
-      copyable
-    >
-      user@example.com
-    </IkResource>
+  <div>
+    <div class="ik-mb-4">
+      <IkResource 
+        uri="https://example.com" 
+        copyable
+      >
+        https://example.com
+      </IkResource>
+    </div>
+    <div>
+      <IkResource 
+        uri="user@example.com" 
+        email
+        copyable
+      >
+        user@example.com
+      </IkResource>
+    </div>
   </div>
 </template>
 <script setup>
@@ -122,13 +134,17 @@ By default, action icons only appear on hover. Use the `show_actions` prop to al
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <div class="ik-flex ik-flex-col ik-gap-4">
-    <IkResource copyable uri="https://example.com">
-      Hover to see actions
-    </IkResource>
-    <IkResource copyable uri="https://example.com" show_actions>
-      Actions always visible
-    </IkResource>
+  <div>
+    <div class="ik-mb-4">
+      <IkResource copyable uri="https://example.com">
+        Hover to see actions
+      </IkResource>
+    </div>
+    <div>
+      <IkResource copyable uri="https://example.com" show_actions>
+        Actions always visible
+      </IkResource>
+    </div>
   </div>
 </template>
 <script setup>
@@ -142,13 +158,17 @@ Use the `no_wrap` prop to prevent text wrapping. Useful for displaying long URLs
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <div class="ik-flex ik-flex-col ik-gap-4" style="max-width: 300px;">
-    <IkResource copyable>
-      This is a very long resource text that will wrap by default
-    </IkResource>
-    <IkResource copyable no_wrap>
-      This is a very long resource text that will not wrap
-    </IkResource>
+  <div style="max-width: 300px;">
+    <div class="ik-mb-4">
+      <IkResource copyable>
+        This is a very long resource text that will wrap by default
+      </IkResource>
+    </div>
+    <div>
+      <IkResource copyable no_wrap>
+        This is a very long resource text that will not wrap
+      </IkResource>
+    </div>
   </div>
 </template>
 <script setup>
@@ -199,38 +219,44 @@ A complete example combining multiple features for a resource management interfa
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <div class="ik-flex ik-flex-col ik-gap-6">
-    <div>
+  <div>
+    <div class="ik-mb-6">
       <h4 class="ik-text--sm ik-mb-2">Website</h4>
-      <IkResource 
-        uri="https://example.com" 
-        copyable
-        show_actions
-      >
-        https://example.com
-      </IkResource>
+      <div>
+        <IkResource 
+          uri="https://example.com" 
+          copyable
+          show_actions
+        >
+          https://example.com
+        </IkResource>
+      </div>
     </div>
-    <div>
+    <div class="ik-mb-6">
       <h4 class="ik-text--sm ik-mb-2">Email</h4>
-      <IkResource 
-        uri="contact@example.com" 
-        email
-        copyable
-        show_actions
-      >
-        contact@example.com
-      </IkResource>
+      <div>
+        <IkResource 
+          uri="contact@example.com" 
+          email
+          copyable
+          show_actions
+        >
+          contact@example.com
+        </IkResource>
+      </div>
     </div>
     <div>
       <h4 class="ik-text--sm ik-mb-2">Phone</h4>
-      <IkResource 
-        uri="+1234567890" 
-        phone
-        copyable
-        show_actions
-      >
-        +1 (234) 567-890
-      </IkResource>
+      <div>
+        <IkResource 
+          uri="+1234567890" 
+          phone
+          copyable
+          show_actions
+        >
+          +1 (234) 567-890
+        </IkResource>
+      </div>
     </div>
   </div>
 </template>
