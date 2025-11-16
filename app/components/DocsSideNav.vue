@@ -90,7 +90,7 @@ const subsections: Record<string, string> = {
     media: '[[_Media_]]',
     navigation: '[[_Navigation_]]',
     layout: '[[_Layout_]]',
-    utils: '[[_Utilities_]]',
+    utility: '[[_Utilities_]]',
 };
 
 const sections = ref<Section[]>([
