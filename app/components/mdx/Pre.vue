@@ -1,6 +1,5 @@
 <template>
     <div v-show="show"
-         class="pre"
          :class="$style.pre">
         <Preview :class="$style.preview" />
         <div :class="$style.wrapper">
@@ -27,7 +26,9 @@
             <div :class="$style.actions">
                 <CopyBtn :text="code || ''" />
             </div>
-            <Pre v-bind="$attrs" />
+            <div :class="$style.source">
+                <Pre v-bind="$attrs" />
+            </div>
         </div>
     </div>
 </template>
@@ -111,11 +112,17 @@ const icon = computed(() => {
     background-color: #111;
 }
 
-.pre pre {
+.source pre {
+    line-height: var(--s-8);
+    font-size: var(--text-sm);
     margin-top: 0 !important;
+    margin: var(--s-8) 0;
+    border-radius: var(--radius-3);
+    border: 1px solid var(--border-neutral-light-default);
+    padding: var(--s-9);
 }
 
-.pre:has(.header) pre {
+.pre:has(.header) .source pre {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }

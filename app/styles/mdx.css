@@ -116,7 +116,7 @@
     display: none !important;
 }
 
-.mdx-wrapper code {
+.mdx-wrapper code:not(pre code) {
     display: inline-block;
     line-height: var(--s-8);
     font-size: var(--text-sm);
@@ -124,21 +124,6 @@
     padding: var(--s-1) var(--s-3);
     border-radius: var(--radius-3);
     background-color: rgba(from var(--background-neutral-light-default) r g b / 0.2);
-}
-
-.mdx-wrapper pre {
-    margin: var(--s-8) 0;
-    border-radius: var(--radius-3);
-    border: 1px solid var(--border-neutral-light-default);
-}
-
-.mdx-wrapper pre > code {
-    border: initial;
-    border-radius: initial;
-    background-color: initial;
-    display: block;
-    padding: var(--s-6) var(--s-7);
-    overflow: auto;
 }
 
 .ik-theme--dark .shiki,
