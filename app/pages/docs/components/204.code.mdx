@@ -19,8 +19,9 @@ The Code component displays code in a monospace font with a styled background. C
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <IkCode>{{ code1 }}</IkCode>
+    <IkCode>{{ code1 }}</IkCode>
 </template>
+
 <script setup>
 import { IkCode } from '@ikol/ui-kit/components/IkCode';
 import { ref } from 'vue';
@@ -36,15 +37,16 @@ By default, the Code component includes a copy button. Click it to copy the code
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <IkCode>{{ code2 }}</IkCode>
+    <IkCode>{{ code2 }}</IkCode>
 </template>
+
 <script setup>
 import { IkCode } from '@ikol/ui-kit/components/IkCode';
 import { ref } from 'vue';
 
 const code2 = ref(`function fibonacci(n) {
-  if (n <= 1) return n;
-  return fibonacci(n - 1) + fibonacci(n - 2);
+    if (n <= 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
 }`);
 </script>
 ```
@@ -55,18 +57,21 @@ Enable the download button using the `downloadable` prop. Click it to download t
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <IkCode 
-    downloadable
-    filename="example.js"
-    mime="text/javascript"
-  >{{ code3 }}</IkCode>
+    <IkCode
+        downloadable
+        filename="example.js"
+        mime="text/javascript"
+    >
+        {{ code3 }}
+    </IkCode>
 </template>
+
 <script setup>
 import { IkCode } from '@ikol/ui-kit/components/IkCode';
 import { ref } from 'vue';
 
 const code3 = ref(`const example = () => {
-  return 'This code can be downloaded';
+    return 'This code can be downloaded';
 };`);
 </script>
 ```
@@ -77,40 +82,51 @@ Customize the downloaded file's name and MIME type for different file formats.
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <div class="ik-flex ik-flex-col ik-gap-4">
-    <IkCode 
-      downloadable
-      filename="component.vue"
-      mime="text/vue"
-    >{{ code4a }}</IkCode>
-    <IkCode 
-      downloadable
-      filename="styles.css"
-      mime="text/css"
-    >{{ code4b }}</IkCode>
-    <IkCode 
-      downloadable
-      filename="data.json"
-      mime="application/json"
-    >{{ code4c }}</IkCode>
-  </div>
+    <div class="ik-mb-4">
+        <IkCode
+            downloadable
+            filename="component.vue"
+            mime="text/vue"
+        >
+            {{ code4a }}
+        </IkCode>
+    </div>
+    <div class="ik-mb-4">
+        <IkCode
+            downloadable
+            filename="styles.css"
+            mime="text/css"
+        >
+            {{ code4b }}
+        </IkCode>
+    </div>
+    <div class="ik-mb-4">
+        <IkCode
+            downloadable
+            filename="data.json"
+            mime="application/json"
+        >
+            {{ code4c }}
+        </IkCode>
+    </div>
 </template>
+
 <script setup>
 import { IkCode } from '@ikol/ui-kit/components/IkCode';
 import { ref } from 'vue';
 
 const code4a = ref(`<template>
-  <div>Vue Component</div>
+    <div>Vue Component</div>
 </template>`);
 
 const code4b = ref(`.button {
-  background: blue;
-  color: white;
+    background: blue;
+    color: white;
 }`);
 
 const code4c = ref(`{
-  "name": "Example",
-  "value": 123
+    "name": "Example",
+    "value": 123
 }`);
 </script>
 ```
