@@ -27,6 +27,7 @@
                     </div>
                     <NuxtLink :to="page.path"
                               custom
+                              :prefetch-on="{ visibility: false, interaction: true }"
                               @click="emit('navigate')">
                         <template #default="{ href, isActive: active }">
                             <IkListItem :link="href"
@@ -87,6 +88,7 @@ const subsections: Record<string, string> = {
     feedback: '[[_Feedback_]]',
     layout: '[[_Layout_]]',
     data: '[[_Data display_]]',
+    media: '[[_Media_]]',
     utils: '[[_Utilities_]]',
     navigation: '[[_Navigation_]]',
 };
