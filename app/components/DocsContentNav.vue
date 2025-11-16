@@ -7,9 +7,9 @@
                   :key="header.uid">
             <template #default="{ href, isActive }">
                 <a class="ik-py-3 ik-pr-5"
-                   :class="$style.item"
+                   :class="{ [$style.item]: true, [$style.top]: header.level == 1 }"
                    :href="href"
-                   :style="{ paddingLeft: `${(header.level - 1) * 16}px` }">
+                   :style="{ paddingLeft: `${(header.level) * 16}px` }">
                     {{ header.text }}
                 </a>
             </template>
@@ -23,6 +23,17 @@ const { headers } = useHeaders();
 .item {
     display: block;
     text-decoration: none;
-    
+    color: var(--content-neutral-light-default);
+    border-left: 1px solid transparent;
+}
+
+.item:hover {
+    color: var(--content-neutral-regular-hover);
+    border-left: 1px solid var(--border-neutral-regular-hover);
+}
+
+.item.top {
+    font-weight: var(--text-semibold);
+    color: var(--content-neutral-strong-default);
 }
 </style>
