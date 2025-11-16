@@ -7,3 +7,489 @@ meta:
     label: "[[_Data Table_]]"
 ---
 
+# Data Table
+
+<MetaDescription>
+The Data Table component provides a powerful and flexible way to display tabular data with features including sorting, row selection, pagination, custom actions, and customizable styling. Perfect for displaying large datasets with interactive capabilities.
+</MetaDescription>
+
+## Basic usage
+
+Provide an array of items and headers to display data in a table format. Each header defines a column with a `text` label and a `value` key that maps to the item properties.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDataTable
+    :items="users"
+    :headers="headers"
+  />
+</template>
+<script setup>
+import { IkDataTable } from '@ikol/ui-kit/components/IkDataTable';
+import { ref } from 'vue';
+
+const headers = [
+  { text: 'Name', value: 'name' },
+  { text: 'Email', value: 'email' },
+  { text: 'Role', value: 'role' },
+];
+
+const users = ref([
+  { name: 'John Doe', email: 'john@example.com', role: 'Admin' },
+  { name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
+  { name: 'Bob Johnson', email: 'bob@example.com', role: 'User' },
+]);
+</script>
+```
+
+## Sorting
+
+The table supports sorting by clicking on column headers. Click once for ascending, twice for descending, and a third time to reset. The `ik-sort` event is emitted when sorting changes, allowing you to handle server-side sorting.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDataTable
+    :items="products"
+    :headers="headers"
+    @ik-sort="handleSort"
+  />
+</template>
+<script setup>
+import { IkDataTable } from '@ikol/ui-kit/components/IkDataTable';
+import { ref } from 'vue';
+
+const headers = [
+  { text: 'Product', value: 'name' },
+  { text: 'Price', value: 'price' },
+  { text: 'Stock', value: 'stock' },
+];
+
+const products = ref([
+  { name: 'Laptop', price: 999, stock: 15 },
+  { name: 'Mouse', price: 25, stock: 50 },
+  { name: 'Keyboard', price: 75, stock: 30 },
+]);
+
+function handleSort(key, order) {
+  console.log('Sorting by:', key, order);
+}
+</script>
+```
+
+## Row selection
+
+Enable row selection using the `selectable` prop. Use `v-model:selected` to bind selected items. The `unique_key` prop helps identify items when using objects.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDataTable
+    :items="users"
+    :headers="headers"
+    selectable
+    unique_key="id"
+    v-model:selected="selected"
+  />
+  <p v-if="selected.length" class="ik-text--sm ik-mt-4">
+    Selected: {{ selected.length }} item(s)
+  </p>
+</template>
+<script setup>
+import { IkDataTable } from '@ikol/ui-kit/components/IkDataTable';
+import { ref } from 'vue';
+
+const headers = [
+  { text: 'Name', value: 'name' },
+  { text: 'Email', value: 'email' },
+  { text: 'Role', value: 'role' },
+];
+
+const users = ref([
+  { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
+  { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
+  { id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'User' },
+]);
+
+const selected = ref([]);
+</script>
+```
+
+## Selected actions
+
+When items are selected, you can provide custom actions using the `selected-actions` slot. The slot provides access to selected items, counts, and helper functions.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDataTable
+    :items="users"
+    :headers="headers"
+    selectable
+    unique_key="id"
+    v-model:selected="selected"
+  >
+    <template #selected-actions="{ selected, selected_count, clearSelection }">
+      <div style="display: flex; align-items: center; gap: 8px; padding: 8px;">
+        <span class="ik-text--sm">{{ selected_count }} selected</span>
+        <IkButton size="xs" design="error" @click="handleDelete(selected); clearSelection()">
+          Delete
+        </IkButton>
+        <IkButton size="xs" design="primary" @click="handleExport(selected)">
+          Export
+        </IkButton>
+      </div>
+    </template>
+  </IkDataTable>
+</template>
+<script setup>
+import { IkDataTable } from '@ikol/ui-kit/components/IkDataTable';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { ref } from 'vue';
+
+const headers = [
+  { text: 'Name', value: 'name' },
+  { text: 'Email', value: 'email' },
+  { text: 'Role', value: 'role' },
+];
+
+const users = ref([
+  { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
+  { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
+  { id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'User' },
+]);
+
+const selected = ref([]);
+
+function handleDelete(items) {
+  console.log('Deleting:', items);
+}
+
+function handleExport(items) {
+  console.log('Exporting:', items);
+}
+</script>
+```
+
+## Actions column
+
+Add an actions column with a popover menu using the `with_actions` prop. Customize the actions using the `actions-popover` slot.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDataTable
+    :items="users"
+    :headers="headers"
+    with_actions
+  >
+    <template #actions-popover="{ item }">
+      <IkButton flat block @click="handleEdit(item)">Edit</IkButton>
+      <IkButton flat block design="error" @click="handleDelete(item)">Delete</IkButton>
+    </template>
+  </IkDataTable>
+</template>
+<script setup>
+import { IkDataTable } from '@ikol/ui-kit/components/IkDataTable';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { ref } from 'vue';
+
+const headers = [
+  { text: 'Name', value: 'name' },
+  { text: 'Email', value: 'email' },
+  { text: 'Role', value: 'role' },
+];
+
+const users = ref([
+  { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
+  { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
+  { id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'User' },
+]);
+
+function handleEdit(item) {
+  console.log('Editing:', item);
+}
+
+function handleDelete(item) {
+  console.log('Deleting:', item);
+}
+</script>
+```
+
+## Custom item rendering
+
+Customize how individual cells are rendered using the `item` slot. The slot provides access to the item and its index.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDataTable
+    :items="products"
+    :headers="headers"
+  >
+    <template #item="{ item }">
+      <td>{{ item.name }}</td>
+      <td>
+        <span style="color: var(--content-success-strong-default); font-weight: bold;">
+          ${{ item.price }}
+        </span>
+      </td>
+      <td>
+        <IkChip 
+          :design="item.stock > 20 ? 'success' : 'error'" 
+          size="xs"
+        >
+          {{ item.stock }} in stock
+        </IkChip>
+      </td>
+    </template>
+  </IkDataTable>
+</template>
+<script setup>
+import { IkDataTable } from '@ikol/ui-kit/components/IkDataTable';
+import { IkChip } from '@ikol/ui-kit/components/IkChip';
+import { ref } from 'vue';
+
+const headers = [
+  { text: 'Product', value: 'name' },
+  { text: 'Price', value: 'price' },
+  { text: 'Stock', value: 'stock' },
+];
+
+const products = ref([
+  { name: 'Laptop', price: 999, stock: 15 },
+  { name: 'Mouse', price: 25, stock: 50 },
+  { name: 'Keyboard', price: 75, stock: 30 },
+]);
+</script>
+```
+
+## Pagination
+
+Enable pagination with infinite scroll using the `pagination` prop and `ik-load-more` event. The table will automatically trigger load more when scrolling near the bottom.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDataTable
+    :items="items"
+    :headers="headers"
+    :pagination="pagination"
+    :pagination_loading="loading"
+    @ik-load-more="loadMore"
+  />
+</template>
+<script setup>
+import { IkDataTable } from '@ikol/ui-kit/components/IkDataTable';
+import { ref } from 'vue';
+
+const headers = [
+  { text: 'ID', value: 'id' },
+  { text: 'Name', value: 'name' },
+  { text: 'Value', value: 'value' },
+];
+
+const items = ref([
+  { id: 1, name: 'Item 1', value: 100 },
+  { id: 2, name: 'Item 2', value: 200 },
+  { id: 3, name: 'Item 3', value: 300 },
+]);
+
+const pagination = ref({
+  offset: 3,
+  has_more: true,
+});
+
+const loading = ref(false);
+
+async function loadMore() {
+  loading.value = true;
+  // Simulate API call
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  
+  const newItems = Array.from({ length: 3 }, (_, i) => ({
+    id: items.value.length + i + 1,
+    name: `Item ${items.value.length + i + 1}`,
+    value: (items.value.length + i + 1) * 100,
+  }));
+  
+  items.value.push(...newItems);
+  pagination.value.offset = items.value.length;
+  pagination.value.has_more = items.value.length < 15;
+  loading.value = false;
+}
+</script>
+```
+
+## Styling variants
+
+Customize the table appearance using styling props.
+
+### Transparent background
+
+Use the `transparent` prop to remove the table background.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDataTable
+    :items="users"
+    :headers="headers"
+    transparent
+  />
+</template>
+<script setup>
+import { IkDataTable } from '@ikol/ui-kit/components/IkDataTable';
+import { ref } from 'vue';
+
+const headers = [
+  { text: 'Name', value: 'name' },
+  { text: 'Email', value: 'email' },
+  { text: 'Role', value: 'role' },
+];
+
+const users = ref([
+  { name: 'John Doe', email: 'john@example.com', role: 'Admin' },
+  { name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
+  { name: 'Bob Johnson', email: 'bob@example.com', role: 'User' },
+]);
+</script>
+```
+
+### Separated rows
+
+Use the `separated` prop to add borders between rows.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDataTable
+    :items="users"
+    :headers="headers"
+    separated
+  />
+</template>
+<script setup>
+import { IkDataTable } from '@ikol/ui-kit/components/IkDataTable';
+import { ref } from 'vue';
+
+const headers = [
+  { text: 'Name', value: 'name' },
+  { text: 'Email', value: 'email' },
+  { text: 'Role', value: 'role' },
+];
+
+const users = ref([
+  { name: 'John Doe', email: 'john@example.com', role: 'Admin' },
+  { name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
+  { name: 'Bob Johnson', email: 'bob@example.com', role: 'User' },
+]);
+</script>
+```
+
+## Max height
+
+Limit the table height using the `max_height` prop. The table will become scrollable when content exceeds the maximum height.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDataTable
+    :items="items"
+    :headers="headers"
+    :max_height="300"
+  />
+</template>
+<script setup>
+import { IkDataTable } from '@ikol/ui-kit/components/IkDataTable';
+import { ref } from 'vue';
+
+const headers = [
+  { text: 'ID', value: 'id' },
+  { text: 'Name', value: 'name' },
+  { text: 'Description', value: 'description' },
+];
+
+const items = ref(
+  Array.from({ length: 20 }, (_, i) => ({
+    id: i + 1,
+    name: `Item ${i + 1}`,
+    description: `Description for item ${i + 1}`,
+  }))
+);
+</script>
+```
+
+## Custom header
+
+Override the default header using the `header` slot for complete control over header rendering.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDataTable
+    :items="users"
+    :headers="headers"
+    selectable
+    v-model:selected="selected"
+  >
+    <template #header="{ headers, all_selected, toggleSelectAll }">
+      <tr>
+        <th>
+          <IkCheckbox 
+            :model-value="all_selected" 
+            @update:model-value="toggleSelectAll"
+          />
+        </th>
+        <th v-for="header in headers" :key="header.value">
+          {{ header.text.toUpperCase() }}
+        </th>
+      </tr>
+    </template>
+  </IkDataTable>
+</template>
+<script setup>
+import { IkDataTable } from '@ikol/ui-kit/components/IkDataTable';
+import { IkCheckbox } from '@ikol/ui-kit/components/IkCheckbox';
+import { ref } from 'vue';
+
+const headers = [
+  { text: 'Name', value: 'name' },
+  { text: 'Email', value: 'email' },
+  { text: 'Role', value: 'role' },
+];
+
+const users = ref([
+  { id: 1, name: 'John Doe', email: 'john@example.com', role: 'Admin' },
+  { id: 2, name: 'Jane Smith', email: 'jane@example.com', role: 'User' },
+  { id: 3, name: 'Bob Johnson', email: 'bob@example.com', role: 'User' },
+]);
+
+const selected = ref([]);
+</script>
+```
+
+## Empty state
+
+Customize the empty state message when no data is available using the `empty` slot.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkDataTable
+    :items="items"
+    :headers="headers"
+  >
+    <template #empty>
+      <tr>
+        <td :colspan="3" style="text-align: center; padding: 40px;">
+          <IkIcon icon="inbox" size="48" style="opacity: 0.5; margin-bottom: 16px;" />
+          <p class="ik-text--default-light">No data available</p>
+        </td>
+      </tr>
+    </template>
+  </IkDataTable>
+</template>
+<script setup>
+import { IkDataTable } from '@ikol/ui-kit/components/IkDataTable';
+import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
+import { ref } from 'vue';
+
+const headers = [
+  { text: 'Name', value: 'name' },
+  { text: 'Email', value: 'email' },
+  { text: 'Role', value: 'role' },
+];
+
+const items = ref([]);
+</script>
+```
