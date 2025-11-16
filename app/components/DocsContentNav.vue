@@ -33,8 +33,8 @@ const { headers, active_headers } = useHeaders();
 
 .item.active,
 .item:hover {
-    color: var(--content-neutral-regular-hover);
-    border-left: 1px solid var(--border-neutral-regular-hover);
+    color: var(--content-neutral-strong-hover);
+    border-left: 1px solid var(--border-neutral-strong-default);
 }
 
 .item.top {
