@@ -35,11 +35,11 @@ Use the `number` prop to display a numeric value. Numbers less than 10 are shown
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <div class="ik-flex ik-gap-4 ik-items-center">
-    <IkBadge :number="3">
+  <div>
+    <IkBadge :number="3" class="ik-mr-4">
       <IkButton>Messages</IkButton>
     </IkBadge>
-    <IkBadge :number="15">
+    <IkBadge :number="15" class="ik-mr-4">
       <IkButton>Notifications</IkButton>
     </IkBadge>
     <IkBadge :number="0">
@@ -59,8 +59,8 @@ By default, badges with a value of 0 are hidden. Use the `show_zero` prop to dis
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <div class="ik-flex ik-gap-4 ik-items-center">
-    <IkBadge :number="0" show_zero>
+  <div>
+    <IkBadge :number="0" show_zero class="ik-mr-4">
       <IkButton>With Zero</IkButton>
     </IkBadge>
     <IkBadge :number="0">
@@ -80,17 +80,17 @@ The Badge supports multiple design colors to convey different meanings: `primary
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <div class="ik-flex ik-gap-4 ik-items-center ik-flex-wrap">
-    <IkBadge design="primary" :number="5">
+  <div>
+    <IkBadge design="primary" :number="5" class="ik-mr-4">
       <IkButton>Primary</IkButton>
     </IkBadge>
-    <IkBadge design="success" :number="3">
+    <IkBadge design="success" :number="3" class="ik-mr-4">
       <IkButton>Success</IkButton>
     </IkBadge>
-    <IkBadge design="error" :number="12">
+    <IkBadge design="error" :number="12" class="ik-mr-4">
       <IkButton>Error</IkButton>
     </IkBadge>
-    <IkBadge design="accent" :number="7">
+    <IkBadge design="accent" :number="7" class="ik-mr-4">
       <IkButton>Accent</IkButton>
     </IkBadge>
     <IkBadge design="default" :number="2">
@@ -110,14 +110,14 @@ Control the badge position using the `top` and `left` props. By default, badges 
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <div class="ik-flex ik-gap-4 ik-items-center ik-flex-wrap">
-    <IkBadge :number="3">
+  <div>
+    <IkBadge :number="3" class="ik-mr-4">
       <IkButton>Bottom Right</IkButton>
     </IkBadge>
-    <IkBadge :number="3" top>
+    <IkBadge :number="3" top class="ik-mr-4">
       <IkButton>Top Right</IkButton>
     </IkBadge>
-    <IkBadge :number="3" left>
+    <IkBadge :number="3" left class="ik-mr-4">
       <IkButton>Bottom Left</IkButton>
     </IkBadge>
     <IkBadge :number="3" top left>
@@ -137,14 +137,14 @@ Adjust the badge size using the `size` prop. The default size is 12px.
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <div class="ik-flex ik-gap-4 ik-items-center ik-flex-wrap">
-    <IkBadge :size="8" :number="3">
+  <div>
+    <IkBadge :size="8" :number="3" class="ik-mr-4">
       <IkButton>Small (8px)</IkButton>
     </IkBadge>
-    <IkBadge :size="12" :number="3">
+    <IkBadge :size="12" :number="3" class="ik-mr-4">
       <IkButton>Default (12px)</IkButton>
     </IkBadge>
-    <IkBadge :size="16" :number="3">
+    <IkBadge :size="16" :number="3" class="ik-mr-4">
       <IkButton>Medium (16px)</IkButton>
     </IkBadge>
     <IkBadge :size="20" :number="3">
@@ -164,11 +164,11 @@ Use the `outer` prop to display the badge inline next to the content instead of 
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <div class="ik-flex ik-flex-col ik-gap-4">
-    <IkBadge outer :number="5">
+  <div>
+    <IkBadge outer :number="5" class="ik-mb-4">
       <span>Inbox</span>
     </IkBadge>
-    <IkBadge outer design="success" :number="12">
+    <IkBadge outer design="success" :number="12" class="ik-mb-4">
       <span>Unread Messages</span>
     </IkBadge>
     <IkBadge outer design="error" :number="3">
@@ -187,8 +187,8 @@ Use the `content` slot to provide custom content inside the badge dot instead of
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <div class="ik-flex ik-gap-4 ik-items-center ik-flex-wrap">
-    <IkBadge>
+  <div>
+    <IkBadge class="ik-mr-4">
       <template #content>
         <IkIcon icon="star" style="font-size: 8px;" />
       </template>
@@ -245,8 +245,8 @@ Control badge visibility using the `show` prop. This is useful for conditionally
 
 ```vue title="[[_Source code_]]" preview
 <template>
-  <div class="ik-flex ik-gap-4 ik-items-center">
-    <IkBadge :number="5" :show="isVisible">
+  <div>
+    <IkBadge :number="5" :show="isVisible" class="ik-mr-4">
       <IkButton>Toggle Badge</IkButton>
     </IkBadge>
     <IkButton @click="isVisible = !isVisible">
