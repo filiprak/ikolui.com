@@ -1,4 +1,4 @@
-function slugify(text: string, maxWords: number = 5): string {
+export function slugify(text: string, maxWords: number = 5): string {
   const slug = text
     .toString()
     .normalize('NFKD')                  // Normalize unicode

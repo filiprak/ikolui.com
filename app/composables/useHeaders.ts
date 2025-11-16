@@ -16,8 +16,8 @@ export function useHeaders(el?: Ref<HTMLElement | undefined>) {
             } else {
                 activeIds.value.delete(entry.target.id);
             }
-        })
-    }
+        });
+    };
 
     if (el) {
         onMounted(() => {
@@ -27,7 +27,8 @@ export function useHeaders(el?: Ref<HTMLElement | undefined>) {
                 threshold: 0,
             });
 
-            el.value && observer.value?.observe(el.value);
+            if (el.value)
+                observer.value?.observe(el.value);
         });
 
         onUnmounted(() => {

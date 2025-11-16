@@ -1,10 +1,10 @@
 <template>
     <nav>
         <NuxtLink v-for="header in headers"
+                  :key="header.uid"
                   no-prefetch
                   :to="`#${header.id}`"
-                  custom
-                  :key="header.uid">
+                  custom>
             <template #default="{ href }">
                 <a class="ik-py-3 ik-pr-5"
                    :class="{
