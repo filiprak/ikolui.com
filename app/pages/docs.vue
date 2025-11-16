@@ -46,6 +46,7 @@ watch(menu_open, (v) => {
 <style lang="css" module>
 .wrapper {
     display: grid;
+    column-gap: var(--s-7);
     grid-template-columns: repeat(10, minmax(0, 1fr));
 }
 
@@ -55,11 +56,26 @@ watch(menu_open, (v) => {
 
 .left {
     position: sticky;
-    top: var(--nav-h);
+    top: calc(var(--nav-h) + 40px);
     padding: var(--s-8) var(--s-8) var(--s-8) 0;
-    max-height: calc(100vh - var(--nav-h));
+    max-height: calc(100vh - var(--nav-h) - 40px);
     overflow-y: auto;
     grid-column: span 2;
+}
+
+.left::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.left::-webkit-scrollbar-track {
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+.left::-webkit-scrollbar-thumb {
+    border-radius: 0;
+    background-color: rgba(from var(--background-neutral-light-solid) r g b / 0.1);
 }
 
 :global(.mobile) .left {
