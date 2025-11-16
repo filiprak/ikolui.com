@@ -5,6 +5,7 @@
                 :key="index"
                 :class="$style.item">
                 <NuxtLink :to="crumb.to"
+                          :prefetch-on="{ visibility: false, interaction: true }"
                           custom>
                     <template #default="{ href }">
                         <IkLink :href="href"
