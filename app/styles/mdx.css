@@ -102,6 +102,20 @@
     transform: translate(2px, -2px);
 }
 
+.mdx-wrapper :is(h1, h2, h3, h4, h5, h6) {
+    scroll-margin-top: calc(var(--nav-h) + 25px);
+}
+
+.mdx-wrapper :is(h1, h2, h3, h4, h5, h6) > a {
+    color: var(--content-neutral-strong-default) !important;
+    text-decoration: none;
+}
+
+.mdx-wrapper :is(h1, h2, h3, h4, h5, h6) > a::after {
+    content: none !important;
+    display: none !important;
+}
+
 .mdx-wrapper code {
     display: inline-block;
     line-height: var(--s-8);
