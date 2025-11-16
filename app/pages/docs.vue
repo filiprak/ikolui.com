@@ -65,16 +65,19 @@ watch(menu_open, (v) => {
     grid-column: span 2;
 }
 
+.right::-webkit-scrollbar,
 .left::-webkit-scrollbar {
     width: 8px;
     height: 8px;
 }
 
+.right::-webkit-scrollbar-track,
 .left::-webkit-scrollbar-track {
     border-radius: 4px;
     background-color: transparent;
 }
 
+.right::-webkit-scrollbar-thumb,
 .left::-webkit-scrollbar-thumb {
     border-radius: 0;
     background-color: rgba(from var(--background-neutral-light-solid) r g b / 0.1);
