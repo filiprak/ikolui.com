@@ -214,7 +214,7 @@ function handleDelete(item) {
 
 ## Custom item rendering
 
-Customize how individual cells are rendered using the `item` slot. The slot provides access to the item and its index.
+Customize how individual cells are rendered using the `item` slot. The slot provides access to the item and its index. Make sure to add the `ik-data-table-row__cell` class to your `<td>` elements to maintain consistent padding with the default rendering.
 
 ```vue title="[[_Source code_]]" preview
 <template>
@@ -223,13 +223,13 @@ Customize how individual cells are rendered using the `item` slot. The slot prov
     :headers="headers"
   >
     <template #item="{ item }">
-      <td>{{ item.name }}</td>
-      <td>
+      <td class="ik-data-table-row__cell">{{ item.name }}</td>
+      <td class="ik-data-table-row__cell">
         <span style="color: var(--content-success-strong-default); font-weight: bold;">
           ${{ item.price }}
         </span>
       </td>
-      <td>
+      <td class="ik-data-table-row__cell">
         <IkChip 
           :design="item.stock > 20 ? 'success' : 'error'" 
           size="xs"
@@ -261,7 +261,7 @@ const products = ref([
 
 ## Pagination
 
-Enable pagination with infinite scroll using the `pagination` prop and `ik-load-more` event. The table will automatically trigger load more when scrolling near the bottom.
+Enable pagination with infinite scroll using the `pagination` prop and `ik-load-more` event. The table will automatically trigger load more when scrolling near the bottom. Use the `max_height` prop to enable scrolling and demonstrate the infinite load behavior.
 
 ```vue title="[[_Source code_]]" preview
 <template>
@@ -270,6 +270,7 @@ Enable pagination with infinite scroll using the `pagination` prop and `ik-load-
     :headers="headers"
     :pagination="pagination"
     :pagination_loading="loading"
+    :max_height="400"
     @ik-load-more="loadMore"
   />
 </template>
@@ -283,14 +284,16 @@ const headers = [
   { text: 'Value', value: 'value' },
 ];
 
-const items = ref([
-  { id: 1, name: 'Item 1', value: 100 },
-  { id: 2, name: 'Item 2', value: 200 },
-  { id: 3, name: 'Item 3', value: 300 },
-]);
+const items = ref(
+  Array.from({ length: 15 }, (_, i) => ({
+    id: i + 1,
+    name: `Item ${i + 1}`,
+    value: (i + 1) * 100,
+  }))
+);
 
 const pagination = ref({
-  offset: 3,
+  offset: 15,
   has_more: true,
 });
 
@@ -301,7 +304,7 @@ async function loadMore() {
   // Simulate API call
   await new Promise(resolve => setTimeout(resolve, 1000));
   
-  const newItems = Array.from({ length: 3 }, (_, i) => ({
+  const newItems = Array.from({ length: 10 }, (_, i) => ({
     id: items.value.length + i + 1,
     name: `Item ${items.value.length + i + 1}`,
     value: (items.value.length + i + 1) * 100,
@@ -309,7 +312,7 @@ async function loadMore() {
   
   items.value.push(...newItems);
   pagination.value.offset = items.value.length;
-  pagination.value.has_more = items.value.length < 15;
+  pagination.value.has_more = items.value.length < 50;
   loading.value = false;
 }
 </script>
