@@ -122,6 +122,7 @@ watch(menu_open, (v) => {
     max-height: calc(100vh - var(--nav-h) - 40px);
     overflow-y: auto;
     grid-column: span 2;
+    height: min-content;
 }
 
 :global(.mobile) .top {
