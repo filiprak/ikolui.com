@@ -84,7 +84,7 @@ const { items, isActive } = useNavRoutes('docs');
 
 const subsections: Record<string, string> = {
     inputs: '[[_Inputs_]]',
-    form: '[[_Form_]]',
+    form: '[[_Forms_]]',
     data: '[[_Data display_]]',
     feedback: '[[_Feedback_]]',
     media: '[[_Media_]]',
