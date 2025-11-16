@@ -21,4 +21,17 @@ const props = defineProps<{
 const text = useChildText();
 const tag = computed(() => `h${props.level}`);
 const slug = computed(() => slugify(text));
+
+if (import.meta.server) {
+    const uid = getCurrentInstance()?.uid!;
+
+    const { headers } = useHeaders();
+    const conf = {
+        uid,
+        id: slug.value,
+        level: props.level,
+        text,
+    };
+    headers.value.push(conf);
+}
 </script>
