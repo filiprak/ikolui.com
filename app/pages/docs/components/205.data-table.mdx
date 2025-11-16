@@ -170,7 +170,7 @@ function handleExport(items) {
 
 ## Actions column
 
-Add an actions column with a popover menu using the `with_actions` prop. Customize the actions using the `actions-popover` slot.
+Add an actions column with a popover menu using the `with_actions` prop. Customize the actions using the `actions-popover` slot. The slot content is automatically wrapped in an `IkList`, so use `IkListItem` components for actions.
 
 ```vue title="[[_Source code_]]" preview
 <template>
@@ -180,14 +180,14 @@ Add an actions column with a popover menu using the `with_actions` prop. Customi
     with_actions
   >
     <template #actions-popover="{ item }">
-      <IkButton flat block @click="handleEdit(item)">Edit</IkButton>
-      <IkButton flat block design="error" @click="handleDelete(item)">Delete</IkButton>
+      <IkListItem icon="edit" :onClick="() => handleEdit(item)">Edit</IkListItem>
+      <IkListItem icon="trash" :onClick="() => handleDelete(item)" design="error">Delete</IkListItem>
     </template>
   </IkDataTable>
 </template>
 <script setup>
 import { IkDataTable } from '@ikol/ui-kit/components/IkDataTable';
-import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { IkListItem } from '@ikol/ui-kit/components/IkList';
 import { ref } from 'vue';
 
 const headers = [
