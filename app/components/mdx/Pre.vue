@@ -120,6 +120,7 @@ const icon = computed(() => {
     border-radius: var(--radius-3);
     border: 1px solid var(--border-neutral-light-default);
     padding: var(--s-9);
+    overflow: auto;
 }
 
 .pre:has(.header) .source pre {
