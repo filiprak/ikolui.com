@@ -7,3 +7,380 @@ meta:
     label: "[[_Form_]]"
 ---
 
+# Form
+
+<MetaDescription>
+The Form component provides a comprehensive form wrapper with built-in validation, unsaved changes tracking, and automatic field management. It coordinates validation across all form fields, handles form submission, and provides methods for programmatic form control. Perfect for creating complex forms with multiple input fields that need coordinated validation and submission handling.
+</MetaDescription>
+
+## Basic form
+
+The Form component wraps your form fields and provides automatic validation coordination. Form fields register themselves with the form automatically.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkForm @ik-submit="handleSubmit">
+    <IkTextField label="Name" required v-model="formData.name" placeholder="Enter your name" />
+    <IkTextField label="Email" required v-model="formData.email" type="email" placeholder="Enter your email" />
+    <IkButton type="submit" design="primary">Submit</IkButton>
+  </IkForm>
+</template>
+<script setup>
+import { IkForm } from '@ikol/ui-kit/components/IkForm';
+import { IkTextField } from '@ikol/ui-kit/components/IkTextField';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { ref } from 'vue';
+
+const formData = ref({
+  name: '',
+  email: ''
+});
+
+const handleSubmit = () => {
+  alert('Form submitted: ' + JSON.stringify(formData.value));
+};
+</script>
+```
+
+## Form validation
+
+By default, the form automatically validates all registered fields when submitted. The form will scroll to the first invalid field and prevent submission if validation fails.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkForm @ik-submit="handleSubmit">
+    <IkTextField label="Username" required v-model="formData.username" placeholder="Enter username" />
+    <IkTextField label="Password" required v-model="formData.password" type="password" :rules="[passwordRule]" placeholder="Enter password" />
+    <IkButton type="submit" design="primary">Submit</IkButton>
+  </IkForm>
+</template>
+<script setup>
+import { IkForm } from '@ikol/ui-kit/components/IkForm';
+import { IkTextField } from '@ikol/ui-kit/components/IkTextField';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { ref } from 'vue';
+
+const formData = ref({
+  username: '',
+  password: ''
+});
+
+const passwordRule = (value) => {
+  if (!value || value.length < 8) {
+    return 'Password must be at least 8 characters';
+  }
+  return true;
+};
+
+const handleSubmit = () => {
+  alert('Form is valid, submitting...');
+};
+</script>
+```
+
+## View mode
+
+Use the `view_mode` prop to display form data in a read-only format, perfect for showing information that users should view but not edit. This mode allows you to easily create an edit button that toggles the form between view and edit states.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkForm :view_mode="true">
+    <IkTextField label="Name" v-model="formData.name" />
+    <IkTextField label="Email" v-model="formData.email" />
+    <IkTextField label="Status" v-model="formData.status" />
+  </IkForm>
+</template>
+<script setup>
+import { IkForm } from '@ikol/ui-kit/components/IkForm';
+import { IkTextField } from '@ikol/ui-kit/components/IkTextField';
+import { ref } from 'vue';
+
+const formData = ref({
+  name: 'John Doe',
+  email: 'john@example.com',
+  status: 'Active'
+});
+</script>
+```
+
+## Unsaved changes tracking
+
+The form automatically tracks when fields are modified. Use the `prompt_unsaved` prop to enable a confirmation dialog when navigating away with unsaved changes. You can provide a boolean or a custom function for more control.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkForm ref="formRef" :prompt_unsaved="true" @ik-submit="handleSubmit">
+    <IkTextField label="Name" v-model="formData.name" placeholder="Enter your name" />
+    <IkTextareaField label="Description" v-model="formData.description" placeholder="Enter description" />
+    <IkButton type="submit" design="primary">Save</IkButton>
+    <IkButton @click="checkDirty" design="default" class="ik-ml-4">Check Dirty</IkButton>
+  </IkForm>
+</template>
+<script setup>
+import { IkForm } from '@ikol/ui-kit/components/IkForm';
+import { IkTextField } from '@ikol/ui-kit/components/IkTextField';
+import { IkTextareaField } from '@ikol/ui-kit/components/IkTextareaField';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { ref } from 'vue';
+
+const formRef = ref(null);
+const formData = ref({
+  name: '',
+  description: ''
+});
+
+const handleSubmit = ({ form }) => {
+  alert('Form saved');
+};
+
+const checkDirty = () => {
+  const isDirty = formRef.value?.isDirty();
+  alert(`Form is ${isDirty ? 'dirty' : 'clean'}`);
+};
+</script>
+```
+
+## Custom unsaved prompt function
+
+Provide a custom function to the `prompt_unsaved` prop for more control over when to prompt for unsaved changes.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkForm :prompt_unsaved="customPromptFunction" @ik-submit="handleSubmit">
+    <IkTextField label="Title" v-model="formData.title" placeholder="Enter title" />
+    <IkTextareaField label="Content" v-model="formData.content" placeholder="Enter content" />
+    <IkButton type="submit" design="primary">Save</IkButton>
+  </IkForm>
+</template>
+<script setup>
+import { IkForm } from '@ikol/ui-kit/components/IkForm';
+import { IkTextField } from '@ikol/ui-kit/components/IkTextField';
+import { IkTextareaField } from '@ikol/ui-kit/components/IkTextareaField';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { ref } from 'vue';
+
+const formData = ref({
+  title: '',
+  content: ''
+});
+
+const customPromptFunction = (dirty, form) => {
+  // Only prompt if title has been changed
+  return dirty && formData.value.title !== '';
+};
+
+const handleSubmit = ({ form }) => {
+  alert('Form saved');
+};
+</script>
+```
+
+## Programmatic form control
+
+Access the form instance using a template ref to programmatically control the form. Available methods include `submit()`, `validate()`, `reset()`, `isDirty()`, `confirmCancel()`, and `resetValidation()`.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkForm ref="formRef" @ik-submit="handleSubmit">
+    <IkTextField label="Name" required v-model="formData.name" :rules="[requiredRule]" placeholder="Enter your name" />
+    <IkTextField label="Email" required v-model="formData.email" type="email" :rules="[requiredRule]" placeholder="Enter your email" />
+    <div class="ik-mt-4">
+      <IkButton @click="submitForm" design="primary" class="ik-mr-4">Submit</IkButton>
+      <IkButton @click="validateForm" design="default" class="ik-mr-4">Validate</IkButton>
+      <IkButton @click="resetForm" design="default" class="ik-mr-4">Reset</IkButton>
+      <IkButton @click="checkDirty" design="default">Check Dirty</IkButton>
+    </div>
+  </IkForm>
+</template>
+<script setup>
+import { IkForm } from '@ikol/ui-kit/components/IkForm';
+import { IkTextField } from '@ikol/ui-kit/components/IkTextField';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { ref } from 'vue';
+
+const formRef = ref(null);
+const formData = ref({
+  name: '',
+  email: ''
+});
+
+const requiredRule = (value) => {
+  if (!value || value.trim() === '') {
+    return 'This field is required';
+  }
+  return true;
+};
+
+const submitForm = () => {
+  formRef.value?.submit();
+};
+
+const validateForm = () => {
+  const isValid = formRef.value?.validate();
+  alert('Validation result: ' + isValid);
+};
+
+const resetForm = () => {
+  formRef.value?.reset();
+  formData.value = { name: '', email: '' };
+};
+
+const checkDirty = () => {
+  const isDirty = formRef.value?.isDirty();
+  alert('Form is dirty: ' + isDirty);
+};
+
+const handleSubmit = ({ form }) => {
+  alert('Form submitted: ' + JSON.stringify(formData.value));
+};
+</script>
+```
+
+## Form with model value
+
+The form supports v-model for two-way data binding. Changes to form fields will automatically update the model value and mark the form as dirty.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkForm v-model="formData" @ik-submit="handleSubmit">
+    <IkTextField label="Name" v-model="formData.name" placeholder="Enter your name" />
+    <IkTextField label="Email" v-model="formData.email" type="email" placeholder="Enter your email" />
+    <IkButton type="submit" design="primary">Submit</IkButton>
+  </IkForm>
+  <div class="ik-mt-4">
+    <p class="ik-text--sm">Model value: {{ JSON.stringify(formData) }}</p>
+  </div>
+</template>
+<script setup>
+import { IkForm } from '@ikol/ui-kit/components/IkForm';
+import { IkTextField } from '@ikol/ui-kit/components/IkTextField';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { ref } from 'vue';
+
+const formData = ref({
+  name: '',
+  email: ''
+});
+
+const handleSubmit = ({ form }) => {
+  alert('Form submitted: ' + JSON.stringify(formData.value));
+};
+</script>
+```
+
+## Routable edit mode
+
+The form supports routable edit mode for managing edit states in routing scenarios. Use `routable_edit` and `routable_is_new` props along with the `update:routable_edit` event.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkForm 
+    :routable_edit="isEditMode" 
+    :routable_is_new="isNew"
+    @update:routable_edit="isEditMode = $event"
+    @ik-submit="handleSubmit"
+  >
+    <IkTextField label="Name" v-model="formData.name" placeholder="Enter your name" />
+    <IkTextField label="Email" v-model="formData.email" type="email" placeholder="Enter your email" />
+    <IkButton type="submit" design="primary">{{ isEditMode ? 'Update' : 'Create' }}</IkButton>
+    <IkButton @click="toggleEdit" design="default" class="ik-ml-4">Toggle Edit</IkButton>
+  </IkForm>
+</template>
+<script setup>
+import { IkForm } from '@ikol/ui-kit/components/IkForm';
+import { IkTextField } from '@ikol/ui-kit/components/IkTextField';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { ref } from 'vue';
+
+const isEditMode = ref(false);
+const isNew = ref(true);
+const formData = ref({
+  name: '',
+  email: ''
+});
+
+const toggleEdit = () => {
+  isEditMode.value = !isEditMode.value;
+};
+
+const handleSubmit = ({ form }) => {
+  alert('Form submitted in ' + (isEditMode.value ? 'edit' : 'create') + ' mode');
+};
+</script>
+```
+
+## Form skeleton
+
+Use the `skeleton` prop to display a loading skeleton state for the form while data is being loaded.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <IkForm :skeleton="isLoading">
+      <IkTextField label="Name" v-model="formData.name" placeholder="Enter your name" />
+      <IkTextField label="Email" v-model="formData.email" placeholder="Enter your email" />
+      <IkTextField label="Phone" v-model="formData.phone" placeholder="Enter phone number" />
+    </IkForm>
+    <IkButton @click="isLoading = !isLoading" design="default" class="ik-mt-4">
+      Toggle Skeleton
+    </IkButton>
+  </div>
+</template>
+<script setup>
+import { IkForm } from '@ikol/ui-kit/components/IkForm';
+import { IkTextField } from '@ikol/ui-kit/components/IkTextField';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { ref } from 'vue';
+
+const isLoading = ref(true);
+const formData = ref({
+  name: '',
+  email: '',
+  phone: ''
+});
+</script>
+```
+
+## Confirm cancel
+
+Use the `confirmCancel()` method to check if the form has unsaved changes and show a confirmation dialog before canceling. This is useful when navigating away from a form.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkForm ref="formRef" @ik-submit="handleSubmit">
+    <IkTextField label="Name" v-model="formData.name" placeholder="Enter your name" />
+    <IkTextareaField label="Description" v-model="formData.description" placeholder="Enter description" />
+    <div class="ik-mt-4">
+      <IkButton type="submit" design="primary" class="ik-mr-4">Save</IkButton>
+      <IkButton @click="handleCancel" design="default">Cancel</IkButton>
+    </div>
+  </IkForm>
+</template>
+<script setup>
+import { IkForm } from '@ikol/ui-kit/components/IkForm';
+import { IkTextField } from '@ikol/ui-kit/components/IkTextField';
+import { IkTextareaField } from '@ikol/ui-kit/components/IkTextareaField';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { ref } from 'vue';
+
+const formRef = ref(null);
+const formData = ref({
+  name: '',
+  description: ''
+});
+
+const handleSubmit = ({ form }) => {
+  alert('Form saved');
+};
+
+const handleCancel = async () => {
+  const canCancel = await formRef.value?.confirmCancel();
+  if (canCancel) {
+    alert('Canceling form...');
+    // Navigate away or reset form
+  } else {
+    alert('Cancel cancelled by user');
+  }
+};
+</script>
+```
