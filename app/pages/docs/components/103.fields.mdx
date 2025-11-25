@@ -73,13 +73,12 @@ All field components expose these methods via template refs:
 
 The UI kit provides the following field components, each designed for specific input types:
 
-- **`IkTextField`**: Standard text input field supporting various input types (text, email, password, number, etc.)
-- **`IkTextareaField`**: Multi-line text input for longer text content
-- **`IkSelectField`**: Dropdown select field with support for single or multiple selection, filtering, and custom item rendering
-- **`IkCheckboxField`**: Checkbox field with support for basic checkbox or switch variant
-- **`IkRadioGroupField`**: Radio button group field for selecting one option from multiple choices
-- **`IkDateField`**: Date picker field for selecting dates
-- **`IkDateSpanQuickField`**: Date range picker with quick selection options
+- **`IkTextField`**: Wraps `IkInput` component. Standard text input field supporting various input types (text, email, password, number, etc.)
+- **`IkTextareaField`**: Wraps `IkTextarea` component. Multi-line text input for longer text content
+- **`IkSelectField`**: Wraps `IkSelect` component. Dropdown select field with support for single or multiple selection, filtering, and custom item rendering
+- **`IkCheckboxField`**: Wraps `IkCheckbox` component. Checkbox field with support for basic checkbox or switch variant
+- **`IkRadioGroupField`**: Wraps `IkRadioGroup` component. Radio button group field for selecting one option from multiple choices
+- **`IkDateField`**: Wraps `IkDate` component. Date picker field for selecting dates
 - **`IkChipInputField`**: Field for entering multiple values as chips/tags
 
 Each field component extends the base field structure with additional props and features specific to its input type. Refer to individual component documentation for field-specific features and usage examples.
