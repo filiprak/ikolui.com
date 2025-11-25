@@ -4,6 +4,296 @@ meta:
     type: docs
     section: components
     subsection: form
-    label: "[[_Form Submit_]]"
+    label: "[[_Submit Buttons_]]"
 ---
 
+# Submit Buttons
+
+<MetaDescription>
+The Form Submit component provides a standardized layout for form action buttons including cancel, reset, and submit actions. It automatically adapts the submit button shape based on whether a label is provided, supports loading and disabled states, and emits events for handling form actions. Perfect for creating consistent form submission interfaces across your application.
+</MetaDescription>
+
+## Basic usage
+
+The Form Submit component provides a default layout with cancel and submit buttons. The submit button automatically becomes a circle icon button when no label is provided, or a round button with text when a label is present.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkForm @ik-submit="handleSubmit">
+    <IkFormSubmit @ik-submit="handleSubmit" @ik-cancel="handleCancel" />
+  </IkForm>
+</template>
+<script setup>
+import { IkForm } from '@ikol/ui-kit/components/IkForm';
+import { IkFormSubmit } from '@ikol/ui-kit/components/IkFormSubmit';
+
+const handleSubmit = () => {
+  alert('Form submitted');
+};
+
+const handleCancel = () => {
+  alert('Form cancelled');
+};
+</script>
+```
+
+## With submit label
+
+Provide a submit label using the `submit-label` slot to display text on the submit button. The button will automatically use the round style when a label is present.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkForm @ik-submit="handleSubmit">
+    <IkFormSubmit @ik-submit="handleSubmit" @ik-cancel="handleCancel">
+      <template #submit-label>Save Changes</template>
+    </IkFormSubmit>
+  </IkForm>
+</template>
+<script setup>
+import { IkForm } from '@ikol/ui-kit/components/IkForm';
+import { IkFormSubmit } from '@ikol/ui-kit/components/IkFormSubmit';
+
+const handleSubmit = () => {
+  alert('Form submitted');
+};
+
+const handleCancel = () => {
+  alert('Form cancelled');
+};
+</script>
+```
+
+## With reset button
+
+Enable the reset button using the `show_reset` prop. The reset button allows users to clear form fields back to their initial values.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkForm @ik-submit="handleSubmit">
+    <IkFormSubmit 
+      :show_reset="true" 
+      @ik-submit="handleSubmit" 
+      @ik-cancel="handleCancel"
+      @ik-reset="handleReset">
+      <template #submit-label>Save</template>
+    </IkFormSubmit>
+  </IkForm>
+</template>
+<script setup>
+import { IkForm } from '@ikol/ui-kit/components/IkForm';
+import { IkFormSubmit } from '@ikol/ui-kit/components/IkFormSubmit';
+
+const handleSubmit = () => {
+  alert('Form submitted');
+};
+
+const handleCancel = () => {
+  alert('Form cancelled');
+};
+
+const handleReset = () => {
+  alert('Form reset');
+};
+</script>
+```
+
+## Loading state
+
+Use the `loading` prop to show a loading state on the submit button. When loading, all buttons are disabled to prevent multiple submissions.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkForm @ik-submit="handleSubmit">
+    <IkFormSubmit 
+      :loading="isLoading" 
+      @ik-submit="handleSubmit"
+      @ik-cancel="handleCancel">
+      <template #submit-label>Submit</template>
+    </IkFormSubmit>
+  </IkForm>
+</template>
+<script setup>
+import { IkForm } from '@ikol/ui-kit/components/IkForm';
+import { IkFormSubmit } from '@ikol/ui-kit/components/IkFormSubmit';
+import { ref } from 'vue';
+
+const isLoading = ref(false);
+
+const handleSubmit = async () => {
+  isLoading.value = true;
+  await new Promise(resolve => setTimeout(resolve, 2000));
+  alert('Form submitted');
+  isLoading.value = false;
+};
+
+const handleCancel = () => {
+  alert('Form cancelled');
+};
+</script>
+```
+
+## Disabled state
+
+Use the `disabled` prop to disable the submit button while keeping other buttons enabled. This is useful when you need to prevent submission but still allow cancellation.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkForm @ik-submit="handleSubmit">
+    <IkFormSubmit 
+      :disabled="true" 
+      @ik-submit="handleSubmit"
+      @ik-cancel="handleCancel">
+      <template #submit-label>Submit</template>
+    </IkFormSubmit>
+  </IkForm>
+</template>
+<script setup>
+import { IkForm } from '@ikol/ui-kit/components/IkForm';
+import { IkFormSubmit } from '@ikol/ui-kit/components/IkFormSubmit';
+
+const handleSubmit = () => {
+  alert('Form submitted');
+};
+
+const handleCancel = () => {
+  alert('Form cancelled');
+};
+</script>
+```
+
+## Custom design and size
+
+Customize the submit button's design color and size using the `design` and `size` props. The design prop accepts any valid design color, and size controls the button dimensions.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <IkForm @ik-submit="handleSubmit" class="ik-mb-4">
+      <IkFormSubmit 
+        design="primary" 
+        size="lg"
+        @ik-submit="handleSubmit">
+        <template #submit-label>Primary Large</template>
+      </IkFormSubmit>
+    </IkForm>
+    <IkForm @ik-submit="handleSubmit" class="ik-mb-4">
+      <IkFormSubmit 
+        design="accent" 
+        size="md"
+        @ik-submit="handleSubmit">
+        <template #submit-label>Accent Medium</template>
+      </IkFormSubmit>
+    </IkForm>
+    <IkForm @ik-submit="handleSubmit">
+      <IkFormSubmit 
+        design="error" 
+        size="sm"
+        @ik-submit="handleSubmit">
+        <template #submit-label>Error Small</template>
+      </IkFormSubmit>
+    </IkForm>
+  </div>
+</template>
+<script setup>
+import { IkForm } from '@ikol/ui-kit/components/IkForm';
+import { IkFormSubmit } from '@ikol/ui-kit/components/IkFormSubmit';
+
+const handleSubmit = () => {
+  alert('Form submitted');
+};
+</script>
+```
+
+## Custom icon
+
+Change the submit button icon using the `submit_icon` prop. The icon is only visible when no submit label is provided (circle button).
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkForm @ik-submit="handleSubmit">
+    <IkFormSubmit 
+      submit_icon="save:light"
+      @ik-submit="handleSubmit"
+      @ik-cancel="handleCancel" />
+  </IkForm>
+</template>
+<script setup>
+import { IkForm } from '@ikol/ui-kit/components/IkForm';
+import { IkFormSubmit } from '@ikol/ui-kit/components/IkFormSubmit';
+
+const handleSubmit = () => {
+  alert('Form submitted');
+};
+
+const handleCancel = () => {
+  alert('Form cancelled');
+};
+</script>
+```
+
+## Custom labels
+
+Customize all button labels using slots. Use `cancel-label`, `reset-label`, and `submit-label` slots to provide custom text for each button.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkForm @ik-submit="handleSubmit">
+    <IkFormSubmit 
+      :show_reset="true"
+      @ik-submit="handleSubmit" 
+      @ik-cancel="handleCancel"
+      @ik-reset="handleReset">
+      <template #cancel-label>Abbrechen</template>
+      <template #reset-label>Zurücksetzen</template>
+      <template #submit-label>Speichern</template>
+    </IkFormSubmit>
+  </IkForm>
+</template>
+<script setup>
+import { IkForm } from '@ikol/ui-kit/components/IkForm';
+import { IkFormSubmit } from '@ikol/ui-kit/components/IkFormSubmit';
+
+const handleSubmit = () => {
+  alert('Form submitted');
+};
+
+const handleCancel = () => {
+  alert('Form cancelled');
+};
+
+const handleReset = () => {
+  alert('Form reset');
+};
+</script>
+```
+
+## Custom form association
+
+Use the `form` prop to associate the submit button with a form by ID. This is useful when the button is outside the form element.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkForm id="my-form" @ik-submit="handleSubmit">
+  </IkForm>
+  <div class="ik-mt-4">
+    <IkFormSubmit 
+      form="my-form"
+      @ik-submit="handleSubmit"
+      @ik-cancel="handleCancel">
+      <template #submit-label>Submit</template>
+    </IkFormSubmit>
+  </div>
+</template>
+<script setup>
+import { IkForm } from '@ikol/ui-kit/components/IkForm';
+import { IkFormSubmit } from '@ikol/ui-kit/components/IkFormSubmit';
+
+const handleSubmit = () => {
+  alert('Form submitted');
+};
+
+const handleCancel = () => {
+  alert('Form cancelled');
+};
+</script>
+```
