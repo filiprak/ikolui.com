@@ -1,0 +1,75 @@
+---
+meta:
+  menu:
+    type: docs
+    section: components
+    subsection: form
+    label: "[[_Fields_]]"
+---
+
+# Fields
+
+<MetaDescription>
+Form fields are specialized input components designed to work seamlessly with the IkForm component. All field components share a common structure, providing consistent validation, error handling, view mode support, and automatic form registration. Fields automatically integrate with form validation, unsaved changes tracking, and skeleton loading states.
+</MetaDescription>
+
+## Field Structure
+
+All field components in the UI kit follow a consistent structure based on the `IkTextField` component pattern. This ensures a uniform API and behavior across all form fields.
+
+Every field component is built on top of the `IkFormField` component, which provides the common wrapper, label display, error handling, and integration with the parent `IkForm`. The `IkFormField` component handles all the shared functionality, while individual field components (like `IkTextField`, `IkSelectField`, etc.) provide the specific input logic and UI.
+
+### Common Features
+
+Every field component includes:
+
+- **Validation Support**: Built-in validation with `rules` prop and error display
+- **View Mode**: Display fields in read-only mode using `view_mode` prop
+
+### Common Props
+
+All field components share these common props:
+
+- **`label`** (`string`, default: `''`): Field label displayed above the input
+- **`required`** (`boolean`, default: `false`): Marks the field as required (shows asterisk)
+- **`rules`** (`Array<Function>`, default: `[]`): Validation rules array. Each function receives the value and should return `true` or an error message string
+- **`view_mode`** (`boolean | string`, default: `'inherit'`): Display field in read-only mode. Use `true` to force view mode, `false` to force edit mode, or `'inherit'` to use form's view_mode
+- **`variant`** (`string`, default: `undefined`): Field variant. If not set, inherits from parent form
+- **`subtext`** (`string`, default: `undefined`): Helper text displayed below the field
+- **`field_icon`** (`string`, default: `undefined`): Icon displayed before the field content
+- and more props...
+
+### Common Methods
+
+All field components expose these methods via template refs:
+
+- **`validate()`**: Validate the field and return `true` if valid, `false` otherwise
+- **`resetValidation()`**: Clear validation errors
+
+## Available Field Components
+
+The UI kit provides the following field components, each designed for specific input types:
+
+### Text Fields
+
+- **`IkTextField`**: Standard text input field supporting various input types (text, email, password, number, etc.)
+- **`IkTextareaField`**: Multi-line text input for longer text content
+
+### Selection Fields
+
+- **`IkSelectField`**: Dropdown select field with support for single or multiple selection, filtering, and custom item rendering
+- **`IkCheckboxField`**: Checkbox field with support for basic checkbox or switch variant
+- **`IkRadioGroupField`**: Radio button group field for selecting one option from multiple choices
+
+### Date Fields
+
+- **`IkDateField`**: Date picker field for selecting dates
+- **`IkDateSpanQuickField`**: Date range picker with quick selection options
+
+### Specialized Fields
+
+- **`IkChipInputField`**: Field for entering multiple values as chips/tags
+- **`IkHtmlField`**: Rich text editor field for HTML content
+- **`IkPickerField`**: Generic picker field for custom selection interfaces
+
+Each field component extends the base field structure with additional props and features specific to its input type. Refer to individual component documentation for field-specific features and usage examples.
