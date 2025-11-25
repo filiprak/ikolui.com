@@ -13,13 +13,13 @@ meta:
 Form fields are specialized input components designed to work seamlessly with the IkForm component. All field components share a common structure, providing consistent validation, error handling, view mode support, and automatic form registration. Fields automatically integrate with form validation, unsaved changes tracking, and skeleton loading states.
 </MetaDescription>
 
-## Field Structure
+## Field structure
 
 All field components in the UI kit follow a consistent structure based on the `IkTextField` component pattern. This ensures a uniform API and behavior across all form fields.
 
 Every field component is built on top of the `IkFormField` component, which provides the common wrapper, label display, error handling, and integration with the parent `IkForm`. The `IkFormField` component handles all the shared functionality, while individual field components (like `IkTextField`, `IkSelectField`, etc.) provide the specific input logic and UI.
 
-### Field Component Anatomy
+### Field component anatomy
 
 The `IkFormField` component provides a consistent structure for all form fields. Here's a complete example showing all the parts:
 
@@ -42,14 +42,14 @@ import { IkFormField } from '@ikol/ui-kit/components/IkForm';
 </script>
 ```
 
-### Common Features
+### Common features
 
 Every field component includes:
 
 - **Validation Support**: Built-in validation with `rules` prop and error display
 - **View Mode**: Display fields in read-only mode using `view_mode` prop
 
-### Common Props
+### Common props
 
 All field components share these common props:
 
@@ -62,14 +62,14 @@ All field components share these common props:
 - **`field_icon`** (`string`, default: `undefined`): Icon displayed before the field content
 - and more props...
 
-### Common Methods
+### Common methods
 
 All field components expose these methods via template refs:
 
 - **`validate()`**: Validate the field and return `true` if valid, `false` otherwise
 - **`resetValidation()`**: Clear validation errors
 
-## Available Field Components
+## Available field components
 
 The UI kit provides the following field components, each designed for specific input types:
 
