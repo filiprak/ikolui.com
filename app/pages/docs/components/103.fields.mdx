@@ -19,6 +19,57 @@ All field components in the UI kit follow a consistent structure based on the `I
 
 Every field component is built on top of the `IkFormField` component, which provides the common wrapper, label display, error handling, and integration with the parent `IkForm`. The `IkFormField` component handles all the shared functionality, while individual field components (like `IkTextField`, `IkSelectField`, etc.) provide the specific input logic and UI.
 
+### IkFormField Component Anatomy
+
+The `IkFormField` component provides a consistent structure for all form fields. Here's a complete example showing all the parts:
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkFormField
+    label="Email Address"
+    required
+    field_icon="user:regular"
+    :errors="errors"
+    subtext="We'll never share your email with anyone else."
+  >
+    <template #label-end>
+      <IkIcon icon="help:light" />
+    </template>
+    
+    <IkInput 
+      v-model="email" 
+      type="email"
+      placeholder="Enter your email" 
+    />
+  </IkFormField>
+</template>
+<script setup>
+import { IkFormField } from '@ikol/ui-kit/components/IkForm';
+import { IkInput } from '@ikol/ui-kit/components/IkInput';
+import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
+import { ref, computed } from 'vue';
+
+const email = ref('');
+
+const errors = computed(() => {
+  if (email.value && !email.value.includes('@')) {
+    return ['Please enter a valid email address'];
+  }
+  return [];
+});
+</script>
+```
+
+**Structure breakdown:**
+
+- **Label Section**: Displays the field label text with optional required indicator (`*`) and `label-end` slot for additional content (e.g., help icons, badges)
+- **Field Icon**: Optional icon displayed before the control component (via `field_icon` prop)
+- **Default Slot**: The main control component (input, select, checkbox, etc.) is placed here
+- **Errors**: Validation error messages are displayed below the control (only shown when not in view mode)
+- **Subtext**: Optional helper text displayed at the bottom (via `subtext` prop)
+
+This structure ensures consistent layout and behavior across all field types while allowing each field component to provide its specific input control in the default slot.
+
 ### Common Features
 
 Every field component includes:
