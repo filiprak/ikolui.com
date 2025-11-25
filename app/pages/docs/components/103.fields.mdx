@@ -26,14 +26,14 @@ The `IkFormField` component provides a consistent structure for all form fields.
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkFormField
-    label="Email Address"
+    label="Field label"
     required
     field_icon="user:regular"
-    :errors="['Please enter a valid email address']"
-    subtext="We'll never share your email with anyone else."
+    :errors="['This is field error message']"
+    subtext="This is field subtext hint message."
   >
-    <div style="height: 34px; border: 1px dashed var(--border-neutral-regular-default); padding: var(--s-3)">
-      Default slot
+    <div style="height: 34px; border: 2px dashed var(--border-neutral-regular-default); padding: var(--s-3); color: var(--content-neutral-weak-default);">
+      slot for input component
     </div>
   </IkFormField>
 </template>
@@ -41,16 +41,6 @@ The `IkFormField` component provides a consistent structure for all form fields.
 import { IkFormField } from '@ikol/ui-kit/components/IkForm';
 </script>
 ```
-
-**Structure breakdown:**
-
-- **Label Section**: Displays the field label text with optional required indicator (`*`) and `label-end` slot for additional content (e.g., help icons, badges)
-- **Field Icon**: Optional icon displayed before the control component (via `field_icon` prop)
-- **Default Slot**: The main control component (input, select, checkbox, etc.) is placed here
-- **Errors**: Validation error messages are displayed below the control (only shown when not in view mode)
-- **Subtext**: Optional helper text displayed at the bottom (via `subtext` prop)
-
-This structure ensures consistent layout and behavior across all field types while allowing each field component to provide its specific input control in the default slot.
 
 ### Common Features
 
@@ -83,26 +73,13 @@ All field components expose these methods via template refs:
 
 The UI kit provides the following field components, each designed for specific input types:
 
-### Text Fields
-
 - **`IkTextField`**: Standard text input field supporting various input types (text, email, password, number, etc.)
 - **`IkTextareaField`**: Multi-line text input for longer text content
-
-### Selection Fields
-
 - **`IkSelectField`**: Dropdown select field with support for single or multiple selection, filtering, and custom item rendering
 - **`IkCheckboxField`**: Checkbox field with support for basic checkbox or switch variant
 - **`IkRadioGroupField`**: Radio button group field for selecting one option from multiple choices
-
-### Date Fields
-
 - **`IkDateField`**: Date picker field for selecting dates
 - **`IkDateSpanQuickField`**: Date range picker with quick selection options
-
-### Specialized Fields
-
 - **`IkChipInputField`**: Field for entering multiple values as chips/tags
-- **`IkHtmlField`**: Rich text editor field for HTML content
-- **`IkPickerField`**: Generic picker field for custom selection interfaces
 
 Each field component extends the base field structure with additional props and features specific to its input type. Refer to individual component documentation for field-specific features and usage examples.
