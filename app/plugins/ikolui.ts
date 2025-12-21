@@ -28,7 +28,7 @@ export default defineNuxtPlugin((app) => {
             !msg.includes('Non-function value encountered for default slot') &&
             !msg.includes('Extraneous non-emits event listeners')
         ) {
-            console.warn('[Vue warn]: ' + msg)
+            console.warn('[Vue warn]: ' + msg);
         }
     };
 });
