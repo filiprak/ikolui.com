@@ -1,6 +1,7 @@
+import { createIkolUI } from '@ikol/ui-kit';
 import { provideConfig, provideGlobal, SSR_CONTEXT_INJECTION_KEY } from '@ikol/ui-kit/composables/globals';
 
-export default defineNuxtPlugin(() => {
+export default defineNuxtPlugin((app) => {
     const { isMobile, isTablet } = useDevice();
     const device = isMobile ? 'mobile' : (isTablet ? 'tablet' : 'desktop');
 
@@ -17,5 +18,17 @@ export default defineNuxtPlugin(() => {
         prefetch: {},
         inline_styles: new Map(),
         links: new Map(),
+        head_scripts: new Map(),
+        meta: new Map(),
     });
+
+    app.vueApp.use(createIkolUI());
+    app.vueApp.config.warnHandler = (msg) => {
+        if (
+            !msg.includes('Non-function value encountered for default slot') &&
+            !msg.includes('Extraneous non-emits event listeners')
+        ) {
+            console.warn('[Vue warn]: ' + msg)
+        }
+    };
 });
