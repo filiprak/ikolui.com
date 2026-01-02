@@ -7,3 +7,230 @@ meta:
     label: "[[_Tooltip_]]"
 ---
 
+# Tooltip
+
+<MetaDescription>
+Tooltips are small floating labels that appear when hovering over an element. They provide additional context or information without cluttering the interface. The tooltip directive supports automatic positioning, delays, and auto-close functionality.
+</MetaDescription>
+
+## Basic tooltip
+
+Use the `v-tooltip` directive with a string value to create a simple tooltip that appears on hover.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; gap: 16px; align-items: center; padding: 40px;">
+    <IkButton v-tooltip="'This is a tooltip'">Hover me</IkButton>
+    <span v-tooltip="'Tooltip on a span element'" style="padding: 8px; border: 1px solid var(--ik-border-color); border-radius: 4px; cursor: help;">
+      Hover over me
+    </span>
+  </div>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { vTooltip } from '@ikol/ui-kit/directives/tooltip';
+</script>
+```
+
+## Placement
+
+Control tooltip placement using modifiers: `top`, `right`, `bottom`, `left`, or `auto` (default). The `auto` placement automatically positions the tooltip based on available space.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; flex-direction: column; gap: 16px; align-items: center; padding: 40px;">
+    <IkButton v-tooltip.top="'Top tooltip'" size="sm">Top</IkButton>
+    <div style="display: flex; gap: 16px;">
+      <IkButton v-tooltip.left="'Left tooltip'" size="sm">Left</IkButton>
+      <IkButton v-tooltip.right="'Right tooltip'" size="sm">Right</IkButton>
+    </div>
+    <IkButton v-tooltip.bottom="'Bottom tooltip'" size="sm">Bottom</IkButton>
+    <IkButton v-tooltip.auto="'Auto placement'" size="sm">Auto</IkButton>
+  </div>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { vTooltip } from '@ikol/ui-kit/directives/tooltip';
+</script>
+```
+
+## Delay
+
+Use the `delay` modifier to add a 200ms delay before the tooltip appears, or specify a custom delay using an object.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; gap: 16px; align-items: center; padding: 40px;">
+    <IkButton v-tooltip="'No delay (default)'" size="sm">Immediate</IkButton>
+    <IkButton v-tooltip.delay="'200ms delay'" size="sm">With Delay</IkButton>
+    <IkButton v-tooltip="{ text: 'Custom 500ms delay', delay: 500 }" size="sm">Custom Delay</IkButton>
+  </div>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { vTooltip } from '@ikol/ui-kit/directives/tooltip';
+</script>
+```
+
+## Auto-close
+
+Use the `close` modifier to automatically close the tooltip when the element is clicked (mousedown event).
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; gap: 16px; align-items: center; padding: 40px;">
+    <IkButton v-tooltip="'Normal tooltip'" size="sm">Normal</IkButton>
+    <IkButton v-tooltip.close="'Closes on click'" size="sm">Auto-close</IkButton>
+  </div>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { vTooltip } from '@ikol/ui-kit/directives/tooltip';
+</script>
+```
+
+## Object configuration
+
+Use an object to configure multiple options at once, including custom placement, delay, and autoclose settings.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; gap: 16px; align-items: center; padding: 40px;">
+    <IkButton 
+      v-tooltip="{ 
+        text: 'Custom configured tooltip', 
+        placement: 'top', 
+        delay: 300,
+        autoclose: true 
+      }" 
+      size="sm">
+      Custom Config
+    </IkButton>
+    <IkButton 
+      v-tooltip="{ 
+        text: 'Tooltip with custom ID', 
+        id: 'custom-tooltip-id',
+        placement: 'bottom',
+        delay: 0
+      }" 
+      size="sm">
+      With ID
+    </IkButton>
+  </div>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { vTooltip } from '@ikol/ui-kit/directives/tooltip';
+</script>
+```
+
+## Combining modifiers
+
+You can combine multiple modifiers together. Placement modifiers take precedence over the `auto` default.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; gap: 16px; align-items: center; padding: 40px;">
+    <IkButton v-tooltip.top.delay="'Top with delay'" size="sm">Top + Delay</IkButton>
+    <IkButton v-tooltip.bottom.close="'Bottom with auto-close'" size="sm">Bottom + Close</IkButton>
+    <IkButton v-tooltip.right.delay.close="'Right with delay and close'" size="sm">Right + Both</IkButton>
+  </div>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { vTooltip } from '@ikol/ui-kit/directives/tooltip';
+</script>
+```
+
+## Dynamic tooltips
+
+Tooltips can be dynamically updated by binding to reactive values. The directive automatically updates when the value changes.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; flex-direction: column; gap: 16px; align-items: center; padding: 40px;">
+    <IkButton v-tooltip="tooltipText" size="sm">Dynamic Tooltip</IkButton>
+    <IkButton @click="updateTooltip" size="sm">Change Tooltip</IkButton>
+    <p style="font-size: 12px; color: var(--ik-text-color-secondary);">
+      Current: {{ tooltipText }}
+    </p>
+  </div>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { vTooltip } from '@ikol/ui-kit/directives/tooltip';
+import { ref } from 'vue';
+
+const tooltipText = ref('Initial tooltip text');
+
+function updateTooltip() {
+  const messages = [
+    'First message',
+    'Second message',
+    'Third message',
+    'Back to initial'
+  ];
+  const currentIndex = messages.indexOf(tooltipText.value);
+  const nextIndex = (currentIndex + 1) % messages.length;
+  tooltipText.value = messages[nextIndex];
+}
+</script>
+```
+
+## Conditional tooltips
+
+You can conditionally show or hide tooltips by setting the value to `undefined` or an empty string.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; flex-direction: column; gap: 16px; align-items: center; padding: 40px;">
+    <IkButton 
+      v-tooltip="showTooltip ? 'This tooltip is visible' : undefined" 
+      size="sm">
+      Toggle Tooltip
+    </IkButton>
+    <IkButton @click="showTooltip = !showTooltip" size="sm">
+      {{ showTooltip ? 'Hide' : 'Show' }} Tooltip
+    </IkButton>
+  </div>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { vTooltip } from '@ikol/ui-kit/directives/tooltip';
+import { ref } from 'vue';
+
+const showTooltip = ref(true);
+</script>
+```
+
+## Options reference
+
+### Directive value
+
+The `v-tooltip` directive accepts:
+
+- **String**: Simple tooltip text
+- **Object**: Configuration object with the following properties:
+  - `id` (`string`, optional): Custom tooltip ID. If not provided, a random ID is generated
+  - `placement` (`'auto' | 'top' | 'right' | 'bottom' | 'left'`, default: `'auto'`): Tooltip placement
+  - `delay` (`number`, default: `0`): Delay in milliseconds before showing the tooltip
+  - `text` (`string`, optional): Tooltip text content
+  - `autoclose` (`boolean`, default: `false`): Automatically close tooltip on mousedown
+
+### Modifiers
+
+- **`top`**: Position tooltip above the element
+- **`right`**: Position tooltip to the right of the element
+- **`bottom`**: Position tooltip below the element
+- **`left`**: Position tooltip to the left of the element
+- **`auto`**: Automatically position tooltip based on available space (default)
+- **`delay`**: Add a 200ms delay before showing the tooltip
+- **`close`**: Enable auto-close on mousedown
+
+### Behavior
+
+- Tooltips appear on `mouseenter` (hover)
+- Tooltips automatically position themselves to stay within the viewport when using `auto` placement
+- The directive works with Shadow DOM elements
+- Tooltips are automatically cleaned up when the element is unmounted
+- Multiple tooltips can be active simultaneously on different elements
