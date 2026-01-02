@@ -7,3 +7,134 @@ meta:
     label: "[[_Icon_]]"
 ---
 
+# Icon
+
+<MetaDescription>
+The Icon component displays Font Awesome icons with support for different sizes, designs, variants, and interactive states. It supports icon transitions, click handlers, and can be rendered as different HTML elements. Perfect for adding icons throughout your application interface.
+</MetaDescription>
+
+## Basic icon
+
+The Icon component displays Font Awesome icons. Use the `icon` prop to specify the icon name.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkIcon icon="heart" />
+  <IkIcon icon="star" />
+  <IkIcon icon="user" />
+  <IkIcon icon="home" />
+  <IkIcon icon="cog" />
+</template>
+<script setup>
+import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
+</script>
+```
+
+## Sizes
+
+Control the icon size using the `size` prop (Font Awesome size multiplier) or `size_px` for pixel-based sizing.
+
+### Font Awesome sizes
+
+Use the `size` prop with numeric values (1x, 2x, 3x, etc.) for Font Awesome's standard sizing.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkIcon icon="star" size="1" />
+  <IkIcon icon="star" size="2" />
+  <IkIcon icon="star" size="3" />
+  <IkIcon icon="star" size="4" />
+</template>
+<script setup>
+import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
+</script>
+```
+
+### Pixel-based sizes
+
+Use the `size_px` prop for precise pixel-based sizing.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkIcon icon="heart" size_px="16" />
+  <IkIcon icon="heart" size_px="24" />
+  <IkIcon icon="heart" size_px="32" />
+  <IkIcon icon="heart" size_px="48" />
+</template>
+<script setup>
+import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
+</script>
+```
+
+## Design variants
+
+Apply different design colors using the `design` prop to match your application's theme.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkIcon icon="heart" design="primary" />
+  <IkIcon icon="heart" design="success" />
+  <IkIcon icon="heart" design="error" />
+  <IkIcon icon="heart" design="accent" />
+  <IkIcon icon="heart" design="default" />
+</template>
+<script setup>
+import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
+</script>
+```
+
+## Circle variant
+
+Use the `circle` prop to display the icon within a circular background. When using `circle`, you can control the size with `size_px`.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkIcon icon="user" circle size_px="32" />
+  <IkIcon icon="heart" circle size_px="40" design="primary" />
+  <IkIcon icon="star" circle size_px="48" design="success" />
+  <IkIcon icon="cog" circle size_px="56" design="accent" />
+</template>
+<script setup>
+import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
+</script>
+```
+
+## Clickable icons
+
+Add click handlers to make icons interactive. The component automatically adds clickable styling when an `onClick` handler is provided.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkIcon icon="heart" :onClick="handleClick" size_px="32" />
+  <IkIcon icon="star" :onClick="handleClick" size_px="32" design="primary" />
+  <IkIcon icon="trash" :onClick="handleClick" size_px="32" design="error" />
+</template>
+<script setup>
+import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
+import { ref } from 'vue';
+
+const clicked = ref('');
+
+function handleClick() {
+  clicked.value = 'Icon clicked!';
+  setTimeout(() => {
+    clicked.value = '';
+  }, 1000);
+}
+</script>
+```
+
+## Disabled state
+
+Use the `disabled` prop to prevent interaction and apply disabled styling.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkIcon icon="heart" disabled size_px="32" />
+  <IkIcon icon="star" disabled size_px="32" design="primary" />
+  <IkIcon icon="cog" disabled circle size_px="40" />
+</template>
+<script setup>
+import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
+</script>
+```

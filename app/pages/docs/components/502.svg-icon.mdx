@@ -7,3 +7,176 @@ meta:
     label: "[[_SVG Icon_]]"
 ---
 
+# SVG Icon
+
+<MetaDescription>
+The SVG Icon component loads and displays SVG icons from external sources or URLs. It supports custom colors, design variants, filled/outline styles, and circular backgrounds. Perfect for displaying custom SVG icons with full control over their appearance and styling.
+</MetaDescription>
+
+## Basic SVG icon
+
+The SVG Icon component loads SVG files from a URL specified in the `src` prop.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkSVGIcon src="/icon.svg" />
+  <IkSVGIcon src="/icon.svg" size_px="40" />
+  <IkSVGIcon src="/icon.svg" size_px="56" />
+</template>
+<script setup>
+import { IkSVGIcon } from '@ikol/ui-kit/components/IkSVGIcon';
+</script>
+```
+
+## Sizes
+
+Control the icon size using the `size_px` prop (default is 28px).
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkSVGIcon src="/icon.svg" size_px="16" />
+  <IkSVGIcon src="/icon.svg" size_px="24" />
+  <IkSVGIcon src="/icon.svg" size_px="32" />
+  <IkSVGIcon src="/icon.svg" size_px="48" />
+  <IkSVGIcon src="/icon.svg" size_px="64" />
+</template>
+<script setup>
+import { IkSVGIcon } from '@ikol/ui-kit/components/IkSVGIcon';
+</script>
+```
+
+## Design variants
+
+Apply different design colors using the `design` prop. The icon's stroke and fill colors will adapt to the selected design.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkSVGIcon src="/icon.svg" design="primary" size_px="40" />
+  <IkSVGIcon src="/icon.svg" design="success" size_px="40" />
+  <IkSVGIcon src="/icon.svg" design="error" size_px="40" />
+  <IkSVGIcon src="/icon.svg" design="accent" size_px="40" />
+  <IkSVGIcon src="/icon.svg" design="default" size_px="40" />
+</template>
+<script setup>
+import { IkSVGIcon } from '@ikol/ui-kit/components/IkSVGIcon';
+</script>
+```
+
+## Custom colors
+
+Use the `color` prop to specify a custom hex color (without the # prefix). The icon will use this color for its stroke and fill.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkSVGIcon src="/icon.svg" color="FF5733" size_px="40" />
+  <IkSVGIcon src="/icon.svg" color="33FF57" size_px="40" />
+  <IkSVGIcon src="/icon.svg" color="3357FF" size_px="40" />
+  <IkSVGIcon src="/icon.svg" color="FF33F5" size_px="40" />
+</template>
+<script setup>
+import { IkSVGIcon } from '@ikol/ui-kit/components/IkSVGIcon';
+</script>
+```
+
+## Filled variant
+
+Use the `variant="filled"` prop to display the icon with a filled background. When filled, the background uses the specified color, and the icon itself uses a contrasting text color.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkSVGIcon src="/icon.svg" variant="filled" design="primary" size_px="40" />
+  <IkSVGIcon src="/icon.svg" variant="filled" design="success" size_px="40" />
+  <IkSVGIcon src="/icon.svg" variant="filled" design="error" size_px="40" />
+  <IkSVGIcon src="/icon.svg" variant="filled" color="FF5733" size_px="40" />
+</template>
+<script setup>
+import { IkSVGIcon } from '@ikol/ui-kit/components/IkSVGIcon';
+</script>
+```
+
+## Circle variant
+
+Use the `circle` prop to display the icon within a circular background. The `inner_scale` prop controls how much of the circle the icon occupies (default is 0.6, meaning 60%).
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkSVGIcon src="/icon.svg" circle size_px="40" />
+  <IkSVGIcon src="/icon.svg" circle size_px="48" design="primary" />
+  <IkSVGIcon src="/icon.svg" circle size_px="56" design="success" />
+  <IkSVGIcon src="/icon.svg" circle size_px="64" design="accent" />
+</template>
+<script setup>
+import { IkSVGIcon } from '@ikol/ui-kit/components/IkSVGIcon';
+</script>
+```
+
+## Inner scale
+
+Control the size of the icon within the circle using the `inner_scale` prop (0 to 1, where 1 means the icon fills the entire circle).
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkSVGIcon src="/icon.svg" circle size_px="64" :inner_scale="0.4" />
+  <IkSVGIcon src="/icon.svg" circle size_px="64" :inner_scale="0.6" />
+  <IkSVGIcon src="/icon.svg" circle size_px="64" :inner_scale="0.8" />
+  <IkSVGIcon src="/icon.svg" circle size_px="64" :inner_scale="1.0" />
+</template>
+<script setup>
+import { IkSVGIcon } from '@ikol/ui-kit/components/IkSVGIcon';
+</script>
+```
+
+## Clickable icons
+
+Add click handlers to make icons interactive. The component automatically adds clickable styling when an `onClick` handler is provided.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkSVGIcon 
+    src="/icon.svg" 
+    size_px="48"
+    :onClick="handleClick"
+  />
+  <IkSVGIcon 
+    src="/icon.svg" 
+    size_px="48"
+    design="primary"
+    :onClick="handleClick"
+  />
+  <IkSVGIcon 
+    src="/icon.svg" 
+    circle
+    size_px="56"
+    design="success"
+    :onClick="handleClick"
+  />
+</template>
+<script setup>
+import { IkSVGIcon } from '@ikol/ui-kit/components/IkSVGIcon';
+import { ref } from 'vue';
+
+const clicked = ref('');
+
+function handleClick() {
+  clicked.value = 'Icon clicked!';
+  setTimeout(() => {
+    clicked.value = '';
+  }, 1000);
+}
+</script>
+```
+
+## Disabled state
+
+Use the `disabled` prop to prevent interaction and apply disabled styling.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkSVGIcon src="/icon.svg" disabled size_px="40" />
+  <IkSVGIcon src="/icon.svg" disabled circle size_px="48" design="primary" />
+  <IkSVGIcon src="/icon.svg" disabled variant="filled" size_px="40" design="success" />
+</template>
+<script setup>
+import { IkSVGIcon } from '@ikol/ui-kit/components/IkSVGIcon';
+</script>
+```

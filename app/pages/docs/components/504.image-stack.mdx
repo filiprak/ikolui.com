@@ -7,3 +7,174 @@ meta:
     label: "[[_Image Stack_]]"
 ---
 
+# Image Stack
+
+<MetaDescription>
+The Image Stack component displays multiple images in an overlapping stack layout, commonly used for showing user avatars, team members, or related images. It supports a maximum visible count with a "+N" indicator for hidden images, and can display an add button in edit mode.
+</MetaDescription>
+
+## Basic image stack
+
+The Image Stack component displays multiple images in an overlapping stack. Pass an array of image URLs to the `value` prop.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkImageStack :value="images" />
+</template>
+<script setup>
+import { IkImageStack } from '@ikol/ui-kit/components/IkImageStack';
+
+const images = [
+  'https://picsum.photos/200/200?random=1',
+  'https://picsum.photos/200/200?random=2',
+  'https://picsum.photos/200/200?random=3',
+];
+</script>
+```
+
+## Size
+
+Control the size of each image in the stack using the `size` prop (default is 24px).
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; flex-direction: column; gap: 16px;">
+    <IkImageStack :value="images" :size="24" />
+    <IkImageStack :value="images" :size="32" />
+    <IkImageStack :value="images" :size="40" />
+    <IkImageStack :value="images" :size="48" />
+  </div>
+</template>
+<script setup>
+import { IkImageStack } from '@ikol/ui-kit/components/IkImageStack';
+
+const images = [
+  'https://picsum.photos/200/200?random=1',
+  'https://picsum.photos/200/200?random=2',
+  'https://picsum.photos/200/200?random=3',
+];
+</script>
+```
+
+## Maximum visible count
+
+Use the `max` prop to control how many images are visible before showing a "+N" indicator (default is 5).
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; flex-direction: column; gap: 16px;">
+    <IkImageStack :value="manyImages" :max="3" />
+    <IkImageStack :value="manyImages" :max="5" />
+    <IkImageStack :value="manyImages" :max="7" />
+  </div>
+</template>
+<script setup>
+import { IkImageStack } from '@ikol/ui-kit/components/IkImageStack';
+
+const manyImages = [
+  'https://picsum.photos/200/200?random=1',
+  'https://picsum.photos/200/200?random=2',
+  'https://picsum.photos/200/200?random=3',
+  'https://picsum.photos/200/200?random=4',
+  'https://picsum.photos/200/200?random=5',
+  'https://picsum.photos/200/200?random=6',
+  'https://picsum.photos/200/200?random=7',
+  'https://picsum.photos/200/200?random=8',
+];
+</script>
+```
+
+## Hidden count indicator
+
+When there are more images than the `max` value, the component shows a "+N" indicator on the last visible image.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkImageStack :value="manyImages" :max="3" />
+</template>
+<script setup>
+import { IkImageStack } from '@ikol/ui-kit/components/IkImageStack';
+
+const manyImages = [
+  'https://picsum.photos/200/200?random=1',
+  'https://picsum.photos/200/200?random=2',
+  'https://picsum.photos/200/200?random=3',
+  'https://picsum.photos/200/200?random=4',
+  'https://picsum.photos/200/200?random=5',
+  'https://picsum.photos/200/200?random=6',
+  'https://picsum.photos/200/200?random=7',
+];
+</script>
+```
+
+## View mode
+
+Use `view_mode` to control whether the component is in view-only mode. When `view_mode` is `false` (default), an add button is shown if there are fewer images than the maximum.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; flex-direction: column; gap: 16px;">
+    <div>
+      <div style="margin-bottom: 8px;">View mode (no add button):</div>
+      <IkImageStack :value="fewImages" :max="5" view_mode />
+    </div>
+    <div>
+      <div style="margin-bottom: 8px;">Edit mode (with add button):</div>
+      <IkImageStack :value="fewImages" :max="5" />
+    </div>
+  </div>
+</template>
+<script setup>
+import { IkImageStack } from '@ikol/ui-kit/components/IkImageStack';
+
+const fewImages = [
+  'https://picsum.photos/200/200?random=1',
+  'https://picsum.photos/200/200?random=2',
+];
+</script>
+```
+
+## Disabled images
+
+Use the `disabled` prop to pass an array of image URLs that should be displayed in a disabled state.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkImageStack 
+    :value="images" 
+    :disabled="['https://picsum.photos/200/200?random=2']"
+    :size="40"
+  />
+</template>
+<script setup>
+import { IkImageStack } from '@ikol/ui-kit/components/IkImageStack';
+
+const images = [
+  'https://picsum.photos/200/200?random=1',
+  'https://picsum.photos/200/200?random=2',
+  'https://picsum.photos/200/200?random=3',
+];
+</script>
+```
+
+## Empty state
+
+When the `value` array is empty, the component shows only the add button (in edit mode).
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; flex-direction: column; gap: 16px;">
+    <div>
+      <div style="margin-bottom: 8px;">Empty in edit mode:</div>
+      <IkImageStack :value="[]" />
+    </div>
+    <div>
+      <div style="margin-bottom: 8px;">Empty in view mode:</div>
+      <IkImageStack :value="[]" view_mode />
+    </div>
+  </div>
+</template>
+<script setup>
+import { IkImageStack } from '@ikol/ui-kit/components/IkImageStack';
+</script>
+```

@@ -7,3 +7,169 @@ meta:
     label: "[[_Image_]]"
 ---
 
+# Image
+
+<MetaDescription>
+The Image component provides a flexible way to display images with support for lazy loading, loading states, fallback handling, and various sizing options. It includes built-in loading indicators and error handling, making it perfect for displaying images in your application with a great user experience.
+</MetaDescription>
+
+## Basic image
+
+The Image component displays images using the standard `img` element with enhanced features.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkImage 
+    src="https://picsum.photos/200/200" 
+    alt="Sample image"
+  />
+</template>
+<script setup>
+import { IkImage } from '@ikol/ui-kit/components/IkImage';
+</script>
+```
+
+## Sizes
+
+Control the image dimensions using the `size`, `width`, or `height` props.
+
+### Square images
+
+Use the `size` prop to create square images.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkImage src="https://picsum.photos/200/200" :size="100" alt="Small" />
+  <IkImage src="https://picsum.photos/200/200" :size="150" alt="Medium" />
+  <IkImage src="https://picsum.photos/200/200" :size="200" alt="Large" />
+</template>
+<script setup>
+import { IkImage } from '@ikol/ui-kit/components/IkImage';
+</script>
+```
+
+### Custom dimensions
+
+Use `width` and `height` props for custom dimensions.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkImage src="https://picsum.photos/200/200" :width="200" :height="150" alt="Wide" />
+  <IkImage src="https://picsum.photos/200/200" :width="150" :height="200" alt="Tall" />
+  <IkImage src="https://picsum.photos/200/200" :width="250" :height="100" alt="Banner" />
+</template>
+<script setup>
+import { IkImage } from '@ikol/ui-kit/components/IkImage';
+</script>
+```
+
+## Object fit
+
+Control how the image fits within its container using `contain` or `cover` props.
+
+### Contain
+
+Use `contain` to scale the image to fit within the container while maintaining aspect ratio.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkImage 
+    src="https://picsum.photos/200/300" 
+    :width="200" 
+    :height="200" 
+    contain 
+    alt="Contained image"
+  />
+</template>
+<script setup>
+import { IkImage } from '@ikol/ui-kit/components/IkImage';
+</script>
+```
+
+### Cover
+
+Use `cover` to scale the image to cover the entire container while maintaining aspect ratio.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkImage 
+    src="https://picsum.photos/200/300" 
+    :width="200" 
+    :height="200" 
+    cover 
+    alt="Covered image"
+  />
+</template>
+<script setup>
+import { IkImage } from '@ikol/ui-kit/components/IkImage';
+</script>
+```
+
+## Round images
+
+Use the `round` prop to display images with rounded corners (circular when square).
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkImage src="https://picsum.photos/200/200" :size="100" round alt="Round" />
+  <IkImage src="https://picsum.photos/200/200" :size="120" round alt="Round" />
+  <IkImage src="https://picsum.photos/200/200" :size="150" round alt="Round" />
+</template>
+<script setup>
+import { IkImage } from '@ikol/ui-kit/components/IkImage';
+</script>
+```
+
+## Loading state
+
+Enable the `loader` prop to show a loading spinner while the image is loading.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkImage 
+    src="https://picsum.photos/400/300" 
+    :size="200" 
+    loader 
+    alt="With loader"
+  />
+</template>
+<script setup>
+import { IkImage } from '@ikol/ui-kit/components/IkImage';
+</script>
+```
+
+## Fallback
+
+Use the `fallback` prop to display a fallback icon when the image source is empty or invalid.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; gap: 16px;">
+    <IkImage :size="150" fallback />
+    <IkImage src="" :size="150" fallback />
+  </div>
+</template>
+<script setup>
+import { IkImage } from '@ikol/ui-kit/components/IkImage';
+</script>
+```
+
+## Image attributes
+
+Use `width_attr` and `height_attr` to set the HTML width and height attributes for better performance and layout stability.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkImage 
+    src="https://picsum.photos/200/200" 
+    :width="200" 
+    :height="200"
+    :width_attr="200"
+    :height_attr="200"
+    alt="With attributes"
+  />
+</template>
+<script setup>
+import { IkImage } from '@ikol/ui-kit/components/IkImage';
+</script>
+```
