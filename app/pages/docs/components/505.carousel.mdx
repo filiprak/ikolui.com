@@ -21,17 +21,17 @@ The Carousel component displays slides in a horizontal scrolling container. Use 
 <template>
   <IkCarousel>
     <IkCarouselSlide>
-      <div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">
+      <div style="background: var(--background-primary-solid-default); padding: 48px; text-align: center; color: white;">
         Slide 1
       </div>
     </IkCarouselSlide>
     <IkCarouselSlide>
-      <div style="background: var(--bg-success-regular-default); padding: 48px; text-align: center; color: white;">
+      <div style="background: var(--background-success-solid-default); padding: 48px; text-align: center; color: white;">
         Slide 2
       </div>
     </IkCarouselSlide>
     <IkCarouselSlide>
-      <div style="background: var(--bg-error-regular-default); padding: 48px; text-align: center; color: white;">
+      <div style="background: var(--background-error-solid-default); padding: 48px; text-align: center; color: white;">
         Slide 3
       </div>
     </IkCarouselSlide>
@@ -52,17 +52,17 @@ Navigation arrows are enabled by default. Use the `navigation` prop to control t
     <div>
       <div style="margin-bottom: 8px;">With navigation (default):</div>
       <IkCarousel>
-        <IkCarouselSlide><div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-success-regular-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-error-regular-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-primary-solid-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-success-solid-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-error-solid-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
       </IkCarousel>
     </div>
     <div>
       <div style="margin-bottom: 8px;">Without navigation:</div>
       <IkCarousel :navigation="false">
-        <IkCarouselSlide><div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-success-regular-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-error-regular-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-primary-solid-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-success-solid-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-error-solid-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
       </IkCarousel>
     </div>
   </div>
@@ -82,17 +82,17 @@ Control the position of navigation arrows using the `navigation_position` prop (
     <div>
       <div style="margin-bottom: 8px;">Side navigation (default):</div>
       <IkCarousel navigation_position="side">
-        <IkCarouselSlide><div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-success-regular-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-error-regular-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-primary-solid-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-success-solid-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-error-solid-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
       </IkCarousel>
     </div>
     <div>
       <div style="margin-bottom: 8px;">Bottom navigation:</div>
       <IkCarousel navigation_position="bottom">
-        <IkCarouselSlide><div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-success-regular-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-error-regular-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-primary-solid-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-success-solid-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-error-solid-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
       </IkCarousel>
     </div>
   </div>
@@ -112,17 +112,17 @@ Pagination indicators (bullets) are enabled by default. Use the `indicators` pro
     <div>
       <div style="margin-bottom: 8px;">With indicators (default):</div>
       <IkCarousel>
-        <IkCarouselSlide><div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-success-regular-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-error-regular-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-primary-solid-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-success-solid-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-error-solid-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
       </IkCarousel>
     </div>
     <div>
       <div style="margin-bottom: 8px;">Without indicators:</div>
       <IkCarousel :indicators="false">
-        <IkCarouselSlide><div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-success-regular-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-error-regular-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-primary-solid-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-success-solid-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-error-solid-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
       </IkCarousel>
     </div>
   </div>
@@ -139,10 +139,10 @@ Enable automatic sliding using the `autoplay` prop. Control the delay between sl
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkCarousel autoplay :interval="3000">
-    <IkCarouselSlide><div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
-    <IkCarouselSlide><div style="background: var(--bg-success-regular-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
-    <IkCarouselSlide><div style="background: var(--bg-error-regular-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
-    <IkCarouselSlide><div style="background: var(--bg-accent-regular-default); padding: 48px; text-align: center; color: white;">Slide 4</div></IkCarouselSlide>
+    <IkCarouselSlide><div style="background: var(--background-primary-solid-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
+    <IkCarouselSlide><div style="background: var(--background-success-solid-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
+    <IkCarouselSlide><div style="background: var(--background-error-solid-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
+    <IkCarouselSlide><div style="background: var(--background-warning-solid-default); padding: 48px; text-align: center; color: white;">Slide 4</div></IkCarouselSlide>
   </IkCarousel>
 </template>
 <script setup>
@@ -160,17 +160,17 @@ Infinite looping is enabled by default. Use the `loop` prop to control this beha
     <div>
       <div style="margin-bottom: 8px;">With loop (default):</div>
       <IkCarousel>
-        <IkCarouselSlide><div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-success-regular-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-error-regular-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-primary-solid-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-success-solid-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-error-solid-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
       </IkCarousel>
     </div>
     <div>
       <div style="margin-bottom: 8px;">Without loop:</div>
       <IkCarousel :loop="false">
-        <IkCarouselSlide><div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-success-regular-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-error-regular-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-primary-solid-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-success-solid-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-error-solid-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
       </IkCarousel>
     </div>
   </div>
@@ -190,28 +190,28 @@ Control how many slides are visible at once using the `slides_per_view` prop.
     <div>
       <div style="margin-bottom: 8px;">1 slide per view (default):</div>
       <IkCarousel>
-        <IkCarouselSlide><div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-success-regular-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-error-regular-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-primary-solid-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-success-solid-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-error-solid-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
       </IkCarousel>
     </div>
     <div>
       <div style="margin-bottom: 8px;">2 slides per view:</div>
       <IkCarousel :slides_per_view="2">
-        <IkCarouselSlide><div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-success-regular-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-error-regular-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-accent-regular-default); padding: 48px; text-align: center; color: white;">Slide 4</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-primary-solid-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-success-solid-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-error-solid-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-warning-solid-default); padding: 48px; text-align: center; color: white;">Slide 4</div></IkCarouselSlide>
       </IkCarousel>
     </div>
     <div>
       <div style="margin-bottom: 8px;">3 slides per view:</div>
       <IkCarousel :slides_per_view="3" :space_between="16">
-        <IkCarouselSlide><div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-success-regular-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-error-regular-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-accent-regular-default); padding: 48px; text-align: center; color: white;">Slide 4</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">Slide 5</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-primary-solid-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-success-solid-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-error-solid-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-warning-solid-default); padding: 48px; text-align: center; color: white;">Slide 4</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-primary-solid-default); padding: 48px; text-align: center; color: white;">Slide 5</div></IkCarouselSlide>
       </IkCarousel>
     </div>
   </div>
@@ -231,25 +231,25 @@ Control the spacing between slides using the `space_between` prop (in pixels).
     <div>
       <div style="margin-bottom: 8px;">No space (default):</div>
       <IkCarousel :slides_per_view="3">
-        <IkCarouselSlide><div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-success-regular-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-error-regular-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-primary-solid-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-success-solid-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-error-solid-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
       </IkCarousel>
     </div>
     <div>
       <div style="margin-bottom: 8px;">16px space:</div>
       <IkCarousel :slides_per_view="3" :space_between="16">
-        <IkCarouselSlide><div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-success-regular-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-error-regular-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-primary-solid-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-success-solid-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-error-solid-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
       </IkCarousel>
     </div>
     <div>
       <div style="margin-bottom: 8px;">32px space:</div>
       <IkCarousel :slides_per_view="3" :space_between="32">
-        <IkCarouselSlide><div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-success-regular-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-error-regular-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-primary-solid-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-success-solid-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-error-solid-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
       </IkCarousel>
     </div>
   </div>
@@ -266,10 +266,10 @@ Use the `centered_slides` prop to center the active slide.
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkCarousel :slides_per_view="3" centered_slides :space_between="16">
-    <IkCarouselSlide><div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
-    <IkCarouselSlide><div style="background: var(--bg-success-regular-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
-    <IkCarouselSlide><div style="background: var(--bg-error-regular-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
-    <IkCarouselSlide><div style="background: var(--bg-accent-regular-default); padding: 48px; text-align: center; color: white;">Slide 4</div></IkCarouselSlide>
+    <IkCarouselSlide><div style="background: var(--background-primary-solid-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
+    <IkCarouselSlide><div style="background: var(--background-success-solid-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
+    <IkCarouselSlide><div style="background: var(--background-error-solid-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
+    <IkCarouselSlide><div style="background: var(--background-warning-solid-default); padding: 48px; text-align: center; color: white;">Slide 4</div></IkCarouselSlide>
   </IkCarousel>
 </template>
 <script setup>
@@ -284,30 +284,10 @@ Enable free scrolling (no snapping) using the `free` prop.
 ```vue title="[[_Source code_]]" preview
 <template>
   <IkCarousel free :slides_per_view="3" :space_between="16">
-    <IkCarouselSlide><div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
-    <IkCarouselSlide><div style="background: var(--bg-success-regular-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
-    <IkCarouselSlide><div style="background: var(--bg-error-regular-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
-    <IkCarouselSlide><div style="background: var(--bg-accent-regular-default); padding: 48px; text-align: center; color: white;">Slide 4</div></IkCarouselSlide>
-  </IkCarousel>
-</template>
-<script setup>
-import { IkCarousel, IkCarouselSlide } from '@ikol/ui-kit/components/IkCarousel';
-</script>
-```
-
-## Grid layout
-
-Use the `grid` prop to display slides in a grid layout. Control the number of rows with `grid_rows`.
-
-```vue title="[[_Source code_]]" preview
-<template>
-  <IkCarousel grid :grid_rows="2" :space_between="16">
-    <IkCarouselSlide><div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
-    <IkCarouselSlide><div style="background: var(--bg-success-regular-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
-    <IkCarouselSlide><div style="background: var(--bg-error-regular-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
-    <IkCarouselSlide><div style="background: var(--bg-accent-regular-default); padding: 48px; text-align: center; color: white;">Slide 4</div></IkCarouselSlide>
-    <IkCarouselSlide><div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">Slide 5</div></IkCarouselSlide>
-    <IkCarouselSlide><div style="background: var(--bg-success-regular-default); padding: 48px; text-align: center; color: white;">Slide 6</div></IkCarouselSlide>
+    <IkCarouselSlide><div style="background: var(--background-primary-solid-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
+    <IkCarouselSlide><div style="background: var(--background-success-solid-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
+    <IkCarouselSlide><div style="background: var(--background-error-solid-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
+    <IkCarouselSlide><div style="background: var(--background-warning-solid-default); padding: 48px; text-align: center; color: white;">Slide 4</div></IkCarouselSlide>
   </IkCarousel>
 </template>
 <script setup>
@@ -348,7 +328,7 @@ Enable pagination with infinite scroll using the `paginate` prop. The carousel w
   <div style="display: flex; flex-direction: column; gap: 16px;">
     <IkCarousel paginate @ik-load-more="loadMore">
       <IkCarouselSlide v-for="slide in slides" :key="slide">
-        <div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">
+        <div style="background: var(--background-primary-solid-default); padding: 48px; text-align: center; color: white;">
           {{ slide }}
         </div>
       </IkCarouselSlide>
@@ -379,207 +359,18 @@ Apply different design colors using the `design` prop.
     <div>
       <div style="margin-bottom: 8px;">Default design:</div>
       <IkCarousel design="default">
-        <IkCarouselSlide><div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-success-regular-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-primary-solid-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-success-solid-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
       </IkCarousel>
     </div>
     <div>
       <div style="margin-bottom: 8px;">Primary design:</div>
       <IkCarousel design="primary">
-        <IkCarouselSlide><div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
-        <IkCarouselSlide><div style="background: var(--bg-success-regular-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-primary-solid-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
+        <IkCarouselSlide><div style="background: var(--background-success-solid-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
       </IkCarousel>
     </div>
   </div>
-</template>
-<script setup>
-import { IkCarousel, IkCarouselSlide } from '@ikol/ui-kit/components/IkCarousel';
-</script>
-```
-
-## Round corners
-
-Use the `round` prop to add rounded corners to the carousel.
-
-```vue title="[[_Source code_]]" preview
-<template>
-  <IkCarousel round>
-    <IkCarouselSlide>
-      <IkImage src="https://picsum.photos/800/600" alt="Image" />
-    </IkCarouselSlide>
-    <IkCarouselSlide>
-      <IkImage src="https://picsum.photos/800/600?random=2" alt="Image" />
-    </IkCarouselSlide>
-    <IkCarouselSlide>
-      <IkImage src="https://picsum.photos/800/600?random=3" alt="Image" />
-    </IkCarouselSlide>
-  </IkCarousel>
-</template>
-<script setup>
-import { IkCarousel, IkCarouselSlide } from '@ikol/ui-kit/components/IkCarousel';
-import { IkImage } from '@ikol/ui-kit/components/IkImage';
-</script>
-```
-
-## Slide change event
-
-Listen to the `ik-slide-change` event to track the current slide index.
-
-```vue title="[[_Source code_]]" preview
-<template>
-  <div style="display: flex; flex-direction: column; gap: 16px;">
-    <IkCarousel @ik-slide-change="handleSlideChange">
-      <IkCarouselSlide><div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
-      <IkCarouselSlide><div style="background: var(--bg-success-regular-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
-      <IkCarouselSlide><div style="background: var(--bg-error-regular-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
-    </IkCarousel>
-    <div>Current slide: {{ currentSlide + 1 }}</div>
-  </div>
-</template>
-<script setup>
-import { IkCarousel, IkCarouselSlide } from '@ikol/ui-kit/components/IkCarousel';
-import { ref } from 'vue';
-
-const currentSlide = ref(0);
-
-function handleSlideChange(index) {
-  currentSlide.value = index;
-}
-</script>
-```
-
-## Custom navigation buttons
-
-Customize the navigation buttons using slots.
-
-```vue title="[[_Source code_]]" preview
-<template>
-  <IkCarousel>
-    <template #navigation-prev="{ disabled }">
-      <IkButton :disabled="disabled" circle flat design="primary">←</IkButton>
-    </template>
-    <template #navigation-next="{ disabled }">
-      <IkButton :disabled="disabled" circle flat design="primary">→</IkButton>
-    </template>
-    <IkCarouselSlide><div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
-    <IkCarouselSlide><div style="background: var(--bg-success-regular-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
-    <IkCarouselSlide><div style="background: var(--bg-error-regular-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
-  </IkCarousel>
-</template>
-<script setup>
-import { IkCarousel, IkCarouselSlide } from '@ikol/ui-kit/components/IkCarousel';
-import { IkButton } from '@ikol/ui-kit/components/IkButton';
-</script>
-```
-
-## Programmatic control
-
-Access the carousel instance using a template ref to control it programmatically.
-
-```vue title="[[_Source code_]]" preview
-<template>
-  <div style="display: flex; flex-direction: column; gap: 16px;">
-    <div style="display: flex; gap: 8px;">
-      <IkButton @click="carouselRef?.prev()" design="primary" size="sm">Previous</IkButton>
-      <IkButton @click="carouselRef?.next()" design="primary" size="sm">Next</IkButton>
-      <IkButton @click="carouselRef?.goTo(0)" design="primary" size="sm">Go to first</IkButton>
-    </div>
-    <IkCarousel ref="carouselRef">
-      <IkCarouselSlide><div style="background: var(--bg-primary-regular-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
-      <IkCarouselSlide><div style="background: var(--bg-success-regular-default); padding: 48px; text-align: center; color: white;">Slide 2</div></IkCarouselSlide>
-      <IkCarouselSlide><div style="background: var(--bg-error-regular-default); padding: 48px; text-align: center; color: white;">Slide 3</div></IkCarouselSlide>
-    </IkCarousel>
-  </div>
-</template>
-<script setup>
-import { IkCarousel, IkCarouselSlide } from '@ikol/ui-kit/components/IkCarousel';
-import { IkButton } from '@ikol/ui-kit/components/IkButton';
-import { ref } from 'vue';
-
-const carouselRef = ref();
-</script>
-```
-
-## Real-world examples
-
-### Image gallery
-
-Create an image gallery carousel with navigation and indicators.
-
-```vue title="[[_Source code_]]" preview
-<template>
-  <IkCarousel :slides_per_view="1" autoplay :interval="4000">
-    <IkCarouselSlide>
-      <IkImage src="https://picsum.photos/800/600" alt="Gallery image 1" />
-    </IkCarouselSlide>
-    <IkCarouselSlide>
-      <IkImage src="https://picsum.photos/800/600?random=2" alt="Gallery image 2" />
-    </IkCarouselSlide>
-    <IkCarouselSlide>
-      <IkImage src="https://picsum.photos/800/600?random=3" alt="Gallery image 3" />
-    </IkCarouselSlide>
-    <IkCarouselSlide>
-      <IkImage src="https://picsum.photos/800/600?random=4" alt="Gallery image 4" />
-    </IkCarouselSlide>
-  </IkCarousel>
-</template>
-<script setup>
-import { IkCarousel, IkCarouselSlide } from '@ikol/ui-kit/components/IkCarousel';
-import { IkImage } from '@ikol/ui-kit/components/IkImage';
-</script>
-```
-
-### Product showcase
-
-Display multiple products in a carousel with multiple slides visible.
-
-```vue title="[[_Source code_]]" preview
-<template>
-  <IkCarousel :slides_per_view="3" :space_between="24" navigation_position="bottom">
-    <IkCarouselSlide v-for="i in 6" :key="i">
-      <div style="border: 1px solid var(--border-neutral-regular-default); border-radius: 8px; padding: 16px; text-align: center;">
-        <IkImage src="https://picsum.photos/200/200?random=i" :size="150" round alt="Product" />
-        <div style="margin-top: 12px; font-weight: 600;">Product {{ i }}</div>
-        <div style="margin-top: 4px; color: var(--text-neutral-regular-default);">${{ 10 + i * 5 }}</div>
-      </div>
-    </IkCarouselSlide>
-  </IkCarousel>
-</template>
-<script setup>
-import { IkCarousel, IkCarouselSlide } from '@ikol/ui-kit/components/IkCarousel';
-import { IkImage } from '@ikol/ui-kit/components/IkImage';
-</script>
-```
-
-### Testimonials
-
-Create a testimonials carousel with centered slides.
-
-```vue title="[[_Source code_]]" preview
-<template>
-  <IkCarousel :slides_per_view="1" centered_slides autoplay :interval="5000">
-    <IkCarouselSlide>
-      <div style="padding: 32px; text-align: center; max-width: 600px; margin: 0 auto;">
-        <div style="font-size: 24px; margin-bottom: 16px;">"Great product! Highly recommend."</div>
-        <div style="font-weight: 600;">John Doe</div>
-        <div style="color: var(--text-neutral-regular-default);">CEO, Company Inc.</div>
-      </div>
-    </IkCarouselSlide>
-    <IkCarouselSlide>
-      <div style="padding: 32px; text-align: center; max-width: 600px; margin: 0 auto;">
-        <div style="font-size: 24px; margin-bottom: 16px;">"Excellent service and support."</div>
-        <div style="font-weight: 600;">Jane Smith</div>
-        <div style="color: var(--text-neutral-regular-default);">CTO, Tech Corp</div>
-      </div>
-    </IkCarouselSlide>
-    <IkCarouselSlide>
-      <div style="padding: 32px; text-align: center; max-width: 600px; margin: 0 auto;">
-        <div style="font-size: 24px; margin-bottom: 16px;">"Best decision we made this year."</div>
-        <div style="font-weight: 600;">Bob Johnson</div>
-        <div style="color: var(--text-neutral-regular-default);">Founder, Startup Co</div>
-      </div>
-    </IkCarouselSlide>
-  </IkCarousel>
 </template>
 <script setup>
 import { IkCarousel, IkCarouselSlide } from '@ikol/ui-kit/components/IkCarousel';
