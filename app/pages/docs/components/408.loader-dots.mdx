@@ -7,3 +7,75 @@ meta:
     label: "[[_Loader Dots_]]"
 ---
 
+# Loader Dots
+
+<MetaDescription>
+The Loader Dots component displays an animated loading indicator with three dots that pulse in sequence. It's a lightweight and elegant way to indicate that content is loading or an operation is in progress.
+</MetaDescription>
+
+## Basic loader dots
+
+The Loader Dots component displays three animated dots that pulse in sequence, creating a smooth loading animation.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkLoaderDots />
+</template>
+<script setup>
+import { IkLoaderDots } from '@ikol/ui-kit/components/IkLoaderDots';
+</script>
+```
+
+## Sizes
+
+Control the size of the dots using the `size` prop. The size determines both the dot radius and the overall width of the loader.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; gap: 24px; align-items: center;">
+    <IkLoaderDots :size="4" />
+    <IkLoaderDots :size="6" />
+    <IkLoaderDots :size="8" />
+    <IkLoaderDots :size="12" />
+    <IkLoaderDots :size="16" />
+  </div>
+</template>
+<script setup>
+import { IkLoaderDots } from '@ikol/ui-kit/components/IkLoaderDots';
+</script>
+```
+
+## Custom height
+
+Use the `height` prop to set a custom height for the loader, independent of the dot size. This is useful when you need to match the loader height to surrounding content.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; gap: 24px; align-items: center;">
+    <IkLoaderDots :size="6" :height="20" />
+    <IkLoaderDots :size="6" :height="30" />
+    <IkLoaderDots :size="6" :height="40" />
+  </div>
+</template>
+<script setup>
+import { IkLoaderDots } from '@ikol/ui-kit/components/IkLoaderDots';
+</script>
+```
+
+## Design variants
+
+Apply different design variants using the `design` prop to match your application's theme.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; gap: 24px; align-items: center;">
+    <IkLoaderDots design="primary" />
+    <IkLoaderDots design="success" />
+    <IkLoaderDots design="error" />
+    <IkLoaderDots design="accent" />
+  </div>
+</template>
+<script setup>
+import { IkLoaderDots } from '@ikol/ui-kit/components/IkLoaderDots';
+</script>
+```

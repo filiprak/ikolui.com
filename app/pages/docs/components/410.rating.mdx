@@ -7,3 +7,96 @@ meta:
     label: "[[_Rating_]]"
 ---
 
+# Rating
+
+<MetaDescription>
+The Rating component displays a visual star rating from 0 to 5 stars. It's perfect for displaying product ratings, user reviews, or any scenario where you need to show a quality score or satisfaction level.
+</MetaDescription>
+
+## Basic rating
+
+The Rating component displays 5 stars, with the number of filled stars determined by the `value` prop. The value is automatically clamped between 0 and 5.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkRating :value="4" />
+</template>
+<script setup>
+import { IkRating } from '@ikol/ui-kit/components/IkRating';
+</script>
+```
+
+## Rating values
+
+Set the `value` prop to control the number of stars displayed. Values are automatically clamped between 0 and 5.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; flex-direction: column; gap: 16px;">
+    <IkRating :value="0" />
+    <IkRating :value="1" />
+    <IkRating :value="2" />
+    <IkRating :value="3" />
+    <IkRating :value="4" />
+    <IkRating :value="5" />
+  </div>
+</template>
+<script setup>
+import { IkRating } from '@ikol/ui-kit/components/IkRating';
+</script>
+```
+
+## Sizes
+
+Control the size of the stars using the `size` prop. Available sizes include `sm`, `md`, `lg`, and custom values.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start;">
+    <IkRating :value="4" size="sm" />
+    <IkRating :value="4" size="md" />
+    <IkRating :value="4" size="lg" />
+  </div>
+</template>
+<script setup>
+import { IkRating } from '@ikol/ui-kit/components/IkRating';
+</script>
+```
+
+## Design variants
+
+Apply different design variants using the `design` prop to match your application's theme. Different designs change the color of the active and inactive stars.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; flex-direction: column; gap: 16px;">
+    <IkRating :value="4" design="default" />
+    <IkRating :value="4" design="primary" />
+    <IkRating :value="4" design="success" />
+    <IkRating :value="4" design="accent" />
+  </div>
+</template>
+<script setup>
+import { IkRating } from '@ikol/ui-kit/components/IkRating';
+</script>
+```
+
+## Example
+
+Display product ratings with additional information.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; flex-direction: column; gap: 12px; padding: 24px; border: 1px solid var(--border-neutral-regular-default); border-radius: 8px; max-width: 300px;">
+    <div style="font-weight: 600; font-size: 18px;">Premium Headphones</div>
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <IkRating :value="4.5" size="sm" />
+      <span style="font-weight: 600;">4.5</span>
+      <span style="color: var(--text-neutral-regular-default); font-size: 14px;">(128 reviews)</span>
+    </div>
+  </div>
+</template>
+<script setup>
+import { IkRating } from '@ikol/ui-kit/components/IkRating';
+</script>
+```

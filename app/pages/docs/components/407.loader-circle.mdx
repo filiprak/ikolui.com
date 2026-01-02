@@ -7,3 +7,172 @@ meta:
     label: "[[_Loader Circle_]]"
 ---
 
+# Loader Circle
+
+<MetaDescription>
+The Loader Circle component displays a circular progress indicator that can show both determinate progress (with a percentage value) and indeterminate loading states. It's perfect for indicating ongoing operations, file uploads, or any process that requires visual feedback.
+</MetaDescription>
+
+## Basic loader circle
+
+The Loader Circle component displays a circular progress indicator. By default, it shows a determinate progress with a value between 0 and 100.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkLoaderCircle :value="50" />
+</template>
+<script setup>
+import { IkLoaderCircle } from '@ikol/ui-kit/components/IkLoaderCircle';
+</script>
+```
+
+## Progress values
+
+Set the `value` prop to control the progress percentage. The value is automatically clamped between 0 and 100.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; gap: 24px; align-items: center;">
+    <IkLoaderCircle :value="0" />
+    <IkLoaderCircle :value="25" />
+    <IkLoaderCircle :value="50" />
+    <IkLoaderCircle :value="75" />
+    <IkLoaderCircle :value="100" />
+  </div>
+</template>
+<script setup>
+import { IkLoaderCircle } from '@ikol/ui-kit/components/IkLoaderCircle';
+</script>
+```
+
+## Indeterminate state
+
+Use the `indeterminate` prop to display an animated loading spinner that continuously rotates, perfect for operations where the completion time is unknown.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkLoaderCircle indeterminate />
+</template>
+<script setup>
+import { IkLoaderCircle } from '@ikol/ui-kit/components/IkLoaderCircle';
+</script>
+```
+
+## Sizes
+
+Control the size of the loader circle using the `size` prop. The size can be specified as a number (pixels) or a string with units.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; gap: 24px; align-items: center;">
+    <IkLoaderCircle :value="50" :size="20" />
+    <IkLoaderCircle :value="50" :size="28" />
+    <IkLoaderCircle :value="50" :size="40" />
+    <IkLoaderCircle :value="50" :size="56" />
+    <IkLoaderCircle :value="50" :size="80" />
+  </div>
+</template>
+<script setup>
+import { IkLoaderCircle } from '@ikol/ui-kit/components/IkLoaderCircle';
+</script>
+```
+
+## Stroke thickness
+
+Adjust the thickness of the circular stroke using the `thickness` prop. This allows you to create thin or thick progress indicators.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; gap: 24px; align-items: center;">
+    <IkLoaderCircle :value="60" :size="40" :thickness="2" />
+    <IkLoaderCircle :value="60" :size="40" :thickness="3" />
+    <IkLoaderCircle :value="60" :size="40" :thickness="5" />
+    <IkLoaderCircle :value="60" :size="40" :thickness="8" />
+  </div>
+</template>
+<script setup>
+import { IkLoaderCircle } from '@ikol/ui-kit/components/IkLoaderCircle';
+</script>
+```
+
+## Rotation
+
+Rotate the loader circle using the `rotate` prop. This is useful for adjusting the starting position of the progress indicator.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; gap: 24px; align-items: center;">
+    <IkLoaderCircle :value="50" :rotate="0" />
+    <IkLoaderCircle :value="50" :rotate="90" />
+    <IkLoaderCircle :value="50" :rotate="180" />
+    <IkLoaderCircle :value="50" :rotate="270" />
+  </div>
+</template>
+<script setup>
+import { IkLoaderCircle } from '@ikol/ui-kit/components/IkLoaderCircle';
+</script>
+```
+
+## Design variants
+
+Apply different design variants using the `design` prop to match your application's theme.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; gap: 24px; align-items: center;">
+    <IkLoaderCircle :value="60" design="primary" />
+    <IkLoaderCircle :value="60" design="success" />
+    <IkLoaderCircle :value="60" design="error" />
+    <IkLoaderCircle :value="60" design="accent" />
+  </div>
+</template>
+<script setup>
+import { IkLoaderCircle } from '@ikol/ui-kit/components/IkLoaderCircle';
+</script>
+```
+
+## Animated progress example
+
+Combine the loader circle with reactive values to create animated progress indicators.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; flex-direction: column; gap: 16px; align-items: center;">
+    <IkLoaderCircle :value="progress" :size="60" />
+    <div>Progress: {{ Math.round(progress) }}%</div>
+    <div style="display: flex; gap: 8px;">
+      <IkButton @click="startProgress" design="primary" size="sm">Start</IkButton>
+      <IkButton @click="resetProgress" design="default" size="sm">Reset</IkButton>
+    </div>
+  </div>
+</template>
+<script setup>
+import { IkLoaderCircle } from '@ikol/ui-kit/components/IkLoaderCircle';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { ref, onUnmounted } from 'vue';
+
+const progress = ref(0);
+let interval = null;
+
+function startProgress() {
+  if (interval) clearInterval(interval);
+  progress.value = 0;
+  interval = setInterval(() => {
+    if (progress.value < 100) {
+      progress.value += 2;
+    } else {
+      clearInterval(interval);
+    }
+  }, 100);
+}
+
+function resetProgress() {
+  if (interval) clearInterval(interval);
+  progress.value = 0;
+}
+
+onUnmounted(() => {
+  if (interval) clearInterval(interval);
+});
+</script>
+```
