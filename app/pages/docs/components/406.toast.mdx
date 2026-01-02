@@ -7,3 +7,372 @@ meta:
     label: "[[_Toast_]]"
 ---
 
+# Toast
+
+<MetaDescription>
+Toasts are temporary notifications that appear at the bottom of the screen to provide feedback to users. They automatically disappear after a set duration but can also be manually dismissed. The toast system supports quick messages, custom content, multiple designs, and positioning options.
+</MetaDescription>
+
+## Basic toast
+
+Use the `useToast` composable with `showQuick` to display a simple toast message. The toast will automatically appear and disappear after the default timeout.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton @click="showToast" design="primary">Show Toast</IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { useToast } from '@ikol/ui-kit/composables/toast';
+
+const { showQuick } = useToast();
+
+function showToast() {
+  showQuick({
+    body: 'This is a toast notification'
+  });
+}
+</script>
+```
+
+## Toast designs
+
+Toasts support different design variants to convey different types of messages: `primary`, `success`, `error`, and `accent`.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+    <IkButton @click="showPrimary" design="primary" size="sm">Primary</IkButton>
+    <IkButton @click="showSuccess" design="success" size="sm">Success</IkButton>
+    <IkButton @click="showError" design="error" size="sm">Error</IkButton>
+    <IkButton @click="showAccent" design="accent" size="sm">Accent</IkButton>
+  </div>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { useToast } from '@ikol/ui-kit/composables/toast';
+
+const { showQuick } = useToast();
+
+function showPrimary() {
+  showQuick({ body: 'Primary toast message', design: 'primary' });
+}
+
+function showSuccess() {
+  showQuick({ body: 'Operation completed successfully', design: 'success' });
+}
+
+function showError() {
+  showQuick({ body: 'An error occurred', design: 'error' });
+}
+
+function showAccent() {
+  showQuick({ body: 'Warning: Please review this', design: 'accent' });
+}
+</script>
+```
+
+## Toast with icons
+
+Add icons to toasts using the `icon` prop. Icons appear on the left side of the toast content.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+    <IkButton @click="showWithIcon" design="primary" size="sm">With Icon</IkButton>
+    <IkButton @click="showSuccessIcon" design="success" size="sm">Success Icon</IkButton>
+    <IkButton @click="showErrorIcon" design="error" size="sm">Error Icon</IkButton>
+  </div>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { useToast } from '@ikol/ui-kit/composables/toast';
+
+const { showQuick } = useToast();
+
+function showWithIcon() {
+  showQuick({ 
+    body: 'Toast with an icon', 
+    icon: 'info-circle',
+    design: 'primary' 
+  });
+}
+
+function showSuccessIcon() {
+  showQuick({ 
+    body: 'Success with check icon', 
+    icon: 'check-circle',
+    design: 'success' 
+  });
+}
+
+function showErrorIcon() {
+  showQuick({ 
+    body: 'Error with warning icon', 
+    icon: 'exclamation-circle',
+    design: 'error' 
+  });
+}
+</script>
+```
+
+## Toast positions
+
+Control where toasts appear on the screen using the `position` option. Available positions are `center` (default) and `right`.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+    <IkButton @click="showCenter" design="primary" size="sm">Center</IkButton>
+    <IkButton @click="showRight" design="primary" size="sm">Right</IkButton>
+  </div>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { useToast } from '@ikol/ui-kit/composables/toast';
+
+const { showQuick } = useToast();
+
+function showCenter() {
+  showQuick({ 
+    body: 'This toast appears in the center',
+    position: 'center'
+  });
+}
+
+function showRight() {
+  showQuick({ 
+    body: 'This toast appears on the right',
+    position: 'right'
+  });
+}
+</script>
+```
+
+## Toast sizes
+
+Control the width of toasts using the `size` option. Available sizes are `xs`, `sm` (default), `md`, and `lg`.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+    <IkButton @click="showXS" design="primary" size="sm">XS</IkButton>
+    <IkButton @click="showSM" design="primary" size="sm">SM</IkButton>
+    <IkButton @click="showMD" design="primary" size="sm">MD</IkButton>
+    <IkButton @click="showLG" design="primary" size="sm">LG</IkButton>
+  </div>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { useToast } from '@ikol/ui-kit/composables/toast';
+
+const { showQuick } = useToast();
+
+function showXS() {
+  showQuick({ body: 'Extra small toast (250px)', size: 'xs' });
+}
+
+function showSM() {
+  showQuick({ body: 'Small toast (350px)', size: 'sm' });
+}
+
+function showMD() {
+  showQuick({ body: 'Medium toast (550px)', size: 'md' });
+}
+
+function showLG() {
+  showQuick({ body: 'Large toast (650px)', size: 'lg' });
+}
+</script>
+```
+
+## Toast timeouts
+
+Control how long toasts remain visible using the `timeout` option. Available options are `short` (3.5s), `default` (6s), `medium` (6s), and `long` (9s).
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+    <IkButton @click="showShort" design="primary" size="sm">Short</IkButton>
+    <IkButton @click="showDefault" design="primary" size="sm">Default</IkButton>
+    <IkButton @click="showLong" design="primary" size="sm">Long</IkButton>
+  </div>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { useToast } from '@ikol/ui-kit/composables/toast';
+
+const { showQuick } = useToast();
+
+function showShort() {
+  showQuick({ 
+    body: 'This toast disappears quickly (3.5s)',
+    timeout: 'short'
+  });
+}
+
+function showDefault() {
+  showQuick({ 
+    body: 'This toast uses default timeout (6s)',
+    timeout: 'default'
+  });
+}
+
+function showLong() {
+  showQuick({ 
+    body: 'This toast stays longer (9s)',
+    timeout: 'long'
+  });
+}
+</script>
+```
+
+## Close others
+
+Use the `close_others` option to automatically close all existing toasts before showing a new one.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+    <IkButton @click="showMultiple" design="primary" size="sm">Show Multiple</IkButton>
+    <IkButton @click="showSingle" design="success" size="sm">Close Others</IkButton>
+  </div>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { useToast } from '@ikol/ui-kit/composables/toast';
+
+const { showQuick } = useToast();
+
+function showMultiple() {
+  showQuick({ body: 'First toast', timeout: 'long' });
+  setTimeout(() => {
+    showQuick({ body: 'Second toast', timeout: 'long' });
+  }, 500);
+  setTimeout(() => {
+    showQuick({ body: 'Third toast', timeout: 'long' });
+  }, 1000);
+}
+
+function showSingle() {
+  showQuick({ 
+    body: 'This toast closes all others',
+    close_others: true
+  });
+}
+</script>
+```
+
+## Custom toast content
+
+Use `showCustom` to create toasts with completely custom Vue components. This allows for full control over the toast content and structure.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton @click="showCustomToast" design="primary">Show Custom Toast</IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { IkToastContent, IkToastBody, IkToastActions } from '@ikol/ui-kit/components/IkToast';
+import { useToast } from '@ikol/ui-kit/composables/toast';
+import { h } from 'vue';
+
+const { showCustom } = useToast();
+
+function showCustomToast() {
+  showCustom(
+    {
+      render() {
+        return h(
+          IkToastContent,
+          { icon: 'star', size: 'md' },
+          {
+            default: () => [
+              h(
+                IkToastBody,
+                {},
+                {
+                  default: () => h('div', [
+                    h('strong', 'Custom Toast Title'),
+                    h('p', { style: 'margin-top: 8px; margin-bottom: 0;' }, 'This is a custom toast with structured content.')
+                  ])
+                }
+              ),
+              h(IkToastActions, { close: true })
+            ]
+          }
+        );
+      }
+    },
+    {
+      timeout: 'long',
+      design: 'primary'
+    }
+  );
+}
+</script>
+```
+
+## Custom toast with Vue component
+
+You can also pass a Vue component to `showQuick` using the `bodyVue` option, or use it with `showCustom` for more complex scenarios.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton @click="showVueComponentToast" design="primary">Show Vue Component Toast</IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { useToast } from '@ikol/ui-kit/composables/toast';
+import { h } from 'vue';
+
+const { showQuick } = useToast();
+
+const CustomContent = {
+  render() {
+    return h('div', [
+      h('strong', { style: 'display: block; margin-bottom: 4px;' }, 'Custom Component'),
+      h('span', 'This toast uses a Vue component for its body content.')
+    ]);
+  }
+};
+
+function showVueComponentToast() {
+  showQuick({
+    bodyVue: CustomContent,
+    icon: 'code',
+    design: 'primary',
+    size: 'md'
+  });
+}
+</script>
+```
+
+## Close all toasts
+
+Use the `closeAll` method to programmatically close all currently visible toasts.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+    <IkButton @click="showToasts" design="primary" size="sm">Show Multiple Toasts</IkButton>
+    <IkButton @click="closeAll" design="error" size="sm">Close All</IkButton>
+  </div>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { useToast } from '@ikol/ui-kit/composables/toast';
+
+const { showQuick, closeAll } = useToast();
+
+function showToasts() {
+  showQuick({ body: 'First toast', timeout: 'long' });
+  setTimeout(() => {
+    showQuick({ body: 'Second toast', timeout: 'long' });
+  }, 300);
+  setTimeout(() => {
+    showQuick({ body: 'Third toast', timeout: 'long' });
+  }, 600);
+}
+</script>
+```
