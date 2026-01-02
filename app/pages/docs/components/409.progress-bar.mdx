@@ -17,7 +17,7 @@ The Progress Bar component displays a horizontal progress indicator with smooth 
 
 The Progress Bar component displays a horizontal bar that fills based on a percentage value. By default, it shows a percentage label next to the bar.
 
-```vue title="[[_Source code_]]" preview
+```vue title="[[_Source code_]]" preview client_only
 <template>
   <IkProgressBar :percentage="50" />
 </template>
@@ -30,7 +30,7 @@ import { IkProgressBar } from '@ikol/ui-kit/components/IkProgressBar';
 
 Set the `percentage` prop to control the progress value. The component automatically animates to the new value when it changes.
 
-```vue title="[[_Source code_]]" preview
+```vue title="[[_Source code_]]" preview client_only
 <template>
   <div style="display: flex; flex-direction: column; gap: 16px;">
     <IkProgressBar :percentage="0" />
@@ -49,7 +49,7 @@ import { IkProgressBar } from '@ikol/ui-kit/components/IkProgressBar';
 
 The progress bar automatically animates when the `percentage` prop changes. Control the animation duration using the `estimated_time` prop (in seconds).
 
-```vue title="[[_Source code_]]" preview
+```vue title="[[_Source code_]]" preview client_only
 <template>
   <div style="display: flex; flex-direction: column; gap: 16px;">
     <IkProgressBar :percentage="progress" :estimated_time="2" />
@@ -78,7 +78,7 @@ function setProgress(value) {
 
 Set `estimated_time` to `0` to update the progress instantly without animation.
 
-```vue title="[[_Source code_]]" preview
+```vue title="[[_Source code_]]" preview client_only
 <template>
   <div style="display: flex; flex-direction: column; gap: 16px;">
     <IkProgressBar :percentage="progress" :estimated_time="0" />
@@ -103,7 +103,7 @@ const progress = ref(0);
 
 Apply different design variants using the `design` prop to match your application's theme.
 
-```vue title="[[_Source code_]]" preview
+```vue title="[[_Source code_]]" preview client_only
 <template>
   <div style="display: flex; flex-direction: column; gap: 16px;">
     <IkProgressBar :percentage="60" design="primary" />
@@ -121,7 +121,7 @@ import { IkProgressBar } from '@ikol/ui-kit/components/IkProgressBar';
 
 Control the height of the progress bar using the `height` prop (in pixels).
 
-```vue title="[[_Source code_]]" preview
+```vue title="[[_Source code_]]" preview client_only
 <template>
   <div style="display: flex; flex-direction: column; gap: 16px;">
     <IkProgressBar :percentage="60" :height="10" />
@@ -139,7 +139,7 @@ import { IkProgressBar } from '@ikol/ui-kit/components/IkProgressBar';
 
 Use the `no_percentage_label` prop to hide the percentage label next to the progress bar.
 
-```vue title="[[_Source code_]]" preview
+```vue title="[[_Source code_]]" preview client_only
 <template>
   <div style="display: flex; flex-direction: column; gap: 16px;">
     <IkProgressBar :percentage="60" />
@@ -155,7 +155,7 @@ import { IkProgressBar } from '@ikol/ui-kit/components/IkProgressBar';
 
 Use the `percentage_label_bottom` prop to display the percentage label below the progress bar instead of next to it.
 
-```vue title="[[_Source code_]]" preview
+```vue title="[[_Source code_]]" preview client_only
 <template>
   <div style="display: flex; flex-direction: column; gap: 16px;">
     <IkProgressBar :percentage="60" />
@@ -171,7 +171,7 @@ import { IkProgressBar } from '@ikol/ui-kit/components/IkProgressBar';
 
 Use the `progress-text` slot to customize the text displayed next to the progress bar. The slot receives a `progress` prop with the current progress value.
 
-```vue title="[[_Source code_]]" preview
+```vue title="[[_Source code_]]" preview client_only
 <template>
   <div style="display: flex; flex-direction: column; gap: 16px;">
     <IkProgressBar :percentage="75">
@@ -195,7 +195,7 @@ import { IkProgressBar } from '@ikol/ui-kit/components/IkProgressBar';
 
 The progress bar supports two-way binding with `v-model`. The `modelValue` represents the current visual progress, which updates as the bar animates.
 
-```vue title="[[_Source code_]]" preview
+```vue title="[[_Source code_]]" preview client_only
 <template>
   <div style="display: flex; flex-direction: column; gap: 16px;">
     <IkProgressBar v-model="currentProgress" :percentage="targetProgress" :estimated_time="1.5" />
@@ -224,7 +224,7 @@ const targetProgress = ref(0);
 
 Use the progress bar to show file upload progress with custom text.
 
-```vue title="[[_Source code_]]" preview
+```vue title="[[_Source code_]]" preview client_only
 <template>
   <div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; border: 1px solid var(--border-neutral-regular-default); border-radius: 8px; max-width: 400px;">
     <div>
@@ -265,7 +265,7 @@ onUnmounted(() => {
 
 Show form completion progress with the label at the bottom.
 
-```vue title="[[_Source code_]]" preview
+```vue title="[[_Source code_]]" preview client_only
 <template>
   <div style="display: flex; flex-direction: column; gap: 16px; padding: 24px; border: 1px solid var(--border-neutral-regular-default); border-radius: 8px; max-width: 400px;">
     <div style="font-weight: 600;">Form Progress</div>
@@ -289,7 +289,7 @@ const formProgress = computed(() => (completedFields.value / totalFields.value) 
 
 Display multiple progress bars for different tasks or categories.
 
-```vue title="[[_Source code_]]" preview
+```vue title="[[_Source code_]]" preview client_only
 <template>
   <div style="display: flex; flex-direction: column; gap: 20px; padding: 24px; border: 1px solid var(--border-neutral-regular-default); border-radius: 8px; max-width: 500px;">
     <div>

@@ -46,7 +46,7 @@ import { IkCarousel, IkCarouselSlide } from '@ikol/ui-kit/components/IkCarousel'
 
 Navigation arrows are enabled by default. Use the `navigation` prop to control their visibility.
 
-```vue title="[[_Source code_]]" preview
+```vue title="[[_Source code_]]" preview client_only
 <template>
   <div style="display: flex; flex-direction: column; gap: 16px;">
     <div>
@@ -76,7 +76,7 @@ import { IkCarousel, IkCarouselSlide } from '@ikol/ui-kit/components/IkCarousel'
 
 Control the position of navigation arrows using the `navigation_position` prop (`side` or `bottom`).
 
-```vue title="[[_Source code_]]" preview
+```vue title="[[_Source code_]]" preview client_only
 <template>
   <div style="display: flex; flex-direction: column; gap: 16px;">
     <div>
@@ -106,7 +106,7 @@ import { IkCarousel, IkCarouselSlide } from '@ikol/ui-kit/components/IkCarousel'
 
 Pagination indicators (bullets) are enabled by default. Use the `indicators` prop to control their visibility.
 
-```vue title="[[_Source code_]]" preview
+```vue title="[[_Source code_]]" preview client_only
 <template>
   <div style="display: flex; flex-direction: column; gap: 16px;">
     <div>
@@ -136,7 +136,7 @@ import { IkCarousel, IkCarouselSlide } from '@ikol/ui-kit/components/IkCarousel'
 
 Enable automatic sliding using the `autoplay` prop. Control the delay between slides with the `interval` prop (default is 5000ms).
 
-```vue title="[[_Source code_]]" preview
+```vue title="[[_Source code_]]" preview client_only
 <template>
   <IkCarousel autoplay :interval="3000">
     <IkCarouselSlide><div style="background: var(--background-primary-solid-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
@@ -154,7 +154,7 @@ import { IkCarousel, IkCarouselSlide } from '@ikol/ui-kit/components/IkCarousel'
 
 Infinite looping is enabled by default. Use the `loop` prop to control this behavior.
 
-```vue title="[[_Source code_]]" preview
+```vue title="[[_Source code_]]" preview client_only
 <template>
   <div style="display: flex; flex-direction: column; gap: 16px;">
     <div>
@@ -184,7 +184,7 @@ import { IkCarousel, IkCarouselSlide } from '@ikol/ui-kit/components/IkCarousel'
 
 Control how many slides are visible at once using the `slides_per_view` prop.
 
-```vue title="[[_Source code_]]" preview
+```vue title="[[_Source code_]]" preview client_only
 <template>
   <div style="display: flex; flex-direction: column; gap: 16px;">
     <div>
@@ -225,7 +225,7 @@ import { IkCarousel, IkCarouselSlide } from '@ikol/ui-kit/components/IkCarousel'
 
 Control the spacing between slides using the `space_between` prop (in pixels).
 
-```vue title="[[_Source code_]]" preview
+```vue title="[[_Source code_]]" preview client_only
 <template>
   <div style="display: flex; flex-direction: column; gap: 16px;">
     <div>
@@ -263,7 +263,7 @@ import { IkCarousel, IkCarouselSlide } from '@ikol/ui-kit/components/IkCarousel'
 
 Use the `centered_slides` prop to center the active slide.
 
-```vue title="[[_Source code_]]" preview
+```vue title="[[_Source code_]]" preview client_only
 <template>
   <IkCarousel :slides_per_view="3" centered_slides :space_between="16">
     <IkCarouselSlide><div style="background: var(--background-primary-solid-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
@@ -281,7 +281,7 @@ import { IkCarousel, IkCarouselSlide } from '@ikol/ui-kit/components/IkCarousel'
 
 Enable free scrolling (no snapping) using the `free` prop.
 
-```vue title="[[_Source code_]]" preview
+```vue title="[[_Source code_]]" preview client_only
 <template>
   <IkCarousel free :slides_per_view="3" :space_between="16">
     <IkCarouselSlide><div style="background: var(--background-primary-solid-default); padding: 48px; text-align: center; color: white;">Slide 1</div></IkCarouselSlide>
@@ -299,7 +299,7 @@ import { IkCarousel, IkCarouselSlide } from '@ikol/ui-kit/components/IkCarousel'
 
 Enable zoom functionality using the `zoomable` prop. Users can zoom in/out using the mouse wheel.
 
-```vue title="[[_Source code_]]" preview
+```vue title="[[_Source code_]]" preview client_only
 <template>
   <IkCarousel zoomable>
     <IkCarouselSlide zoomable>
@@ -323,7 +323,7 @@ import { IkImage } from '@ikol/ui-kit/components/IkImage';
 
 Enable pagination with infinite scroll using the `paginate` prop. The carousel will emit `ik-load-more` events when the loader slide becomes visible.
 
-```vue title="[[_Source code_]]" preview
+```vue title="[[_Source code_]]" preview client_only
 <template>
   <div style="display: flex; flex-direction: column; gap: 16px;">
     <IkCarousel paginate @ik-load-more="loadMore">
@@ -353,7 +353,7 @@ function loadMore() {
 
 Apply different design colors using the `design` prop.
 
-```vue title="[[_Source code_]]" preview
+```vue title="[[_Source code_]]" preview client_only
 <template>
   <div style="display: flex; flex-direction: column; gap: 16px;">
     <div>
