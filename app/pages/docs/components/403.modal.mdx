@@ -7,3 +7,310 @@ meta:
     label: "[[_Modal_]]"
 ---
 
+# Modal
+
+<MetaDescription>
+Modals are dialog boxes that overlay the main content to display information, confirm actions, or collect user input. The modal system supports stacking multiple modals, keyboard navigation, and programmatic control.
+</MetaDescription>
+
+## Basic modal
+
+Use `IkModal` with `IkModalContent`, `IkModalHeader`, `IkModalBody`, and `IkModalFooter` to create a structured modal dialog.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton @click="openModal">Open Modal</IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { showModal } from '@ikol/ui-kit/composables/modal';
+import { defineComponent, h, inject } from 'vue';
+import { IkModal, IkModalContent, IkModalHeader, IkModalBody, IkModalFooter } from '@ikol/ui-kit/components/IkModal';
+
+const BasicModalComponent = defineComponent({
+  setup() {
+    const modal = inject('controller');
+    return () => h(IkModal, { size: 'md' }, {
+      default: () => h(IkModalContent, {}, {
+        default: () => [
+          h(IkModalHeader, {}, { default: () => 'Modal Title' }),
+          h(IkModalBody, {}, { default: () => 'This is the modal body content.' }),
+          h(IkModalFooter, {}, {
+            default: () => h(IkButton, { onClick: () => modal?.close() }, { default: () => 'Close' }),
+          }),
+        ],
+      }),
+    });
+  },
+});
+
+function openModal() {
+  showModal(BasicModalComponent);
+}
+</script>
+```
+
+## Sizes
+
+Control modal width using the `size` prop: `xs`, `sm`, `md`, `lg`, `xl`, or `xxl`.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; gap: 8px;">
+    <IkButton @click="openModal('xs')">XS</IkButton>
+    <IkButton @click="openModal('sm')">SM</IkButton>
+    <IkButton @click="openModal('md')">MD</IkButton>
+    <IkButton @click="openModal('lg')">LG</IkButton>
+    <IkButton @click="openModal('xl')">XL</IkButton>
+  </div>
+</template>
+<script setup>
+import { IkModal, IkModalContent, IkModalHeader, IkModalBody } from '@ikol/ui-kit/components/IkModal';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { showModal } from '@ikol/ui-kit/composables/modal';
+import { defineComponent, h } from 'vue';
+
+function openModal(size) {
+  const SizeModalComponent = defineComponent({
+    setup() {
+      return () => h(IkModal, { size }, {
+        default: () => h(IkModalContent, {}, {
+          default: () => [
+            h(IkModalHeader, {}, { default: () => `${size.toUpperCase()} Modal` }),
+            h(IkModalBody, {}, { default: () => `This is a ${size} sized modal.` }),
+          ],
+        }),
+      });
+    },
+  });
+  
+  showModal(SizeModalComponent);
+}
+</script>
+```
+
+## Closeable modal
+
+By default, modals can be closed by clicking the backdrop or pressing ESC. Disable this behavior with `closeable={false}` or `no_keyboard={true}`.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton @click="openModal">Open Non-closeable Modal</IkButton>
+</template>
+<script setup>
+import { IkModal, IkModalContent, IkModalHeader, IkModalBody, IkModalFooter } from '@ikol/ui-kit/components/IkModal';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { showModal } from '@ikol/ui-kit/composables/modal';
+import { defineComponent, h, inject } from 'vue';
+
+const NonCloseableModalComponent = defineComponent({
+  setup() {
+    const modal = inject('controller');
+    return () => h(IkModal, { closeable: false, no_keyboard: true }, {
+      default: () => h(IkModalContent, {}, {
+        default: () => [
+          h(IkModalHeader, {}, { default: () => 'Non-closeable Modal' }),
+          h(IkModalBody, {}, { default: () => 'This modal cannot be closed by clicking backdrop or pressing ESC.' }),
+          h(IkModalFooter, {}, {
+            default: () => h(IkButton, { onClick: () => modal?.close() }, { default: () => 'Close via Button' }),
+          }),
+        ],
+      }),
+    });
+  },
+});
+
+function openModal() {
+  showModal(NonCloseableModalComponent);
+}
+</script>
+```
+
+## Quick modal
+
+Use `showQuickModal` to display a simple modal with header, body, and action buttons programmatically.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton @click="handleQuickModal">Show Quick Modal</IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { showQuickModal } from '@ikol/ui-kit/composables/modal';
+
+async function handleQuickModal() {
+  const result = await showQuickModal({
+    props: {
+      header: 'Information',
+      body: 'This is a quick modal message.',
+      buttons: [
+        { label: 'OK', close_on_click: true },
+      ],
+    },
+  });
+  console.log('Modal closed', result);
+}
+</script>
+```
+
+## Confirm modal
+
+Use `showConfirmModal` to display a confirmation dialog with confirm, reject, and optional skip actions.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton @click="handleConfirm" design="danger">Delete Item</IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { showConfirmModal } from '@ikol/ui-kit/composables/modal';
+
+async function handleConfirm() {
+  const result = await showConfirmModal({
+    props: {
+      header: 'Confirm Deletion',
+      body: 'Are you sure you want to delete this item? This action cannot be undone.',
+      buttons: [
+        { label: 'Cancel', reject_on_click: true },
+        { label: 'Delete', confirm_on_click: true, design: 'danger', variant: 'filled' },
+      ],
+    },
+  });
+  
+  if (result?.confirmed) {
+    console.log('User confirmed');
+  } else {
+    console.log('User cancelled');
+  }
+}
+</script>
+```
+
+## Custom modal component
+
+Create custom modal components and display them programmatically using `showModal`.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton @click="openCustomModal">Open Custom Modal</IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { IkModal, IkModalContent, IkModalHeader, IkModalBody } from '@ikol/ui-kit/components/IkModal';
+import { showModal } from '@ikol/ui-kit/composables/modal';
+import { defineComponent, h } from 'vue';
+
+function openCustomModal() {
+  const CustomModalComponent = defineComponent({
+    setup() {
+      return () => h(IkModal, { size: 'lg', design: 'primary' }, {
+        default: () => h(IkModalContent, {}, {
+          default: () => [
+            h(IkModalHeader, { design: 'primary' }, { default: () => 'Custom Modal' }),
+            h(IkModalBody, {}, { default: () => 'This is a custom modal created programmatically.' }),
+          ],
+        }),
+      });
+    },
+  });
+  
+  showModal(CustomModalComponent);
+}
+</script>
+```
+
+## Design variants
+
+Apply design colors to modals using the `design` prop on `IkModal` or `IkModalHeader`.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton @click="openModal">Open Primary Modal</IkButton>
+</template>
+<script setup>
+import { IkModal, IkModalContent, IkModalHeader, IkModalBody } from '@ikol/ui-kit/components/IkModal';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { showModal } from '@ikol/ui-kit/composables/modal';
+import { defineComponent, h } from 'vue';
+
+const DesignModalComponent = defineComponent({
+  setup() {
+    return () => h(IkModal, { design: 'primary' }, {
+      default: () => h(IkModalContent, {}, {
+        default: () => [
+          h(IkModalHeader, { design: 'primary' }, { default: () => 'Primary Modal' }),
+          h(IkModalBody, {}, { default: () => 'Modal with primary design color.' }),
+        ],
+      }),
+    });
+  },
+});
+
+function openModal() {
+  showModal(DesignModalComponent);
+}
+</script>
+```
+
+## Modal stacking
+
+The modal system supports stacking multiple modals. Only the topmost modal responds to backdrop clicks and keyboard events.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkButton @click="openNestedModal">Open Nested Modal</IkButton>
+</template>
+<script setup>
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { showModal } from '@ikol/ui-kit/composables/modal';
+import { IkModal, IkModalContent, IkModalHeader, IkModalBody } from '@ikol/ui-kit/components/IkModal';
+import { IkButton as IkButtonComp } from '@ikol/ui-kit/components/IkButton';
+import { defineComponent, h } from 'vue';
+
+function openNestedModal() {
+  const NestedModalComponent = defineComponent({
+    setup() {
+      return () => h(IkModal, { size: 'sm' }, {
+        default: () => h(IkModalContent, {}, {
+          default: () => [
+            h(IkModalHeader, {}, { default: () => 'Nested Modal' }),
+            h(IkModalBody, {}, { default: () => 'This is a nested modal.' }),
+          ],
+        }),
+      });
+    },
+  });
+  
+  const FirstModalComponent = defineComponent({
+    setup() {
+      return () => h(IkModal, { size: 'md' }, {
+        default: () => h(IkModalContent, {}, {
+          default: () => [
+            h(IkModalHeader, {}, { default: () => 'First Modal' }),
+            h(IkModalBody, {}, {
+              default: () => h('div', [
+                h('p', 'This is the first modal.'),
+                h(IkButtonComp, {
+                  onClick: () => showModal(NestedModalComponent),
+                }, { default: () => 'Open Nested Modal' }),
+              ]),
+            }),
+          ],
+        }),
+      });
+    },
+  });
+  
+  showModal(FirstModalComponent);
+}
+</script>
+```
+
+## Additional options
+
+- `fill_viewport`: Makes modal fill the entire viewport
+- `no_scroll`: Prevents body scrolling when modal is open
+- `bottom`: Positions modal at the bottom (useful for mobile)
+- `fluid`: Makes modal width fluid
+- `no_close` on `IkModalFooter`: Hides the default close button
+- `icon` on `IkModalHeader`: Adds an icon to the header
