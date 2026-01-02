@@ -194,7 +194,7 @@ export const mdx = (options: { includeDefine?: string[] } = {}): Plugin[] => {
                                     });
                                     tree.children.push({
                                         type: 'mdxJsxFlowElement',
-                                        name: 'div',
+                                        name: this.options.meta.client_only ? 'ClientOnly' : 'div',
                                         attributes: [],
                                         children: [{
                                             type: 'mdxJsxFlowElement',
