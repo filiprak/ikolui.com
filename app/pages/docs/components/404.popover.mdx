@@ -7,3 +7,287 @@ meta:
     label: "[[_Popover_]]"
 ---
 
+# Popover
+
+<MetaDescription>
+Popovers are floating content containers that appear near a trigger element. They can display additional information, actions, or interactive content. The popover system supports hover and click interactions, automatic positioning, arrows, and programmatic control.
+</MetaDescription>
+
+## Basic popover
+
+Use `IkPopover` with an `activator` slot to create a popover that appears on hover by default.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkPopover>
+    <template #activator="{ on }">
+      <IkButton v-on="on">Hover me</IkButton>
+    </template>
+    <div style="padding: 16px;">
+      <p>This is a basic popover content.</p>
+    </div>
+  </IkPopover>
+</template>
+<script setup>
+import { IkPopover } from '@ikol/ui-kit/components/IkPopover';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## Click to open
+
+Use the `open_on_click` prop to open the popover on click instead of hover.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkPopover open_on_click>
+    <template #activator="{ on }">
+      <IkButton v-on="on">Click me</IkButton>
+    </template>
+    <div style="padding: 16px;">
+      <p>This popover opens on click.</p>
+    </div>
+  </IkPopover>
+</template>
+<script setup>
+import { IkPopover } from '@ikol/ui-kit/components/IkPopover';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## Position and alignment
+
+Control the popover position using the `position` prop. Use `horizontal` or `vertical` for automatic placement, or specify `top`, `right`, `bottom`, or `left` for fixed positions. Use the `align` prop to control alignment: `start`, `center`, or `end`.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; flex-direction: column; gap: 16px; align-items: center;">
+    <IkPopover position="top" align="center">
+      <template #activator="{ on }">
+        <IkButton v-on="on" size="sm">Top</IkButton>
+      </template>
+      <div style="padding: 12px;">Top position</div>
+    </IkPopover>
+    <div style="display: flex; gap: 16px;">
+      <IkPopover position="left" align="center">
+        <template #activator="{ on }">
+          <IkButton v-on="on" size="sm">Left</IkButton>
+        </template>
+        <div style="padding: 12px;">Left position</div>
+      </IkPopover>
+      <IkPopover position="right" align="center">
+        <template #activator="{ on }">
+          <IkButton v-on="on" size="sm">Right</IkButton>
+        </template>
+        <div style="padding: 12px;">Right position</div>
+      </IkPopover>
+    </div>
+    <IkPopover position="bottom" align="center">
+      <template #activator="{ on }">
+        <IkButton v-on="on" size="sm">Bottom</IkButton>
+      </template>
+      <div style="padding: 12px;">Bottom position</div>
+    </IkPopover>
+  </div>
+</template>
+<script setup>
+import { IkPopover } from '@ikol/ui-kit/components/IkPopover';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## Alignment options
+
+Use the `align` prop to control how the popover aligns with the activator.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; gap: 16px; justify-content: center;">
+    <IkPopover position="bottom" align="start">
+      <template #activator="{ on }">
+        <IkButton v-on="on" size="sm">Start</IkButton>
+      </template>
+      <div style="padding: 12px;">Aligned to start</div>
+    </IkPopover>
+    <IkPopover position="bottom" align="center">
+      <template #activator="{ on }">
+        <IkButton v-on="on" size="sm">Center</IkButton>
+      </template>
+      <div style="padding: 12px;">Aligned to center</div>
+    </IkPopover>
+    <IkPopover position="bottom" align="end">
+      <template #activator="{ on }">
+        <IkButton v-on="on" size="sm">End</IkButton>
+      </template>
+      <div style="padding: 12px;">Aligned to end</div>
+    </IkPopover>
+  </div>
+</template>
+<script setup>
+import { IkPopover } from '@ikol/ui-kit/components/IkPopover';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## Auto placement
+
+Enable `auto_placement` to automatically position the popover based on available space in the viewport.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; justify-content: center; align-items: center; height: 300px;">
+    <IkPopover auto_placement>
+      <template #activator="{ on }">
+        <IkButton v-on="on">Auto Placement</IkButton>
+      </template>
+      <div style="padding: 16px;">
+        <p>This popover will automatically position itself based on available space.</p>
+      </div>
+    </IkPopover>
+  </div>
+</template>
+<script setup>
+import { IkPopover } from '@ikol/ui-kit/components/IkPopover';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## Arrow
+
+Add an arrow pointing to the activator using the `arrow` prop.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; flex-direction: column; gap: 16px; align-items: center;">
+    <IkPopover position="top" arrow>
+      <template #activator="{ on }">
+        <IkButton v-on="on" size="sm">Top with Arrow</IkButton>
+      </template>
+      <div style="padding: 12px;">Popover with arrow</div>
+    </IkPopover>
+    <div style="display: flex; gap: 16px;">
+      <IkPopover position="left" arrow>
+        <template #activator="{ on }">
+          <IkButton v-on="on" size="sm">Left</IkButton>
+        </template>
+        <div style="padding: 12px;">With arrow</div>
+      </IkPopover>
+      <IkPopover position="right" arrow>
+        <template #activator="{ on }">
+          <IkButton v-on="on" size="sm">Right</IkButton>
+        </template>
+        <div style="padding: 12px;">With arrow</div>
+      </IkPopover>
+    </div>
+    <IkPopover position="bottom" arrow>
+      <template #activator="{ on }">
+        <IkButton v-on="on" size="sm">Bottom with Arrow</IkButton>
+      </template>
+      <div style="padding: 12px;">Popover with arrow</div>
+    </IkPopover>
+  </div>
+</template>
+<script setup>
+import { IkPopover } from '@ikol/ui-kit/components/IkPopover';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## Delay
+
+Control the delay before opening or closing the popover using the `delay_miliseconds` prop (default: 200ms).
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; gap: 16px;">
+    <IkPopover :delay_miliseconds="0" position="bottom">
+      <template #activator="{ on }">
+        <IkButton v-on="on" size="sm">No Delay</IkButton>
+      </template>
+      <div style="padding: 12px;">Opens immediately</div>
+    </IkPopover>
+    <IkPopover :delay_miliseconds="500" position="bottom">
+      <template #activator="{ on }">
+        <IkButton v-on="on" size="sm">500ms Delay</IkButton>
+      </template>
+      <div style="padding: 12px;">Opens after 500ms</div>
+    </IkPopover>
+  </div>
+</template>
+<script setup>
+import { IkPopover } from '@ikol/ui-kit/components/IkPopover';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## Programmatic control
+
+Access the popover instance using a template ref to control it programmatically.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; flex-direction: column; gap: 16px;">
+    <div style="display: flex; gap: 8px;">
+      <IkButton @click="popoverRef?.open()">Open</IkButton>
+      <IkButton @click="popoverRef?.close()">Close</IkButton>
+      <IkButton @click="popoverRef?.toggle()">Toggle</IkButton>
+    </div>
+    <IkPopover ref="popoverRef" open_on_click>
+      <template #activator="{ on }">
+        <IkButton v-on="on">Controlled Popover</IkButton>
+      </template>
+      <div style="padding: 16px;">
+        <p>This popover is controlled programmatically.</p>
+      </div>
+    </IkPopover>
+  </div>
+</template>
+<script setup>
+import { IkPopover } from '@ikol/ui-kit/components/IkPopover';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { ref } from 'vue';
+
+const popoverRef = ref();
+</script>
+```
+
+## Multiple activators
+
+Use the `id` and `activator_id` props along with the `v-popover-activator` directive to create multiple activators for a single popover.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="display: flex; flex-direction: column; gap: 16px;">
+    <IkPopover id="shared-popover" v-model:activator_id="activeId" position="bottom" transition>
+      <div style="padding: 16px;">
+        <p>This popover can be triggered by multiple elements.</p>
+        <p style="margin: 8px 0 0 0; font-size: 12px;">Active ID: {{ activeId || 'none' }}</p>
+      </div>
+    </IkPopover>
+    <div style="display: flex; gap: 8px;">
+      <IkButton v-popover-activator="{ id: 'shared-popover', activator_id: 'btn1' }">
+        Button 1
+      </IkButton>
+      <IkButton v-popover-activator="{ id: 'shared-popover', activator_id: 'btn2' }">
+        Button 2
+      </IkButton>
+      <IkButton v-popover-activator="{ id: 'shared-popover', activator_id: 'btn3' }">
+        Button 3
+      </IkButton>
+    </div>
+  </div>
+</template>
+<script setup>
+import { IkPopover } from '@ikol/ui-kit/components/IkPopover';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { vPopoverActivator } from '@ikol/ui-kit/directives/popover';
+import { ref } from 'vue';
+
+const activeId = ref(null);
+</script>
+```
+
+## Additional options
+
+- `offset`: Distance between activator and popover (default: 5px)
+- `recalculate()`: Method to manually recalculate popover position
