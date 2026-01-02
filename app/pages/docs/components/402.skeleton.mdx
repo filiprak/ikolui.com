@@ -7,3 +7,306 @@ meta:
     label: "[[_Skeleton_]]"
 ---
 
+# Skeleton
+
+<MetaDescription>
+Skeleton loaders provide visual placeholders for content that is still loading. They improve perceived performance by showing users that content is being loaded, creating a better user experience during data fetching operations.
+</MetaDescription>
+
+## Basic skeleton
+
+The Skeleton component displays an animated placeholder that mimics the shape of content being loaded.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkSkeleton active />
+</template>
+<script setup>
+import { IkSkeleton } from '@ikol/ui-kit/components/IkSkeleton';
+</script>
+```
+
+## Sizes
+
+Skeletons support different sizes to match various content types. Use the `size` prop with predefined sizes: `xs`, `sm`, `md`, `lg`, `xl`, or `xxl`.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-flex-col ik-gap-4">
+    <IkSkeleton active size="xs" />
+    <IkSkeleton active size="sm" />
+    <IkSkeleton active size="md" />
+    <IkSkeleton active size="lg" />
+    <IkSkeleton active size="xl" />
+    <IkSkeleton active size="xxl" />
+  </div>
+</template>
+<script setup>
+import { IkSkeleton } from '@ikol/ui-kit/components/IkSkeleton';
+</script>
+```
+
+## Custom dimensions
+
+You can set custom dimensions using the `width`, `height`, or `size_px` props. The `width` prop accepts percentage values, while `height` and `size_px` accept pixel values.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-flex-col ik-gap-4">
+    <IkSkeleton active :width="100" />
+    <IkSkeleton active :width="75" />
+    <IkSkeleton active :width="50" />
+    <IkSkeleton active :width="25" />
+    <IkSkeleton active :height="20" />
+    <IkSkeleton active :size_px="60" />
+  </div>
+</template>
+<script setup>
+import { IkSkeleton } from '@ikol/ui-kit/components/IkSkeleton';
+</script>
+```
+
+## Round skeleton
+
+Use the `round` prop to create a skeleton with rounded corners, perfect for circular avatars or rounded elements.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-gap-4">
+    <IkSkeleton active :size_px="60" />
+    <IkSkeleton active :size_px="60" round />
+  </div>
+</template>
+<script setup>
+import { IkSkeleton } from '@ikol/ui-kit/components/IkSkeleton';
+</script>
+```
+
+## Custom border radius
+
+You can set a custom border radius using the `border_radius` prop for more precise control over the skeleton's shape.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-gap-4">
+    <IkSkeleton active :width="100" :height="40" :border_radius="8" />
+    <IkSkeleton active :width="100" :height="40" :border_radius="16" />
+    <IkSkeleton active :width="100" :height="40" :border_radius="24" />
+  </div>
+</template>
+<script setup>
+import { IkSkeleton } from '@ikol/ui-kit/components/IkSkeleton';
+</script>
+```
+
+## Conditional rendering
+
+The `active` prop controls whether the skeleton is displayed. When `active` is `false`, the component renders its default slot content instead, making it easy to switch between loading and loaded states.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-flex-col ik-gap-4">
+    <IkSkeleton :active="loading">
+      <div>Content loaded!</div>
+    </IkSkeleton>
+    <IkButton @click="loading = !loading" design="primary">
+      Toggle Loading
+    </IkButton>
+  </div>
+</template>
+<script setup>
+import { IkSkeleton } from '@ikol/ui-kit/components/IkSkeleton';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { ref } from 'vue';
+
+const loading = ref(true);
+</script>
+```
+
+## Skeleton list item
+
+The `IkSkeletonListItem` component provides a pre-configured skeleton layout for list items, commonly used in user lists, comment sections, or data tables.
+
+### Basic list item
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-flex-col ik-gap-4">
+    <IkSkeletonListItem />
+    <IkSkeletonListItem />
+    <IkSkeletonListItem />
+  </div>
+</template>
+<script setup>
+import { IkSkeletonListItem } from '@ikol/ui-kit/components/IkSkeletonListItem';
+</script>
+```
+
+### List item with avatar
+
+Use the `avatar` prop to include an avatar skeleton in the list item.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-flex-col ik-gap-4">
+    <IkSkeletonListItem avatar />
+    <IkSkeletonListItem avatar />
+    <IkSkeletonListItem avatar />
+  </div>
+</template>
+<script setup>
+import { IkSkeletonListItem } from '@ikol/ui-kit/components/IkSkeletonListItem';
+</script>
+```
+
+### List item with secondary line
+
+Add a secondary line of text using the `secondary` prop.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-flex-col ik-gap-4">
+    <IkSkeletonListItem secondary />
+    <IkSkeletonListItem secondary />
+    <IkSkeletonListItem secondary />
+  </div>
+</template>
+<script setup>
+import { IkSkeletonListItem } from '@ikol/ui-kit/components/IkSkeletonListItem';
+</script>
+```
+
+### Complete list item
+
+Combine `avatar` and `secondary` props to create a complete list item skeleton with avatar, primary text, and secondary text.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-flex-col ik-gap-4">
+    <IkSkeletonListItem avatar secondary />
+    <IkSkeletonListItem avatar secondary />
+    <IkSkeletonListItem avatar secondary />
+  </div>
+</template>
+<script setup>
+import { IkSkeletonListItem } from '@ikol/ui-kit/components/IkSkeletonListItem';
+</script>
+```
+
+### Custom avatar size
+
+Control the avatar size using the `avatar_size` prop.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-flex-col ik-gap-4">
+    <IkSkeletonListItem avatar :avatar_size="30" secondary />
+    <IkSkeletonListItem avatar :avatar_size="40" secondary />
+    <IkSkeletonListItem avatar :avatar_size="50" secondary />
+  </div>
+</template>
+<script setup>
+import { IkSkeletonListItem } from '@ikol/ui-kit/components/IkSkeletonListItem';
+</script>
+```
+
+### Square avatar
+
+Use the `avatar_square` prop to render a square avatar instead of a circular one.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div class="ik-flex ik-flex-col ik-gap-4">
+    <IkSkeletonListItem avatar avatar_square secondary />
+    <IkSkeletonListItem avatar avatar_square secondary />
+    <IkSkeletonListItem avatar avatar_square secondary />
+  </div>
+</template>
+<script setup>
+import { IkSkeletonListItem } from '@ikol/ui-kit/components/IkSkeletonListItem';
+</script>
+```
+
+## Real-world examples
+
+### Card skeleton
+
+Create a skeleton for a card component with multiple elements.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="border: 1px solid var(--border-neutral-regular-default); border-radius: 8px; padding: 16px; max-width: 300px;">
+    <IkSkeleton active :size_px="120" round class="ik-mb-4" />
+    <IkSkeleton active size="lg" :width="100" class="ik-mb-2" />
+    <IkSkeleton active size="sm" :width="80" class="ik-mb-2" />
+    <IkSkeleton active size="sm" :width="60" />
+  </div>
+</template>
+<script setup>
+import { IkSkeleton } from '@ikol/ui-kit/components/IkSkeleton';
+</script>
+```
+
+### Table skeleton
+
+Create a skeleton for a data table with multiple rows.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="border: 1px solid var(--border-neutral-regular-default); border-radius: 8px; padding: 16px;">
+    <div class="ik-flex ik-gap-4 ik-mb-4">
+      <IkSkeleton active :width="20" />
+      <IkSkeleton active :width="30" />
+      <IkSkeleton active :width="25" />
+      <IkSkeleton active :width="25" />
+    </div>
+    <div class="ik-flex ik-flex-col ik-gap-3">
+      <div class="ik-flex ik-gap-4">
+        <IkSkeleton active :width="20" />
+        <IkSkeleton active :width="30" />
+        <IkSkeleton active :width="25" />
+        <IkSkeleton active :width="25" />
+      </div>
+      <div class="ik-flex ik-gap-4">
+        <IkSkeleton active :width="20" />
+        <IkSkeleton active :width="30" />
+        <IkSkeleton active :width="25" />
+        <IkSkeleton active :width="25" />
+      </div>
+      <div class="ik-flex ik-gap-4">
+        <IkSkeleton active :width="20" />
+        <IkSkeleton active :width="30" />
+        <IkSkeleton active :width="25" />
+        <IkSkeleton active :width="25" />
+      </div>
+    </div>
+  </div>
+</template>
+<script setup>
+import { IkSkeleton } from '@ikol/ui-kit/components/IkSkeleton';
+</script>
+```
+
+### User profile skeleton
+
+Create a skeleton for a user profile section.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="border: 1px solid var(--border-neutral-regular-default); border-radius: 8px; padding: 16px; max-width: 400px;">
+    <div class="ik-flex ik-gap-4 ik-mb-4">
+      <IkSkeleton active :size_px="80" round />
+      <div class="ik-flex-1 ik-flex ik-flex-col ik-gap-2">
+        <IkSkeleton active size="lg" :width="70" />
+        <IkSkeleton active size="sm" :width="50" />
+      </div>
+    </div>
+    <IkSkeleton active :width="100" class="ik-mb-2" />
+    <IkSkeleton active :width="100" class="ik-mb-2" />
+    <IkSkeleton active :width="80" />
+  </div>
+</template>
+<script setup>
+import { IkSkeleton } from '@ikol/ui-kit/components/IkSkeleton';
+</script>
+```
