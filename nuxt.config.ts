@@ -1,6 +1,7 @@
 import path from 'path';
 import { i18n } from './vite/plugins/i18n';
 import { mdx } from './vite/plugins/mdx';
+import { cssLayers } from './vite/plugins/css';
 import { getPackageJson } from './app/utils/getPackageJson';
 
 export default defineNuxtConfig({
@@ -36,6 +37,7 @@ export default defineNuxtConfig({
     },
     vite: {
         plugins: [
+            cssLayers(),
             i18n(),
             mdx({
                 includeDefine: ['__LIB_PACKAGE__'],
