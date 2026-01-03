@@ -7,3 +7,182 @@ meta:
     label: "[[_Divider_]]"
 ---
 
+# Divider
+
+<MetaDescription>
+The Divider component creates a horizontal line separator that can be used to visually separate content sections. It supports optional text content in the middle of the divider, margin control, and visual variants. Perfect for organizing content, separating form sections, and creating visual hierarchy in layouts.
+</MetaDescription>
+
+## Basic divider
+
+The Divider component creates a simple horizontal line separator.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <div class="ik-pa-4">Content above the divider</div>
+    <IkDivider />
+    <div class="ik-pa-4">Content below the divider</div>
+  </div>
+</template>
+<script setup>
+import { IkDivider } from '@ikol/ui-kit/components/IkDivider';
+</script>
+```
+
+## Divider with content
+
+Add text or other content in the middle of the divider using the default slot.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <div class="ik-pa-4">Content above</div>
+    <IkDivider>OR</IkDivider>
+    <div class="ik-pa-4">Content below</div>
+  </div>
+</template>
+<script setup>
+import { IkDivider } from '@ikol/ui-kit/components/IkDivider';
+</script>
+```
+
+## Divider with custom content
+
+You can add any content, including icons or styled text, in the divider.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <div class="ik-pa-4">Section 1</div>
+    <IkDivider>
+      <IkIcon name="chevron-down" />
+    </IkDivider>
+    <div class="ik-pa-4">Section 2</div>
+    <IkDivider>
+      <span style="font-weight: bold; color: var(--content-primary-strong-default);">Continue</span>
+    </IkDivider>
+    <div class="ik-pa-4">Section 3</div>
+  </div>
+</template>
+<script setup>
+import { IkDivider } from '@ikol/ui-kit/components/IkDivider';
+import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
+</script>
+```
+
+## No margin
+
+Use the `no_margin` prop to remove all margins from the divider, making it flush with surrounding content.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default);">Content above</div>
+    <IkDivider no_margin />
+    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default);">Content below</div>
+  </div>
+</template>
+<script setup>
+import { IkDivider } from '@ikol/ui-kit/components/IkDivider';
+</script>
+```
+
+## No bottom margin
+
+Use the `no_bottom_margin` prop to remove only the bottom margin while keeping the top margin.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <div class="ik-pa-4">Content above</div>
+    <IkDivider no_bottom_margin />
+    <div class="ik-pa-4">Content below (closer to divider)</div>
+  </div>
+</template>
+<script setup>
+import { IkDivider } from '@ikol/ui-kit/components/IkDivider';
+</script>
+```
+
+## Darken variant
+
+Use the `darken` prop to make the divider line more prominent with a darker appearance.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <div class="ik-pa-4">Content above</div>
+    <IkDivider darken />
+    <div class="ik-pa-4">Content below</div>
+    <IkDivider />
+    <div class="ik-pa-4">Regular divider for comparison</div>
+  </div>
+</template>
+<script setup>
+import { IkDivider } from '@ikol/ui-kit/components/IkDivider';
+</script>
+```
+
+## In forms
+
+Dividers are commonly used to separate form sections or group related fields.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="max-width: 400px;">
+    <IkTextField label="First Name" placeholder="Enter first name" class="ik-mb-4" />
+    <IkTextField label="Last Name" placeholder="Enter last name" class="ik-mb-4" />
+    <IkDivider class="ik-my-6">Contact Information</IkDivider>
+    <IkTextField label="Email" type="email" placeholder="Enter email" class="ik-mb-4" />
+    <IkTextField label="Phone" type="tel" placeholder="Enter phone" class="ik-mb-4" />
+    <IkDivider class="ik-my-6">Additional Details</IkDivider>
+    <IkTextField label="Notes" placeholder="Enter notes" />
+  </div>
+</template>
+<script setup>
+import { IkDivider } from '@ikol/ui-kit/components/IkDivider';
+import { IkTextField } from '@ikol/ui-kit/components/IkTextField';
+</script>
+```
+
+## In lists
+
+Use dividers to separate list items or create visual groups within lists.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="max-width: 300px;">
+    <IkListItem link="#" class="ik-mb-2">
+      <template #prepend>
+        <IkIcon name="home" />
+      </template>
+      Home
+    </IkListItem>
+    <IkListItem link="#" class="ik-mb-2">
+      <template #prepend>
+        <IkIcon name="folder" />
+      </template>
+      Projects
+    </IkListItem>
+    <IkDivider no_margin class="ik-my-4" />
+    <IkListItem link="#" class="ik-mb-2">
+      <template #prepend>
+        <IkIcon name="cog" />
+      </template>
+      Settings
+    </IkListItem>
+    <IkListItem link="#" class="ik-mb-2">
+      <template #prepend>
+        <IkIcon name="user" />
+      </template>
+      Profile
+    </IkListItem>
+  </div>
+</template>
+<script setup>
+import { IkDivider } from '@ikol/ui-kit/components/IkDivider';
+import { IkListItem } from '@ikol/ui-kit/components/IkList';
+import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
+</script>
+```
