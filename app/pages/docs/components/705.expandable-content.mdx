@@ -7,3 +7,48 @@ meta:
     label: "[[_Expandable Content_]]"
 ---
 
+# Expandable Content
+
+<MetaDescription>
+The Expandable Content component provides a way to display content with a maximum height constraint and an optional expand/collapse button. When content exceeds the maximum height, a gradient overlay appears at the bottom, and a "See more" button allows users to expand the content. Perfect for displaying long text content, descriptions, or any content that benefits from a collapsible view.
+</MetaDescription>
+
+## Basic usage
+
+The Expandable Content component automatically detects when content exceeds the specified maximum height and shows a gradient overlay with an expand button.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkExpandableContent :max_height="150">
+    <p>This is a long paragraph that will be truncated when it exceeds the maximum height. The component will automatically detect overflow and show a gradient overlay at the bottom. When you click the "See more" button, the content will expand to show everything. You can then click "See less" to collapse it back.</p>
+    <p>Here's another paragraph to make the content even longer. The gradient overlay provides a visual indication that there's more content below. This is particularly useful for product descriptions, article previews, or any content where you want to show a preview before allowing full expansion.</p>
+    <p>And one more paragraph to ensure we definitely exceed the height limit. The component uses ResizeObserver to automatically detect when content changes, so it will update if the content is dynamically modified.</p>
+  </IkExpandableContent>
+</template>
+<script setup>
+import { IkExpandableContent } from '@ikol/ui-kit/components/IkExpandableContent';
+</script>
+```
+
+## Custom button slot
+
+You can customize the expand/collapse button by providing a custom button slot. The slot receives `toggle` and `expanded` props.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkExpandableContent :max_height="120">
+    <template #button="{ toggle, expanded }">
+      <IkButton flat @click="toggle" size="sm">
+        {{ expanded ? 'Collapse' : 'Read more...' }}
+      </IkButton>
+    </template>
+    <p>This content can be expanded and collapsed. The button text and styling can be completely customized using the button slot. You have full control over the button appearance and behavior.</p>
+    <p>When expanded, the gradient overlay disappears and the full content is visible. When collapsed, the content is constrained to the maximum height with a gradient fade at the bottom.</p>
+    <p>The component automatically handles overflow detection and updates when content or container size changes.</p>
+  </IkExpandableContent>
+</template>
+<script setup>
+import { IkExpandableContent } from '@ikol/ui-kit/components/IkExpandableContent';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```

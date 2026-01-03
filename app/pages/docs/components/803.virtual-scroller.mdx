@@ -7,3 +7,170 @@ meta:
     label: "[[_Virtual Scroller_]]"
 ---
 
+# Virtual Scroller
+
+<MetaDescription>
+The Virtual Scroller component provides efficient rendering of large lists by only rendering visible items and using virtual scrolling techniques. It automatically calculates which items should be visible based on scroll position and item heights, dramatically improving performance for large datasets. Perfect for displaying thousands of items without performance degradation.
+</MetaDescription>
+
+## Basic virtual scrolling
+
+The Virtual Scroller only renders items that are currently visible in the viewport, making it ideal for large lists. Provide an array of items and use the `item` slot to render each item.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkVirtualScroller
+    :items="items"
+    :item_height="50"
+    style="height: 400px; border: 1px solid var(--border-neutral-regular-default); border-radius: 4px;"
+  >
+    <template #item="{ item }">
+      <div style="padding: 12px; border-bottom: 1px solid var(--border-neutral-regular-default);">
+        {{ item.name }} - {{ item.email }}
+      </div>
+    </template>
+  </IkVirtualScroller>
+</template>
+<script setup>
+import { IkVirtualScroller } from '@ikol/ui-kit/components/IkVirtualScroller';
+import { ref } from 'vue';
+
+const items = ref(Array.from({ length: 1000 }, (_, i) => ({
+  id: i + 1,
+  name: `User ${i + 1}`,
+  email: `user${i + 1}@example.com`
+})));
+</script>
+```
+
+## Dynamic item heights
+
+When items have varying heights, the Virtual Scroller automatically measures each item and adjusts the scroll calculations. You can provide a function to estimate item heights.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkVirtualScroller
+    :items="items"
+    :item_height="getItemHeight"
+    style="height: 400px; border: 1px solid var(--border-neutral-regular-default); border-radius: 4px;"
+  >
+    <template #item="{ item }">
+      <div style="padding: 16px; border-bottom: 1px solid var(--border-neutral-regular-default);">
+        <h4 style="margin: 0 0 8px 0;">{{ item.title }}</h4>
+        <p style="margin: 0; color: var(--text-neutral-weak-default);">
+          {{ item.description }}
+        </p>
+        <div style="margin-top: 8px; font-size: 12px; color: var(--text-neutral-weak-default);">
+          {{ item.meta }}
+        </div>
+      </div>
+    </template>
+  </IkVirtualScroller>
+</template>
+<script setup>
+import { IkVirtualScroller } from '@ikol/ui-kit/components/IkVirtualScroller';
+import { ref } from 'vue';
+
+const items = ref(Array.from({ length: 500 }, (_, i) => ({
+  id: i + 1,
+  title: `Item ${i + 1}`,
+  description: i % 3 === 0 
+    ? 'This is a longer description that takes up more vertical space to demonstrate dynamic height calculation.'
+    : 'Short description.',
+  meta: `Category ${i % 5 + 1} • Updated ${i % 10} days ago`
+})));
+
+function getItemHeight(item) {
+  // Estimate height based on content
+  return item.description.length > 50 ? 120 : 80;
+}
+</script>
+```
+
+## Large dataset performance
+
+The Virtual Scroller handles extremely large datasets efficiently. Even with tens of thousands of items, only the visible items are rendered, maintaining smooth scrolling performance.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <p style="margin-bottom: 8px;">
+      Rendering {{ items.length }} items (only visible items are in the DOM)
+    </p>
+    <IkVirtualScroller
+      :items="items"
+      :item_height="40"
+      style="height: 400px; border: 1px solid var(--border-neutral-regular-default); border-radius: 4px;"
+    >
+      <template #item="{ item }">
+        <div style="padding: 10px; border-bottom: 1px solid var(--border-neutral-regular-default); display: flex; align-items: center; gap: 12px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--background-neutral-weak-default); display: flex; align-items: center; justify-content: center;">
+            {{ item.id % 100 }}
+          </div>
+          <div>
+            <div style="font-weight: 500;">Item #{{ item.id }}</div>
+            <div style="font-size: 12px; color: var(--text-neutral-weak-default);">Description for item {{ item.id }}</div>
+          </div>
+        </div>
+      </template>
+    </IkVirtualScroller>
+  </div>
+</template>
+<script setup>
+import { IkVirtualScroller } from '@ikol/ui-kit/components/IkVirtualScroller';
+import { ref } from 'vue';
+
+const items = ref(Array.from({ length: 10000 }, (_, i) => ({
+  id: i + 1,
+  name: `Item ${i + 1}`
+})));
+</script>
+```
+
+## Programmatic scrolling
+
+Use template refs to programmatically scroll to specific items or positions. The component exposes `scrollToIndex` and `scrollTop` methods.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+      <IkButton @click="scrollToItem(100)" size="sm">Scroll to Item 100</IkButton>
+      <IkButton @click="scrollToItem(500)" size="sm">Scroll to Item 500</IkButton>
+      <IkButton @click="scrollToItem(999)" size="sm">Scroll to Item 999</IkButton>
+      <IkButton @click="scrollToTop" size="sm">Scroll to Top</IkButton>
+    </div>
+    <IkVirtualScroller
+      ref="scrollerRef"
+      :items="items"
+      :item_height="50"
+      style="height: 400px; border: 1px solid var(--border-neutral-regular-default); border-radius: 4px;"
+    >
+      <template #item="{ item }">
+        <div style="padding: 12px; border-bottom: 1px solid var(--border-neutral-regular-default);">
+          Item {{ item.id }}: {{ item.name }}
+        </div>
+      </template>
+    </IkVirtualScroller>
+  </div>
+</template>
+<script setup>
+import { IkVirtualScroller } from '@ikol/ui-kit/components/IkVirtualScroller';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { ref } from 'vue';
+
+const scrollerRef = ref();
+const items = ref(Array.from({ length: 1000 }, (_, i) => ({
+  id: i + 1,
+  name: `Item ${i + 1}`
+})));
+
+function scrollToItem(index) {
+  scrollerRef.value?.scrollToIndex(index);
+}
+
+function scrollToTop() {
+  scrollerRef.value?.scrollTop(0);
+}
+</script>
+```
