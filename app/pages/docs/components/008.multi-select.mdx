@@ -6,3 +6,315 @@ meta:
     subsection: inputs
     label: "[[_Multi Select_]]"
 ---
+
+# Multi Select
+
+<MetaDescription>
+Multi Select component provides a flexible multi-select dropdown with chip-based display of selected items, built-in search filtering, support for synchronous or asynchronous items, images, subtext, and virtual scrolling.
+</MetaDescription>
+
+## Basic usage
+
+Provide an array of items and bind the selected values via `v-model` as an array. Use `value_key` and `text_key` to map fields.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkMultiSelect
+    inline
+    v-model="countryIds"
+    :items="countries"
+    value_key="id"
+    text_key="name"
+    placeholder="Select countries"
+  />
+  <p class="ik-text--sm ik-mt-2">Selected: {{ countryIds }}</p>
+</template>
+<script setup>
+import { IkMultiSelect } from '@ikol/ui-kit/components/IkMultiSelect';
+import { ref } from 'vue';
+
+const countries = [
+  { id: 1, name: 'Germany' },
+  { id: 2, name: 'France' },
+  { id: 3, name: 'Spain' },
+  { id: 4, name: 'Italy' },
+];
+
+const countryIds = ref([]);
+</script>
+```
+
+## Filtering
+
+Search filtering is always enabled. Type in the search input to filter items. For static arrays the filtering is performed locally.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkMultiSelect
+    inline
+    v-model="cityIds"
+    :items="cities"
+    value_key="id"
+    text_key="name"
+    placeholder="Search cities"
+  />
+</template>
+<script setup>
+import { IkMultiSelect } from '@ikol/ui-kit/components/IkMultiSelect';
+import { ref } from 'vue';
+
+const cities = [
+  { id: 1, name: 'Berlin' },
+  { id: 2, name: 'Bordeaux' },
+  { id: 3, name: 'Barcelona' },
+  { id: 4, name: 'Bari' },
+  { id: 5, name: 'Brno' },
+  { id: 6, name: 'Bucharest' },
+];
+
+const cityIds = ref([]);
+</script>
+```
+
+## Async loading
+
+Pass a loader function to `items` to fetch items asynchronously. Use `items_per_page` for paging and built-in "load more" handling. When async, typing in the search input triggers reloading with `search_string`.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkMultiSelect
+    inline
+    v-model="userIds"
+    :items="loadUsers"
+    value_key="id"
+    unique_key="id"
+    text_key="name"
+    :items_per_page="10"
+    placeholder="Search users"
+  />
+</template>
+<script setup>
+import { IkMultiSelect } from '@ikol/ui-kit/components/IkMultiSelect';
+import { ref } from 'vue';
+
+const userIds = ref([]);
+
+async function loadUsers({ offset = 0, limit = 10, search_string = '' } = {}) {
+  // Simulated API
+  const all = Array.from({ length: 57 }).map((_, i) => ({
+    id: i + 1,
+    name: `User ${i + 1}`,
+  })).filter(u => u.name.toLowerCase().includes(search_string.toLowerCase()));
+
+  const items = all.slice(offset, offset + limit);
+  const has_more = offset + limit < all.length;
+  return { items, offset, has_more };
+}
+</script>
+```
+
+## Images and subtext
+
+Supply `img_key` and/or `subtext_key` (or expressions) to display avatars and secondary text in both the selected chips and dropdown items.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkMultiSelect
+    inline
+    v-model="memberIds"
+    :items="members"
+    value_key="id"
+    text_key="name"
+    subtext_key="role"
+    img_key="avatar"
+    unique_key="id"
+    placeholder="Select members"
+  />
+</template>
+<script setup>
+import { IkMultiSelect } from '@ikol/ui-kit/components/IkMultiSelect';
+import { ref } from 'vue';
+
+const members = [
+  { id: 1, name: 'Alice', role: 'Designer', avatar: 'https://i.pravatar.cc/24?img=1' },
+  { id: 2, name: 'Bob', role: 'Engineer', avatar: 'https://i.pravatar.cc/24?img=2' },
+  { id: 3, name: 'Carol', role: 'PM', avatar: 'https://i.pravatar.cc/24?img=3' },
+  { id: 4, name: 'David', role: 'Designer', avatar: 'https://i.pravatar.cc/24?img=4' },
+];
+
+const memberIds = ref([]);
+</script>
+```
+
+## Variants and sizes
+
+Control appearance with `variant` and `size`. Selected items are displayed as chips that adapt to the variant and size.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <IkMultiSelect
+      v-model="v1"
+      :items="opts"
+      value_key="id"
+      text_key="name"
+      unique_key="id"
+      variant="flat"
+      size="sm"
+      placeholder="Flat sm"
+      class="ik-mb-4"
+    />
+    <IkMultiSelect
+      v-model="v2"
+      :items="opts"
+      value_key="id"
+      text_key="name"
+      unique_key="id"
+      variant="outline"
+      size="md"
+      placeholder="Outline md"
+      class="ik-mb-4"
+    />
+    <IkMultiSelect
+      v-model="v3"
+      :items="opts"
+      value_key="id"
+      text_key="name"
+      unique_key="id"
+      variant="filled"
+      size="lg"
+      placeholder="Filled lg"
+      class="ik-mb-4"
+    />
+  </div>
+</template>
+<script setup>
+import { IkMultiSelect } from '@ikol/ui-kit/components/IkMultiSelect';
+import { ref } from 'vue';
+
+const opts = [
+  { id: 1, name: 'One' },
+  { id: 2, name: 'Two' },
+  { id: 3, name: 'Three' },
+];
+
+const v1 = ref([]);
+const v2 = ref([]);
+const v3 = ref([]);
+</script>
+```
+
+## Disabled state
+
+Disable the whole control with `disabled`. When disabled, chips cannot be removed and the dropdown cannot be opened.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <IkMultiSelect
+      inline
+      v-model="valA"
+      :items="list"
+      value_key="id"
+      text_key="label"
+      unique_key="id"
+      placeholder="Enabled"
+      class="ik-mr-4"
+    />
+    <IkMultiSelect
+      inline
+      v-model="valB"
+      :items="list"
+      value_key="id"
+      text_key="label"
+      unique_key="id"
+      disabled
+      placeholder="Disabled control"
+    />
+  </div>
+</template>
+<script setup>
+import { IkMultiSelect } from '@ikol/ui-kit/components/IkMultiSelect';
+import { ref } from 'vue';
+
+const list = [
+  { id: 1, label: 'Item 1' },
+  { id: 2, label: 'Item 2' },
+  { id: 3, label: 'Item 3' },
+  { id: 4, label: 'Item 4' },
+];
+
+const valA = ref([1, 2]);
+const valB = ref([3, 4]);
+</script>
+```
+
+## Keyboard interactions
+
+Use keyboard shortcuts for quick interaction. Press backspace when the search input is empty to remove the last selected item. Press escape to close the dropdown.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkMultiSelect
+    inline
+    v-model="tagIds"
+    :items="tags"
+    value_key="id"
+    text_key="label"
+    unique_key="id"
+    placeholder="Select tags (try backspace when empty)"
+  />
+  <p class="ik-text--sm ik-mt-2">Selected: {{ tagIds.length }} tags</p>
+</template>
+<script setup>
+import { IkMultiSelect } from '@ikol/ui-kit/components/IkMultiSelect';
+import { ref } from 'vue';
+
+const tags = [
+  { id: 1, label: 'Design' },
+  { id: 2, label: 'Frontend' },
+  { id: 3, label: 'Backend' },
+  { id: 4, label: 'Mobile' },
+];
+
+const tagIds = ref([1, 2, 3]);
+</script>
+```
+
+## Virtual scrolling
+
+Enable `virtual_scroller` for better performance when dealing with large datasets. This is especially useful with async loading.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkMultiSelect
+    inline
+    v-model="itemIds"
+    :items="loadItems"
+    value_key="id"
+    unique_key="id"
+    text_key="name"
+    virtual_scroller
+    :items_per_page="20"
+    placeholder="Search items (virtual scrolling enabled)"
+  />
+</template>
+<script setup>
+import { IkMultiSelect } from '@ikol/ui-kit/components/IkMultiSelect';
+import { ref } from 'vue';
+
+const itemIds = ref([]);
+
+async function loadItems({ offset = 0, limit = 20, search_string = '' } = {}) {
+  // Simulated API with large dataset
+  const all = Array.from({ length: 500 }).map((_, i) => ({
+    id: i + 1,
+    name: `Item ${i + 1}`,
+  })).filter(item => item.name.toLowerCase().includes(search_string.toLowerCase()));
+
+  const items = all.slice(offset, offset + limit);
+  const has_more = offset + limit < all.length;
+  return { items, offset, has_more };
+}
+</script>
+```
