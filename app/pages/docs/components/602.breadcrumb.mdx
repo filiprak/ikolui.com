@@ -7,3 +7,75 @@ meta:
     label: "[[_Breadcrumb_]]"
 ---
 
+# Breadcrumb
+
+<MetaDescription>
+The Breadcrumb component provides a navigation aid that shows users their current location within a hierarchical structure. It automatically handles overflow by collapsing items into a dropdown when space is limited, ensuring a clean and responsive navigation experience. Perfect for showing navigation paths in documentation, dashboards, and multi-level content structures.
+</MetaDescription>
+
+## Basic breadcrumb
+
+The Breadcrumb component displays a list of navigation items separated by slashes. Items with URLs are clickable links.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkBreadcrumb :items="breadcrumbItems" />
+</template>
+<script setup>
+import { IkBreadcrumb } from '@ikol/ui-kit/components/IkBreadcrumb';
+import { ref } from 'vue';
+
+const breadcrumbItems = ref([
+  { label: 'Home', url: '/' },
+  { label: 'Documentation', url: '/docs' },
+  { label: 'Components', url: '/docs/components' },
+  { label: 'Breadcrumb' }
+]);
+</script>
+```
+
+## Breadcrumb with non-clickable items
+
+Items without URLs are displayed as plain text and are not clickable. This is useful for showing the current page or non-navigable items.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkBreadcrumb :items="breadcrumbItems" />
+</template>
+<script setup>
+import { IkBreadcrumb } from '@ikol/ui-kit/components/IkBreadcrumb';
+import { ref } from 'vue';
+
+const breadcrumbItems = ref([
+  { label: 'Home', url: '/' },
+  { label: 'Products', url: '/products' },
+  { label: 'Electronics', url: '/products/electronics' },
+  { label: 'Current Product' } // No URL - not clickable
+]);
+</script>
+```
+
+## Responsive overflow handling
+
+When the breadcrumb items exceed the available width, the component automatically collapses earlier items into a dropdown menu. The component responds to window resize events and adjusts dynamically.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div style="width: 300px; border: 2px dashed var(--border-neutral-regular-default); padding: var(--s-3);">
+    <IkBreadcrumb :items="longBreadcrumbItems" />
+  </div>
+</template>
+<script setup>
+import { IkBreadcrumb } from '@ikol/ui-kit/components/IkBreadcrumb';
+import { ref } from 'vue';
+
+const longBreadcrumbItems = ref([
+  { label: 'Home', url: '/' },
+  { label: 'Category', url: '/category' },
+  { label: 'Subcategory', url: '/category/subcategory' },
+  { label: 'Product Type', url: '/category/subcategory/type' },
+  { label: 'Product Name', url: '/category/subcategory/type/name' },
+  { label: 'Product Details' }
+]);
+</script>
+```

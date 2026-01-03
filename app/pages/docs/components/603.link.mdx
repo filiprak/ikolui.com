@@ -7,3 +7,90 @@ meta:
     label: "[[_Link_]]"
 ---
 
+# Link
+
+<MetaDescription>
+The Link component provides a styled anchor element with support for different link types (URL, email, phone), visual variants, and custom click handlers. It automatically builds proper URIs for different protocols and provides consistent styling across your application. Perfect for creating navigation links, email links, phone links, and interactive text elements.
+</MetaDescription>
+
+## Basic link
+
+The Link component renders as an anchor tag with default styling. Use the `to` prop to specify the destination URL.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkLink to="https://example.com">Visit Example</IkLink>
+</template>
+<script setup>
+import { IkLink } from '@ikol/ui-kit/components/IkLink';
+</script>
+```
+
+## Link variants
+
+### Underline variant
+
+Add an underline to the link using the `underline` prop.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <IkLink to="https://example.com" underline class="ik-mr-4">Underlined Link</IkLink>
+    <IkLink to="https://example.com">Default Link</IkLink>
+  </div>
+</template>
+<script setup>
+import { IkLink } from '@ikol/ui-kit/components/IkLink';
+</script>
+```
+
+### Plain variant
+
+Use the `plain` prop to remove default link styling.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <IkLink to="https://example.com" plain class="ik-mr-4">Plain Link</IkLink>
+    <IkLink to="https://example.com">Default Link</IkLink>
+  </div>
+</template>
+<script setup>
+import { IkLink } from '@ikol/ui-kit/components/IkLink';
+</script>
+```
+
+## Design colors
+
+Apply different design colors to links using the `design` prop.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <IkLink to="https://example.com" design="primary" class="ik-mr-4">Primary</IkLink>
+    <IkLink to="https://example.com" design="success" class="ik-mr-4">Success</IkLink>
+    <IkLink to="https://example.com" design="error" class="ik-mr-4">Error</IkLink>
+    <IkLink to="https://example.com" design="accent" class="ik-mr-4">Accent</IkLink>
+    <IkLink to="https://example.com" design="default">Default</IkLink>
+  </div>
+</template>
+<script setup>
+import { IkLink } from '@ikol/ui-kit/components/IkLink';
+</script>
+```
+
+## Target attribute
+
+Use the `target` prop to control how the link opens.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <IkLink to="https://example.com" target="_blank" class="ik-mr-4">Open in New Tab</IkLink>
+    <IkLink to="https://example.com" target="_self">Open in Same Tab</IkLink>
+  </div>
+</template>
+<script setup>
+import { IkLink } from '@ikol/ui-kit/components/IkLink';
+</script>
+```

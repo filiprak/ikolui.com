@@ -7,3 +7,327 @@ meta:
     label: "[[_Tabs_]]"
 ---
 
+# Tabs
+
+<MetaDescription>
+The Tabs component provides a tabbed interface for organizing content into multiple panels. It supports multiple visual variants, directions, sizes, and design colors. Tabs automatically manage tab registration, active state, and content visibility. Perfect for organizing related content, settings panels, and multi-section interfaces.
+</MetaDescription>
+
+## Basic tabs
+
+The Tabs component uses `IkTabsItem` children to define each tab panel. The `modelValue` prop controls which tab is active.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkTabs v-model="activeTab">
+    <IkTabsItem name="overview" title="Overview">
+      <p>Dashboard overview with key metrics and recent activity.</p>
+    </IkTabsItem>
+    <IkTabsItem name="analytics" title="Analytics">
+      <p>Detailed analytics and performance charts.</p>
+    </IkTabsItem>
+    <IkTabsItem name="reports" title="Reports">
+      <p>Generated reports and export options.</p>
+    </IkTabsItem>
+  </IkTabs>
+</template>
+<script setup>
+import { IkTabs, IkTabsItem } from '@ikol/ui-kit/components/IkTabs';
+import { ref } from 'vue';
+
+const activeTab = ref('overview');
+</script>
+```
+
+## Variants
+
+Tabs support different visual variants to match your design needs.
+
+### Underline variant
+
+The default variant displays tabs with an underline indicator for the active tab.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkTabs v-model="activeTab" variant="underline">
+    <IkTabsItem name="description" title="Description">
+      <p>Product description and key features.</p>
+    </IkTabsItem>
+    <IkTabsItem name="specifications" title="Specifications">
+      <p>Technical specifications and details.</p>
+    </IkTabsItem>
+    <IkTabsItem name="reviews" title="Reviews">
+      <p>Customer reviews and ratings.</p>
+    </IkTabsItem>
+  </IkTabs>
+</template>
+<script setup>
+import { IkTabs, IkTabsItem } from '@ikol/ui-kit/components/IkTabs';
+import { ref } from 'vue';
+
+const activeTab = ref('description');
+</script>
+```
+
+### Button variant
+
+The button variant displays tabs as button-like elements.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkTabs v-model="activeTab" variant="button">
+    <IkTabsItem name="profile" title="Profile">
+      <p>User profile information and settings.</p>
+    </IkTabsItem>
+    <IkTabsItem name="account" title="Account">
+      <p>Account details and billing information.</p>
+    </IkTabsItem>
+    <IkTabsItem name="notifications" title="Notifications">
+      <p>Notification preferences and settings.</p>
+    </IkTabsItem>
+  </IkTabs>
+</template>
+<script setup>
+import { IkTabs, IkTabsItem } from '@ikol/ui-kit/components/IkTabs';
+import { ref } from 'vue';
+
+const activeTab = ref('profile');
+</script>
+```
+
+### Button background variant
+
+The button background variant displays tabs as buttons with a background for the active tab.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkTabs v-model="activeTab" variant="button-background">
+    <IkTabsItem name="features" title="Features">
+      <p>Product features and capabilities.</p>
+    </IkTabsItem>
+    <IkTabsItem name="pricing" title="Pricing">
+      <p>Pricing plans and subscription options.</p>
+    </IkTabsItem>
+    <IkTabsItem name="support" title="Support">
+      <p>Support resources and contact information.</p>
+    </IkTabsItem>
+  </IkTabs>
+</template>
+<script setup>
+import { IkTabs, IkTabsItem } from '@ikol/ui-kit/components/IkTabs';
+import { ref } from 'vue';
+
+const activeTab = ref('features');
+</script>
+```
+
+## Directions
+
+Tabs can be displayed horizontally (row) or vertically (column).
+
+### Row direction (default)
+
+Tabs are displayed horizontally in a row.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkTabs v-model="activeTab" direction="row">
+    <IkTabsItem name="dashboard" title="Dashboard">
+      <p>Main dashboard with overview metrics.</p>
+    </IkTabsItem>
+    <IkTabsItem name="projects" title="Projects">
+      <p>Project management and task tracking.</p>
+    </IkTabsItem>
+    <IkTabsItem name="team" title="Team">
+      <p>Team members and collaboration tools.</p>
+    </IkTabsItem>
+  </IkTabs>
+</template>
+<script setup>
+import { IkTabs, IkTabsItem } from '@ikol/ui-kit/components/IkTabs';
+import { ref } from 'vue';
+
+const activeTab = ref('dashboard');
+</script>
+```
+
+### Column direction
+
+Tabs are displayed vertically in a column.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkTabs v-model="activeTab" direction="column" style="display: flex; height: 300px;">
+    <IkTabsItem name="personal" title="Personal">
+      <p>Personal information and preferences.</p>
+    </IkTabsItem>
+    <IkTabsItem name="privacy" title="Privacy">
+      <p>Privacy settings and data management.</p>
+    </IkTabsItem>
+    <IkTabsItem name="preferences" title="Preferences">
+      <p>Application preferences and customization.</p>
+    </IkTabsItem>
+  </IkTabs>
+</template>
+<script setup>
+import { IkTabs, IkTabsItem } from '@ikol/ui-kit/components/IkTabs';
+import { ref } from 'vue';
+
+const activeTab = ref('personal');
+</script>
+```
+
+## Sizes
+
+Tabs support different sizes to fit various UI contexts.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <IkTabs v-model="activeTab1" size="sm" class="ik-mb-4">
+      <IkTabsItem name="inbox" title="Inbox">
+        <p>Your inbox messages and conversations.</p>
+      </IkTabsItem>
+      <IkTabsItem name="sent" title="Sent">
+        <p>Messages you've sent to others.</p>
+      </IkTabsItem>
+    </IkTabs>
+    <IkTabs v-model="activeTab2" size="md">
+      <IkTabsItem name="drafts" title="Drafts">
+        <p>Draft messages and saved compositions.</p>
+      </IkTabsItem>
+      <IkTabsItem name="archived" title="Archived">
+        <p>Archived messages and conversations.</p>
+      </IkTabsItem>
+    </IkTabs>
+  </div>
+</template>
+<script setup>
+import { IkTabs, IkTabsItem } from '@ikol/ui-kit/components/IkTabs';
+import { ref } from 'vue';
+
+const activeTab1 = ref('inbox');
+const activeTab2 = ref('drafts');
+</script>
+```
+
+## Design colors
+
+Apply different design colors to tabs using the `design` prop.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <IkTabs v-model="activeTab1" design="primary" class="ik-mb-4">
+      <IkTabsItem name="active" title="Active">
+        <p>Active tasks and current projects.</p>
+      </IkTabsItem>
+      <IkTabsItem name="completed" title="Completed">
+        <p>Completed tasks and finished projects.</p>
+      </IkTabsItem>
+    </IkTabs>
+    <IkTabs v-model="activeTab2" design="accent" class="ik-mb-4">
+      <IkTabsItem name="pending" title="Pending">
+        <p>Pending items awaiting action.</p>
+      </IkTabsItem>
+      <IkTabsItem name="scheduled" title="Scheduled">
+        <p>Scheduled items and upcoming tasks.</p>
+      </IkTabsItem>
+    </IkTabs>
+    <IkTabs v-model="activeTab3" design="success">
+      <IkTabsItem name="approved" title="Approved">
+        <p>Approved items and confirmed requests.</p>
+      </IkTabsItem>
+      <IkTabsItem name="published" title="Published">
+        <p>Published content and live items.</p>
+      </IkTabsItem>
+    </IkTabs>
+  </div>
+</template>
+<script setup>
+import { IkTabs, IkTabsItem } from '@ikol/ui-kit/components/IkTabs';
+import { ref } from 'vue';
+
+const activeTab1 = ref('active');
+const activeTab2 = ref('pending');
+const activeTab3 = ref('approved');
+</script>
+```
+
+## Tabs with icons
+
+Add icons to tabs using the `icon` prop on `IkTabsItem`.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkTabs v-model="activeTab">
+    <IkTabsItem name="tab1" title="Home" icon="home">
+      <p>Home content</p>
+    </IkTabsItem>
+    <IkTabsItem name="tab2" title="Settings" icon="cog">
+      <p>Settings content</p>
+    </IkTabsItem>
+    <IkTabsItem name="tab3" title="Profile" icon="user">
+      <p>Profile content</p>
+    </IkTabsItem>
+  </IkTabs>
+</template>
+<script setup>
+import { IkTabs, IkTabsItem } from '@ikol/ui-kit/components/IkTabs';
+import { ref } from 'vue';
+
+const activeTab = ref('tab1');
+</script>
+```
+
+## Full width tabs
+
+Use the `full_width` prop to make tabs span the full width of their container.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkTabs v-model="activeTab" full_width>
+    <IkTabsItem name="all" title="All">
+      <p>View all items and content.</p>
+    </IkTabsItem>
+    <IkTabsItem name="favorites" title="Favorites">
+      <p>Your favorite items and bookmarks.</p>
+    </IkTabsItem>
+    <IkTabsItem name="recent" title="Recent">
+      <p>Recently viewed and accessed items.</p>
+    </IkTabsItem>
+  </IkTabs>
+</template>
+<script setup>
+import { IkTabs, IkTabsItem } from '@ikol/ui-kit/components/IkTabs';
+import { ref } from 'vue';
+
+const activeTab = ref('all');
+</script>
+```
+
+## Full height tabs
+
+Use the `full_height` prop to make the tabs container take full height.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkTabs v-model="activeTab" full_height style="height: 400px;">
+    <IkTabsItem name="code" title="Code">
+      <p>Source code editor and file browser.</p>
+    </IkTabsItem>
+    <IkTabsItem name="preview" title="Preview">
+      <p>Live preview of your application.</p>
+    </IkTabsItem>
+    <IkTabsItem name="console" title="Console">
+      <p>Debug console and output logs.</p>
+    </IkTabsItem>
+  </IkTabs>
+</template>
+<script setup>
+import { IkTabs, IkTabsItem } from '@ikol/ui-kit/components/IkTabs';
+import { ref } from 'vue';
+
+const activeTab = ref('code');
+</script>
+```
