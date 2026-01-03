@@ -1,6 +1,6 @@
 <template>
     <div v-show="show"
-         :class="$style.pre">
+         :class="['pre', $style.pre]">
         <Preview :class="$style.preview" />
         <div :class="$style.wrapper">
             <div v-if="title"

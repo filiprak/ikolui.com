@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     },
     alias: {
         dayjs: path.resolve(import.meta.dirname, 'node_modules/dayjs/esm'),
+        anchorme: path.resolve(import.meta.dirname, 'node_modules/anchorme/dist/browser/anchorme.min.js'),
         lodash: 'lodash-es',
     },
     modules: [

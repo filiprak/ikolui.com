@@ -10,10 +10,13 @@ importers:
     dependencies:
       '@ikol/ui-kit':
         specifier: 1.3.14
-        version: 1.3.14(@floating-ui/dom@1.6.13)(@lottiefiles/lottie-player@2.0.12)(anchorme@2.1.2)(auto-text-size@0.2.3(react@19.1.1))(dayjs@1.11.13)(scroll-into-view-if-needed@3.1.0)(simplebar-core@1.3.0)(swiper@11.2.0)(vue-router@4.4.5(vue@3.5.10(typescript@5.9.2)))(vue@3.5.10(typescript@5.9.2))
+        version: 1.3.14(@floating-ui/dom@1.6.13)(@lottiefiles/lottie-player@2.0.12)(anchorme@3.0.8)(auto-text-size@0.2.3(react@19.1.1))(dayjs@1.11.13)(scroll-into-view-if-needed@3.1.0)(simplebar-core@1.3.0)(swiper@11.2.0)(vue-router@4.4.5(vue@3.5.10(typescript@5.9.2)))(vue@3.5.10(typescript@5.9.2))
       '@nuxtjs/device':
         specifier: ^3.2.4
         version: 3.2.4
+      anchorme:
+        specifier: ^3.0.8
+        version: 3.0.8
       dayjs:
         specifier: 1.11.13
         version: 1.11.13
@@ -1640,8 +1643,8 @@ packages:
   alien-signals@2.0.7:
     resolution: {integrity: sha512-wE7y3jmYeb0+h6mr5BOovuqhFv22O/MV9j5p0ndJsa7z1zJNPGQ4ph5pQk/kTTCWRC3xsA4SmtwmkzQO+7NCNg==}
 
-  anchorme@2.1.2:
-    resolution: {integrity: sha512-2iPY3kxDDZvtRzauqKDb4v7a5sTF4GZ+esQTY8nGYvmhAtGTeFPMn4cRnvyWS1qmtPTP0Mv8hyLOp9l3ZzWMKg==}
+  anchorme@3.0.8:
+    resolution: {integrity: sha512-K61vxP907NA0Pv4z5v7xbiwosAjhdjCVUFGOFm1TEDFbKmK9/dRLT1jirFIQUuE5ni78Mv4D3Yr4rnQT1PJl9w==}
 
   ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
@@ -4942,11 +4945,11 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.3': {}
 
-  '@ikol/ui-kit@1.3.14(@floating-ui/dom@1.6.13)(@lottiefiles/lottie-player@2.0.12)(anchorme@2.1.2)(auto-text-size@0.2.3(react@19.1.1))(dayjs@1.11.13)(scroll-into-view-if-needed@3.1.0)(simplebar-core@1.3.0)(swiper@11.2.0)(vue-router@4.4.5(vue@3.5.10(typescript@5.9.2)))(vue@3.5.10(typescript@5.9.2))':
+  '@ikol/ui-kit@1.3.14(@floating-ui/dom@1.6.13)(@lottiefiles/lottie-player@2.0.12)(anchorme@3.0.8)(auto-text-size@0.2.3(react@19.1.1))(dayjs@1.11.13)(scroll-into-view-if-needed@3.1.0)(simplebar-core@1.3.0)(swiper@11.2.0)(vue-router@4.4.5(vue@3.5.10(typescript@5.9.2)))(vue@3.5.10(typescript@5.9.2))':
     dependencies:
       '@floating-ui/dom': 1.6.13
       '@lottiefiles/lottie-player': 2.0.12
-      anchorme: 2.1.2
+      anchorme: 3.0.8
       auto-text-size: 0.2.3(react@19.1.1)
       dayjs: 1.11.13
       scroll-into-view-if-needed: 3.1.0
@@ -6303,7 +6306,7 @@ snapshots:
 
   alien-signals@2.0.7: {}
 
-  anchorme@2.1.2: {}
+  anchorme@3.0.8: {}
 
   ansi-regex@5.0.1: {}
 

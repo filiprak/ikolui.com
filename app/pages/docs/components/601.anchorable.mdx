@@ -7,3 +7,146 @@ meta:
     label: "[[_Anchorable_]]"
 ---
 
+# Anchorable
+
+<MetaDescription>
+The Anchorable component automatically detects and converts email addresses, URLs or phone numbers in text into clickable links. It uses intelligent tokenization to parse text and identify different types of anchorable content, making it perfect for displaying user-generated content or dynamic text with embedded links.
+</MetaDescription>
+
+## Basic usage
+
+The Anchorable component automatically detects and converts various types of content into clickable links.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkAnchorable value="Contact us at support@example.com or visit https://example.com for more information." />
+</template>
+<script setup>
+import { IkAnchorable } from '@ikol/ui-kit/components/IkAnchorable';
+</script>
+```
+
+## Email addresses
+
+Email addresses are automatically detected and converted to `mailto:` links.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkAnchorable value="Send an email to contact@example.com or support@company.com" />
+</template>
+<script setup>
+import { IkAnchorable } from '@ikol/ui-kit/components/IkAnchorable';
+</script>
+```
+
+## URLs
+
+URLs are automatically detected and converted to clickable links. URLs without a protocol will automatically have `https://` prepended.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <div>
+    <div class="ik-mb-4">
+      <IkAnchorable value="Visit https://example.com for more details" />
+    </div>
+    <div>
+      <IkAnchorable value="Check out example.com or www.example.org" />
+    </div>
+  </div>
+</template>
+<script setup>
+import { IkAnchorable } from '@ikol/ui-kit/components/IkAnchorable';
+</script>
+```
+
+## Phone numbers
+
+Phone numbers are automatically detected and converted to `tel:` links.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkAnchorable value="Call us at +1-234-567-8900 or (555) 123-4567" />
+</template>
+<script setup>
+import { IkAnchorable } from '@ikol/ui-kit/components/IkAnchorable';
+</script>
+```
+
+## Action icons
+
+You can add custom action icons for email addresses and phone numbers. When clicked, these icons emit an event instead of following the default link behavior.
+
+### Email action icon
+
+Add an action icon to email links using the `email_action_icon` prop.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkAnchorable 
+    value="Contact us at support@example.com" 
+    email_action_icon="copy"
+    @ik-click-anchor-action="handleEmailAction"
+  />
+</template>
+<script setup>
+import { IkAnchorable } from '@ikol/ui-kit/components/IkAnchorable';
+
+function handleEmailAction(token) {
+  console.log('Email action clicked:', token);
+  // Custom action logic here
+}
+</script>
+```
+
+### Phone action icon
+
+Add an action icon to phone links using the `phone_action_icon` prop.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkAnchorable 
+    value="Call us at +1-234-567-8900" 
+    phone_action_icon="copy"
+    @ik-click-anchor-action="handlePhoneAction"
+  />
+</template>
+<script setup>
+import { IkAnchorable } from '@ikol/ui-kit/components/IkAnchorable';
+
+function handlePhoneAction(token) {
+  console.log('Phone action clicked:', token);
+  // Custom action logic here
+}
+</script>
+```
+
+## Event handling
+
+The component emits an `ik-click-anchor-action` event when action icons are clicked. The event passes the token object containing information about the clicked anchor.
+
+```vue title="[[_Source code_]]" preview
+<template>
+  <IkAnchorable 
+    value="Email: contact@example.com, Phone: +1-234-567-8900" 
+    email_action_icon="copy"
+    phone_action_icon="copy"
+    @ik-click-anchor-action="handleAnchorAction"
+  />
+</template>
+<script setup>
+import { IkAnchorable } from '@ikol/ui-kit/components/IkAnchorable';
+import { ref } from 'vue';
+
+const lastAction = ref('');
+
+function handleAnchorAction(token) {
+  if (token.isEmail) {
+    lastAction.value = `Email action: ${token.string}`;
+    // Copy email to clipboard, show notification, etc.
+  } else if (token.isPhone) {
+    lastAction.value = `Phone action: ${token.string}`;
+    // Copy phone to clipboard, show notification, etc.
+  }
+}
+</script>
+```
