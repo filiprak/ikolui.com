@@ -31,6 +31,14 @@ The Navigation component creates a sidebar navigation panel. On desktop, it can 
       </IkNavigationItem>
       <IkNavigationItem link="#" icon="folder">
         Projects
+        <template #children>
+          <IkNavigationItem link="#" icon="folder">
+            Project 1
+          </IkNavigationItem>
+          <IkNavigationItem link="#" icon="folder">
+            Project 2
+          </IkNavigationItem>
+        </template>
       </IkNavigationItem>
       <IkNavigationItem link="#" icon="users">
         Team
@@ -133,7 +141,7 @@ Use the `secondary` prop to create nested or secondary navigation panels that do
       </IkNavigationItem>
     </IkNavigation>
     
-    <IkNavigation v-model:open="secondaryOpen" secondary style="position: relative; height: 100%; border-right: 1px solid var(--border-neutral-light-default);">
+    <IkNavigation secondary style="height: 100%; border-right: 1px solid var(--border-neutral-light-default);">
       <IkNavigationItem link="#">
         Sub Item 1
       </IkNavigationItem>
@@ -141,6 +149,59 @@ Use the `secondary` prop to create nested or secondary navigation panels that do
         Sub Item 2
       </IkNavigationItem>
       <IkNavigationItem link="#">
+        Sub Item 3
+      </IkNavigationItem>
+    </IkNavigation>
+  </IkApp>
+</template>
+<script setup>
+import { IkApp } from '@ikol/ui-kit/components/IkApp';
+import { IkNavigation } from '@ikol/ui-kit/components/IkNavigation';
+import { IkNavigationItem } from '@ikol/ui-kit/components/IkNavigation';
+import { IkIcon } from '@ikol/ui-kit/components/IkIcon';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+import { IkFlex } from '@ikol/ui-kit/components/IkFlex';
+import { ref } from 'vue';
+</script>
+```
+
+### Secondary mini variant
+
+Use the `secondary` prop with the `mini` prop to create nested or secondary navigation panels that don't register with the App component and have different styling behavior.
+
+```vue title="[[_Source code_]]" preview client_only
+<template>
+  <IkApp style="position: relative; height: 400px; border: 1px dashed var(--border-neutral-light-default); display: flex; overflow: hidden">
+    <IkNavigation open mini style="position: absolute">
+      <template #top>
+        <div class="ik-pa-7">
+          <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; font-weight: bold;">
+            JD
+          </div>
+        </div>
+      </template>
+      <IkNavigationItem circle link="#" icon="home" hide_label>
+        Dashboard
+      </IkNavigationItem>
+      <IkNavigationItem link="#" icon="folder" hide_label>
+        Projects
+      </IkNavigationItem>
+      <IkNavigationItem link="#" icon="users" hide_label>
+        Team
+      </IkNavigationItem>
+      <IkNavigationItem link="#" icon="cog" hide_label>
+        Settings
+      </IkNavigationItem>
+    </IkNavigation>
+    
+    <IkNavigation secondary mini style="height: 100%; border-right: 1px solid var(--border-neutral-light-default);">
+      <IkNavigationItem link="#" icon="folder">
+        Sub Item 1
+      </IkNavigationItem>
+      <IkNavigationItem link="#" icon="folder">
+        Sub Item 2
+      </IkNavigationItem>
+      <IkNavigationItem link="#" icon="folder">
         Sub Item 3
       </IkNavigationItem>
     </IkNavigation>
