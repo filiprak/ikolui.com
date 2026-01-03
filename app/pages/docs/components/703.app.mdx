@@ -7,3 +7,77 @@ meta:
     label: "[[_App_]]"
 ---
 
+# App
+
+<MetaDescription>
+The App component provides a top-level application wrapper that coordinates layout, navigation, and app bar positioning. It automatically manages padding and spacing based on registered navigation and app bar components, ensuring proper content positioning. The App component works seamlessly with IkAppBar and IkAppContent to create a complete application layout structure. Perfect for creating the main DOM tree wrapper in Vue templates.
+</MetaDescription>
+
+## Basic app
+
+The App component serves as the root wrapper for your application. It provides context to child components and automatically adjusts layout based on registered navigation and app bar components.
+
+```vue title="[[_Source code_]]" preview client_only
+<template>
+  <IkApp style="position: relative; height: 400px; border: 1px dashed var(--border-neutral-regular-default); overflow: hidden">
+    <IkAppBar height="56" style="position: absolute">
+      <template #title>My Application</template>
+    </IkAppBar>
+    <IkAppContent>
+      <div class="ik-pa-7">
+        <span>This is the main content area of your application.</span>
+      </div>
+    </IkAppContent>
+  </IkApp>
+</template>
+<script setup>
+import { IkApp, IkAppBar, IkAppContent } from '@ikol/ui-kit/components/IkApp';
+import { IkButton } from '@ikol/ui-kit/components/IkButton';
+</script>
+```
+
+## App with navigation
+
+The App component automatically coordinates with Navigation components to adjust padding and layout. On desktop, content is padded to account for the navigation sidebar. On mobile, the navigation slides in as an overlay.
+
+```vue title="[[_Source code_]]" preview client_only
+<template>
+  <IkApp style="position: relative; height: 500px; border: 1px dashed var(--border-neutral-regular-default); overflow: hidden">
+    <IkNavigation v-model:open="navOpen" style="position: absolute" mini>
+      <template #top>
+        <div class="ik-pa-7">
+          <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; font-weight: bold;">
+            IK
+          </div>
+        </div>
+      </template>
+      <IkNavigationItem link="#" icon="home" hide_label>
+        Dashboard
+      </IkNavigationItem>
+      <IkNavigationItem link="#" icon="folder" hide_label>
+        Projects
+      </IkNavigationItem>
+      <IkNavigationItem link="#" icon="users" hide_label>
+        Team
+      </IkNavigationItem>
+    </IkNavigation>
+    <IkAppBar height="56" style="position: absolute">
+      <template #title>Dashboard</template>
+    </IkAppBar>
+    <IkAppContent>
+      <div class="ik-pa-7">
+        <h2>Main Content</h2>
+        <p>The app automatically adjusts padding to account for the navigation sidebar.</p>
+      </div>
+    </IkAppContent>
+  </IkApp>
+</template>
+<script setup>
+import { IkApp, IkAppBar, IkAppContent } from '@ikol/ui-kit/components/IkApp';
+import { IkNavigation } from '@ikol/ui-kit/components/IkNavigation';
+import { IkNavigationItem } from '@ikol/ui-kit/components/IkNavigation';
+import { ref } from 'vue';
+
+const navOpen = ref(true);
+</script>
+```
