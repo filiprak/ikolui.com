@@ -23,25 +23,25 @@ The Navigation component creates a sidebar navigation panel. On desktop, it can 
     <IkNavigation v-model:open="navOpen" v-model:mini="navMini" style="position: absolute">
       <IkListItem link="#" class="ik-mb-2">
         <template #prepend>
-          <IkIcon name="home" />
+          <IkIcon icon="home" />
         </template>
         Dashboard
       </IkListItem>
       <IkListItem link="#" class="ik-mb-2">
         <template #prepend>
-          <IkIcon name="folder" />
+          <IkIcon icon="folder" />
         </template>
         Projects
       </IkListItem>
       <IkListItem link="#" class="ik-mb-2">
         <template #prepend>
-          <IkIcon name="users" />
+          <IkIcon icon="users" />
         </template>
         Team
       </IkListItem>
       <IkListItem link="#" class="ik-mb-2">
         <template #prepend>
-          <IkIcon name="cog" />
+          <IkIcon icon="cog" />
         </template>
         Settings
       </IkListItem>
@@ -74,25 +74,25 @@ In mini mode, the navigation collapses to show only icons, making it ideal for s
     <IkNavigation v-model:open="navOpen" v-model:mini="navMini" :mini="true" style="position: absolute">
       <IkListItem link="#" class="ik-mb-2">
         <template #prepend>
-          <IkIcon name="home" />
+          <IkIcon icon="home" />
         </template>
         Dashboard
       </IkListItem>
       <IkListItem link="#" class="ik-mb-2">
         <template #prepend>
-          <IkIcon name="folder" />
+          <IkIcon icon="folder" />
         </template>
         Projects
       </IkListItem>
       <IkListItem link="#" class="ik-mb-2">
         <template #prepend>
-          <IkIcon name="users" />
+          <IkIcon icon="users" />
         </template>
         Team
       </IkListItem>
       <IkListItem link="#" class="ik-mb-2">
         <template #prepend>
-          <IkIcon name="cog" />
+          <IkIcon icon="cog" />
         </template>
         Settings
       </IkListItem>
@@ -131,19 +131,19 @@ Use the `top` and `bottom` slots to add header content (like logos or branding) 
       
       <IkListItem link="#" class="ik-mb-2">
         <template #prepend>
-          <IkIcon name="home" />
+          <IkIcon icon="home" />
         </template>
         Dashboard
       </IkListItem>
       <IkListItem link="#" class="ik-mb-2">
         <template #prepend>
-          <IkIcon name="folder" />
+          <IkIcon icon="folder" />
         </template>
         Projects
       </IkListItem>
       <IkListItem link="#" class="ik-mb-2">
         <template #prepend>
-          <IkIcon name="users" />
+          <IkIcon icon="users" />
         </template>
         Team
       </IkListItem>
@@ -152,7 +152,7 @@ Use the `top` and `bottom` slots to add header content (like logos or branding) 
         <div class="ik-pa-6 ik-text-center" style="border-top: 1px solid var(--border-neutral-regular-default);">
           <IkButton outline size="sm" full_width>
             <template #prepend>
-              <IkIcon name="user" />
+              <IkIcon icon="user" />
             </template>
             Profile
           </IkButton>
@@ -186,13 +186,13 @@ Use the `secondary` prop to create nested or secondary navigation panels that do
     <IkNavigation v-model:open="navOpen" v-model:mini="navMini" style="position: relative; height: 100%;">
       <IkListItem link="#" class="ik-mb-2">
         <template #prepend>
-          <IkIcon name="home" />
+          <IkIcon icon="home" />
         </template>
         Main Item 1
       </IkListItem>
       <IkListItem link="#" class="ik-mb-2">
         <template #prepend>
-          <IkIcon name="folder" />
+          <IkIcon icon="folder" />
         </template>
         Main Item 2
       </IkListItem>
@@ -239,25 +239,25 @@ Control the width of the navigation using the `width` prop for full mode and `mi
     <IkNavigation v-model:open="navOpen" v-model:mini="navMini" :width="320" :mini_width="80" style="position: absolute">
       <IkListItem link="#" class="ik-mb-2">
         <template #prepend>
-          <IkIcon name="home" />
+          <IkIcon icon="home" />
         </template>
         Dashboard
       </IkListItem>
       <IkListItem link="#" class="ik-mb-2">
         <template #prepend>
-          <IkIcon name="folder" />
+          <IkIcon icon="folder" />
         </template>
         Projects
       </IkListItem>
       <IkListItem link="#" class="ik-mb-2">
         <template #prepend>
-          <IkIcon name="users" />
+          <IkIcon icon="users" />
         </template>
         Team
       </IkListItem>
       <IkListItem link="#" class="ik-mb-2">
         <template #prepend>
-          <IkIcon name="cog" />
+          <IkIcon icon="cog" />
         </template>
         Settings
       </IkListItem>
@@ -289,7 +289,7 @@ The Navigation component automatically wraps content in a scrollable area, makin
     <IkNavigation v-model:open="navOpen" v-model:mini="navMini" style="position: absolute">
       <IkListItem link="#" class="ik-mb-2" v-for="i in 20" :key="i">
         <template #prepend>
-          <IkIcon name="circle" />
+          <IkIcon icon="circle" />
         </template>
         Navigation Item {{ i }}
       </IkListItem>
