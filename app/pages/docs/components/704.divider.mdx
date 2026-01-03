@@ -20,9 +20,9 @@ The Divider component creates a simple horizontal line separator.
 ```vue title="[[_Source code_]]" preview
 <template>
   <div>
-    <div class="ik-pa-4">Content above the divider</div>
+    <div class="ik-py-4">Content above the divider</div>
     <IkDivider />
-    <div class="ik-pa-4">Content below the divider</div>
+    <div class="ik-py-4">Content below the divider</div>
   </div>
 </template>
 <script setup>
@@ -37,9 +37,9 @@ Add text or other content in the middle of the divider using the default slot.
 ```vue title="[[_Source code_]]" preview
 <template>
   <div>
-    <div class="ik-pa-4">Content above</div>
+    <div class="ik-py-4">Content above</div>
     <IkDivider>OR</IkDivider>
-    <div class="ik-pa-4">Content below</div>
+    <div class="ik-py-4">Content below</div>
   </div>
 </template>
 <script setup>
@@ -54,15 +54,15 @@ You can add any content, including icons or styled text, in the divider.
 ```vue title="[[_Source code_]]" preview
 <template>
   <div>
-    <div class="ik-pa-4">Section 1</div>
+    <div class="ik-py-4">Section 1</div>
     <IkDivider>
       <IkIcon name="chevron-down" />
     </IkDivider>
-    <div class="ik-pa-4">Section 2</div>
+    <div class="ik-py-4">Section 2</div>
     <IkDivider>
       <span style="font-weight: bold; color: var(--content-primary-strong-default);">Continue</span>
     </IkDivider>
-    <div class="ik-pa-4">Section 3</div>
+    <div class="ik-py-4">Section 3</div>
   </div>
 </template>
 <script setup>
@@ -78,9 +78,9 @@ Use the `no_margin` prop to remove all margins from the divider, making it flush
 ```vue title="[[_Source code_]]" preview
 <template>
   <div>
-    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default);">Content above</div>
+    <div class="ik-py-4" style="background: var(--bg-primary-regular-default);">Content above</div>
     <IkDivider no_margin />
-    <div class="ik-pa-4" style="background: var(--bg-primary-regular-default);">Content below</div>
+    <div class="ik-py-4" style="background: var(--bg-primary-regular-default);">Content below</div>
   </div>
 </template>
 <script setup>
@@ -95,9 +95,9 @@ Use the `no_bottom_margin` prop to remove only the bottom margin while keeping t
 ```vue title="[[_Source code_]]" preview
 <template>
   <div>
-    <div class="ik-pa-4">Content above</div>
+    <div class="ik-py-4">Content above</div>
     <IkDivider no_bottom_margin />
-    <div class="ik-pa-4">Content below (closer to divider)</div>
+    <div class="ik-py-4">Content below (closer to divider)</div>
   </div>
 </template>
 <script setup>
@@ -112,11 +112,11 @@ Use the `darken` prop to make the divider line more prominent with a darker appe
 ```vue title="[[_Source code_]]" preview
 <template>
   <div>
-    <div class="ik-pa-4">Content above</div>
+    <div class="ik-py-4">Content above</div>
     <IkDivider darken />
-    <div class="ik-pa-4">Content below</div>
+    <div class="ik-py-4">Content below</div>
     <IkDivider />
-    <div class="ik-pa-4">Regular divider for comparison</div>
+    <div class="ik-py-4">Regular divider for comparison</div>
   </div>
 </template>
 <script setup>
